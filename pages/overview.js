@@ -15,6 +15,7 @@ const Page = (props) => {
 export async function getServerSideProps (context) {
   // const { currentUser } = await profile(context, SERVICE)
   const url = `${BACKEND_URL}/overview`
+  console.log(url)
   const json = await fetch(url)
   return {
     props: {
