@@ -65,7 +65,7 @@ export default function OperationDialog (props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onCancel}>
+          <Button onClick={onCancel} color="primary">
             Cancel
           </Button>
           <Button type="submit" color="primary">

@@ -14,7 +14,7 @@ import useComm from 'src/hooks/useComm'
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
-    backgroundColor: '#fafafa',
+    backgroundColor: theme.background,
     // borderBottom: `1px solid ${theme.palette.divider}`,
     display: 'none',
     [theme.breakpoints.up('sm')]: {

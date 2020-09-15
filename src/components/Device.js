@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
   aut: {
     backgroundColor: '#108ee9',
+    color: '#fff',
     width: theme.spacing(3),
     height: theme.spacing(3),
   },

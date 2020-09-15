@@ -1,4 +1,4 @@
-# [Next.js website](https://nextjs.org/)
+# [ParkBot website](https://nextjs.org/)
 
 The official ParkBot website.
 

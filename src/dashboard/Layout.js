@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: `calc(100vh - ${appBarHeight}px)`,
-    backgroundColor: fade('#fafafa', 0.75),
+    backgroundColor: theme.background,
     // [theme.breakpoints.up('md')]: {
     //   backgroundImage: 'url(/sotefin_shuttle.jpg)',
     //   backgroundRepeat: 'no-repeat',

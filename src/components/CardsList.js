@@ -3,11 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 // import Container from '@material-ui/core/Container';
 
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import Pagination from '@material-ui/lab/Pagination';
+// import Pagination from '@material-ui/lab/Pagination';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,8 +24,8 @@ import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
-    // maxWidth: 360,
+    // width: '100%',
+    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
   paginator: {
@@ -38,30 +38,31 @@ export default function CardList(props) {
   const classes = useStyles();
   // console.log(props)
   
-  const itemsPerPage = 10;
-  const [page, setPage] = React.useState(1);
-  const [noOfPages] = React.useState(
-    Math.ceil(props.cards.length / itemsPerPage)
-  );
+  // const itemsPerPage = 10;
+  // const [page, setPage] = React.useState(1);
+  // const [noOfPages] = React.useState(
+  //   Math.ceil(props.cards.length / itemsPerPage)
+  // );
 
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
+  // const handleChange = (event, value) => {
+  //   setPage(value);
+  // };
 
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          Cards List
+          List of Cards
         </Typography>
         
-        <List className={classes.root}>
+        <List>
           {
             props.cards
-            .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+            // .slice((page - 1) * itemsPerPage, page * itemsPerPage)
             .map((item, key) => {
-              const primary = <span>Card {item.nr}</span>
-              const secondary = <span>PIN code <strong>{item.code}</strong>, entry valid {item.from} - {item.to}  </span>
+              const primary = <span>PIN code <strong>{item.code}</strong></span>
+              // const secondary = <span>PIN code <strong>{item.code}</strong>, entry valid {item.from} - {item.to}</span>
+              const secondary = <span>Entry valid {item.from} - {item.to}</span>
               return (
               <ListItem key={key} alignItems="flex-start">
                 <ListItemAvatar>
@@ -81,7 +82,7 @@ export default function CardList(props) {
             })
           }
         </List>
-
+{/* 
         <Pagination
           count={noOfPages}
           page={page}
@@ -92,7 +93,7 @@ export default function CardList(props) {
           showFirstButton
           showLastButton
           classes={{ ul: classes.paginator }}
-        />
+        /> */}
       </CardContent>
     </Card>
   );

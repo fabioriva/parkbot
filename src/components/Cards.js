@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Layout from 'src/dashboard/Layout'
-// import CardsList from 'src/components/CardsList'
-import CardsTable from 'src/components/CardsTable'
+import CardsList from 'src/components/CardsList'
+// import CardsTable from 'src/components/CardsTable'
 
 const Cards = ({ currentUser = {}, definitions, json }) => {
   const {
@@ -23,12 +23,12 @@ const Cards = ({ currentUser = {}, definitions, json }) => {
       socket={`${websockUrl}?channel=ch2`}
       user={currentUser}
     >
-      <CardsTable cards={cards} />
-      {/* <CardsList
+      {/* <CardsTable cards={cards} /> */}
+      <CardsList
         cards={cards}
-        openModal={modalOpen}
+        // openModal={modalOpen}
       />
-      <Modal
+      {/* <Modal
         data={modal}
         onCancel={modalClose}
         onConfirm={modalConfirm}
