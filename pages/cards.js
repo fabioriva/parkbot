@@ -22,7 +22,7 @@ export async function getServerSideProps (context) {
         activeTab: '1',
         apsName: APS_NAME,
         apsLocation: APS_LOCATION,
-        pageTitle: 'System Cards',
+        pageTitle: 'Cards',
         websockUrl: WEBSOCK_URL
       },
       json: json

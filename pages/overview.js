@@ -15,7 +15,6 @@ const Page = (props) => {
 export async function getServerSideProps (context) {
   // const { currentUser } = await profile(context, SERVICE)
   const url = `${BACKEND_URL}/overview`
-  console.log(url)
   const json = await fetch(url)
   return {
     props: {
@@ -25,7 +24,7 @@ export async function getServerSideProps (context) {
         apsName: APS_NAME,
         apsLocation: APS_LOCATION,
         cards: CARDS,
-        pageTitle: 'System Overview',
+        pageTitle: 'Overview',
         websockUrl: WEBSOCK_URL
       },
       json: json

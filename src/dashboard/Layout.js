@@ -1,7 +1,9 @@
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
+import Typography from '@material-ui/core/Typography';
 import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 // custom components
 import AppBar from 'src/dashboard/AppBar'
@@ -12,7 +14,7 @@ import { mainListItems } from 'src/dashboard/listItems';
 
 // import { SnackbarProvider } from 'notistack'
 
-const appBarHeight = 64;
+const appBarHeight = 64 + 64;
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBarSpacer: {
-    marginBottom: theme.spacing(3), // 8px factor
+    marginBottom: theme.spacing(2), // 8px factor
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -74,6 +76,21 @@ function ResponsiveDrawer({ children, apsName, apsLocation, pageTitle, socket, w
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+      {/* <div className={classes.toolbar}> */}
+        {/* <Box
+          className={classes.toolbar}
+          display="flex" 
+          // width={500} height={80} 
+          bgcolor="lightgreen"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Typography variant="h6" noWrap>
+          ParkBot{'™ '}Tech
+        </Typography>
+        </Box> */}
+      {/* </div> */}
+
       <Divider />
       {mainListItems}
     </div>
@@ -117,6 +134,11 @@ function ResponsiveDrawer({ children, apsName, apsLocation, pageTitle, socket, w
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <Header
+          title={apsName}
+          subtitle={pageTitle}
+          socket={socket}
+        />
           {/* Sticky footer */}
           <div className={classes.layout}>
             <Container maxWidth="lg" className={classes.container}>
@@ -127,11 +149,11 @@ function ResponsiveDrawer({ children, apsName, apsLocation, pageTitle, socket, w
                   pageTitle={pageTitle}
                   socket={socket}
                 /> */}
-                <Header
+                {/* <Header
                   title={apsName}
                   subtitle={pageTitle}
                   socket={socket}
-                />
+                /> */}
               {/* </SnackbarProvider> */}
               <div className={classes.appBarSpacer} />
               {children}

@@ -27,8 +27,19 @@ const useStyles = makeStyles((theme) => ({
   heroContent: {
     // backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
-    fontSize: '48px',
-    fontWeight: 800
+    backgroundColor: '#263238'
+    // fontSize: '48px',
+    // fontWeight: 'normal'
+  },
+  heroPrimary: {
+    // fontSize: '48px',
+    fontWeight: 'normal',
+    color: '#61dafb'
+  },
+  heroSecondary: {
+    fontSize: '30px',
+    // fontWeight: 'normal',
+    color: '#ffffff'
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -52,20 +63,26 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  section: {
+    margin: theme.spacing(3),
+  },
+  features: {
+    marginBottom: theme.spacing(3),
+  }
 }))
 
 const cards = [{
   title: "ParkBot{'™ '}Tech",
   heading: <span>ParkBot{'™ '}Tech</span>,
-  content: "This is a media card. You can use this section to describe the content."
+  content: "Simple to use, ⚡ blazing fast and thoroughly tested."
 }, {
   title: "ParkBot{'™ '}Concierge",
   heading: <span>ParkBot{'™ '}Concierge</span>,
-  content: "This is a media card. You can use this section to describe the content."
+  content: "Real-time bidirectional event-based communication."
 }, {
   title: "ParkBot{'™ '}App",
   heading: <span>ParkBot{'™ '}App</span>,
-  content: "This is a media card. You can use this section to describe the content."
+  content: "It works on every platform, modern browser or device."
 }];
 
 export default function Index() {
@@ -76,11 +93,11 @@ export default function Index() {
       <main>
         {/* Hero unit */}
         <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          <Container maxWidth="md">
+            <Typography component="h1" variant="h2" align="center" className={classes.heroPrimary} gutterBottom>
             ParkBot{'™'}
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            <Typography variant="h5" align="center" className={classes.heroSecondary} paragraph>
               Parkbot gives you the best user experience with all the features you need for monitoring and servicing your automatic parking system.
             </Typography>
             <div className={classes.heroButtons}>
@@ -99,17 +116,28 @@ export default function Index() {
             </div>
           </Container>
         </div>
+        {/* End hero unit */}
         <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
+          
+          {/* <div className={classes.section}>
+            <Typography variant='h5' align="center" className={classes.features} gutterBottom>
+              Why ParkBot
+            </Typography>
+            <Typography variant='body1' align="center" gutterBottom>It is simple to use, ⚡ blazing fast and thoroughly tested.</Typography>
+            <Typography variant='body1' align="center" gutterBottom>Real-time bidirectional event-based communication.</Typography>
+            <Typography variant='body1' align="center" gutterBottom>It works on every platform, modern browser or device.</Typography>
+            <Typography variant='body2' align="center" gutterBottom>And more ...</Typography>
+          </div> */}
+
           <Grid container spacing={4}>
             {cards.map((card, key) => (
               <Grid item key={key} xs={12} sm={12} md={4}>
                 <Card className={classes.card}>
-                  <CardMedia
+                  {/* <CardMedia
                     className={classes.cardMedia}
                     image="https://source.unsplash.com/random"
                     title={card.title}
-                  />
+                  /> */}
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
                       {card.heading}
@@ -130,6 +158,7 @@ export default function Index() {
               </Grid>
             ))}
           </Grid>
+          
         </Container>
       </main>
       {/* Footer */}
@@ -137,9 +166,9 @@ export default function Index() {
         <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+        {/* <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           Something here to give the footer a purpose!
-        </Typography>
+        </Typography> */}
         <Copyright />
       </footer>
       {/* End footer */}

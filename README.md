@@ -1,25 +1,21 @@
-# Next.js example
+# [Next.js website](https://nextjs.org/)
 
-## How to use
+The official ParkBot website.
 
-Download the example [or clone the repo](https://github.com/mui-org/material-ui):
+## Contribution
 
-```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/nextjs
-cd nextjs
-```
+To submit a feature, bug fix, or enhancement to the website proceed as follows:
 
-Install it and run:
+1. Clone this repository
+2. Run `yarn` to install the dependencies
+3. Once the dependencies are installed, run `yarn dev` to start the dev server on `localhost:3000`
 
-```sh
-npm install
-npm run dev
-```
+We really appreciate any contribution.
 
-or:
+## Related Repositories
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/nextjs)
+- [ParkBot GitHub repository](https://github.com/fabioriva/parkbot)
 
-## The idea behind the example
+## License
 
-[Next.js](https://github.com/zeit/next.js) is a framework for server-rendered React apps.
+No license.

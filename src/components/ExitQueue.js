@@ -20,7 +20,7 @@ import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    minWidth: 240,
   },
   cardHeader: {
     backgroundColor: '#e0e0e0',
@@ -57,7 +57,7 @@ export default function Queue(props) {
       <CardContent className={clsx({
         [classes.cardContent]: true,
       })}>
-        <List className={classes.root}>
+        <List className={classes.root} dense>
           {
             queueList
             .filter(item => item.card !== 0)

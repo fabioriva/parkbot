@@ -6,6 +6,7 @@ import Queue from 'src/components/ExitQueue'
 import useWebSocket from 'src/hooks/useWebsocket'
 
 import Dialog from 'src/components/OperationDialog'
+// import Occupancy from 'src/components/Occupancy'
 
 const Page = ({ currentUser = {}, definitions, json }) => {
   const {
@@ -73,6 +74,9 @@ const Page = ({ currentUser = {}, definitions, json }) => {
         <Grid item lg={4}>
           <Queue exitQueue={overview.exitQueue} onOpen={handleOpen} />
         </Grid>
+        {/* <Grid item lg={3}>
+          <Occupancy />
+        </Grid> */}
       </Grid>
       <Dialog open={open} onClose={handleClose} value={operation} />
     </Layout>

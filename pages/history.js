@@ -15,13 +15,12 @@ import {
 
 async function fetchHistory (values) {
   const { filter, range, number = 0 } = values
-  console.log('fetchHistory', range)
+  console.log('fetchHistory', filter, range)
   // const from = dayjs(range[0]).format('YYYY-MM-DD HH:mm:ss')
   // const to = dayjs(range[1]).format('YYYY-MM-DD HH:mm:ss')
   const from = range[0]
   const to  = range[1]
   const query = `system=${APS_ID}&dateFrom=${from}&dateTo=${to}&filter=${filter}&device=0&number=${number}`
-  console.log('fetchHistory', query)
   const url = `${BACKEND_URL}/history?${query}`
   const json = await fetch(url)
   return json
@@ -56,7 +55,7 @@ export async function getServerSideProps (context) {
         activeTab: '5',
         apsName: APS_NAME,
         apsLocation: APS_LOCATION,
-        pageTitle: 'System Logs',
+        pageTitle: 'Logs',
         websockUrl: WEBSOCK_URL
       },
       json: json

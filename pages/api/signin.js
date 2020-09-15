@@ -6,9 +6,10 @@ const MAX_AGE = 60 * 60 * 12 // 12 hours
 
 export default async (req, res) => {
   const { username, password } = await req.body
-
+  const url = `${process.env.AUTH_PROVIDER}/login.js`
+  console.log(url)
   try {
-    const response = await fetch(process.env.AUTH_PROVIDER, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })

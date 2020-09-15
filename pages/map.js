@@ -34,7 +34,7 @@ export async function getServerSideProps (context) {
         activeTab: '1',
         apsName: APS_NAME,
         apsLocation: APS_LOCATION,
-        pageTitle: 'System Map',
+        pageTitle: 'Map',
         websockUrl: WEBSOCK_URL,
         cards: CARDS,
         stalls: STALLS,
