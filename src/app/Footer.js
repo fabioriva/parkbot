@@ -4,10 +4,10 @@ import Copyright from 'src/dashboard/Copyright';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
-    padding: theme.spacing(2, 0),
+    padding: theme.spacing(1, 0),
     marginTop: 'auto',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+    // backgroundColor:
+    //   theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
   },
 }));
 

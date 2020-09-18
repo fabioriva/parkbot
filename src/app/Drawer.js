@@ -16,19 +16,19 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    minHeight: '48px',
-    // ...theme.mixins.toolbar,
-  },
-  // toolbar: theme.mixins.toolbar,
+  // toolbar: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'flex-end',
+  //   padding: '0 8px',
+  //   minHeight: '48px',
+  //   // ...theme.mixins.toolbar,
+  // },
+  toolbar: theme.mixins.toolbar,
 }));
 
 
-export default function AppDrawer({ mobileOpen, handleDrawerToggle, window }) {
+export default function AppDrawer({ mobileOpen, handleDrawerToggle }) {
   const classes = useStyles();
 
   const drawer = (
@@ -39,14 +39,14 @@ export default function AppDrawer({ mobileOpen, handleDrawerToggle, window }) {
     </div>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  // const container = window !== undefined ? () => window().document.body : undefined;
 
   return(
     <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
-            container={container}
+            // container={container}
             variant="temporary"
             anchor={'left'}
             open={mobileOpen}

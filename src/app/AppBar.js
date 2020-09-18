@@ -2,16 +2,23 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-// import Avatar from '@material-ui/core/Avatar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { blue } from '@material-ui/core/colors';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({ 
+  appBar: {
+    backgroundColor: '#24292e',
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -21,17 +28,10 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  appBar: {
-    backgroundColor: '#24292e',
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
 }));
 
 
-export default function AppDrawer({ handleDrawerToggle }) {
+export default function AppDrawer({ position, handleDrawerToggle }) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -47,14 +47,20 @@ export default function AppDrawer({ handleDrawerToggle }) {
   };
 
   return (
-    <AppBar position="static" elevation={0} className={classes.appBar}>
-      <Toolbar variant="dense">
-        <IconButton edge="start" className={classes.menuButton} onClick={handleDrawerToggle} color="inherit" aria-label="menu">
+    <AppBar position={position} elevation={2} className={classes.appBar}>
+      <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="menu"
+          edge="start"
+          className={classes.menuButton}
+          onClick={handleDrawerToggle}>
           <MenuIcon />
         </IconButton>
-        {/* <Avatar className={classes.menuButton} alt="Remy Sharp" src="https://avatars.dicebear.com/api/bottts/ParkBotApp.svg" /> */}
-        <Typography variant="h6" className={classes.title}>
-          ParkBot{'™ '}<span style={{ color: '#fff' }}>App</span>
+        <Typography variant="h6" className={classes.title} noWrap>
+          <span style={{ color: blue[200] }}>Park</span>
+          <span style={{ color: blue[100] }}>Bot</span>{'™ '}
+          <span style={{ color: blue[50] }}>App</span>
         </Typography>
         <IconButton
           aria-label="account of current user"
