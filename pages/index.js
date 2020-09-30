@@ -1,49 +1,52 @@
 import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Copyright from 'src/dashboard/Copyright';
+// import { blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   flexGrow: 1,
-  // },
-  // menuButton: {
-  //   marginRight: theme.spacing(2),
-  // },
-  // title: {
-  //   flexGrow: 1,
-  // },
-
-  // icon: {
-  //   marginRight: theme.spacing(2),
-  // },
+  appBar: {
+    backgroundColor: '#24292e',
+  },
+  title: {
+    flexGrow: 1,
+    color: '#61dafb',
+  },
   heroContent: {
-    // backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
     backgroundColor: '#263238'
-    // fontSize: '48px',
-    // fontWeight: 'normal'
   },
   heroPrimary: {
-    // fontSize: '48px',
-    fontWeight: 'normal',
-    color: '#61dafb'
+    color: '#61dafb',
+    fontWeight: 500,
+    fontSize: '48px',
+    // letterSpacing: '-0.06em',
+    // lineHeight: '1.2',
+    margin: '0px 0px 30px'
   },
   heroSecondary: {
     fontSize: '30px',
-    // fontWeight: 'normal',
+    fontWeight: 'normal',
     color: '#ffffff'
   },
   heroButtons: {
     marginTop: theme.spacing(4),
   },
+  signinButton: {
+    backgroundColor: '#61dafb',
+    color: '#000',
+    // textTransform: 'lowercase'
+  },
+
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
@@ -53,14 +56,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
+  // cardMedia: {
+  //   paddingTop: '56.25%', // 16:9
+  // },
   cardContent: {
     flexGrow: 1,
   },
   footer: {
-    // backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
   section: {
@@ -91,11 +94,25 @@ export default function Index() {
   return (
     <React.Fragment>
       <main>
+        {/* App Bar */}
+        <AppBar position="static" elevation={2} className={classes.appBar}>
+          <Container maxWidth="md">
+            <Toolbar>
+              <Typography variant="h5" className={classes.title} noWrap>
+                {/* <span style={{ color: blue[300] }}>Park</span> */}
+                {/* <span style={{ color: blue[200] }}>Bot</span>{'™ '} */}
+                {/* <span style={{ color: blue[100] }}>App</span> */}
+                ParkBot{'™ '}
+              </Typography>
+              <Typography>v3.0.0</Typography>
+            </Toolbar>
+          </Container>
+        </AppBar>
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="md">
             <Typography component="h1" variant="h2" align="center" className={classes.heroPrimary} gutterBottom>
-            ParkBot{'™'}
+              ParkBot{'™'}
             </Typography>
             <Typography variant="h5" align="center" className={classes.heroSecondary} paragraph>
               Parkbot gives you the best user experience with all the features you need for monitoring and servicing your automatic parking system.
@@ -103,15 +120,15 @@ export default function Index() {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary" href='/signin'>
-                    Login to ParkBot{'™'}
+                  <Button className={classes.signinButton} variant="contained" color="primary" href='/signin'>
+                    Login to ParkBot
                   </Button>
                 </Grid>
-                <Grid item>
+                {/* <Grid item>
                   <Button variant="outlined" color="primary">
                     Secondary action
                   </Button>
-                </Grid>
+                </Grid> */}
               </Grid>
             </div>
           </Container>
@@ -130,19 +147,23 @@ export default function Index() {
           </div> */}
 
           <Grid container spacing={4}>
+
+          </Grid>
+
+          <Grid container spacing={4}>
             {cards.map((card, key) => (
-              <Grid item key={key} xs={12} sm={12} md={4}>
-                <Card className={classes.card}>
+              <Grid item key={key} xs={12} md={4}>
+                <Card className={classes.card} variant="outlined">
                   {/* <CardMedia
                     className={classes.cardMedia}
                     image="https://source.unsplash.com/random"
                     title={card.title}
                   /> */}
                   <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography variant="h6" component="h2" gutterBottom>
                       {card.heading}
                     </Typography>
-                    <Typography>
+                    <Typography variant="body1" gutterBottom>
                       {card.content}
                     </Typography>
                   </CardContent>
@@ -150,9 +171,6 @@ export default function Index() {
                     <Button size="small" color="primary">
                       More
                     </Button>
-                    {/* <Button size="small" color="primary">
-                      Edit
-                    </Button> */}
                   </CardActions>
                 </Card>
               </Grid>
@@ -163,12 +181,6 @@ export default function Index() {
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        {/* <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
-        </Typography> */}
         <Copyright />
       </footer>
       {/* End footer */}

@@ -9,6 +9,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { blue } from '@material-ui/core/colors';
 
+import { logout } from 'src/lib/auth'
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({ 
@@ -58,9 +60,9 @@ export default function AppDrawer({ position, handleDrawerToggle }) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title} noWrap>
-          <span style={{ color: blue[200] }}>Park</span>
-          <span style={{ color: blue[100] }}>Bot</span>{'™ '}
-          <span style={{ color: blue[50] }}>App</span>
+          <span style={{ color: blue[300] }}>Park</span>
+          <span style={{ color: blue[200] }}>Bot</span>{'™ '}
+          <span style={{ color: blue[100] }}>App</span>
         </Typography>
         <IconButton
           aria-label="account of current user"
@@ -87,7 +89,8 @@ export default function AppDrawer({ position, handleDrawerToggle }) {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
+          {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
+          <MenuItem onClick={logout}>Sign out</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>

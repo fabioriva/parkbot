@@ -1,4 +1,3 @@
-// import fetch from 'isomorphic-unfetch'
 import cookie from 'cookie'
 
 const TOKEN_NAME = 'token'
@@ -7,7 +6,7 @@ const MAX_AGE = 60 * 60 * 12 // 12 hours
 export default async (req, res) => {
   const { username, password } = await req.body
   const url = `${process.env.AUTH_PROVIDER}/login.js`
-  console.log(url)
+  console.log('/api/signin', url)
   try {
     const response = await fetch(url, {
       method: 'POST',

@@ -1,7 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -17,30 +16,13 @@ import Copyright from 'src/dashboard/Copyright';
 import { useForm } from "react-hook-form";
 import { login } from 'src/lib/auth'
 
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const useStyles = makeStyles((theme) => ({
-  // container: {
-  //   backgroundImage: 'url(/sotefin_shuttle.jpg)',
-  //   backgroundRepeat: 'no-repeat',
-  //   backgroundPosition: 'center'
-  // },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -85,9 +67,7 @@ export default function SignIn() {
   }
 
   return (
-    <div>
-    <Container component="main" maxWidth="xs" className={classes.container}>
-      <CssBaseline />
+    <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -99,7 +79,7 @@ export default function SignIn() {
           <TextField
             variant="outlined"
             margin="normal"
-            // required
+            autoFocus
             fullWidth
             id="username"
             name="username"
@@ -159,6 +139,5 @@ export default function SignIn() {
         <Copyright />
       </Box>
     </Container>
-    </div>
   );
 }

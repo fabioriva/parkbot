@@ -4,16 +4,11 @@ import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-// import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-// import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 import IconButton from '@material-ui/core/IconButton';
-// import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
@@ -26,66 +21,39 @@ import Brightness1Rounded from '@material-ui/icons/Brightness1Rounded';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 
-import Silomat from 'src/components/Silomat'
+import Stepper from 'src/app/Stepper'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    // maxWidth: 360,
   },
-  // media: {
-  //   height: 0,
-  //   paddingTop: '56.25%', // 16:9
-  // },
+
   expand: {
-    // transform: 'rotate(0deg)',
     marginLeft: 'auto',
-    // transition: theme.transitions.create('transform', {
-    //   duration: theme.transitions.duration.shortest,
-    // }),
   },
-  // expandOpen: {
-  //   transform: 'rotate(180deg)',
-  // },
 
   cardHeader: {
     backgroundColor: '#e0e0e0',
-    padding: '8px 16px'
+    // padding: '8px 16px'
   },
   cardHeaderTitle: {
-    // color: '#000',
     fontSize: '16px',
-    // fontWeight: 'bolder',
   },
   cardContent: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
   },
 
   aut: {
     backgroundColor: '#108ee9',
     color: '#fff',
-    width: theme.spacing(3),
-    height: theme.spacing(3),
+    // width: theme.spacing(3),
+    // height: theme.spacing(3),
   },
   man: {
     backgroundColor: '#ffff00',
     color: '#000',
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-  },
-
-  ce: {
-    backgroundColor: theme.palette.ce, // '#d4edda',
-  },
-  cu: {
-    backgroundColor: theme.palette.cu, // '#f8d7da',
-  },
-  pp: {
-    backgroundColor: theme.palette.pp, // '#d1ecf1',
-  },
-  
-  info: {
-    margin: '6px 3px',
-    color: theme.palette.secondary
+    // width: theme.spacing(3),
+    // height: theme.spacing(3),
   },
 
   lamp: {
@@ -110,8 +78,12 @@ const useStyles = makeStyles((theme) => ({
     color: green[50],
   },
 
+  stepper: {
+    padding: '32px 8px',
+    textAlign: 'center'
+  },
   gridItem: {
-    padding: '2px',
+    padding: theme.spacing(1),
     textAlign: 'center'
   },
   label: {
@@ -121,7 +93,22 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgb(54, 77, 121)', //blue[900],
     fontSize: 16,
     fontWeight: 'bold',
-  }
+  },
+
+  ce: {
+    backgroundColor: theme.palette.ce, // '#d4edda',
+  },
+  cu: {
+    backgroundColor: theme.palette.cu, // '#f8d7da',
+  },
+  pp: {
+    backgroundColor: theme.palette.pp, // '#d1ecf1',
+  },
+  
+  info: {
+    margin: '8px 4px',
+    color: theme.palette.secondary
+  },
 
 }));
 
@@ -151,15 +138,10 @@ const Lamp = ({ on, off, status }) => {
   )
 }
 
-export default function Device({ device }) {
+export default function Garage({ garage }) {
   const classes = useStyles();
-  // const [expanded, setExpanded] = React.useState(false);
 
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
-
-  const { id, name, card, mode, motor, operation, size, stall, step } = device.a
+  const { id, name, card, mode, operation, size, step } = garage.a
 
   const autTag =
     <Badge badgeContent={step} color="secondary">
@@ -171,14 +153,7 @@ export default function Device({ device }) {
       <Avatar variant="rounded" aria-label="mode" className={classes.man}>M</Avatar>
     </Badge>
 
-  const pos = device.b.map((item, key) => {
-    const value = <span>{item.position}{' » '}{item.destination}</span>
-    return(
-      <GridItem label={item.name} value={value} key={key} />
-    )
-  })
-
-  const actions = device.d.map((item, key) => {
+  const actions = garage.d.map((item, key) => {
     const { enable, label, write } = item
     return (
       <Button
@@ -197,16 +172,14 @@ export default function Device({ device }) {
   const rollback = true
   const swap = true
 
-  const deviceView =
+  const garageView =
     <Grid container spacing={0}>
-      <GridItem label='Mode' value={mode.label} />
-      <GridItem label='Card' value={card} />
-      <GridItem label='Size' value={size} />
-      <GridItem label='Destination' value={stall} />
-      {pos}
+      <Grid item xs={12} className={classes.stepper}>
+        <Stepper activeStep={step} />
+      </Grid>
+      {/* <GridItem label='Card' value={card} /> */}
+      {/* <GridItem label='Size' value={size} /> */}
     </Grid>
-
-  const silomatView = <Silomat data={device.e} />
 
   return (
     <Card className={classes.root}>
@@ -214,12 +187,12 @@ export default function Device({ device }) {
         className={classes.cardHeader}
         avatar={mode.id === 8 ? autTag : manTag}
         action={[
-          <Lamp key='0' status={device.c[2].status} on='alarmOn' off='alarmOff' />,
-          <Lamp key='1' status={device.c[1].status} on='centerOn' off='centerOff' />,
-          <Lamp key='2' status={device.c[0].status} on='readyOn' off='readyOff' />
+          <Lamp key='0' status={garage.c[2].status} on='alarmOn' off='alarmOff' />,
+          <Lamp key='1' status={garage.c[1].status} on='centerOn' off='centerOff' />,
+          <Lamp key='2' status={garage.c[0].status} on='readyOn' off='readyOff' />
         ]}
         title={name}
-        // subheader="September 14, 2016"
+        subheader={`Virtual Garage ${id}`}
         classes={{
           title: classes.cardHeaderTitle,
         }}
@@ -231,7 +204,7 @@ export default function Device({ device }) {
         [classes.pp]: operation === 3,
       })}>
         
-        {motor !== 1 ? deviceView : silomatView}
+        {garageView}
 
       </CardContent>
       <CardActions disableSpacing>
@@ -241,35 +214,7 @@ export default function Device({ device }) {
           {rollback && <SettingsBackupRestoreIcon className={classes.info} aria-label="rollback" />}
           {car && <DirectionsCarIcon className={classes.info} aria-label="car" />}
         </div>
-        {/*
-        <IconButton aria-label="ready">
-          <DirectionsCarIcon />
-        </IconButton>
-        <IconButton aria-label="center">
-          <SettingsBackupRestoreIcon />
-        </IconButton>
-        <IconButton aria-label="center" disabled>
-          <SwapHorizIcon />
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton> */}
       </CardActions>
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Grid container spacing={0}>
-            {pos}
-          </Grid>
-        </CardContent>
-      </Collapse> */}
     </Card>
-
   )
 }

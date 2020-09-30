@@ -1,6 +1,7 @@
-import Layout from 'src/dashboard/Layout'
-// import Grid from '@material-ui/core/Grid'
+import Hidden from '@material-ui/core/Hidden';
+import Layout from 'src/app/Layout'
 import Query from 'src/components/HistoryQuery'
+import List from 'src/components/HistoryList'
 import Table from 'src/components/HistoryTable'
 
 const Page = ({ currentUser = {}, definitions, json, fetchHistory }) => {
@@ -15,7 +16,6 @@ const Page = ({ currentUser = {}, definitions, json, fetchHistory }) => {
   const [history, setHistory] = React.useState(json)
 
   const queryHistory = async (values) => {
-    console.log('queryHistory', values)
     const json = await fetchHistory(values)
     setHistory(json)
   }
@@ -28,17 +28,15 @@ const Page = ({ currentUser = {}, definitions, json, fetchHistory }) => {
       pageTitle={pageTitle}
       socket={`${websockUrl}?channel=ch2`}
       user={currentUser}
-    >
-      {/* <Grid container spacing={3}>
-        <Grid item lg={2}>
-          <Query queryHistory={queryHistory} />
-        </Grid>
-        <Grid item lg={10}>
-          <Table query={history.query} />
-        </Grid>
-      </Grid> */}
-      <Query queryHistory={queryHistory} />
-      <Table query={history.query} />
+    >      
+      <Hidden mdUp>
+        <List query={history.query} />
+      </Hidden>
+      <Hidden smDown>
+        <Query queryHistory={queryHistory} />
+        <Table query={history.query} />
+      </Hidden>
+      
     </Layout>
   )
 }

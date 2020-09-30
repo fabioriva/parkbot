@@ -2,34 +2,26 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AppBar from 'src/app/AppBar'
 import Drawer from 'src/app/Drawer'
-import NavBar from 'src/app/NavBar'
 import Footer from 'src/app/Footer'
-
-const appBarHeight = 48 + 48;
-const drawerWidth = 240;
+import Header from 'src/app/Header'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: 'flex',
-    // flexGrow: 1,
+    display: 'flex',
   },
-  appBarSpacer: {
-    marginBottom: theme.spacing(2), // 8px factor
-  },
-  mainContent: {
+  sticky: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: `calc(100vh - ${appBarHeight}px)`,
-    backgroundColor: theme.background,
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
+    minHeight: '100vh',
+    width: '100%'
   },
-
+  // toolbar: theme.mixins.toolbar,
+  toolbar: {
+    minHeight: theme.spacing(10),
+  }
 }));
 
-export default function App({ definitions, children }) {
+export default function AppLayout({ children, apsName, pageTitle, socket, user }) {
   const classes = useStyles();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -38,26 +30,28 @@ export default function App({ definitions, children }) {
     setMobileOpen(!mobileOpen);
   };
 
-  const { apsName } = definitions
-
   return (
     <div className={classes.root}>
-
-      <AppBar position="static" handleDrawerToggle={handleDrawerToggle} />
-      
-      <NavBar aps={apsName} />
-
-      <Drawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
-
-      <main className={classes.mainContent}>
-        <Container maxWidth="lg">
-          <div className={classes.appBarSpacer} />
+      <AppBar
+        position="fixed"
+        handleDrawerToggle={handleDrawerToggle}
+      />
+      <Drawer
+        mobileOpen={mobileOpen}
+        handleDrawerToggle={handleDrawerToggle}
+      />
+      <main className={classes.sticky}>
+        <Container maxWidth="xl">
+          <div className={classes.toolbar} />
+          <Header
+            aps={apsName}
+            pageTitle={pageTitle}
+            socket={socket}
+          />
           {children}
         </Container>
-
         <Footer />
       </main>
-
     </div>
   );
 }

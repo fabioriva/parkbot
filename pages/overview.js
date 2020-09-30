@@ -6,7 +6,7 @@ import {
   CARDS,
   BACKEND_URL,
   WEBSOCK_URL
-} from 'src/constants/nhidcl'
+} from 'src/constants/nyu'
 
 const Page = (props) => {
   return <Overview {...props} />
