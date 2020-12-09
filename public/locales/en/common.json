@@ -1,0 +1,18 @@
+{
+  "Welcome to React": "Welcome to ParkBot + React and react-i18next",
+  "signin-title": "Sign in to ParkBot",
+  "signin-button": "Sign in",
+  "signin-remember": "Remember me",
+  "signin-forgot": "Forgot password?",
+  "signin-account": "Don't have an account? Sign Up",
+  "menu-change-locale": "Change Language",
+  "menu-profile": "Profile",
+  "menu-logout": "Logout",
+  "dashboard": "Dashboard",
+  "system": "System",
+  "history": "History",
+  "map": "Map",
+  "racks": "PLC I/O",
+  "statistics": "Operations",
+  "alarms": "Alarms"
+}

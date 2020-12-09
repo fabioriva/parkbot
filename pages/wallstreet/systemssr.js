@@ -1,4 +1,3 @@
-import { OVERVIEW } from 'src/constants/roles'
 import {
   APS_NAME,
   BACKEND_URL,
@@ -6,8 +5,9 @@ import {
   CARDS
 } from 'src/constants/wallstreet'
 import fetcher from 'src/lib/fetcher'
-import withAuthSync from 'src/hocs/withAuthSync'
-import withSystem from 'src/hocs/withSystem'
+import { getUser } from 'src/lib/auth'
+import withAuthSync from 'src/hocs/withAuthSyncSSR'
+import withSystem from 'src/hocs/withSystemSSR'
 // material-ui
 import Grid from '@material-ui/core/Grid'
 
@@ -23,22 +23,37 @@ const Page = props => {
   )
 }
 
-export const getStaticProps = async ({ locale, locales }) => {
+export const getServerSideProps = async ({ locale, locales, req, res }) => {
   const ns = ['system']
+  const user = await getUser(req, res)
+  if (!user) {
+    return {
+      props: {
+        locale,
+        locales,
+        ns
+      },
+      redirect: {
+        destination: '/signin',
+        permanent: false
+      }
+    }
+  }
+
   const json = await fetcher(`${BACKEND_URL}/overview`)
   return {
     props: {
-      locale,
+      locale: user.locale === 'en-US' ? 'en' : 'it',
       locales,
       ns,
       definitions: {
         apsName: APS_NAME,
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
-        cards: CARDS,
-        pageRole: OVERVIEW
+        cards: CARDS
       },
-      json
+      json,
+      user
     }
   }
 }

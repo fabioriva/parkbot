@@ -1,0 +1,20 @@
+{
+  "title": "System Overview",
+  "mode": "Function mode",
+  "card": "Card",
+  "card-with-number": "Card {{number}}",
+  "size": "Size",
+  "destination": "Destination",
+  "operation": "Operation",
+  "tag": "Tag",
+  "exit-queue": "Exit queue",
+  "exit": "Exit",
+  "entry": "Entry",
+  "dialog-cancel": "Cancel",
+  "dialog-confirm": "Confirm",
+  "dialog-content": "Insert a valid card number and confirm.",
+  "dialog-title": "Operation request",
+  "queue-item-primary": "Card {{number}}",
+  "queue-item-secondary": "{{number}}° call",
+  "queue-item-delete": "Delete card {{number}}?"
+}

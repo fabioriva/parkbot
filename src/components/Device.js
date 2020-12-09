@@ -1,275 +1,136 @@
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Badge from '@material-ui/core/Badge';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-// import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-// import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import IconButton from '@material-ui/core/IconButton';
-// import Paper from '@material-ui/core/Paper';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
-
-import { blue, green, orange, red } from '@material-ui/core/colors';
-
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Brightness1Rounded from '@material-ui/icons/Brightness1Rounded';
-import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
-import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
-
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardHeader from '@material-ui/core/CardHeader'
+import Grid from '@material-ui/core/Grid'
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar'
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore'
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz'
+import Info from 'src/components/Info'
+import Item from 'src/components/Item'
+import Lamp from 'src/components/Lamp'
+import Mode from 'src/components/Mode'
 import Silomat from 'src/components/Silomat'
+import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 345,
+    marginBottom: theme.spacing(3),
+    maxWidth: 345
   },
-  // media: {
-  //   height: 0,
-  //   paddingTop: '56.25%', // 16:9
-  // },
-  expand: {
-    // transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    // transition: theme.transitions.create('transform', {
-    //   duration: theme.transitions.duration.shortest,
-    // }),
-  },
-  // expandOpen: {
-  //   transform: 'rotate(180deg)',
-  // },
-
   cardHeader: {
-    backgroundColor: '#e0e0e0',
-    padding: '8px 16px'
+    backgroundColor: '#c0c0c0',
+    padding: '16px'
   },
   cardHeaderTitle: {
-    // color: '#000',
     fontSize: '16px',
-    // fontWeight: 'bolder',
+    fontWeight: 'bold'
   },
   cardContent: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2)
   },
-
-  aut: {
-    backgroundColor: '#108ee9',
-    color: '#fff',
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-  },
-  man: {
-    backgroundColor: '#ffff00',
-    color: '#000',
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-  },
-
   ce: {
-    backgroundColor: theme.palette.ce, // '#d4edda',
+    backgroundColor: theme.palette.ce // '#d4edda',
   },
   cu: {
-    backgroundColor: theme.palette.cu, // '#f8d7da',
+    backgroundColor: theme.palette.cu // '#f8d7da',
   },
   pp: {
-    backgroundColor: theme.palette.pp, // '#d1ecf1',
-  },
-  
-  info: {
-    margin: '6px 3px',
-    color: theme.palette.secondary
-  },
-
-  lamp: {
-    padding: '12px 0px',
-  },
-  alarmOn: {
-    color: red[600],
-  },
-  alarmOff: {
-    color: red[50],
-  },
-  centerOn: {
-    color: orange[600],
-  },
-  centerOff: {
-    color: orange[50],
-  },
-  readyOn: {
-    color: green[600],
-  },
-  readyOff: {
-    color: green[50],
-  },
-
-  gridItem: {
-    padding: '2px',
-    textAlign: 'center'
-  },
-  label: {
-    fontSize: 14,
-  },
-  value: {
-    color: 'rgb(54, 77, 121)', //blue[900],
-    fontSize: 16,
-    fontWeight: 'bold',
+    backgroundColor: theme.palette.pp // '#d1ecf1',
   }
+}))
 
-}));
+export default function Device ({ actions, authorization, item }) {
+  const classes = useStyles()
 
-const GridItem = ({ label, value }) => {
-  const classes = useStyles();
-  return (
-    <Grid item xs={6} className={classes.gridItem}>
-      <Typography className={classes.label} color="textSecondary" gutterBottom>
-        {label}
-      </Typography>
-      <Typography className={classes.value} variant="h5" component="h2">
-        {value}
-      </Typography>
+  const { t } = useTranslation(['system'])
+
+  const { id, name, card, mode, motor, operation, size, stall, step } = item.a
+
+  const device = (
+    <Grid container>
+      <Grid item xs={6}>
+        <Item title={t('mode')} value={mode.label} />
+      </Grid>
+      <Grid item xs={6}>
+        <Item title={t('card')} value={card} />
+      </Grid>
+      <Grid item xs={6}>
+        <Item title={t('size')} value={size} />
+      </Grid>
+      <Grid item xs={6}>
+        <Item title={t('destination')} value={stall} />
+      </Grid>
+      {item.b.map((item, key) => (
+        <Grid item key={key} xs={6}>
+          <Item
+            title={item.name}
+            value={
+              <span>
+                {item.position}&nbsp;&rarr;&nbsp;{item.destination}
+              </span>
+            }
+          />
+        </Grid>
+      ))}
     </Grid>
   )
-}
-
-const Lamp = ({ on, off, status }) => {
-  const classes = useStyles();
-  return (
-    <IconButton aria-label="settings" className={classes.lamp} disabled>
-      <Brightness1Rounded className={clsx({
-        [classes[on]]: status,
-        [classes[off]]: !status,
-      })} />
-    </IconButton>
-  )
-}
-
-export default function Device({ device }) {
-  const classes = useStyles();
-  // const [expanded, setExpanded] = React.useState(false);
-
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
-
-  const { id, name, card, mode, motor, operation, size, stall, step } = device.a
-
-  const autTag =
-    <Badge badgeContent={step} color="secondary">
-      <Avatar variant="rounded" aria-label="mode" className={classes.aut}>A</Avatar>
-    </Badge>
-
-  const manTag =
-    <Badge badgeContent={step} color="secondary">
-      <Avatar variant="rounded" aria-label="mode" className={classes.man}>M</Avatar>
-    </Badge>
-
-  const pos = device.b.map((item, key) => {
-    const value = <span>{item.position}{' » '}{item.destination}</span>
-    return(
-      <GridItem label={item.name} value={value} key={key} />
-    )
-  })
-
-  const actions = device.d.map((item, key) => {
-    const { enable, label, write } = item
-    return (
-      <Button
-        size="small"
-        color="primary" 
-        disabled={!enable.status}
-        key={key}
-        onClick={() => props.actions[key] !== undefined && props.actions[key](id, write)}
-      >
-        {label}
-      </Button>
-    )
-  })
-
-  const car = true
-  const rollback = true
-  const swap = true
-
-  const deviceView =
-    <Grid container spacing={0}>
-      <GridItem label='Mode' value={mode.label} />
-      <GridItem label='Card' value={card} />
-      <GridItem label='Size' value={size} />
-      <GridItem label='Destination' value={stall} />
-      {pos}
-    </Grid>
-
-  const silomatView = <Silomat data={device.e} />
 
   return (
     <Card className={classes.root}>
       <CardHeader
         className={classes.cardHeader}
-        avatar={mode.id === 8 ? autTag : manTag}
+        avatar={<Mode mode={mode} step={step} />}
         action={[
-          <Lamp key='0' status={device.c[2].status} on='alarmOn' off='alarmOff' />,
-          <Lamp key='1' status={device.c[1].status} on='centerOn' off='centerOff' />,
-          <Lamp key='2' status={device.c[0].status} on='readyOn' off='readyOff' />
+          <Info key='3' item={item.c[3]}>
+            <DirectionsCarIcon />
+          </Info>,
+          <Info key='4' item={item.c[4]}>
+            <SettingsBackupRestoreIcon />
+          </Info>,
+          <Info key='5' item={item.c[5]}>
+            <SwapHorizIcon />
+          </Info>,
+          <Lamp key='0' item={item.c[2]} on='alarmOn' off='alarmOff' />,
+          <Lamp key='1' item={item.c[1]} on='centerOn' off='centerOff' />,
+          <Lamp key='2' item={item.c[0]} on='readyOn' off='readyOff' />
         ]}
         title={name}
-        // subheader="September 14, 2016"
+        subheader={`Device ${id}`}
         classes={{
-          title: classes.cardHeaderTitle,
+          title: classes.cardHeaderTitle
         }}
       />
-      <CardContent className={clsx({
-        [classes.cardContent]: true,
-        [classes.ce]: operation === 1,
-        [classes.cu]: operation === 2,
-        [classes.pp]: operation === 3,
-      })}>
-        
-        {motor !== 1 ? deviceView : silomatView}
-
+      <CardContent
+        className={clsx({
+          [classes.cardContent]: true,
+          [classes.ce]: operation === 1,
+          [classes.cu]: operation === 2,
+          [classes.pp]: operation === 3
+        })}
+      >
+        {motor === 0 ? device : <Silomat data={item.e} />}
       </CardContent>
-      <CardActions disableSpacing>
-        {actions}
-        <div className={classes.expand}>
-          {swap && <SwapHorizIcon className={classes.info} aria-label="swap" />}
-          {rollback && <SettingsBackupRestoreIcon className={classes.info} aria-label="rollback" />}
-          {car && <DirectionsCarIcon className={classes.info} aria-label="car" />}
-        </div>
-        {/*
-        <IconButton aria-label="ready">
-          <DirectionsCarIcon />
-        </IconButton>
-        <IconButton aria-label="center">
-          <SettingsBackupRestoreIcon />
-        </IconButton>
-        <IconButton aria-label="center" disabled>
-          <SwapHorizIcon />
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton> */}
-      </CardActions>
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Grid container spacing={0}>
-            {pos}
-          </Grid>
-        </CardContent>
-      </Collapse> */}
+      {item.d.length > 0 && (
+        <CardActions disableSpacing>
+          {item.d.map((item, key) => (
+            <Button
+              size='small'
+              color='primary'
+              disabled={!authorization || !item.enable.status}
+              key={key}
+              onClick={() =>
+                actions[key] !== undefined && actions[key](id, item.write)
+              }
+            >
+              {item.label}
+            </Button>
+          ))}
+        </CardActions>
+      )}
     </Card>
-
   )
 }
