@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import React from 'react'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { orange } from '@material-ui/core/colors'
@@ -38,7 +39,7 @@ export default function AppBar_ ({ position, handleDrawerToggle }) {
   const router = useRouter()
   const { t, i18n } = useTranslation('common')
 
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [anchorEl, setAnchorEl] = React.useState(null)
 
   const open = Boolean(anchorEl)
 
@@ -51,6 +52,7 @@ export default function AppBar_ ({ position, handleDrawerToggle }) {
   }
 
   const handleLocale = () => {
+    Cookies.set('parkbot-i18n', i18n.language === 'en' ? 'it' : 'en')
     i18n.changeLanguage(i18n.language === 'en' ? 'it' : 'en')
     setAnchorEl(null)
   }

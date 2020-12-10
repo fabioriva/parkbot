@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSnackbar } from 'notistack'
+import message from 'src/lib/message'
 import notification from 'src/lib/notification'
+
 const COMM_INITIAL_VALUE = {
   isOnline: false
 }
@@ -51,7 +53,7 @@ export function useData (page, url) {
   const [error, setError] = useState('')
   const [mesg, setMesg] = useState(null)
 
-  // const { enqueueSnackbar } = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
 
   const send = (event, data) => {
     client.send(
@@ -81,26 +83,8 @@ export function useData (page, url) {
           setMesg(data[key])
         }
         if (key === 'message') {
-          const { type, info } = data[key].response
-          console.log('message', type, info)
-          // const origin = {
-          //   vertical: 'top',
-          //   horizontal: 'center'
-          // }
-          // switch (type) {
-          //   case 'error':
-          //     enqueueSnackbar(info, { anchorOrigin: origin, variant: 'error' })
-          //     break
-          //   case 'success':
-          //     enqueueSnackbar(info, { anchorOrigin: origin, variant: 'success' })
-          //     break
-          //   case 'warning':
-          //     enqueueSnackbar(info, { anchorOrigin: origin, variant: 'warning' })
-          //     break
-          //   default:
-          //     enqueueSnackbar(info, { anchorOrigin: origin, variant: 'info' })
-          //     break
-          // }
+          const snack = message(data[key])
+          enqueueSnackbar(snack.message, snack.options)
         }
       })
     }

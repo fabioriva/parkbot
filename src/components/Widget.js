@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,6 +28,8 @@ export default function Widget ({
 }) {
   const classes = useStyles()
 
+  const { t } = useTranslation(['system'])
+
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -47,7 +50,7 @@ export default function Widget ({
             color='primary'
             onClick={() => showModal(0, button.write)}
           >
-            {button.label}
+            {t(button.label)}
           </Button>
         </CardActions>
       )}

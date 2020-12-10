@@ -10,6 +10,7 @@
   "exit-queue": "Exit queue",
   "exit": "Exit",
   "entry": "Entry",
+  "rollback": "Rollback",
   "dialog-cancel": "Cancel",
   "dialog-confirm": "Confirm",
   "dialog-content": "Insert a valid card number and confirm.",

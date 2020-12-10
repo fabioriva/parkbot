@@ -1,5 +1,5 @@
 import React from 'react'
-// import Link from 'next/link'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
@@ -64,8 +64,9 @@ export default function Signin (props) {
         body: JSON.stringify(body)
       })
       if (res.status === 200) {
-        const json = await res.json()
-        router.push(json.aps !== undefined ? `/${json.aps}/${START_PAGE}` : '/')
+        const { aps, locale } = await res.json()
+        Cookies.set('parkbot-i18n', locale)
+        router.push(aps !== undefined ? `/${aps}/${START_PAGE}` : '/')
       } else {
         console.log(res.status)
         throw new Error(await res.text())

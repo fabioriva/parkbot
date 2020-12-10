@@ -1,8 +1,10 @@
 import { getSession } from 'src/lib/iron'
+import { getI18nCookie } from 'src/lib/auth-cookies'
 
 const hasAps = (aps, req) => {
   const url = new URL(req.url, 'http://w.w')
   const [apsFromUrl] = url.pathname.substring(1).split('/')
+  console.log('hasAps', aps, apsFromUrl, aps === apsFromUrl)
   return aps === apsFromUrl
 }
 
@@ -23,10 +25,14 @@ export async function getUser (req, res) {
       body: JSON.stringify({ apsPath: 'aps' })
     })
     const user = await response.json()
-    if (!hasAps(user.aps, req)) {
-      return
+    // if (!hasAps(user.aps, req)) {
+    //   return
+    // }
+    const locale = getI18nCookie(req)
+    return {
+      locale,
+      user
     }
-    return user
   } catch (error) {
     return error ? null : { user: false }
   }

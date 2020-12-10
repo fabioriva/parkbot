@@ -2,11 +2,11 @@ import { makeStyles, withStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Badge from '@material-ui/core/Badge'
 import Divider from '@material-ui/core/Divider'
-import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 import RssFeedIcon from '@material-ui/icons/RssFeed'
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
 import { green, red } from '@material-ui/core/colors'
+import Tooltip from 'src/components/Tooltip'
 
 const useStyles = makeStyles(theme => ({
   navBar: {

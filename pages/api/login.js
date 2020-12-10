@@ -16,7 +16,9 @@ export default async function login (req, res) {
       const { aps, token } = await response.json()
       const session = await encryptSession(token)
       setTokenCookie(res, session)
-      res.status(200).send({ aps, token })
+      // TODO: get user locale from auth provider response
+      const locale = 'it'
+      res.status(200).send({ aps, locale })
     } else {
       const error = new Error(response.statusText)
       error.response = response

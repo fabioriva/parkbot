@@ -68,9 +68,14 @@ const withSystem = WrappedComponent => {
     }
 
     const handleDelete = (card, id) => {
-      console.log('delete', typeof card, card, typeof id, id)
+      // console.log('delete', typeof card, card, typeof id, id)
       if (window.confirm('Delete ?')) {
-        send('queue-delete', { card: card, index: id })
+        send('exit-queue-delete', {
+          card: card,
+          index: id,
+          start: 0,
+          amount: 6
+        })
       }
     }
 

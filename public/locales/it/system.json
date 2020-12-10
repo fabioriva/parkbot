@@ -10,6 +10,7 @@
   "exit-queue": "Coda di uscita",
   "exit": "Uscita",
   "entry": "Entrata",
+  "rollback": "Rollback",
   "dialog-cancel": "Annulla",
   "dialog-confirm": "Conferma",
   "dialog-content": "Inserisci un numero di tessera valido e conferma.",

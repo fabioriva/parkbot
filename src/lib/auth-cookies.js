@@ -36,3 +36,11 @@ export function getTokenCookie (req) {
   const cookies = parseCookies(req)
   return cookies[TOKEN_NAME]
 }
+
+// i18n cookie
+const I18N_COOKIE = 'parkbot-i18n'
+
+export function getI18nCookie (req) {
+  const cookies = parseCookies(req)
+  return cookies[I18N_COOKIE]
+}

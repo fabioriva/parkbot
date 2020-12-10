@@ -1,0 +1,20 @@
+{
+  "title": "Map",
+  "filter-label": "View",
+  "filter-number": "Number",
+  "filter-card": "Card",
+  "filter-size": "Size",
+  "dialog-cancel": "Cancel",
+  "dialog-card": "Card",
+  "dialog-clear": "Clear",
+  "dialog-lock": "Lock",
+  "dialog-content": "Insert a card, clear or lock the stall.",
+  "dialog-title": "Edit stall {{number}}",
+  "chart-occupancy": "Parking spaces",
+  "stall-busy": "Stall {{stall}} is busy with card {{card}} since {{date}}",
+  "stall-empty": "Stall {{stall}} is vacant",
+  "stall-locked": "Stall {{stall}} is locked",
+  "free": "Vacant",
+  "busy": "Busy",
+  "lock": "Locked"
+}

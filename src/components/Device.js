@@ -126,7 +126,7 @@ export default function Device ({ actions, authorization, item }) {
                 actions[key] !== undefined && actions[key](id, item.write)
               }
             >
-              {item.label}
+              {t(item.label)}
             </Button>
           ))}
         </CardActions>

@@ -1,16 +1,6 @@
-export default function notification (mesg) {
-  const { type, message, description, card, stall } = mesg
-  console.log(
-    'notification',
-    'type:',
-    type,
-    'message:',
-    message,
-    'description:',
-    description,
-    card,
-    stall
-  )
+export default function notification (payload) {
+  console.log('notification:', payload)
+  const { type, message, description, card, stall } = payload
   switch (type) {
     case 1: {
       const snack = {

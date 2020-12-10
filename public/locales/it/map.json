@@ -1,0 +1,20 @@
+{
+  "title": "Mappa",
+  "filter-label": "Vista",
+  "filter-number": "Numero",
+  "filter-card": "Tessera",
+  "filter-size": "Misura",
+  "dialog-cancel": "Annulla",
+  "dialog-card": "Tessera",
+  "dialog-clear": "Libera",
+  "dialog-lock": "Blocca",
+  "dialog-content": "Inserisci una tessera, libera o blocca.",
+  "dialog-title": "Modifica stallo {{number}}",
+  "chart-occupancy": "Posti auto",
+  "stall-busy": "Stallo {{stall}} è occupato con tessera {{card}} da {{date}}",
+  "stall-empty": "Stallo {{stall}} è libero",
+  "stall-locked": "Stallo {{stall}} è bloccato",
+  "free": "Liberi",
+  "busy": "Occupati",
+  "lock": "Bloccati"
+}
