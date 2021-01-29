@@ -115,7 +115,7 @@ function Queue (props) {
 const Page = props => {
   const classes = useStyles()
 
-  const [monitor, setMonitor] = useState(props.json)
+  const [monitor, setMonitor] = useState(props.json.monitor)
 
   const { mesg } = useData(
     'monitor',
