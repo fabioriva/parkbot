@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useData } from 'src/lib/websocket'
 import useSWR from 'swr'
-import fetcher from 'src/lib/fetchJson'
+import fetchJson from 'src/lib/fetcher'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
