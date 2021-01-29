@@ -134,12 +134,9 @@ const Page = props => {
       setMonitor(mesg)
     }
     if (data) {
-      console.log('useEffect:', data)
       setMonitor(data.monitor)
     }
   }, [data, mesg])
-
-  console.log(monitor)
 
   return (
     <Container maxWidth='xl'>
@@ -179,7 +176,211 @@ const Page = props => {
         </Typography>
       </Toolbar>
 
-      {props.url}
+      <Grid container spacing={1} justify='center' alignItems='center'>
+        {/* Queue North */}
+        <Grid item xs={1}>
+          <Grid container spacing={1} justify='center' alignItems='center'>
+            <Grid
+              item
+              xs={12}
+              style={{ fontSize: '24px', textAlign: 'center' }}
+            >
+              North Side
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq01} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq02} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq03} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq04} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq05} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq06} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq07} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq08} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq09} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq10} />
+            </Grid>
+          </Grid>
+        </Grid>
+        {/*  */}
+        <Grid item xs={10}>
+          <Grid
+            container
+            className={classes.root}
+            spacing={1}
+            justify='center'
+            alignItems='center'
+          >
+            {/* Exits */}
+            <Grid item xs={1} />
+            <Grid item xs={2}>
+              <Exit nr={1} />
+            </Grid>
+            <Grid item xs={2}>
+              <Exit nr={2} />
+            </Grid>
+            <Grid item xs={2}>
+              <Exit nr={3} />
+            </Grid>
+            <Grid item xs={2}>
+              <Exit nr={4} />
+            </Grid>
+            <Grid item xs={2}>
+              <Exit nr={5} />
+            </Grid>
+            <Grid item xs={1} />
+            {/* Tt */}
+            <Grid item xs={1} />
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt01} />
+            </Grid>
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt02} />
+            </Grid>
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt03} />
+            </Grid>
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt04} />
+            </Grid>
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt05} />
+            </Grid>
+            <Grid item xs={1} />
+            {/* El */}
+            <Grid item xs={1} />
+            <Grid item xs={2}>
+              <El nr={monitor.el01} />
+            </Grid>
+            <Grid item xs={2}>
+              <El nr={monitor.el02} />
+            </Grid>
+            <Grid item xs={2}>
+              <El nr={monitor.el03} />
+            </Grid>
+            <Grid item xs={2}>
+              <El nr={monitor.el04} />
+            </Grid>
+            <Grid item xs={2}>
+              <El nr={monitor.el05} />
+            </Grid>
+            <Grid item xs={1} />
+            {/* Tt */}
+            <Grid item xs={1} />
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt06} />
+            </Grid>
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt07} />
+            </Grid>
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt08} />
+            </Grid>
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt09} />
+            </Grid>
+            <Grid item xs={2}>
+              <Tt nr={monitor.tt10} />
+            </Grid>
+            <Grid item xs={1} />
+            {/* El */}
+            <Grid item xs={1} />
+            <Grid item xs={2}>
+              <El nr={monitor.el06} />
+            </Grid>
+            <Grid item xs={2}>
+              <El nr={monitor.el07} />
+            </Grid>
+            <Grid item xs={2}>
+              <El nr={monitor.el08} />
+            </Grid>
+            <Grid item xs={2}>
+              <El nr={monitor.el09} />
+            </Grid>
+            <Grid item xs={2}>
+              <El nr={monitor.el10} />
+            </Grid>
+            <Grid item xs={1} />
+            {/* Exits */}
+            <Grid item xs={1} />
+            <Grid item xs={2}>
+              <Exit nr={6} />
+            </Grid>
+            <Grid item xs={2}>
+              <Exit nr={7} />
+            </Grid>
+            <Grid item xs={2}>
+              <Exit nr={8} />
+            </Grid>
+            <Grid item xs={2}>
+              <Exit nr={9} />
+            </Grid>
+            <Grid item xs={2}>
+              <Exit nr={10} />
+            </Grid>
+            <Grid item xs={1} />
+          </Grid>
+        </Grid>
+        {/* Queue South */}
+        <Grid item xs={1}>
+          <Grid container spacing={1} justify='center' alignItems='center'>
+            <Grid
+              item
+              xs={12}
+              style={{ fontSize: '24px', textAlign: 'center' }}
+            >
+              South Side
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq11} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq12} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq13} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq14} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq15} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq16} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq17} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq18} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq19} />
+            </Grid>
+            <Grid item xs={12}>
+              <Queue nr={monitor.qq20} />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </Container>
   )
 }
