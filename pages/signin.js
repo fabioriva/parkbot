@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Signin (props) {
+export default function Signin () {
   const classes = useStyles()
 
   const router = useRouter()
@@ -63,7 +63,7 @@ export default function Signin (props) {
       if (res.status === 200) {
         const { aps } = await res.json()
         const url = aps !== undefined ? `/${aps}/${START_PAGE}` : '/'
-        router.push(url, url, { locale: props.locale })
+        router.push(url, url, { locale: 'it' }) // TODO: get user locale from auth provider response
       } else {
         console.log(res.status)
         throw new Error(await res.text())

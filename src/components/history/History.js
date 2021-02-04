@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import useJson from 'src/lib/useData'
+// import useJson from 'src/lib/useData'
 import Layout from 'src/components/Layout'
 import Table from 'src/components/history/HistoryTable'
 import useTranslation from 'next-translate/useTranslation'

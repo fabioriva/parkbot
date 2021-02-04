@@ -22,21 +22,24 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 // import ExpandLess from '@material-ui/icons/ExpandLess'
 // import ExpandMore from '@material-ui/icons/ExpandMore'
 
-const useStyles = makeStyles(theme => ({
-  nested: {
-    paddingLeft: theme.spacing(4)
-  }
-}))
+// const useStyles = makeStyles(theme => ({
+//   nested: {
+//     paddingLeft: theme.spacing(4)
+//   }
+// }))
 
 export function mainListItems (diag, user) {
-  const classes = useStyles()
+  // const classes = useStyles()
   // const { locale } = useRouter()
-  const { t, lang } = useTranslation('common')
-
+  const { t } = useTranslation('common')
   // const [open, setOpen] = React.useState(false)
   // const handleClick = () => {
   //   setOpen(!open)
   // }
+
+  const lang =
+    user.locale === 'en-US' ? 'en' : user.locale === 'it-IT' ? 'it' : 'en'
+  // console.log(user.locale, lang)
 
   return (
     <List>

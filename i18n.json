@@ -8,6 +8,8 @@
     "/[aps]/map": ["map"],
     "/[aps]/statistics": ["statistics"],
     "/[aps]/system": ["system", "io"],
-    "/[aps]/racks/[rack]": ["io"]
+    "/[aps]/racks/[rack]": ["io"],
+
+    "/m/[aps]/history": ["history"]
   }
 }
