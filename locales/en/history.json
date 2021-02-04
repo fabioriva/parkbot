@@ -1,0 +1,22 @@
+{
+  "title": "History",
+  "date": "Date",
+  "device": "Device",
+  "mode": "Mode",
+  "operation": "Operation",
+  "card": "Card",
+  "stall": "Destination",
+  "size": "Size",
+
+  "history-query": "Query from {{from}} to {{to}}. Total rows {{count}}.",
+
+  "op-id-1": "Alarm on",
+  "op-id-2": "Alarm off",
+  "op-id-3": "Switch mode",
+  "op-id-4": "PIN changed",
+  "op-id-5": "Stall in",
+  "op-id-6": "Stall out",
+  "op-id-7": "Shuffle in",
+  "op-id-8": "Shuffle out",
+  "op-id-9": "Stall reserve"
+}

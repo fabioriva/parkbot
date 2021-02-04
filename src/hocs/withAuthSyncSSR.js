@@ -1,13 +1,9 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import LoadingSkeleton from 'src/components/LoadingSkeleton'
 
 const withAuthSync = WrappedComponent => {
   const Wrapper = props => {
     const router = useRouter()
-    // i18next
-    const { ready } = useTranslation(props.ns)
 
     const syncLogout = event => {
       if (event.key === 'logout') {
@@ -24,14 +20,8 @@ const withAuthSync = WrappedComponent => {
       }
     }, [])
 
-    if (!ready) return <LoadingSkeleton />
-
     return <WrappedComponent {...props} />
   }
-
-  // if (WrappedComponent.getInitialProps) {
-  //   Wrapper.getInitialProps = WrappedComponent.getInitialProps
-  // }
 
   return Wrapper
 }

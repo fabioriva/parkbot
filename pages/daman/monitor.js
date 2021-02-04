@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useData } from 'src/lib/websocket'
 import useSWR from 'swr'
-import fetchJson from 'src/lib/fetcher'
+import fetchJson from 'src/lib/fetchJson'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -103,7 +103,7 @@ function Tt (props) {
   )
 }
 
-function Queue (props) {
+function QueueItem (props) {
   const classes = useStyles()
   return (
     <Paper className={classes.itemQueue} elevation={1}>
@@ -112,18 +112,103 @@ function Queue (props) {
   )
 }
 
-const Page = props => {
+function Queue ({ monitor, title }) {
+  return (
+    <Grid container spacing={1} justify='center' alignItems='center'>
+      <Grid item xs={12} style={{ fontSize: '24px', textAlign: 'center' }}>
+        {title}
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq01} />
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq02} />
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq03} />
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq04} />
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq05} />
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq06} />
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq07} />
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq08} />
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq09} />
+      </Grid>
+      <Grid item xs={12}>
+        <QueueItem nr={monitor.qq10} />
+      </Grid>
+    </Grid>
+  )
+}
+
+function Monitor ({ monitor }) {
+  return (
+    <>
+      {/* Tt */}
+      <Grid item xs={1} />
+      <Grid item xs={2}>
+        <Tt nr={monitor.tt01} />
+      </Grid>
+      <Grid item xs={2}>
+        <Tt nr={monitor.tt02} />
+      </Grid>
+      <Grid item xs={2}>
+        <Tt nr={monitor.tt03} />
+      </Grid>
+      <Grid item xs={2}>
+        <Tt nr={monitor.tt04} />
+      </Grid>
+      <Grid item xs={2}>
+        <Tt nr={monitor.tt05} />
+      </Grid>
+      <Grid item xs={1} />
+      {/* El */}
+      <Grid item xs={1} />
+      <Grid item xs={2}>
+        <El nr={monitor.el01} />
+      </Grid>
+      <Grid item xs={2}>
+        <El nr={monitor.el02} />
+      </Grid>
+      <Grid item xs={2}>
+        <El nr={monitor.el03} />
+      </Grid>
+      <Grid item xs={2}>
+        <El nr={monitor.el04} />
+      </Grid>
+      <Grid item xs={2}>
+        <El nr={monitor.el05} />
+      </Grid>
+      <Grid item xs={1} />
+    </>
+  )
+}
+
+const Page = ({ json, url }) => {
   const classes = useStyles()
 
-  const [monitor, setMonitor] = useState(props.json.monitor)
+  if (json.err) return <div>Error</div>
+
+  const [monitor, setMonitor] = useState(json.monitor)
 
   const { mesg } = useData(
     'monitor',
     `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/daman?channel=ch1`
   )
 
-  const { data, error } = useSWR(props.url, fetcher, {
-    initialData: props.json,
+  const { data, error } = useSWR(url, fetcher, {
+    initialData: json,
     refreshInterval: 1000
   })
   if (error) return 'An error has occurred.'
@@ -140,27 +225,6 @@ const Page = props => {
 
   return (
     <Container maxWidth='xl'>
-      {/* <Grid container>
-        <Grid item xs={1} />
-        <Grid item xs={10}>
-          <Toolbar className={classes.toolbar}>
-            <Typography
-              component='h1'
-              variant='h4'
-              color='inherit'
-              noWrap
-              className={classes.toolbarTitle}
-            >
-              Daman Building
-            </Typography>
-            <Typography component='h1' variant='h4'>
-              AVS Exit Monitoring System
-            </Typography>
-          </Toolbar>
-        </Grid>
-        <Grid item xs={1} />
-      </Grid> */}
-
       <Toolbar className={classes.toolbar}>
         <Typography
           component='h1'
@@ -179,47 +243,9 @@ const Page = props => {
       <Grid container spacing={1} justify='center' alignItems='center'>
         {/* Queue North */}
         <Grid item xs={1}>
-          <Grid container spacing={1} justify='center' alignItems='center'>
-            <Grid
-              item
-              xs={12}
-              style={{ fontSize: '24px', textAlign: 'center' }}
-            >
-              North Side
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq01} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq02} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq03} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq04} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq05} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq06} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq07} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq08} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq09} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq10} />
-            </Grid>
-          </Grid>
+          <Queue monitor={monitor.north} title='North Side' />
         </Grid>
-        {/*  */}
+        {/* Monitor */}
         <Grid item xs={10}>
           <Grid
             container
@@ -246,78 +272,10 @@ const Page = props => {
               <Exit nr={5} />
             </Grid>
             <Grid item xs={1} />
-            {/* Tt */}
-            <Grid item xs={1} />
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt01} />
-            </Grid>
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt02} />
-            </Grid>
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt03} />
-            </Grid>
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt04} />
-            </Grid>
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt05} />
-            </Grid>
-            <Grid item xs={1} />
-            {/* El */}
-            <Grid item xs={1} />
-            <Grid item xs={2}>
-              <El nr={monitor.el01} />
-            </Grid>
-            <Grid item xs={2}>
-              <El nr={monitor.el02} />
-            </Grid>
-            <Grid item xs={2}>
-              <El nr={monitor.el03} />
-            </Grid>
-            <Grid item xs={2}>
-              <El nr={monitor.el04} />
-            </Grid>
-            <Grid item xs={2}>
-              <El nr={monitor.el05} />
-            </Grid>
-            <Grid item xs={1} />
-            {/* Tt */}
-            <Grid item xs={1} />
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt06} />
-            </Grid>
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt07} />
-            </Grid>
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt08} />
-            </Grid>
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt09} />
-            </Grid>
-            <Grid item xs={2}>
-              <Tt nr={monitor.tt10} />
-            </Grid>
-            <Grid item xs={1} />
-            {/* El */}
-            <Grid item xs={1} />
-            <Grid item xs={2}>
-              <El nr={monitor.el06} />
-            </Grid>
-            <Grid item xs={2}>
-              <El nr={monitor.el07} />
-            </Grid>
-            <Grid item xs={2}>
-              <El nr={monitor.el08} />
-            </Grid>
-            <Grid item xs={2}>
-              <El nr={monitor.el09} />
-            </Grid>
-            <Grid item xs={2}>
-              <El nr={monitor.el10} />
-            </Grid>
-            <Grid item xs={1} />
+            {/* North */}
+            <Monitor monitor={monitor.north} />
+            {/* South */}
+            <Monitor monitor={monitor.south} />
             {/* Exits */}
             <Grid item xs={1} />
             <Grid item xs={2}>
@@ -340,45 +298,7 @@ const Page = props => {
         </Grid>
         {/* Queue South */}
         <Grid item xs={1}>
-          <Grid container spacing={1} justify='center' alignItems='center'>
-            <Grid
-              item
-              xs={12}
-              style={{ fontSize: '24px', textAlign: 'center' }}
-            >
-              South Side
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq11} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq12} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq13} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq14} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq15} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq16} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq17} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq18} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq19} />
-            </Grid>
-            <Grid item xs={12}>
-              <Queue nr={monitor.qq20} />
-            </Grid>
-          </Grid>
+          <Queue monitor={monitor.south} title='South Side' />
         </Grid>
       </Grid>
     </Container>

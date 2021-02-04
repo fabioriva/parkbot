@@ -1,0 +1,22 @@
+{
+  "title": "Storico",
+  "date": "Data",
+  "device": "Dispositivo",
+  "mode": "Funzione",
+  "operation": "Operazione",
+  "card": "Tessera",
+  "stall": "Stallo",
+  "size": "Dimensione",
+
+  "history-query": "Ricerca dal {{from}} al {{to}}. Totale elementi {{count}}.",
+
+  "op-id-1": "Allarme on",
+  "op-id-2": "Allarme off",
+  "op-id-3": "Cambio funzione",
+  "op-id-4": "PIN modificato",
+  "op-id-5": "Stallo occupato",
+  "op-id-6": "Stallo liberato",
+  "op-id-7": "Shuffle in",
+  "op-id-8": "Shuffle out",
+  "op-id-9": "Stallo prenotato"
+}

@@ -1,39 +1,35 @@
 {
-  "name": "i18n-routing",
-  "version": "1.0.0",
+  "name": "parkbot",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "test": "standard"
   },
   "dependencies": {
-    "@devexpress/dx-react-chart": "^2.7.3",
-    "@devexpress/dx-react-chart-material-ui": "^2.7.3",
-    "@devexpress/dx-react-core": "^2.7.3",
-    "@hapi/iron": "^6.0.0",
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
+    "@devexpress/dx-react-chart": "^2.7.4",
+    "@devexpress/dx-react-chart-material-ui": "^2.7.4",
+    "@devexpress/dx-react-core": "^2.7.4",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.3",
     "clsx": "^1.1.1",
     "cookie": "^0.4.1",
-    "i18next": "^19.8.4",
-    "i18next-http-backend": "^1.0.21",
-    "js-cookie": "^2.2.1",
-    "next": "latest",
-    "notistack": "^1.0.2",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-hook-form": "^6.11.5",
-    "react-i18next": "^11.7.3",
-    "swr": "^0.3.9"
+    "date-fns": "^2.16.1",
+    "next": "10.0.6",
+    "next-translate": "^1.0.2",
+    "notistack": "^1.0.3",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-hook-form": "^6.15.1",
+    "swr": "^0.4.1",
+    "ua-parser-js": "^0.7.23"
   },
   "devDependencies": {
-    "standard": "^16.0.1"
+    "standard": "^16.0.3"
   },
   "standard": {
-    "ignore": [
-      "/public"
-    ]
-  },
-  "license": "MIT"
+    "ignore": ["/public"]
+  }
 }

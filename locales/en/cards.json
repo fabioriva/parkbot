@@ -1,0 +1,5 @@
+{
+  "card": "Card",
+  "code": "PIN code",
+  "cards-total-count": "Total cards {{count}}"
+}

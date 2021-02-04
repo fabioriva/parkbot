@@ -1,0 +1,18 @@
+{
+  "I18N_TEST": "en",
+  "SIGNIN_TITLE": "Sign in to ParkBot",
+  "SIGNIN_REMEMBER": "Remember me",
+  "SIGNIN_BUTTON": "Sign in",
+  "SIGNIN_FORGOT": "Forgot password?",
+  "SIGNIN_SIGNUP": "Don't have an account? Sign Up",
+  "APPBAR_MENU_LOGOUT": "Logout",
+  "APPBAR_MENU_LOCALE": "Change language",
+  "APPBAR_MENU_PROFILE": "Profile",
+
+  "title-system": "System",
+  "title-cards": "Cards",
+  "title-map": "Map",
+  "title-history": "History",
+  "title-racks": "PLC I/O",
+  "title-statistics": "Statistics"
+}

@@ -7,6 +7,7 @@ import Drawer from '@material-ui/core/Drawer'
 import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
 import { mainListItems } from 'src/components/drawerItems'
+import { version } from 'package.json'
 
 const drawerWidth = 240
 
@@ -54,7 +55,7 @@ export default function AppDrawer ({
         </Box>
         <Box p={1}>
           <Typography variant='caption' className={classes.title} noWrap>
-            version 21.01
+            version {version}
           </Typography>
         </Box>
       </Box>

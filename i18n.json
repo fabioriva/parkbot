@@ -1,0 +1,13 @@
+{
+  "locales": ["en", "it"],
+  "defaultLocale": "en",
+  "pages": {
+    "*": ["common"],
+    "/[aps]/cards": ["cards"],
+    "/[aps]/history": ["history"],
+    "/[aps]/map": ["map"],
+    "/[aps]/statistics": ["statistics"],
+    "/[aps]/system": ["system", "io"],
+    "/[aps]/racks/[rack]": ["io"]
+  }
+}

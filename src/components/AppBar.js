@@ -1,5 +1,5 @@
 import React from 'react'
-import Cookies from 'js-cookie'
+import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { orange } from '@material-ui/core/colors'
@@ -11,7 +11,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import { useTranslation } from 'react-i18next'
 
 const drawerWidth = 240
 
@@ -37,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 export default function AppBar_ ({ position, handleDrawerToggle }) {
   const classes = useStyles()
   const router = useRouter()
-  const { t, i18n } = useTranslation('common')
+  const { t } = useTranslation('common')
 
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -51,11 +50,9 @@ export default function AppBar_ ({ position, handleDrawerToggle }) {
     setAnchorEl(null)
   }
 
-  const handleLocale = () => {
-    Cookies.set('parkbot-i18n', i18n.language === 'en' ? 'it' : 'en')
-    i18n.changeLanguage(i18n.language === 'en' ? 'it' : 'en')
-    setAnchorEl(null)
-  }
+  // const handleLocale = () => {
+  //   setAnchorEl(null)
+  // }
 
   const handleLogout = async () => {
     await global.fetch('/api/logout')
@@ -102,9 +99,9 @@ export default function AppBar_ ({ position, handleDrawerToggle }) {
           open={open}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleLocale}>{t('menu-change-locale')}</MenuItem>
-          <MenuItem onClick={handleClose}>{t('menu-profile')}</MenuItem>
-          <MenuItem onClick={handleLogout}>{t('menu-logout')}</MenuItem>
+          {/* <MenuItem onClick={handleLocale}>{t('APPBAR_MENU_LOCALE')}</MenuItem> */}
+          {/* <MenuItem onClick={handleClose}>{t('APPBAR_MENU_PROFILE')}</MenuItem> */}
+          <MenuItem onClick={handleLogout}>{t('APPBAR_MENU_LOGOUT')}</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>

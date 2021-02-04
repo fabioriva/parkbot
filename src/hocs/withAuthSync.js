@@ -1,14 +1,11 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useUser } from 'src/lib/hooks'
-import LoadingSkeleton from 'src/components/LoadingSkeleton'
+import useUser from 'src/lib/useUser'
+import Loading from 'src/components/Loading'
 
 const withAuthSync = WrappedComponent => {
   const Wrapper = props => {
     const router = useRouter()
-    // i18next
-    const { ready } = useTranslation(props.ns)
 
     const syncLogout = event => {
       if (event.key === 'logout') {
@@ -25,20 +22,16 @@ const withAuthSync = WrappedComponent => {
       }
     }, [])
 
-    const user = useUser({
-      redirectTo: '/signin',
+    const { user } = useUser({
+      redirectTo: '/',
       redirectIfFound: false,
-      roles: [props.definitions.pageRole]
+      roles: [props.definitions?.pageRole]
     })
 
-    if (!ready || !user) return <LoadingSkeleton />
+    if (!user) return <Loading />
 
     return <WrappedComponent {...props} user={user} />
   }
-
-  // if (WrappedComponent.getInitialProps) {
-  //   Wrapper.getInitialProps = WrappedComponent.getInitialProps
-  // }
 
   return Wrapper
 }

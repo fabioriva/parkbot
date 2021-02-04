@@ -1,15 +1,13 @@
 import Error from 'next/error'
+import useTranslation from 'next-translate/useTranslation'
 import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useData } from 'src/lib/websocket'
-import Confirm from 'src/components/ConfirmDialog'
-import Device from 'src/components/Device'
-import Dialog from 'src/components/OperationDialog'
 import Layout from 'src/components/Layout'
-import Queue from 'src/components/Queue'
 import Widget from 'src/components/Widget'
-import { ACTIONS } from 'src/constants/roles'
-// import { isAllowed } from 'src/lib/auth'
+// system
+import Device from 'src/components/system/Device'
+import Operation from 'src/components/system/OperationDialog'
+import Queue from 'src/components/system/Queue'
 // material-ui
 import Grid from '@material-ui/core/Grid'
 
@@ -20,10 +18,10 @@ const isAllowed = (user, rights) =>
 
 const withSystem = WrappedComponent => {
   const Wrapper = props => {
-    const { i18n, t } = useTranslation(['system'])
+    const { t } = useTranslation('system')
 
     const { definitions, json, user } = props
-    const { apsName, cards, websockUrl } = definitions
+    const { apsName, cards, websockUrl, userRole } = definitions
 
     if (json.err) return <Error statusCode={500} />
 
@@ -32,17 +30,10 @@ const withSystem = WrappedComponent => {
     const { mesg, send } = useData('overview', `${websockUrl}?channel=ch1`)
 
     useEffect(() => {
-      i18n.changeLanguage(user.locale === 'en-US' ? 'en' : 'it')
-    }, [user.locale])
-
-    useEffect(() => {
       if (mesg) {
         setOverview(mesg)
       }
     }, [mesg])
-
-    // Confirm
-    const [confirm, setConfirm] = useState(false)
 
     // Dialog
     const DIALOG_INIT_VALUES = { id: 0, card: 1, minCard: 1, maxCard: cards }
@@ -72,30 +63,30 @@ const withSystem = WrappedComponent => {
     }
 
     const handleDelete = (card, id) => {
-      console.log('delete', typeof card, card, typeof id, id)
+      // console.log('delete', typeof card, card, typeof id, id)
       if (window.confirm('Delete ?')) {
-        send('queue-delete', { card: card, index: id })
+        send('exit-queue-delete', {
+          card: card,
+          index: id,
+          start: 0,
+          amount: 6
+        })
       }
-    }
-
-    const handleRollback = system => {
-      // console.log('rollback', system)
-      send('overview-rollback', { id: system })
     }
 
     const devices = overview.devices.map((item, key) => (
       <Device
         key={key}
         item={item}
-        actions={[handleOpen, handleRollback]}
-        authorization={isAllowed(user, [ACTIONS])}
+        // actions={[handleOpen, handleRollback]}
+        authorization={isAllowed(user, [userRole])}
       />
     ))
 
     return (
       <Layout
         apsName={apsName}
-        pageTitle={t('title')}
+        pageTitle={t('TITLE')}
         socket={`${websockUrl}?channel=ch2`}
         user={user}
       >
@@ -105,28 +96,28 @@ const withSystem = WrappedComponent => {
           </Grid>
           <Grid item xs={12} md={4}>
             <Widget
-              authorization={isAllowed(user, [ACTIONS])}
+              authorization={isAllowed(user, [userRole])}
               title={t('exit-queue')}
               button={overview.exitQueue.exitButton}
               showModal={handleOpen}
             >
               <Queue
-                authorization={isAllowed(user, [ACTIONS])}
+                authorization={isAllowed(user, [userRole])}
                 handleDelete={handleDelete}
                 queueList={overview.exitQueue.queueList}
               />
             </Widget>
           </Grid>
         </Grid>
-        <Confirm
+        {/* <Confirm
           title='Delete Post?'
           open={confirm}
           setOpen={setConfirm}
           onConfirm={handleDelete}
         >
           Are you sure you want to delete this post?
-        </Confirm>
-        <Dialog
+        </Confirm> */}
+        <Operation
           open={open}
           onCancel={handleCancel}
           onConfirm={handleConfirm}

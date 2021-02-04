@@ -1,13 +1,11 @@
 import React from 'react'
-import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
+import useTranslation from 'next-translate/useTranslation'
 import Copyright from 'src/components/Copyright'
-import ParkBot from 'src/components/ParkBot'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
-// import Avatar from '@material-ui/core/Avatar'
+import Avatar from '@material-ui/core/Avatar'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -17,7 +15,6 @@ import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import LoadingSkeleton from 'src/components/LoadingSkeleton'
 
 const START_PAGE = 'system'
 
@@ -29,11 +26,11 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center'
   },
-  // avatar: {
-  //   margin: theme.spacing(1),
-  //   width: theme.spacing(7),
-  //   height: theme.spacing(7)
-  // },
+  avatar: {
+    margin: theme.spacing(1),
+    width: theme.spacing(7),
+    height: theme.spacing(7)
+  },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1)
@@ -44,11 +41,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Signin (props) {
+  const classes = useStyles()
+
   const router = useRouter()
 
-  const { t, ready } = useTranslation('common')
-
-  const classes = useStyles()
+  const { t } = useTranslation('common')
 
   const { register, handleSubmit, errors } = useForm()
 
@@ -64,9 +61,9 @@ export default function Signin (props) {
         body: JSON.stringify(body)
       })
       if (res.status === 200) {
-        const { aps, locale } = await res.json()
-        Cookies.set('parkbot-i18n', locale)
-        router.push(aps !== undefined ? `/${aps}/${START_PAGE}` : '/')
+        const { aps } = await res.json()
+        const url = aps !== undefined ? `/${aps}/${START_PAGE}` : '/'
+        router.push(url, url, { locale: props.locale })
       } else {
         console.log(res.status)
         throw new Error(await res.text())
@@ -77,14 +74,12 @@ export default function Signin (props) {
     }
   }
 
-  if (!ready) return <LoadingSkeleton />
-
   return (
     <Container component='main' maxWidth='xs' className={classes.root}>
       <div className={classes.paper}>
-        <ParkBot />
+        <Avatar alt='ParkBot' className={classes.avatar} src='/bot.svg' />
         <Typography component='h1' variant='h5'>
-          {t('signin-title')}
+          {t('SIGNIN_TITLE')}
         </Typography>
         <form
           className={classes.form}
@@ -126,7 +121,7 @@ export default function Signin (props) {
           <br />
           <FormControlLabel
             control={<Checkbox value='remember' color='primary' />}
-            label={t('signin-remember')}
+            label={t('SIGNIN_REMEMBER')}
           />
           <Button
             type='submit'
@@ -135,17 +130,17 @@ export default function Signin (props) {
             color='primary'
             className={classes.submit}
           >
-            {t('signin-button')}
+            {t('SIGNIN_BUTTON')}
           </Button>
           <Grid container>
             <Grid item xs>
               <Link href='#' variant='body2'>
-                {t('signin-forgot')}
+                {t('SIGNIN_FORGOT')}
               </Link>
             </Grid>
             <Grid item>
               <Link href='#' variant='body2'>
-                {t('signin-account')}
+                {t('SIGNIN_SIGNUP')}
               </Link>
             </Grid>
           </Grid>
@@ -158,14 +153,10 @@ export default function Signin (props) {
   )
 }
 
-export const getStaticProps = ({ locale, locales }) => {
-  const ns = ['common']
-
-  return {
-    props: {
-      locale,
-      locales,
-      ns
-    }
-  }
-}
+// export async function getStaticProps (context) {
+//   return {
+//     props: {
+//       locale: context.locale
+//     }
+//   }
+// }

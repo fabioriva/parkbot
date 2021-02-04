@@ -4,6 +4,7 @@ import Badge from '@material-ui/core/Badge'
 import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import RssFeedIcon from '@material-ui/icons/RssFeed'
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar'
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
 import { green, red } from '@material-ui/core/colors'
 import Tooltip from 'src/components/Tooltip'
@@ -13,13 +14,23 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(3)
   },
   title: {
-    // fontSize: 16,
+    // fontSize: 16
   },
   subtitle: {
-    // fontSize: 14,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 16
+    }
   },
   icon: {
-    paddingRight: theme.spacing(1)
+    [theme.breakpoints.down('xs')]: {
+      paddingRight: theme.spacing(1)
+    },
+    [theme.breakpoints.up('sm')]: {
+      paddingRight: theme.spacing(2)
+    }
   },
   online: {
     background: green[500]
@@ -85,6 +96,11 @@ export default function AppHeader ({ aps, pageTitle, comm, diag }) {
             </Badge>
           </Box>
         )}
+        <Box p={0} className={classes.icon}>
+          <Badge badgeContent={123} max={999} color='primary'>
+            <DirectionsCarIcon />
+          </Badge>
+        </Box>
         <Box p={0} className={classes.icon}>
           {comm.isOnline ? (
             <Tooltip title='ONLINE' aria-label='online'>

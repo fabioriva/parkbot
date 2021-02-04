@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-import { useTranslation } from 'react-i18next'
+import useTranslation from 'next-translate/useTranslation'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,16 +19,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Widget ({
-  children,
-  authorization,
-  title,
-  button,
-  showModal
-}) {
+export default function Widget ({ children, title, button = {}, showModal }) {
   const classes = useStyles()
 
-  const { t } = useTranslation(['system'])
+  const { t } = useTranslation('system')
 
   return (
     <Card className={classes.root}>
@@ -38,13 +32,14 @@ export default function Widget ({
         </Typography>
         {children}
       </CardContent>
+      {/* <CardActions>
+        <Button disabled={!actions} size="small">More</Button>
+      </CardActions> */}
       {button && (
         <CardActions>
           <Button
             disabled={
-              button.enable !== undefined
-                ? !authorization || !button.enable.status
-                : true
+              button.enable !== undefined ? !button.enable.status : true
             }
             // size="small"
             color='primary'

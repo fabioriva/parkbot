@@ -1,0 +1,29 @@
+{
+  "TITLE": "System",
+  "DEVICE_CARD": "Card",
+  "DEVICE_DEST": "Destination",
+  "DEVICE_MODE": "Mode",
+  "DEVICE_SIZE": "Size",
+
+  "mode-data-edit": "Data edit",
+  "mode-data-read": "Data read",
+  "mode-eme-1": "Emergency 1",
+  "mode-eme-2": "Emergency 2",
+  "mode-no-func": "---",
+  "mode-step": "Step by Step",
+  "mode-preset": "Preset",
+  "mode-auto": "Automatic",
+
+  "exit-queue": "Exit queue",
+  "action-exit": "Exit",
+  "action-entry": "Entry",
+  "action-rollback": "Rollback",
+
+  "dialog-cancel": "Cancel",
+  "dialog-confirm": "Confirm",
+  "dialog-content": "Insert a valid card number and confirm.",
+  "dialog-title": "Operation request",
+  "queue-item-primary": "Card {{number}}",
+  "queue-item-secondary": "{{number}}° call",
+  "queue-item-delete": "Delete card {{number}}?"
+}

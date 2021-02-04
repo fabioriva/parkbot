@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Container from '@material-ui/core/Container'
 import AppBar from 'src/components/AppBar'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
@@ -7,6 +6,7 @@ import Header from 'src/components/Header'
 import { useComm } from 'src/lib/websocket'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 
 const useStyles = makeStyles(theme => ({
   root: {

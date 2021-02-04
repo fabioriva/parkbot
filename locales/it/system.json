@@ -1,0 +1,29 @@
+{
+  "TITLE": "Sistema",
+  "DEVICE_CARD": "Tessera",
+  "DEVICE_DEST": "Destinazione",
+  "DEVICE_MODE": "Funzione",
+  "DEVICE_SIZE": "Dimensione",
+
+  "mode-data-edit": "Salva dati",
+  "mode-data-read": "Lettura dati",
+  "mode-eme-1": "Emergenza 1",
+  "mode-eme-2": "Emergenza 2",
+  "mode-no-func": "---",
+  "mode-step": "Passo Passo",
+  "mode-preset": "Preset",
+  "mode-auto": "Automatico",
+
+  "exit-queue": "Coda uscita",
+  "action-exit": "Uscita",
+  "action-entry": "Entrata",
+  "action-rollback": "Rollback",
+
+  "dialog-cancel": "Annulla",
+  "dialog-confirm": "Conferma",
+  "dialog-content": "Inserisci un numero di tessera valido e conferma.",
+  "dialog-title": "Richiesta operazione",
+  "queue-item-primary": "Tessera {{number}}",
+  "queue-item-secondary": "{{number}}° chiamata",
+  "queue-item-delete": "Cancella tessera {{number}}?"
+}
