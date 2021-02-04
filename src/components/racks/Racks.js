@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Layout from 'src/components/Layout'
 import useTranslation from 'next-translate/useTranslation'
 import RacksList from 'src/components/racks/RacksList'
-import GridList from 'src/components/racks/Grid'
+import GridList from 'src/components/racks/GridList'
 // import Typography from '@material-ui/core/Typography'
 
 export default function Racks ({ definitions, json, user }) {

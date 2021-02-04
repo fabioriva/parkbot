@@ -1,3 +1,4 @@
+import { aps } from 'src/constants/aps'
 import { RACKS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import Rack from 'src/components/racks/Rack'
@@ -8,11 +9,17 @@ const Page = props => {
 }
 
 export async function getServerSideProps ({ params }) {
-  // console.log('getStaticProps', params)
+  if (aps(params.aps) === -1) {
+    return {
+      notFound: true
+    }
+  }
+
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
     `src/constants/${params.aps}`
   )
   const json = await fetchJson(`${BACKEND_URL}/racks`) // /${params.rack}`)
+
   return {
     props: {
       definitions: {

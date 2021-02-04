@@ -1,5 +1,5 @@
-import { format, subDays } from 'date-fns'
-import paths from 'src/constants/aps'
+import { subDays } from 'date-fns'
+import { aps, apsPaths } from 'src/constants/aps'
 import { STATISTICS } from 'src/constants/roles'
 import fetchOperations from 'src/lib/fetchOperations'
 import Statistics from 'src/components/statistics/Statistics'
@@ -12,17 +12,24 @@ const Page = props => {
 
 export async function getStaticPaths ({ locales }) {
   return {
-    paths: await paths(locales),
+    paths: await apsPaths(locales),
     fallback: false
   }
 }
 
 export async function getStaticProps ({ params }) {
+  if (aps(params.aps) === -1) {
+    return {
+      notFound: true
+    }
+  }
+
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
     `src/constants/${params.aps}`
   )
   const yesterday = subDays(new Date(), 1)
   const json = await fetchOperations(BACKEND_URL, yesterday)
+
   return {
     props: {
       definitions: {

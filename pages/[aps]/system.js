@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { aps } from 'src/constants/aps'
 import { OVERVIEW, ACTIONS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import withAuthSync from 'src/hocs/withAuthSync'
@@ -17,10 +18,17 @@ const Page = props => {
 }
 
 export async function getServerSideProps ({ params }) {
+  if (aps(params.aps) === -1) {
+    return {
+      notFound: true
+    }
+  }
+
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL, CARDS } = await import(
     `src/constants/${params.aps}`
   )
   const json = await fetchJson(`${BACKEND_URL}/overview`)
+
   return {
     props: {
       aps: params.aps,

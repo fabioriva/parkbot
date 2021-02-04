@@ -1,3 +1,4 @@
+import { aps } from 'src/constants/aps'
 import { CARDS, EDIT_CARD } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import Cards from 'src/components/cards/Cards'
@@ -8,10 +9,17 @@ const Page = props => {
 }
 
 export async function getServerSideProps ({ params }) {
+  if (aps(params.aps) === -1) {
+    return {
+      notFound: true
+    }
+  }
+
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
     `src/constants/${params.aps}`
   )
   const json = await fetchJson(`${BACKEND_URL}/cards`)
+
   return {
     props: {
       definitions: {

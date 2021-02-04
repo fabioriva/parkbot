@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import paths from 'src/constants/aps'
+import { aps, apsPaths } from 'src/constants/aps'
 import { MAP, EDIT_STALL } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import withAuthSync from 'src/hocs/withAuthSync'
@@ -19,12 +19,18 @@ const Page = props => {
 
 export async function getStaticPaths ({ locales }) {
   return {
-    paths: await paths(locales),
+    paths: await apsPaths(locales),
     fallback: false
   }
 }
 
 export async function getStaticProps ({ params }) {
+  if (aps(params.aps) === -1) {
+    return {
+      notFound: true
+    }
+  }
+
   const {
     APS_NAME,
     BACKEND_URL,
@@ -34,6 +40,7 @@ export async function getStaticProps ({ params }) {
     STALL_STATUS
   } = await import(`src/constants/${params.aps}`)
   const json = await fetchJson(`${BACKEND_URL}/map`)
+
   return {
     props: {
       aps: params.aps,

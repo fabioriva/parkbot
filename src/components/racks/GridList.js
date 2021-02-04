@@ -12,12 +12,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
     overflow: 'hidden'
     // backgroundColor: theme.palette.background.paper
   },
   gridList: {
-    width: 500
+    width: 600
     // height: 450
   },
   icon: {
@@ -29,7 +29,7 @@ export default function TitlebarGridList ({ racks, user }) {
   const classes = useStyles()
   console.log(racks)
   return (
-    <Paper className={classes.root}>
+    <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList} cols={3}>
         <GridListTile key='Subheader' cols={3} style={{ height: 'auto' }}>
           <ListSubheader component='div'>PLC Racks</ListSubheader>
@@ -59,6 +59,6 @@ export default function TitlebarGridList ({ racks, user }) {
           </GridListTile>
         ))}
       </GridList>
-    </Paper>
+    </div>
   )
 }

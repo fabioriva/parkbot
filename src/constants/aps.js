@@ -1,9 +1,16 @@
-const APS = ['bassano', 'wallstreet', 'wareham', 'washingtonblvd']
+const APS = [
+  'bassano',
+  'chiattone',
+  'muse',
+  'wallstreet',
+  'wareham',
+  'washingtonblvd'
+]
 
-export default async function paths (locales, args) {
-  const paths = APS.flatMap(aps =>
+export const aps = aps => APS.indexOf(aps)
+
+export const apsPaths = async (locales, args) => {
+  return APS.flatMap(aps =>
     locales.map(locale => ({ params: { aps, ...args }, locale }))
   )
-  // console.log(paths)
-  return paths
 }
