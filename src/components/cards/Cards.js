@@ -27,7 +27,7 @@ export default function Cards ({ definitions, json, user }) {
   return (
     <Layout
       apsName={apsName}
-      pageTitle={t('title-cards')}
+      pageTitle={t('title')}
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >

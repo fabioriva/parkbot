@@ -48,7 +48,8 @@ export async function getStaticProps ({ params }) {
         stallStatus: STALL_STATUS
       },
       json
-    }
+    },
+    revalidate: 1 // In seconds
   }
 }
 

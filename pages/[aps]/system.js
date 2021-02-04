@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import paths from 'src/constants/aps'
 import { OVERVIEW, ACTIONS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import withAuthSync from 'src/hocs/withAuthSync'
@@ -17,14 +16,7 @@ const Page = props => {
   return <DynamicComponent {...props} />
 }
 
-export async function getStaticPaths ({ locales }) {
-  return {
-    paths: await paths(locales),
-    fallback: false
-  }
-}
-
-export async function getStaticProps ({ params }) {
+export async function getServerSideProps ({ params }) {
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL, CARDS } = await import(
     `src/constants/${params.aps}`
   )

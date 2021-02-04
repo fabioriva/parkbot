@@ -30,6 +30,8 @@
     "standard": "^16.0.3"
   },
   "standard": {
-    "ignore": ["/public"]
+    "ignore": [
+      "/public"
+    ]
   }
 }

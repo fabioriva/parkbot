@@ -1,4 +1,3 @@
-import paths from 'src/constants/aps'
 import { RACKS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import Racks from 'src/components/racks/Racks'
@@ -8,14 +7,7 @@ const Page = props => {
   return <Racks {...props} />
 }
 
-export async function getStaticPaths ({ locales }) {
-  return {
-    paths: await paths(locales),
-    fallback: false
-  }
-}
-
-export async function getStaticProps ({ params }) {
+export async function getServerSideProps ({ params }) {
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
     `src/constants/${params.aps}`
   )
