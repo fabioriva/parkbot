@@ -21,7 +21,6 @@ const Page = props => {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <div>Mobile version</div>
       <History query={history.query} user={user} />
     </Layout>
   )
