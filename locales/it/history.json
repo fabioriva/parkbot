@@ -8,6 +8,7 @@
   "stall": "Stallo",
   "size": "Dimensione",
 
+  "history-total-count": "Numero registrazioni {{count}}",
   "history-query": "Ricerca dal {{from}} al {{to}}. Totale elementi {{count}}.",
 
   "op-id-1": "Allarme on",

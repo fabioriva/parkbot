@@ -1,6 +1,7 @@
 import { useState } from 'react'
 // import useJson from 'src/lib/useData'
 import Layout from 'src/components/Layout'
+import ParBot from 'src/components/ParkBot'
 import Table from 'src/components/history/HistoryTable'
 import useTranslation from 'next-translate/useTranslation'
 import Typography from '@material-ui/core/Typography'
@@ -45,7 +46,12 @@ export default function History ({ definitions, json, user }) {
           to: history.dateTo
         })}
       </Typography>
-      <Table count={history.count} query={history.query} />
+      {history.count > 0 ? (
+        <Table count={history.count} query={history.query} />
+      ) : (
+        <ParBot message='No records Today!' />
+      )}
+      {/* <Table count={history.count} query={history.query} /> */}
     </Layout>
   )
 }

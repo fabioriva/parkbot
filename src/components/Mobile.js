@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import AppBar from 'src/components/AppBar'
 import Drawer from 'src/components/Drawer'
-// import Footer from 'src/components/Footer'
+import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
 import { useComm } from 'src/lib/websocket'
 // material-ui
@@ -53,6 +53,7 @@ export default function AppLayout ({
           <Header aps={apsName} pageTitle={pageTitle} comm={comm} diag={diag} />
         </Container>
         {children}
+        <Footer />
       </main>
     </div>
   )

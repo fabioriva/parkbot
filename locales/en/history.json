@@ -8,6 +8,7 @@
   "stall": "Destination",
   "size": "Size",
 
+  "history-total-count": "Total records {{count}}",
   "history-query": "Query from {{from}} to {{to}}. Total rows {{count}}.",
 
   "op-id-1": "Alarm on",
