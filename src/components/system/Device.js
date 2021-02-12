@@ -53,7 +53,10 @@ export default function Device ({ actions, authorization, item }) {
   const device = (
     <Grid container>
       <Grid item xs={6}>
-        <Item title={t('system:DEVICE_MODE')} value={t(mode.label)} />
+        <Item
+          title={t('system:DEVICE_MODE')}
+          value={t(`system:${mode.label}`)}
+        />
       </Grid>
       <Grid item xs={6}>
         <Item title={t('system:DEVICE_CARD')} value={card} />

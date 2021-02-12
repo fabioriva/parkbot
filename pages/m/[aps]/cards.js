@@ -1,26 +1,14 @@
-import parser from 'ua-parser-js'
 import { aps } from 'src/constants/aps'
 import { CARDS, EDIT_CARD } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
-import Cards from 'src/components/cards/Cards'
+import Cards from 'src/components/cards/CardsMobile'
 import withAuthSync from 'src/hocs/withAuthSync'
 
 const Page = props => {
   return <Cards {...props} />
 }
 
-export async function getServerSideProps ({ params, req }) {
-  const ua = parser(req.headers['user-agent'])
-
-  if (ua.device.type === 'mobile') {
-    return {
-      redirect: {
-        destination: `/m/${params.aps}/cards`,
-        permanent: false
-      }
-    }
-  }
-
+export async function getServerSideProps ({ params }) {
   if (aps(params.aps) === -1) {
     return {
       notFound: true

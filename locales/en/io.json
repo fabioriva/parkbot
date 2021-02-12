@@ -23,5 +23,8 @@
   "S2": "Function mode selector",
   "T2": "Silomat travelling",
   "TRA": "Silomat FWD",
-  "TRB": "Silomat BWD"
+  "TRB": "Silomat BWD",
+  "TCS": "Silomat hoisting",
+  "TCV": "Silomat front centering",
+  "TCH": "Silomat back centering"
 }

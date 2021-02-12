@@ -23,5 +23,8 @@
   "S2": "Selettore cambio funzione",
   "T2": "Silomat traslazione",
   "TRA": "Silomat FWD",
-  "TRB": "Silomat BWD"
+  "TRB": "Silomat BWD",
+  "TCS": "Silomat sollevamento",
+  "TCV": "Silomat centratore anteriore",
+  "TCH": "Silomat centratore posteriore"
 }

@@ -9,7 +9,8 @@ const componentList = {
   bassano: dynamic(() => import('src/aps/bassano/Map')),
   // chiattone: dynamic(() => import('src/aps/chiattone/Map')),
   wareham: dynamic(() => import('src/aps/wareham/Map')),
-  wallstreet: dynamic(() => import('src/aps/wallstreet/Map'))
+  wallstreet: dynamic(() => import('src/aps/wallstreet/Map')),
+  washingtonblvd: dynamic(() => import('src/aps/washingtonblvd/Map'))
 }
 
 const Page = props => {

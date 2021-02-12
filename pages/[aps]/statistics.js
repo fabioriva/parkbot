@@ -6,7 +6,6 @@ import Statistics from 'src/components/statistics/Statistics'
 import withAuthSync from 'src/hocs/withAuthSync'
 
 const Page = props => {
-  console.log(props)
   return <Statistics {...props} />
 }
 

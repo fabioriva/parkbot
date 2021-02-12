@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
+// import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { useForm } from 'react-hook-form'
 
@@ -31,7 +31,7 @@ export default function OperationDialog (props) {
       <DialogTitle id='form-dialog-title'>{t('dialog-title')}</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
-          <DialogContentText>{t('dialog-content')}</DialogContentText>
+          {/* <DialogContentText>{t('dialog-content')}</DialogContentText> */}
           <Input
             id='id'
             name='id'
