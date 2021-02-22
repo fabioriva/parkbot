@@ -1,5 +1,5 @@
 {
-  "TITLE": "Sistema",
+  "title": "Sistema",
   "DEVICE_CARD": "Tessera",
   "DEVICE_DEST": "Destinazione",
   "DEVICE_MODE": "Funzione",
@@ -25,5 +25,24 @@
   "dialog-title": "Richiesta operazione",
   "queue-item-primary": "Tessera {{number}}",
   "queue-item-secondary": "{{number}}° chiamata",
-  "queue-item-delete": "Cancella tessera {{number}}?"
+  "queue-item-delete": "Cancella tessera {{number}}?",
+
+  "motion": "movimento",
+  "position": "posizione",
+
+  "motion-no": "stop",
+  "motion-up": "salita",
+  "motion-down": "discesa",
+  "motion-open": "apertura",
+  "motion-close": "chiusura",
+  "motion-lock": "blocca",
+  "motion-unlock": "sblocca",
+
+  "position-no": "---",
+  "position-high": "alto",
+  "position-low": "basso",
+  "position-opened": "aperto",
+  "position-closed": "chiuso",
+  "position-locked": "bloccato",
+  "position-unlocked": "sbloccato"
 }

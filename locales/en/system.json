@@ -1,5 +1,5 @@
 {
-  "TITLE": "System",
+  "title": "System",
   "DEVICE_CARD": "Card",
   "DEVICE_DEST": "Destination",
   "DEVICE_MODE": "Mode",
@@ -25,5 +25,24 @@
   "dialog-title": "Operation request",
   "queue-item-primary": "Card {{number}}",
   "queue-item-secondary": "{{number}}° call",
-  "queue-item-delete": "Delete card {{number}}?"
+  "queue-item-delete": "Delete card {{number}}?",
+
+  "motion": "motion",
+  "position": "position",
+
+  "motion-no": "stop",
+  "motion-up": "going up",
+  "motion-down": "going down",
+  "motion-open": "opening",
+  "motion-close": "closing",
+  "motion-lock": "locking",
+  "motion-unlock": "unlocking",
+
+  "position-no": "---",
+  "position-high": "high",
+  "position-low": "low",
+  "position-opened": "opened",
+  "position-closed": "closed",
+  "position-locked": "locked",
+  "position-unlocked": "unlocked"
 }

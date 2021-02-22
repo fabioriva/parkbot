@@ -8,8 +8,8 @@ export default function ParkBot ({ message }) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
-        // height: '100%'
+        justifyContent: 'center',
+        height: '100vh'
       }}
     >
       <Image src='/bot.svg' alt='ParkBot' width={100} height={100} />
