@@ -159,7 +159,7 @@ const Page = ({ definitions, json }) => {
   if (json.monitor === undefined) return <Error />
 
   const { apsName, websockUrl } = definitions
-  const { mesg } = useData('overview', `${websockUrl}?channel=ch1`)
+  const { mesg } = useData('monitor', `${websockUrl}?channel=ch1`)
   const [data, setData] = React.useState(json.monitor)
   React.useEffect(() => {
     if (mesg) {
