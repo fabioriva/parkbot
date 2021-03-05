@@ -26,5 +26,19 @@
   "TRB": "Silomat BWD",
   "TCS": "Silomat sollevamento",
   "TCV": "Silomat centratore anteriore",
-  "TCH": "Silomat centratore posteriore"
+  "TCH": "Silomat centratore posteriore",
+  "AMC": "",
+  "ECA": "Clappa posizione alto",
+  "ECB": "Clappa posizione basso",
+  "SCA": "Clappa salita",
+  "SCB": "Clappa discesa",
+  "APE": "",
+  "EZE": "Porta chiusa",
+  "EOE": "Porta aperta",
+  "FBE": "Porta fotocellula di sicurezza",
+  "SZE": "Porta chiusura",
+  "SOE": "Porta apertura",
+  "AMM": "",
+  "EOM": "",
+  "EZM": ""
 }

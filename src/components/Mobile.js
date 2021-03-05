@@ -30,7 +30,7 @@ export default function AppLayout ({
 }) {
   const classes = useStyles()
 
-  const { comm, diag } = useComm(socket)
+  const { comm, diag, map } = useComm(socket)
 
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -50,7 +50,13 @@ export default function AppLayout ({
       <main className={classes.sticky}>
         <Container maxWidth='xl'>
           <div className={classes.toolbar} />
-          <Header aps={apsName} pageTitle={pageTitle} comm={comm} diag={diag} />
+          <Header
+            aps={apsName}
+            pageTitle={pageTitle}
+            comm={comm}
+            diag={diag}
+            map={map}
+          />
         </Container>
         {children}
         <Footer />

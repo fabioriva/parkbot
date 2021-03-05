@@ -19,7 +19,9 @@ import Typography from '@material-ui/core/Typography'
 const START_PAGE = 'system'
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {
+    // height: '100vh'
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',

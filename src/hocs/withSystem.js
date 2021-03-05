@@ -80,13 +80,14 @@ const withSystem = WrappedComponent => {
         item={item}
         // actions={[handleOpen, handleRollback]}
         authorization={isAllowed(user, [userRole])}
+        user={user}
       />
     ))
 
     return (
       <Layout
         apsName={apsName}
-        pageTitle={t('TITLE')}
+        pageTitle={t('title')}
         socket={`${websockUrl}?channel=ch2`}
         user={user}
       >

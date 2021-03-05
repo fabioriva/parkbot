@@ -26,5 +26,19 @@
   "TRB": "Silomat BWD",
   "TCS": "Silomat hoisting",
   "TCV": "Silomat front centering",
-  "TCH": "Silomat back centering"
+  "TCH": "Silomat back centering",
+  "AMC": "",
+  "ECA": "Flap high position",
+  "ECB": "Flap low position",
+  "SCA": "Flap moves up",
+  "SCB": "Flap moves down",
+  "APE": "",
+  "EZE": "Door closed",
+  "EOE": "Door opened",
+  "FBE": "Door safety sensor",
+  "SZE": "Door closing",
+  "SOE": "Door opening",
+  "AMM": "",
+  "EOM": "",
+  "EZM": ""
 }

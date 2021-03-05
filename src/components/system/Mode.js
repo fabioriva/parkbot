@@ -1,8 +1,10 @@
+import clsx from 'clsx'
+import useTranslation from 'next-translate/useTranslation'
+import Tooltip from 'src/components/Tooltip'
+// material-ui
+import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import Badge from '@material-ui/core/Badge'
-import { makeStyles } from '@material-ui/core/styles'
-import clsx from 'clsx'
-import Tooltip from 'src/components/Tooltip'
 
 const useStyles = makeStyles(() => ({
   aut: {
@@ -17,10 +19,11 @@ const useStyles = makeStyles(() => ({
 
 export default function Mode ({ mode = 0, step = 0 }) {
   const classes = useStyles()
+  const { t } = useTranslation('system')
 
   return (
-    <Badge badgeContent={step} color='secondary'>
-      <Tooltip title={mode.label}>
+    <Badge badgeContent={step} color='primary'>
+      <Tooltip title={t(mode.label)}>
         <Avatar
           variant='rounded'
           aria-label='mode'

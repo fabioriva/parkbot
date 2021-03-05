@@ -34,16 +34,14 @@ export default function Lamp ({ item, off, on }) {
 
   return (
     <Tooltip title={item.info !== undefined ? item.info : ''}>
-      <span>
-        <IconButton aria-label='settings' className={classes.lamp} disabled>
-          <Brightness1Rounded
-            className={clsx({
-              [classes[on]]: item.status,
-              [classes[off]]: !item.status
-            })}
-          />
-        </IconButton>
-      </span>
+      <IconButton aria-label='settings' className={classes.lamp} disabled>
+        <Brightness1Rounded
+          className={clsx({
+            [classes[on]]: item.status,
+            [classes[off]]: !item.status
+          })}
+        />
+      </IconButton>
     </Tooltip>
   )
 }

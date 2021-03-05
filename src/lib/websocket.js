@@ -11,6 +11,7 @@ export function useComm (url) {
   const [error, setError] = useState('')
   const [comm, setComm] = useState(COMM_INITIAL_VALUE)
   const [diag, setDiag] = useState({})
+  const [map, setMap] = useState({})
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -31,6 +32,9 @@ export function useComm (url) {
         if (key === 'diag') {
           setDiag(data[key])
         }
+        if (key === 'map') {
+          setMap(data[key])
+        }
         if (key === 'notification') {
           const snack = notification(data[key])
           enqueueSnackbar(snack.message, snack.options)
@@ -44,7 +48,8 @@ export function useComm (url) {
   return {
     error,
     comm,
-    diag
+    diag,
+    map
   }
 }
 

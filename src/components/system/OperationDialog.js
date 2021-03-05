@@ -46,7 +46,7 @@ export default function OperationDialog (props) {
             fullWidth
             id='card'
             name='card'
-            label={t('DEVICE_CARD')}
+            label={t('device-card')}
             type='number'
             defaultValue={card}
             inputRef={register({

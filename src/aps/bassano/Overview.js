@@ -1,7 +1,13 @@
 import Grid from '@material-ui/core/Grid'
 
 const Overview = props => (
-  <Grid container justify='space-between' alignItems='center'>
+  <Grid
+    container
+    // direction='column'
+    justify='center'
+    // alignContent='center'
+    // alignItems='center'
+  >
     {props.devices.map((item, key) => (
       <Grid item key={key} xs={12} lg={6}>
         {item}

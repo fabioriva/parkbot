@@ -1,4 +1,4 @@
-import { subDays } from 'date-fns'
+import { format, subDays } from 'date-fns'
 import { aps, apsPaths } from 'src/constants/aps'
 import { STATISTICS } from 'src/constants/roles'
 import fetchOperations from 'src/lib/fetchOperations'
@@ -26,7 +26,9 @@ export async function getStaticProps ({ params }) {
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
     `src/constants/${params.aps}`
   )
-  const yesterday = subDays(new Date(), 1)
+
+  const yesterday = format(subDays(new Date(), 1), 'yyyy-MM-dd')
+
   const json = await fetchOperations(BACKEND_URL, yesterday)
 
   return {

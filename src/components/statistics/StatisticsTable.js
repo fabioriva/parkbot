@@ -20,12 +20,7 @@ export default function Statistics ({ data }) {
 
   return (
     <TableContainer component={Paper}>
-      <Table
-        className={classes.table}
-        size='small'
-        dense
-        aria-label='statistics'
-      >
+      <Table className={classes.table} size='small' aria-label='statistics'>
         <TableHead>
           <TableRow>
             <TableCell align='left' />

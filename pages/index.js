@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
@@ -15,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    // height: '100vh',
+    // height: 'calc(100vh - 64px)',
     textAlign: 'center'
   },
   toolbar: {
@@ -32,8 +34,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
     flexShrink: 0
   },
-  paper: {
-    marginTop: theme.spacing(4),
+  main: {
+    marginTop: theme.spacing(6),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
@@ -69,6 +71,9 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 400,
     lineHeight: '1.6',
     letterSpacing: '-0.02em'
+  },
+  paper: {
+    padding: theme.spacing(3)
   }
 }))
 
@@ -104,21 +109,21 @@ export default function Home (props) {
       </Toolbar>
       <div className={classes.root}>
         <Container component='main' maxWidth='md'>
-          <div className={classes.paper}>
-            <Image src='/bot.svg' alt='ParkBot' width={100} height={100} />
+          <div className={classes.main}>
+            <Typography className={classes.title} variant='h1' component='h2'>
+              ParkBot
+            </Typography>
+            <Typography className={classes.subtitle} variant='h2' gutterBottom>
+              The full stack solution for robotic parking systems.
+            </Typography>
+            <Image src='/bot.svg' alt='ParkBot' width={120} height={120} />
             <Typography
               variant='overline'
               align='center'
               // className={classes.description}
               // paragraph
             >
-              Hello, I am your robotic assistant!
-            </Typography>
-            <Typography className={classes.title} variant='h1' component='h2'>
-              ParkBot
-            </Typography>
-            <Typography className={classes.subtitle} variant='h2' gutterBottom>
-              The full stack solution for robotic parking systems.
+              Hello, I am your robotic parking assistant!
             </Typography>
             <Button
               className={classes.startButton}
@@ -127,10 +132,33 @@ export default function Home (props) {
               size='large'
               onClick={handleSignin}
             >
-              Start
+              Get Started
             </Button>
           </div>
-          <Box mt={8}>
+          <Grid
+            container
+            // direction='row'
+            // justify='center'
+            // alignItems='center'
+            spacing={3}
+          >
+            <Grid item xs={12} lg={4}>
+              <Box>
+                <Paper className={classes.paper}>Feature 1</Paper>
+              </Box>
+            </Grid>
+            <Grid item xs={12} lg={4}>
+              <Box>
+                <Paper className={classes.paper}>Feature 2</Paper>
+              </Box>
+            </Grid>
+            <Grid item xs={12} lg={4}>
+              <Box>
+                <Paper className={classes.paper}>Feature 3</Paper>
+              </Box>
+            </Grid>
+          </Grid>
+          <Box mt={4}>
             <Copyright />
           </Box>
         </Container>

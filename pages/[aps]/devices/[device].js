@@ -2,9 +2,9 @@ import { aps } from 'src/constants/aps'
 import { OVERVIEW } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import withAuthSync from 'src/hocs/withAuthSync'
-import Device from 'src/components/device/Device'
+import DeviceInfo from 'src/components/system/DeviceInfo'
 
-const Page = props => <Device {...props} />
+const Page = props => <DeviceInfo {...props} />
 
 export async function getServerSideProps ({ params }) {
   if (aps(params.aps) === -1) {
@@ -31,5 +31,4 @@ export async function getServerSideProps ({ params }) {
   }
 }
 
-// export default withAuthSync(Page)
-export default Page
+export default withAuthSync(Page)

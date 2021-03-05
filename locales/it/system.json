@@ -1,9 +1,9 @@
 {
   "title": "Sistema",
-  "DEVICE_CARD": "Tessera",
-  "DEVICE_DEST": "Destinazione",
-  "DEVICE_MODE": "Funzione",
-  "DEVICE_SIZE": "Dimensione",
+  "device-card": "Tessera",
+  "device-dest": "Destinazione",
+  "device-mode": "Funzione",
+  "device-size": "Dimensione",
 
   "mode-data-edit": "Salva dati",
   "mode-data-read": "Lettura dati",
@@ -30,6 +30,14 @@
   "motion": "movimento",
   "position": "posizione",
 
+  "motor": "Motore",
+  "motor-hoisting": "Sollevamento",
+  "motor-traveling": "Traslazione",
+  "motor-rotation": "Rotazione",
+  "motor-door": "Porta",
+  "motor-flap": "Clappa",
+  "motor-lock": "Martinetto",
+
   "motion-no": "stop",
   "motion-up": "salita",
   "motion-down": "discesa",
@@ -44,5 +52,11 @@
   "position-opened": "aperto",
   "position-closed": "chiuso",
   "position-locked": "bloccato",
-  "position-unlocked": "sbloccato"
+  "position-unlocked": "sbloccato",
+
+  "vfd-status": "Status Word",
+  "vfd-speed": "Velocità",
+  "vfd-current": "Corrente",
+  "vfd-load": "Carico",
+  "vfd-trip": "Ultimo allarme"
 }

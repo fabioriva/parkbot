@@ -1,9 +1,9 @@
 {
   "title": "System",
-  "DEVICE_CARD": "Card",
-  "DEVICE_DEST": "Destination",
-  "DEVICE_MODE": "Mode",
-  "DEVICE_SIZE": "Size",
+  "device-card": "Card",
+  "device-dest": "Destination",
+  "device-mode": "Mode",
+  "device-size": "Size",
 
   "mode-data-edit": "Data edit",
   "mode-data-read": "Data read",
@@ -30,6 +30,14 @@
   "motion": "motion",
   "position": "position",
 
+  "motor": "Motor",
+  "motor-hoisting": "Hoisting",
+  "motor-traveling": "Traveling",
+  "motor-rotation": "Rotation",
+  "motor-door": "Door",
+  "motor-flap": "Flap",
+  "motor-lock": "Locking",
+
   "motion-no": "stop",
   "motion-up": "going up",
   "motion-down": "going down",
@@ -44,5 +52,11 @@
   "position-opened": "opened",
   "position-closed": "closed",
   "position-locked": "locked",
-  "position-unlocked": "unlocked"
+  "position-unlocked": "unlocked",
+
+  "vfd-status": "Status word",
+  "vfd-speed": "Speed",
+  "vfd-current": "Current",
+  "vfd-load": "Load",
+  "vfd-trip": "Last trip"
 }

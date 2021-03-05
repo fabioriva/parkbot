@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import Info from './Info'
 import Item from './Item'
@@ -44,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Device ({ actions, authorization, item }) {
+export default function Device ({ actions, authorization, item, user }) {
   const classes = useStyles()
   const { t } = useTranslation()
 
@@ -54,18 +55,18 @@ export default function Device ({ actions, authorization, item }) {
     <Grid container>
       <Grid item xs={6}>
         <Item
-          title={t('system:DEVICE_MODE')}
+          title={t('system:device-mode')}
           value={t(`system:${mode.label}`)}
         />
       </Grid>
       <Grid item xs={6}>
-        <Item title={t('system:DEVICE_CARD')} value={card} />
+        <Item title={t('system:device-card')} value={card} />
       </Grid>
       <Grid item xs={6}>
-        <Item title={t('system:DEVICE_SIZE')} value={size} />
+        <Item title={t('system:device-size')} value={size} />
       </Grid>
       <Grid item xs={6}>
-        <Item title={t('system:DEVICE_DEST')} value={stall} />
+        <Item title={t('system:device-dest')} value={stall} />
       </Grid>
       {item.b.map((item, key) => (
         <Grid item key={key} xs={6}>
@@ -81,6 +82,9 @@ export default function Device ({ actions, authorization, item }) {
       ))}
     </Grid>
   )
+
+  const lang =
+    user.locale === 'en-US' ? 'en' : user.locale === 'it-IT' ? 'it' : 'en'
 
   return (
     <Card className={classes.root}>
@@ -117,23 +121,28 @@ export default function Device ({ actions, authorization, item }) {
       >
         {motor === 0 ? device : <Silomat data={item.e} />}
       </CardContent>
-      {item.d.length > 0 && (
-        <CardActions disableSpacing>
-          {item.d.map((item, key) => (
-            <Button
-              size='small'
-              color='primary'
-              disabled={!authorization || !item.enable.status}
-              key={key}
-              onClick={() =>
-                actions[key] !== undefined && actions[key](id, item.write)
-              }
-            >
-              {t(item.label)}
-            </Button>
-          ))}
-        </CardActions>
-      )}
+      {/* {item.d.length > 0 && ( */}
+      <CardActions disableSpacing>
+        <Link href={`/${user.aps}/devices/${id}`} locale={lang}>
+          <Button size='small' color='primary'>
+            More
+          </Button>
+        </Link>
+        {item.d.map((item, key) => (
+          <Button
+            size='small'
+            color='primary'
+            disabled={!authorization || !item.enable.status}
+            key={key}
+            onClick={() =>
+              actions[key] !== undefined && actions[key](id, item.write)
+            }
+          >
+            {t(item.label)}
+          </Button>
+        ))}
+      </CardActions>
+      {/* )} */}
     </Card>
   )
 }

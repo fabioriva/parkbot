@@ -1,4 +1,4 @@
-export const APS_ID = 83
+export const APS_ID = 78
 export const APS_NAME = 'Washigton Blvd 8888, Los Angeles, 🇺🇸'
 export const CARDS = 212
 export const STALLS = 213

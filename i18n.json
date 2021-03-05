@@ -3,7 +3,7 @@
   "defaultLocale": "en",
   "pages": {
     "*": ["common"],
-    "/[aps]/device": ["system", "io"],
+    "/[aps]/devices/[device]": ["system", "io"],
     "/[aps]/cards": ["cards"],
     "/[aps]/history": ["history"],
     "/[aps]/map": ["map"],

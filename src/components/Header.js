@@ -69,7 +69,7 @@ const StyledBadge = withStyles(theme => ({
   }
 }))(Badge)
 
-export default function AppHeader ({ aps, pageTitle, comm, diag }) {
+export default function AppHeader ({ aps, pageTitle, comm, diag, map }) {
   const classes = useStyles()
 
   return (
@@ -96,11 +96,14 @@ export default function AppHeader ({ aps, pageTitle, comm, diag }) {
             </Badge>
           </Box>
         )}
-        <Box p={0} className={classes.icon}>
-          <Badge badgeContent={123} max={999} color='primary'>
-            <DirectionsCarIcon />
-          </Badge>
-        </Box>
+        {map[1]?.value !== undefined && (
+          <Box p={0} className={classes.icon}>
+            <Badge badgeContent={map[1]?.value} color='primary' showZero>
+              <DirectionsCarIcon />
+            </Badge>
+          </Box>
+        )}
+
         <Box p={0} className={classes.icon}>
           {comm.isOnline ? (
             <Tooltip title='ONLINE' aria-label='online'>
