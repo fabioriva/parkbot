@@ -36,7 +36,7 @@
   "motor-rotation": "Rotazione",
   "motor-door": "Porta",
   "motor-flap": "Clappa",
-  "motor-lock": "Martinetto",
+  "motor-lock": "Martinetto {{type}}",
 
   "motion-no": "stop",
   "motion-up": "salita",

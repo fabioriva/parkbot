@@ -23,8 +23,14 @@ export default function Bit ({ bit }) {
   const classes = useStyles()
   const { t } = useTranslation('io')
 
+  const tooltip = (
+    <div>
+      <span>{bit.addr}</span>&nbsp;
+      {t(bit.label)}
+    </div>
+  )
   return (
-    <Tooltip title={<div>{t(bit.label)}</div>}>
+    <Tooltip title={tooltip}>
       <Paper
         className={clsx({
           [classes.paper]: true,
@@ -32,7 +38,7 @@ export default function Bit ({ bit }) {
           [classes.off]: !bit.status
         })}
       >
-        <strong>{bit.label}</strong> {bit.addr}
+        <strong>{bit.label}</strong>
       </Paper>
     </Tooltip>
   )

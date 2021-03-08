@@ -36,7 +36,7 @@
   "motor-rotation": "Rotation",
   "motor-door": "Door",
   "motor-flap": "Flap",
-  "motor-lock": "Locking",
+  "motor-lock": "Locking {{type}}",
 
   "motion-no": "stop",
   "motion-up": "going up",

@@ -1,17 +1,25 @@
+import React from 'react'
 import clsx from 'clsx'
 import useTranslation from 'next-translate/useTranslation'
 import Bit from './Bit'
 import Item from './Item'
+import Diag from './DiagList'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import { yellow } from '@material-ui/core/colors'
+import Badge from '@material-ui/core/Badge'
 import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardHeader from '@material-ui/core/CardHeader'
+import Collapse from '@material-ui/core/Collapse'
+import IconButton from '@material-ui/core/IconButton'
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+// import Paper from '@material-ui/core/Paper'
+// import Typography from '@material-ui/core/Typography'
 // material-ui icons
 import OfflineBoltIcon from '@material-ui/icons/OfflineBolt'
+import WarningIcon from '@material-ui/icons/Warning'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,8 +40,18 @@ const useStyles = makeStyles(theme => ({
   cardContent: {
     padding: theme.spacing(2)
   },
-  moving: {
-    backgroundColor: theme.palette.pp // '#d4edda',
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest
+    })
+  },
+  expandOpen: {
+    // transform: 'rotate(180deg)'
+  },
+  op: {
+    backgroundColor: theme.palette.op
   }
 }))
 
@@ -41,6 +59,12 @@ export default function Actuator ({ item }) {
   const classes = useStyles()
   const { t } = useTranslation('system')
   // console.log(motor)
+  const [expanded, setExpanded] = React.useState(false)
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded)
+  }
+
   const name = item.name
   const isMoving = Boolean(item.m1.status || item.m2.status)
   const motor = (
@@ -92,24 +116,33 @@ export default function Actuator ({ item }) {
       <CardContent
         className={clsx({
           [classes.cardContent]: true,
-          [classes.moving]: isMoving
+          [classes.op]: isMoving
         })}
       >
         {motor}
-        {/* <Typography variant='h5' gutterBottom>
-            {motor.m1.status || motor.m2.status ? (
-              <span>{t(motor.name)}</span>
-            ) : (
-              <span>{t(motor.name)} ⚡</span>
-            )}
-          </Typography> */}
-
-        {item.active.map((item, key) => (
-          <Typography key={key} variant='overline' display='block' gutterBottom>
-            {item.date}: {item.mesg}
-          </Typography>
-        ))}
+        {/* <Diag active={item.active} /> */}
       </CardContent>
+      <CardActions disableSpacing>
+        {item.active.length > 0 && (
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label='show more'
+          >
+            <Badge badgeContent={item.active.length} color='secondary'>
+              <WarningIcon />
+            </Badge>
+          </IconButton>
+        )}
+      </CardActions>
+      <Collapse in={expanded} timeout='auto' unmountOnExit>
+        <CardContent>
+          <Diag active={item.active} />
+        </CardContent>
+      </Collapse>
     </Card>
   )
 }

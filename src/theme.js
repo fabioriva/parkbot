@@ -19,7 +19,8 @@ const theme = createMuiTheme({
     },
     ce: '#d4edda',
     cu: '#f8d7da',
-    pp: '#d1ecf1'
+    pp: '#d1ecf1',
+    op: '#fff3cd'
   }
 })
 

@@ -47,7 +47,7 @@ export default function Vfd ({ item, operation }) {
 
   const name = 'Drive ' + item.name
   const vfd = (
-    <Grid container>
+    <Grid container spacing={1}>
       <Grid item xs={6}>
         <Item title={t('vfd-status')} value={(item.status >>> 0).toString(2)} />
       </Grid>

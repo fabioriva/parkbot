@@ -38,6 +38,19 @@ export default function Cards ({ definitions, json, user }) {
       user={user}
     >
       <Grid container spacing={3}>
+        {d.g?.map((item, key) => (
+          <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
+            <Motor item={item} />
+          </Grid>
+        ))}
+        {d.h?.map((item, key) => (
+          <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
+            <Vfd item={item} />
+          </Grid>
+        ))}
+      </Grid>
+
+      <Grid container spacing={3}>
         {d.f?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Actuator item={item} />
@@ -45,21 +58,13 @@ export default function Cards ({ definitions, json, user }) {
         ))}
       </Grid>
 
-      <Grid container spacing={3}>
-        {d.g?.map((item, key) => (
-          <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
-            <Motor item={item} />
-          </Grid>
-        ))}
-      </Grid>
-
-      <Grid container spacing={3}>
+      {/* <Grid container spacing={3}>
         {d.h?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Vfd item={item} />
           </Grid>
         ))}
-      </Grid>
+      </Grid> */}
     </Layout>
   )
 }
