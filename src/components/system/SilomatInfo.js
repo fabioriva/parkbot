@@ -1,9 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
 import useTranslation from 'next-translate/useTranslation'
-import Bit from './Bit'
 import Item from './Item'
 import Motion from './Motion'
+import Silomat from './Silomat'
 import Diag from './DiagActions'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
@@ -47,54 +47,17 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Actuator ({ item }) {
+export default function SilomatInfo ({ item }) {
   const classes = useStyles()
   const { t } = useTranslation('system')
 
-  const { inverter, position } = item
+  const { inverter } = item
   const isMoving = inverter.speed !== 0
 
   const name = item.name
-  const laser = (
-    <Grid container spacing={1}>
-      {position.map((item, key) => (
-        <Grid item xs={6} key={key}>
-          <Item
-            title={item.name}
-            value={
-              <span>
-                {item.position}&nbsp;&rarr;&nbsp;{item.destination}
-              </span>
-            }
-          />
-        </Grid>
-      ))}
-    </Grid>
-  )
-
-  const inputs = item.inputs.map((bit, key) => (
-    <Grid item xs={4} className={classes.lamp} key={key}>
-      <Bit bit={bit} />
-    </Grid>
-  ))
-
-  const outputs = item.outputs.map((bit, key) => (
-    <Grid item xs={4} className={classes.lamp} key={key}>
-      <Bit bit={bit} />
-    </Grid>
-  ))
 
   const vfd = (
     <Grid container spacing={1}>
-      {/* <Grid item xs={6}>
-        <Item
-          title={t('vfd-status')}
-          value={(inverter.status >>> 0).toString(2)}
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <Bit bit={inverter.enabled} />
-      </Grid> */}
       <Grid item xs={6}>
         <Item title={t('motion')} value={t(item.motion)} />
       </Grid>
@@ -110,15 +73,6 @@ export default function Actuator ({ item }) {
           value={inverter.current !== 0 ? inverter.current + ' A' : '---'}
         />
       </Grid>
-      {/* <Grid item xs={6}>
-        <Item
-          title={t('vfd-load')}
-          value={inverter.load !== 0 ? inverter.load + ' %' : '---'}
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <Item title={t('vfd-trip')} value={inverter.trip} />
-      </Grid> */}
     </Grid>
   )
 
@@ -141,35 +95,9 @@ export default function Actuator ({ item }) {
         })}
       >
         {vfd}
-        {laser}
-        <Grid container spacing={1}>
-          {inputs}
-          {outputs}
-        </Grid>
+        <Silomat data={item.sil} />
       </CardContent>
       <Diag active={item.active} />
-      {/* <CardActions disableSpacing>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label='show more'
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
-        <CardContent>
-          {(item.inputs.length > 0 || item.outputs.length > 0) && (
-            <Grid container spacing={1}>
-              {inputs}
-              {outputs}
-            </Grid>
-          )}
-        </CardContent>
-      </Collapse> */}
     </Card>
   )
 }

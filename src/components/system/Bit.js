@@ -3,7 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Tooltip from 'src/components/Tooltip'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
-import { yellow } from '@material-ui/core/colors'
+import { grey, yellow } from '@material-ui/core/colors'
 import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles(theme => ({
@@ -12,10 +12,12 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center'
   },
   on: {
-    backgroundColor: yellow[600]
+    backgroundColor: yellow[600],
+    color: theme.palette.text.primary
   },
   off: {
-    backgroundColor: '#e0e0e0'
+    background: grey[300],
+    color: theme.palette.text.disabled
   }
 }))
 

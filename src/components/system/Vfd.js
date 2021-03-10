@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginBottom: theme.spacing(3),
+    // marginBottom: theme.spacing(3),
     maxWidth: 345
   },
   cardHeader: {

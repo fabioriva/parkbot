@@ -16,20 +16,15 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.primary
+    textAlign: 'center'
   },
   on: {
-    color: theme.palette.text.primary, // '#52c41a',
-    background: yellow[500] // '#f6ffed',
-    // border:' 1px solid #b7eb8f',
-    // borderRadius: '4px'
+    backgroundColor: yellow[600],
+    color: theme.palette.text.primary
   },
   off: {
-    color: theme.palette.text.disabled, // '#f5222d',
-    background: grey[50] // '#fff1f0',
-    // border: '1px solid #ffa39e',
-    // borderRadius: '4px'
+    background: grey[300],
+    color: theme.palette.text.disabled
   }
 }))
 
@@ -59,7 +54,7 @@ export default function Silomat (props) {
                   [classes.off]: !item.status
                 })}
               >
-                {item.label}
+                <strong>{item.label}</strong>
               </Paper>
             </Tooltip>
           </Grid>

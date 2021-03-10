@@ -31,6 +31,7 @@
   "position": "position",
 
   "motor": "Motor",
+  "motor-silomat": "Silomat",
   "motor-hoisting": "Hoisting",
   "motor-traveling": "Traveling",
   "motor-rotation": "Rotation",
@@ -38,6 +39,7 @@
   "motor-flap": "Flap",
   "motor-lock": "Locking {{type}}",
 
+  "motion-err": "---",
   "motion-no": "stop",
   "motion-up": "going up",
   "motion-down": "going down",
@@ -46,6 +48,7 @@
   "motion-lock": "locking",
   "motion-unlock": "unlocking",
 
+  "position-err": "---",
   "position-no": "---",
   "position-high": "high",
   "position-low": "low",

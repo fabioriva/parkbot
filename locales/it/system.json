@@ -31,6 +31,7 @@
   "position": "posizione",
 
   "motor": "Motore",
+  "motor-silomat": "Silomat",
   "motor-hoisting": "Sollevamento",
   "motor-traveling": "Traslazione",
   "motor-rotation": "Rotazione",
@@ -38,6 +39,7 @@
   "motor-flap": "Clappa",
   "motor-lock": "Martinetto {{type}}",
 
+  "motion-err": "---",
   "motion-no": "stop",
   "motion-up": "salita",
   "motion-down": "discesa",
@@ -46,6 +48,7 @@
   "motion-lock": "blocca",
   "motion-unlock": "sblocca",
 
+  "position-err": "---",
   "position-no": "---",
   "position-high": "alto",
   "position-low": "basso",
