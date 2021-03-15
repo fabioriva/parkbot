@@ -123,24 +123,24 @@ export default function Device ({ actions, authorization, item, user }) {
       </CardContent>
       {/* {item.d.length > 0 && ( */}
       <CardActions disableSpacing>
-        <Link href={`/${user.aps}/devices/${id}`} locale={lang}>
-          <Button size='small' color='primary' style={{ marginLeft: 'auto' }}>
-            More
-          </Button>
-        </Link>
         {item.d.map((item, key) => (
           <Button
-            size='small'
+            // size='small'
             color='primary'
-            disabled={!authorization || !item.enable.status}
+            disabled={!authorization || item.enable.status}
             key={key}
             onClick={() =>
               actions[key] !== undefined && actions[key](id, item.write)
             }
           >
-            {t(item.label)}
+            {t('system:' + item.label)}
           </Button>
         ))}
+        <Link href={`/${user.aps}/devices/${id}`} locale={lang}>
+          <Button color='primary' style={{ marginLeft: 'auto' }}>
+            More
+          </Button>
+        </Link>
       </CardActions>
       {/* )} */}
     </Card>

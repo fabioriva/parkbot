@@ -1,7 +1,7 @@
 import parser from 'ua-parser-js'
 import { aps } from 'src/constants/aps'
 import { HISTORY } from 'src/constants/roles'
-import fetchHistory from 'src/lib/fetchHistory'
+import { fetchHistory } from 'src/lib/fetchJson'
 import History from 'src/components/history/History'
 import withAuthSync from 'src/hocs/withAuthSync'
 

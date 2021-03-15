@@ -1,6 +1,6 @@
-export default function notification (payload) {
+export default function message (payload) {
   console.log('message:', payload)
-  const { type, info } = payload.response
+  const { type, info } = payload // payload.response
   const origin = {
     vertical: 'top',
     horizontal: 'center'

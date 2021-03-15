@@ -2,6 +2,9 @@ import Error from 'next/error'
 import useTranslation from 'next-translate/useTranslation'
 import { useState, useEffect } from 'react'
 import { useData } from 'src/lib/websocket'
+import { useSnackbar } from 'notistack'
+import fetchJson from 'src/lib/fetchJson'
+import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
 import Widget from 'src/components/Widget'
 // system
@@ -21,13 +24,13 @@ const withSystem = WrappedComponent => {
     const { t } = useTranslation('system')
 
     const { definitions, json, user } = props
-    const { apsName, cards, websockUrl, userRole } = definitions
+    const { apsName, backendUrl, cards, websockUrl, userRole } = definitions
 
     if (json.err) return <Error statusCode={500} />
 
     const [overview, setOverview] = useState(json)
 
-    const { mesg, send } = useData('overview', `${websockUrl}?channel=ch1`)
+    const { mesg } = useData('overview', `${websockUrl}?channel=ch1`)
 
     useEffect(() => {
       if (mesg) {
@@ -36,6 +39,7 @@ const withSystem = WrappedComponent => {
     }, [mesg])
 
     // Dialog
+    const { enqueueSnackbar } = useSnackbar()
     const DIALOG_INIT_VALUES = { id: 0, card: 1, minCard: 1, maxCard: cards }
     const [open, setOpen] = useState(false)
     const [operation, setOperation] = useState(DIALOG_INIT_VALUES)
@@ -49,11 +53,22 @@ const withSystem = WrappedComponent => {
       // console.log(typeof id, id, typeof card, card, conn)
       setOpen(false)
       setOperation(DIALOG_INIT_VALUES)
-      send('overview-operation', {
-        conn: conn,
-        operation: parseInt(id), // html input is returning string!
-        value: parseInt(card) // html input is returning string!
+      // send('overview-operation', {
+      //   conn: conn,
+      //   operation: parseInt(id), // html input is returning string!
+      //   value: parseInt(card) // html input is returning string!
+      // })
+      const json = await fetchJson(`${backendUrl}/system/operation`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          operation: parseInt(id), // html input is returning string!
+          value: parseInt(card) // html input is returning string!
+        })
       })
+      console.log(json)
+      const snack = message(json)
+      enqueueSnackbar(snack.message, snack.options)
     }
 
     const handleOpen = (id, write) => {
@@ -62,15 +77,22 @@ const withSystem = WrappedComponent => {
       setOperation({ ...operation, conn: write, id: id })
     }
 
-    const handleDelete = (card, id) => {
-      // console.log('delete', typeof card, card, typeof id, id)
+    const handleDelete = async (card, index) => {
+      console.log('delete', typeof card, card, typeof index, index)
       if (window.confirm('Delete ?')) {
-        send('exit-queue-delete', {
-          card: card,
-          index: id,
-          start: 0,
-          amount: 6
+        // send('exit-queue-delete', {
+        //   card: card,
+        //   index: id,
+        //   start: 0,
+        //   amount: 6
+        // })
+        const json = await fetchJson(`${backendUrl}/system/queue/delete`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ card, index })
         })
+        const snack = message(json)
+        enqueueSnackbar(snack.message, snack.options)
       }
     }
 
@@ -78,7 +100,7 @@ const withSystem = WrappedComponent => {
       <Device
         key={key}
         item={item}
-        // actions={[handleOpen, handleRollback]}
+        actions={[handleOpen]} //, handleRollback]}
         authorization={isAllowed(user, [userRole])}
         user={user}
       />

@@ -26,7 +26,7 @@ function MyApp ({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <SnackbarProvider maxSnack={3}>
+        <SnackbarProvider maxSnack={3} hideIconVariant>
           <Component {...pageProps} />
         </SnackbarProvider>
       </ThemeProvider>

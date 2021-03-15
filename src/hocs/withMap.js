@@ -2,9 +2,13 @@ import Error from 'next/error'
 import useTranslation from 'next-translate/useTranslation'
 import { useState, useEffect } from 'react'
 import { useData } from 'src/lib/websocket'
+import { useSnackbar } from 'notistack'
+import fetchJson from 'src/lib/fetchJson'
+import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
 import Widget from 'src/components/Widget'
 // map
+import Dialog from 'src/components/map/EditDialog'
 import Level from 'src/components/map/Level'
 import Occupancy from 'src/components/map/PieChart'
 import View from 'src/components/map/View'
@@ -16,7 +20,15 @@ const withMap = WrappedComponent => {
     const { t } = useTranslation('map')
 
     const { definitions, json, user } = props
-    const { apsName, websockUrl, stallStatus, userRole } = definitions
+    const {
+      apsName,
+      backendUrl,
+      websockUrl,
+      cards,
+      stalls,
+      stallStatus,
+      userRole
+    } = definitions
 
     if (json.err) return <Error statusCode={500} />
 
@@ -34,13 +46,43 @@ const withMap = WrappedComponent => {
     const [filter, setFilter] = useState('SHOW_NUMBERS')
     const handleChange = event => setFilter(event.target.value)
 
+    // Dialog
+    const DIALOG_INIT_VALUES = { card: 0, stall: 0, minCard: 1, maxCard: cards }
+    const [open, setOpen] = useState(false)
+    const [dialog, setDialog] = useState(DIALOG_INIT_VALUES)
+
+    const handleCancel = () => {
+      setOpen(false)
+      setDialog(DIALOG_INIT_VALUES)
+    }
+
+    const handleConfirm = async ({ card, stall }) => {
+      setOpen(false)
+      setDialog(DIALOG_INIT_VALUES)
+      const json = await fetchJson(`${backendUrl}/map/edit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ card, stall })
+      })
+      console.log(json)
+      setMap(json.map)
+      // const snack = message(json)
+      // enqueueSnackbar(snack.message, snack.options)
+    }
+
+    const handleOpen = (stall, value) => {
+      console.log(stall, value)
+      setOpen(true)
+      setDialog({ ...dialog, card: value, stall: stall })
+    }
+
     const levels = map.levels.map((item, key) => (
       <Level
         key={key}
         level={item}
         stallStatus={stallStatus}
         visibilityFilter={filter}
-        // openModal={handleOpen}
+        openModal={handleOpen}
       />
     ))
 
@@ -62,6 +104,12 @@ const withMap = WrappedComponent => {
             </Widget>
           </Grid>
         </Grid>
+        <Dialog
+          open={open}
+          onCancel={handleCancel}
+          onConfirm={handleConfirm}
+          value={dialog}
+        />
       </Layout>
     )
   }

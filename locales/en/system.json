@@ -22,6 +22,8 @@
   "dialog-cancel": "Cancel",
   "dialog-confirm": "Confirm",
   "dialog-content": "Insert a valid card number and confirm.",
+  "dialog-entry": "Entry request",
+  "dialog-exit": "Exit request",
   "dialog-title": "Operation request",
   "queue-item-primary": "Card {{number}}",
   "queue-item-secondary": "{{number}}° call",

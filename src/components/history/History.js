@@ -51,7 +51,7 @@ export default function History ({ definitions, json, user }) {
           <Table count={history.count} query={history.query} />
         </>
       ) : (
-        <ParBot message='No records Today!' />
+        <ParBot message='No records!' />
       )}
     </Layout>
   )

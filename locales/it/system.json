@@ -22,6 +22,8 @@
   "dialog-cancel": "Annulla",
   "dialog-confirm": "Conferma",
   "dialog-content": "Inserisci un numero di tessera valido e conferma.",
+  "dialog-entry": "Entrata",
+  "dialog-exit": "Uscita",
   "dialog-title": "Richiesta operazione",
   "queue-item-primary": "Tessera {{number}}",
   "queue-item-secondary": "{{number}}° chiamata",

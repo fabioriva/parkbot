@@ -12,33 +12,33 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { useForm } from 'react-hook-form'
 
 export default function OperationDialog (props) {
-  const { t } = useTranslation('system')
+  const { t } = useTranslation('map')
 
   const { onCancel, onConfirm, open, value } = props
 
-  const { card, id, minCard, maxCard } = value
+  const { card, stall, minCard, maxCard } = value
 
   const { register, handleSubmit, errors, clearErrors } = useForm()
 
   useEffect(() => clearErrors(), [])
 
   const onSubmit = data => {
-    onConfirm({ ...data, conn: value.conn })
+    onConfirm({ ...data })
   }
-
-  const dialogTitle = id === 0 ? 'dialog-exit' : 'dialog-entry'
 
   return (
     <Dialog open={open} onClose={onCancel} aria-labelledby='form-dialog-title'>
-      <DialogTitle id='form-dialog-title'>{t(dialogTitle)}</DialogTitle>
+      <DialogTitle id='form-dialog-title'>
+        {t('dialog-title', { number: stall })}
+      </DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           {/* <DialogContentText>{t('dialog-content')}</DialogContentText> */}
           <Input
-            id='id'
-            name='id'
+            id='stall'
+            name='stall'
             type='hidden'
-            defaultValue={id}
+            defaultValue={stall}
             inputRef={register({
               required: true
             })}
@@ -48,7 +48,7 @@ export default function OperationDialog (props) {
             fullWidth
             id='card'
             name='card'
-            label={t('device-card')}
+            label={t('dialog-card')}
             type='number'
             defaultValue={card}
             inputRef={register({
@@ -65,7 +65,13 @@ export default function OperationDialog (props) {
             {t('dialog-cancel')}
           </Button>
           <Button type='submit' color='primary'>
-            {t('dialog-confirm')}
+            {t('dialog-card')}
+          </Button>
+          <Button type='submit' color='primary'>
+            {t('dialog-lock')}
+          </Button>
+          <Button type='submit' color='primary'>
+            {t('dialog-clear')}
           </Button>
         </DialogActions>
       </form>

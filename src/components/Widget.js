@@ -38,9 +38,9 @@ export default function Widget ({ children, title, button = {}, showModal }) {
       {button && (
         <CardActions>
           <Button
-            disabled={
-              button.enable !== undefined ? !button.enable.status : true
-            }
+            // disabled={
+            //   button.enable !== undefined ? !button.enable.status : true
+            // }
             // size="small"
             color='primary'
             onClick={() => showModal(0, button.write)}

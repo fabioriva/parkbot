@@ -1,7 +1,7 @@
 import { format, subDays } from 'date-fns'
 import { aps, apsPaths } from 'src/constants/aps'
 import { STATISTICS } from 'src/constants/roles'
-import fetchOperations from 'src/lib/fetchOperations'
+import { fetchOperations } from 'src/lib/fetchJson'
 import Statistics from 'src/components/statistics/Statistics'
 import withAuthSync from 'src/hocs/withAuthSync'
 

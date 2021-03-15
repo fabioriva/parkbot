@@ -1,3 +1,5 @@
+import { format, endOfDay, startOfDay } from 'date-fns'
+
 export default async function fetcher (...args) {
   try {
     const response = await global.fetch(...args)
@@ -19,4 +21,32 @@ export default async function fetcher (...args) {
     // throw error
     return { err: true }
   }
+}
+
+export async function fetchHistory (
+  apsId = 0,
+  backendUrl,
+  {
+    filter = 'a',
+    dateFrom = format(
+      startOfDay(new Date()),
+      "yyyy-MM-dd'T'HH:mm:ss.SSS'z'" // 'yyyy-MM-dd HH:mm:ss'
+    ),
+    dateTo = format(
+      endOfDay(new Date()),
+      "yyyy-MM-dd'T'HH:mm:ss.SSS'z'" // 'yyyy-MM-dd HH:mm:ss'
+    ),
+    number = 0
+  }
+) {
+  const query = `system=${apsId}&dateFrom=${dateFrom}&dateTo=${dateTo}&filter=${filter}&device=0&number=${number}`
+  const json = await fetcher(`${backendUrl}/history?${query}`)
+  return json
+}
+
+export async function fetchOperations (backendUrl, date) {
+  const query = `dateString=${date}`
+  const url = `${backendUrl}/statistics?${query}`
+  const json = await fetcher(url)
+  return json
 }
