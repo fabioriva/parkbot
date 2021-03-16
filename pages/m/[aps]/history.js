@@ -1,6 +1,6 @@
 import { aps } from 'src/constants/aps'
 import { HISTORY } from 'src/constants/roles'
-import fetchHistory from 'src/lib/fetchHistory'
+import { fetchHistory } from 'src/lib/fetchJson'
 import History from 'src/components/history/HistoryMobile'
 import withAuthSync from 'src/hocs/withAuthSync'
 

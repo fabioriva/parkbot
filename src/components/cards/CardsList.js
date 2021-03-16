@@ -46,7 +46,7 @@ export default function User ({ handleDelete, cards }) {
               }
               secondary={
                 <span>
-                  {t('code')} <strong>{item.rand}</strong>
+                  {t('code')} <strong>{item.code}</strong>
                 </span>
               }
             />

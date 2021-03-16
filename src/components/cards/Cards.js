@@ -37,7 +37,7 @@ export default function Cards ({ definitions, json, user }) {
         justify='flex-start'
         alignItems='flex-start'
       >
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12}>
           <Typography variant='subtitle2' gutterBottom>
             {t('cards-total-count', { count: cards.length })}
           </Typography>

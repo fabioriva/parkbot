@@ -32,6 +32,8 @@ const withMap = WrappedComponent => {
 
     if (json.err) return <Error statusCode={500} />
 
+    console.log(json)
+
     const [map, setMap] = useState(json)
 
     const { mesg, send } = useData('map', `${websockUrl}?channel=ch1`)
@@ -47,6 +49,7 @@ const withMap = WrappedComponent => {
     const handleChange = event => setFilter(event.target.value)
 
     // Dialog
+    const { enqueueSnackbar } = useSnackbar()
     const DIALOG_INIT_VALUES = { card: 0, stall: 0, minCard: 1, maxCard: cards }
     const [open, setOpen] = useState(false)
     const [dialog, setDialog] = useState(DIALOG_INIT_VALUES)
@@ -64,14 +67,12 @@ const withMap = WrappedComponent => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ card, stall })
       })
-      console.log(json)
-      setMap(json.map)
-      // const snack = message(json)
-      // enqueueSnackbar(snack.message, snack.options)
+      const snack = message(json)
+      enqueueSnackbar(snack.message, snack.options)
+      if (!json.err) setMap(json.data)
     }
 
     const handleOpen = (stall, value) => {
-      console.log(stall, value)
       setOpen(true)
       setDialog({ ...dialog, card: value, stall: stall })
     }

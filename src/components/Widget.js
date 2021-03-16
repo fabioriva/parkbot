@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Widget ({ children, title, button = {}, showModal }) {
+export default function Widget ({ children, title, button, showModal }) {
   const classes = useStyles()
 
   const { t } = useTranslation('system')
@@ -35,12 +35,12 @@ export default function Widget ({ children, title, button = {}, showModal }) {
       {/* <CardActions>
         <Button disabled={!actions} size="small">More</Button>
       </CardActions> */}
-      {button && (
+      {button !== undefined && (
         <CardActions>
           <Button
-            // disabled={
-            //   button.enable !== undefined ? !button.enable.status : true
-            // }
+            disabled={
+              button.enable !== undefined ? !button.enable.status : true
+            }
             // size="small"
             color='primary'
             onClick={() => showModal(0, button.write)}

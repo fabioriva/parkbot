@@ -44,11 +44,7 @@ const Label = withStyles(legendStyles)(legendLabelBase)
 
 export default function Occupancy (props) {
   return (
-    <Chart
-      data={props.data}
-      // height={300}
-      // width={200}
-    >
+    <Chart data={props.data} height={300} width={300}>
       <Legend position='bottom' rootComponent={Root} labelComponent={Label} />
       <Palette scheme={scheme} />
       <PieSeries valueField='value' argumentField='id' />
