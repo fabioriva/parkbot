@@ -27,7 +27,8 @@
   "dialog-title": "Richiesta operazione",
   "queue-item-primary": "Tessera {{number}}",
   "queue-item-secondary": "{{number}}° chiamata",
-  "queue-item-delete": "Cancella tessera {{number}}?",
+  "queue-dialog-title": "Cancella tessera {{number}}",
+  "queue-dialog-content": "Cancellare la tessera dalla coda di uscita?",
 
   "motion": "movimento",
   "position": "posizione",

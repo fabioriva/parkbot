@@ -10,6 +10,7 @@ export default function message (payload) {
       const snack = {
         message: info,
         options: {
+          anchorOrigin: origin,
           variant: 'error'
         }
       }

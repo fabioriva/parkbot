@@ -69,15 +69,15 @@ export default function OperationDialog (props) {
           </Button>
           <Button
             color='primary'
-            onClick={() => onConfirm({ card: 999, stall: stall })}
-          >
-            {t('dialog-lock')}
-          </Button>
-          <Button
-            color='primary'
             onClick={() => onConfirm({ card: 0, stall: stall })}
           >
             {t('dialog-clear')}
+          </Button>
+          <Button
+            color='primary'
+            onClick={() => onConfirm({ card: 999, stall: stall })}
+          >
+            {t('dialog-lock')}
           </Button>
         </DialogActions>
       </form>

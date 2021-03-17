@@ -27,7 +27,8 @@
   "dialog-title": "Operation request",
   "queue-item-primary": "Card {{number}}",
   "queue-item-secondary": "{{number}}° call",
-  "queue-item-delete": "Delete card {{number}}?",
+  "queue-dialog-title": "Delete card {{number}}",
+  "queue-dialog-content": "Remove this card from the exit queue?",
 
   "motion": "motion",
   "position": "position",
