@@ -66,7 +66,7 @@ const withSystem = WrappedComponent => {
           value: parseInt(card) // html input is returning string!
         })
       })
-      console.log(json)
+      // console.log(json)
       const snack = message(json)
       enqueueSnackbar(snack.message, snack.options)
     }
@@ -80,21 +80,24 @@ const withSystem = WrappedComponent => {
     // const handleDelete = async (card, index) => {
     //   console.log('delete', typeof card, card, typeof index, index)
     //   if (window.confirm('Delete ?')) {
-    //     // send('exit-queue-delete', {
-    //     //   card: card,
-    //     //   index: id,
-    //     //   start: 0,
-    //     //   amount: 6
-    //     // })
-    //     const json = await fetchJson(`${backendUrl}/system/queue/delete`, {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify({ card, index })
+    //     send('exit-queue-delete', {
+    //       card: card,
+    //       index: id,
+    //       start: 0,
+    //       amount: 6
     //     })
-    //     const snack = message(json)
-    //     enqueueSnackbar(snack.message, snack.options)
     //   }
     // }
+
+    const handleDelete = async ({ card, index }) => {
+      const json = await fetchJson(`${backendUrl}/system/queue/delete`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ card, index })
+      })
+      const snack = message(json)
+      enqueueSnackbar(snack.message, snack.options)
+    }
 
     const devices = overview.devices.map((item, key) => (
       <Device
@@ -126,8 +129,8 @@ const withSystem = WrappedComponent => {
             >
               <Queue
                 authorization={isAllowed(user, [userRole])}
-                // handleDelete={handleDelete}
-                backendUrl={backendUrl}
+                handleDelete={handleDelete}
+                // backendUrl={backendUrl}
                 queueList={overview.exitQueue.queueList}
               />
             </Widget>

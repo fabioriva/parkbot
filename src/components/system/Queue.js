@@ -1,7 +1,4 @@
 import React from 'react'
-import { useSnackbar } from 'notistack'
-import fetchJson from 'src/lib/fetchJson'
-import message from 'src/lib/message'
 import Dialog from './QueueDialog'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
@@ -17,16 +14,14 @@ import useTranslation from 'next-translate/useTranslation'
 
 const useStyles = makeStyles(() => ({
   root: {
-    // minWidth: 240,
+    maxWidth: 345
   }
 }))
 
-export default function Queue ({ backendUrl, queueList }) {
+export default function Queue ({ handleDelete, queueList }) {
   const classes = useStyles()
 
   const { t } = useTranslation('system')
-
-  const { enqueueSnackbar } = useSnackbar()
 
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState({})
@@ -36,16 +31,10 @@ export default function Queue ({ backendUrl, queueList }) {
     setValue({})
   }
 
-  const handleDelete = async ({ card, index }) => {
-    console.log(card, index)
+  const handleClose = async ({ card, index }) => {
     setOpen(false)
-    const json = await fetchJson(`${backendUrl}/system/queue/delete`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ card, index })
-    })
-    const snack = message(json)
-    enqueueSnackbar(snack.message, snack.options)
+    setValue({})
+    handleDelete({ card, index })
   }
 
   const handleOpen = (card, index) => {
@@ -84,7 +73,7 @@ export default function Queue ({ backendUrl, queueList }) {
         open={open}
         value={value}
         onCancel={handleCancel}
-        onClose={handleDelete}
+        onClose={handleClose}
       />
     </>
   )

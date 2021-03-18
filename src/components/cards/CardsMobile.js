@@ -4,7 +4,7 @@ import { useData } from 'src/lib/websocket'
 import Layout from 'src/components/Mobile'
 import useTranslation from 'next-translate/useTranslation'
 import CardsList from 'src/components/cards/CardsList'
-import Grid from '@material-ui/core/Grid'
+import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
 export default function Cards ({ definitions, json, user }) {
@@ -31,19 +31,12 @@ export default function Cards ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <Grid
-        container
-        direction='row'
-        justify='flex-start'
-        alignItems='flex-start'
-      >
-        <Grid item xs={12} lg={6}>
-          <Typography variant='subtitle2' gutterBottom>
-            {t('cards-total-count', { count: cards.length })}
-          </Typography>
-          <CardsList cards={cards} />
-        </Grid>
-      </Grid>
+      <Container maxWidth='xl'>
+        <Typography variant='subtitle2' gutterBottom>
+          {t('cards-total-count', { count: cards.length })}
+        </Typography>
+      </Container>
+      <CardsList cards={cards} />
     </Layout>
   )
 }

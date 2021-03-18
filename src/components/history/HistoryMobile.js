@@ -4,6 +4,8 @@ import Layout from 'src/components/Layout'
 import ParBot from 'src/components/ParkBot'
 import List from 'src/components/history/HistoryList'
 import useTranslation from 'next-translate/useTranslation'
+// material-ui
+import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
 import { format, endOfDay, startOfDay } from 'date-fns'
@@ -41,13 +43,15 @@ export default function History ({ definitions, json, user }) {
     >
       {history.count > 0 ? (
         <>
-          <Typography variant='subtitle2' gutterBottom>
-            {t('history-total-count', { count: history.count })}
-          </Typography>
+          <Container maxWidth='xl'>
+            <Typography variant='subtitle2' gutterBottom>
+              {t('history-total-count', { count: history.count })}
+            </Typography>
+          </Container>
           <List query={history.query} user={user} />
         </>
       ) : (
-        <ParBot message='No records Today!' />
+        <ParBot message='No records!' />
       )}
     </Layout>
   )

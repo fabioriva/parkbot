@@ -119,7 +119,7 @@ export default function Device ({ actions, authorization, item, user }) {
           [classes.pp]: operation === 3
         })}
       >
-        {motor === 0 ? device : <Silomat data={item.e.sil} />}
+        {motor === 0 ? device : <Silomat data={item.e} />}
       </CardContent>
       {/* {item.d.length > 0 && ( */}
       <CardActions disableSpacing>
@@ -136,7 +136,7 @@ export default function Device ({ actions, authorization, item, user }) {
             {t('system:' + item.label)}
           </Button>
         ))}
-        <Link href={`/${user.aps}/devices/${id}`} locale={lang}>
+        <Link href={`/${user.aps}/devices/${id - 1}`} locale={lang}>
           <Button color='primary' style={{ marginLeft: 'auto' }}>
             More
           </Button>
