@@ -1,6 +1,6 @@
 import { useState } from 'react'
 // import useJson from 'src/lib/useData'
-import Layout from 'src/components/Layout'
+import Layout from 'src/components/Mobile'
 import ParBot from 'src/components/ParkBot'
 import List from 'src/components/history/HistoryList'
 import useTranslation from 'next-translate/useTranslation'
