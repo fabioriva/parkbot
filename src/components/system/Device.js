@@ -127,10 +127,10 @@ export default function Device ({ actions, authorization, item, user }) {
           <Button
             // size='small'
             color='primary'
-            disabled={!authorization || item.enable.status}
+            disabled={!authorization || !item.enable.status}
             key={key}
-            onClick={() =>
-              actions[key] !== undefined && actions[key](id, item.write)
+            onClick={
+              () => actions[key] !== undefined && actions[key](id) //, item.write)
             }
           >
             {t('system:' + item.label)}

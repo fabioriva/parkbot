@@ -9,9 +9,7 @@ import useTranslation from 'next-translate/useTranslation'
 const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: theme.spacing(3),
-    minWidth: 240
-    // transform: 'translateY(-40px)'
-    // width: '100%'
+    maxWidth: 345
   },
   title: {
     fontSize: 16,

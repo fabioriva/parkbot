@@ -1,5 +1,5 @@
 import React from 'react'
-import Dialog from './QueueDialog'
+import Dialog from './QueueDeleteDialog'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
@@ -13,9 +13,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import useTranslation from 'next-translate/useTranslation'
 
 const useStyles = makeStyles(() => ({
-  root: {
-    maxWidth: 345
-  }
+  root: {}
 }))
 
 export default function Queue ({ handleDelete, queueList }) {
@@ -23,23 +21,27 @@ export default function Queue ({ handleDelete, queueList }) {
 
   const { t } = useTranslation('system')
 
+  // Dialog
+  const DIALOG_INIT_VALUES = {
+    card: 0,
+    index: 0
+  }
   const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState({})
+  const [dialog, setDialog] = React.useState(DIALOG_INIT_VALUES)
 
   const handleCancel = () => {
     setOpen(false)
-    setValue({})
+    setDialog(DIALOG_INIT_VALUES)
   }
 
-  const handleClose = async ({ card, index }) => {
+  const handleConfirm = async ({ card, index }) => {
     setOpen(false)
-    setValue({})
     handleDelete({ card, index })
   }
 
   const handleOpen = (card, index) => {
     setOpen(true)
-    setValue({ card, index })
+    setDialog({ card, index })
   }
 
   return (
@@ -71,9 +73,9 @@ export default function Queue ({ handleDelete, queueList }) {
       </List>
       <Dialog
         open={open}
-        value={value}
+        value={dialog}
         onCancel={handleCancel}
-        onClose={handleClose}
+        onConfirm={handleConfirm}
       />
     </>
   )

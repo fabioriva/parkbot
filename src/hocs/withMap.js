@@ -8,7 +8,7 @@ import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
 import Widget from 'src/components/Widget'
 // map
-import Dialog from 'src/components/map/EditDialog'
+import Dialog from 'src/components/map/StallEditDialog'
 import Level from 'src/components/map/Level'
 import Occupancy from 'src/components/map/PieChart'
 import View from 'src/components/map/View'
@@ -18,6 +18,7 @@ import Grid from '@material-ui/core/Grid'
 const withMap = WrappedComponent => {
   const Wrapper = props => {
     const { t } = useTranslation('map')
+    const { enqueueSnackbar } = useSnackbar()
 
     const { definitions, json, user } = props
     const {
@@ -31,8 +32,6 @@ const withMap = WrappedComponent => {
     } = definitions
 
     if (json.err) return <Error statusCode={500} />
-
-    console.log(json)
 
     const [map, setMap] = useState(json)
 
@@ -49,7 +48,6 @@ const withMap = WrappedComponent => {
     const handleChange = event => setFilter(event.target.value)
 
     // Dialog
-    const { enqueueSnackbar } = useSnackbar()
     const DIALOG_INIT_VALUES = { card: 0, stall: 0, minCard: 1, maxCard: cards }
     const [open, setOpen] = useState(false)
     const [dialog, setDialog] = useState(DIALOG_INIT_VALUES)
@@ -61,7 +59,6 @@ const withMap = WrappedComponent => {
 
     const handleConfirm = async ({ card, stall }) => {
       setOpen(false)
-      setDialog(DIALOG_INIT_VALUES)
       const json = await fetchJson(`${backendUrl}/map/edit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

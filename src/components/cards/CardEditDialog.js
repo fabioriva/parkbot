@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 // material-ui
 import Button from '@material-ui/core/Button'
@@ -11,16 +11,16 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { useForm } from 'react-hook-form'
 
-export default function OperationDialog (props) {
-  const { t } = useTranslation('map')
+export default function EditDialog (props) {
+  const { t } = useTranslation('cards')
 
   const { onCancel, onConfirm, open, value } = props
 
-  const { card, stall, minCard, maxCard } = value
+  const { card, minCard, maxCard } = value
 
   const { register, handleSubmit, errors, clearErrors } = useForm()
 
-  useEffect(() => clearErrors(), [])
+  React.useEffect(() => clearErrors(), [])
 
   const onSubmit = data => {
     onConfirm({ ...data })
@@ -29,35 +29,37 @@ export default function OperationDialog (props) {
   return (
     <Dialog open={open} onClose={onCancel} aria-labelledby='form-dialog-title'>
       <DialogTitle id='form-dialog-title'>
-        {t('dialog-title', { number: stall })}
+        {t('dialog-title', { number: card.nr })}
       </DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           {/* <DialogContentText>{t('dialog-content')}</DialogContentText> */}
           <Input
-            id='stall'
-            name='stall'
+            id='nr'
+            name='nr'
             type='hidden'
-            defaultValue={stall}
-            inputRef={register({
-              required: true
-            })}
-          />
-          <TextField
-            autoFocus
-            fullWidth
-            id='card'
-            name='card'
-            label={t('dialog-card')}
-            type='number'
-            defaultValue={card}
+            defaultValue={card.nr}
             inputRef={register({
               required: true,
               min: minCard,
               max: maxCard
             })}
-            error={!!errors.card}
-            helperText={`Min ${minCard} Max ${maxCard}`}
+          />
+          <TextField
+            autoFocus
+            fullWidth
+            id='code'
+            name='code'
+            label={t('dialog-code')}
+            type='string'
+            defaultValue={card.code}
+            inputProps={{ style: { textTransform: 'capitalize' } }}
+            inputRef={register({
+              required: true,
+              pattern: /^[a-fA-F0-9]{3}$/
+            })}
+            error={!!errors.code}
+            helperText='3 digits, pattern [a-fA-F0-9]'
           />
         </DialogContent>
         <DialogActions>
@@ -65,19 +67,7 @@ export default function OperationDialog (props) {
             {t('dialog-cancel')}
           </Button>
           <Button type='submit' color='primary'>
-            {t('dialog-card')}
-          </Button>
-          <Button
-            color='primary'
-            onClick={() => onConfirm({ card: 0, stall: stall })}
-          >
-            {t('dialog-clear')}
-          </Button>
-          <Button
-            color='primary'
-            onClick={() => onConfirm({ card: 999, stall: stall })}
-          >
-            {t('dialog-lock')}
+            {t('dialog-confirm')}
           </Button>
         </DialogActions>
       </form>

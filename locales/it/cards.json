@@ -2,5 +2,11 @@
   "title": "Tessere",
   "card": "Tessera",
   "code": "Codice PIN",
-  "cards-total-count": "Totale tessere {{count}}"
+  "cards-total-count": "Totale tessere {{count}}",
+
+  "dialog-cancel": "Cancel",
+  "dialog-card": "Card",
+  "dialog-code": "PIN code",
+  "dialog-confirm": "Confirm",
+  "dialog-title": "Edit card {{number}}"
 }

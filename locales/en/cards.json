@@ -2,5 +2,11 @@
   "title": "Cards",
   "card": "Card",
   "code": "PIN code",
-  "cards-total-count": "Total cards {{count}}"
+  "cards-total-count": "Total cards {{count}}",
+
+  "dialog-cancel": "Cancel",
+  "dialog-card": "Card",
+  "dialog-code": "PIN code",
+  "dialog-confirm": "Confirm",
+  "dialog-title": "Edit card {{number}}"
 }

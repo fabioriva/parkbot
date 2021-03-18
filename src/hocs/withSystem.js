@@ -22,6 +22,7 @@ const isAllowed = (user, rights) =>
 const withSystem = WrappedComponent => {
   const Wrapper = props => {
     const { t } = useTranslation('system')
+    const { enqueueSnackbar } = useSnackbar()
 
     const { definitions, json, user } = props
     const { apsName, backendUrl, cards, websockUrl, userRole } = definitions
@@ -39,7 +40,6 @@ const withSystem = WrappedComponent => {
     }, [mesg])
 
     // Dialog
-    const { enqueueSnackbar } = useSnackbar()
     const DIALOG_INIT_VALUES = { id: 0, card: 1, minCard: 1, maxCard: cards }
     const [open, setOpen] = useState(false)
     const [operation, setOperation] = useState(DIALOG_INIT_VALUES)
@@ -50,7 +50,6 @@ const withSystem = WrappedComponent => {
     }
 
     const handleConfirm = async ({ id, card, conn }) => {
-      // console.log(typeof id, id, typeof card, card, conn)
       setOpen(false)
       setOperation(DIALOG_INIT_VALUES)
       // send('overview-operation', {
@@ -66,28 +65,14 @@ const withSystem = WrappedComponent => {
           value: parseInt(card) // html input is returning string!
         })
       })
-      // console.log(json)
       const snack = message(json)
       enqueueSnackbar(snack.message, snack.options)
     }
 
-    const handleOpen = (id, write) => {
-      // console.log(id, write)
+    const handleOpen = id => {
       setOpen(true)
-      setOperation({ ...operation, conn: write, id: id })
+      setOperation({ ...operation, id: id })
     }
-
-    // const handleDelete = async (card, index) => {
-    //   console.log('delete', typeof card, card, typeof index, index)
-    //   if (window.confirm('Delete ?')) {
-    //     send('exit-queue-delete', {
-    //       card: card,
-    //       index: id,
-    //       start: 0,
-    //       amount: 6
-    //     })
-    //   }
-    // }
 
     const handleDelete = async ({ card, index }) => {
       const json = await fetchJson(`${backendUrl}/system/queue/delete`, {
@@ -130,20 +115,11 @@ const withSystem = WrappedComponent => {
               <Queue
                 authorization={isAllowed(user, [userRole])}
                 handleDelete={handleDelete}
-                // backendUrl={backendUrl}
                 queueList={overview.exitQueue.queueList}
               />
             </Widget>
           </Grid>
         </Grid>
-        {/* <Confirm
-          title='Delete Post?'
-          open={confirm}
-          setOpen={setConfirm}
-          onConfirm={handleDelete}
-        >
-          Are you sure you want to delete this post?
-        </Confirm> */}
         <Operation
           open={open}
           onCancel={handleCancel}

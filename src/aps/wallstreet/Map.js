@@ -6,7 +6,7 @@ const Map = props => {
         {`
           .l {
             position: relative;
-            background-color: #f5f5f5;
+            background-color: #fff;
             border: 1px solid #888;
             margin-bottom: 14px;
             height: 132px;

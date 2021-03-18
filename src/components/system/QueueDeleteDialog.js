@@ -1,4 +1,3 @@
-import React from 'react'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -7,14 +6,14 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import useTranslation from 'next-translate/useTranslation'
 
-export default function AlertDialog ({ onCancel, onClose, open, value }) {
+export default function AlertDialog ({ onCancel, onConfirm, open, value }) {
   const { t } = useTranslation('system')
 
   return (
     <div>
       <Dialog
         open={open}
-        // onClose={onClose}
+        onClose={onCancel}
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
@@ -30,7 +29,7 @@ export default function AlertDialog ({ onCancel, onClose, open, value }) {
           <Button onClick={onCancel} color='primary'>
             {t('dialog-cancel')}
           </Button>
-          <Button onClick={() => onClose(value)} color='primary' autoFocus>
+          <Button onClick={() => onConfirm(value)} color='primary' autoFocus>
             {t('dialog-confirm')}
           </Button>
         </DialogActions>
