@@ -1,4 +1,4 @@
-import parser from 'ua-parser-js'
+// import parser from 'ua-parser-js'
 import { aps } from 'src/constants/aps'
 import { CARDS, EDIT_CARD } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
@@ -10,16 +10,16 @@ const Page = props => {
 }
 
 export async function getServerSideProps ({ params, req }) {
-  const ua = parser(req.headers['user-agent'])
+  // const ua = parser(req.headers['user-agent'])
 
-  if (ua.device.type === 'mobile') {
-    return {
-      redirect: {
-        destination: `/m/${params.aps}/cards`,
-        permanent: false
-      }
-    }
-  }
+  // if (ua.device.type === 'mobile') {
+  //   return {
+  //     redirect: {
+  //       destination: `/m/${params.aps}/cards`,
+  //       permanent: false
+  //     }
+  //   }
+  // }
 
   if (aps(params.aps) === -1) {
     return {

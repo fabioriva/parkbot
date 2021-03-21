@@ -4,11 +4,12 @@ import { useData } from 'src/lib/websocket'
 import { useSnackbar } from 'notistack'
 import fetchJson from 'src/lib/fetchJson'
 import message from 'src/lib/message'
-import Layout from 'src/components/Layout'
+import Layout from 'src/components/Layout_'
 import useTranslation from 'next-translate/useTranslation'
 import CardsList from 'src/components/cards/CardsList'
+import Container from '@material-ui/core/Container'
+import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
-import { NewReleasesRounded } from '@material-ui/icons'
 
 export default function Cards ({ definitions, json, user }) {
   const { t } = useTranslation('cards')
@@ -46,10 +47,17 @@ export default function Cards ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <Typography variant='subtitle2' gutterBottom>
-        {t('cards-total-count', { count: cards.length })}
-      </Typography>
-      <CardsList cards={cards} handleEdit={handleEdit} />
+      <Container maxWidth='xl'>
+        <Typography variant='subtitle2' gutterBottom>
+          {t('cards-total-count', { count: cards.length })}
+        </Typography>
+        <Hidden implementation='css' xsDown>
+          <CardsList cards={cards} handleEdit={handleEdit} />
+        </Hidden>
+      </Container>
+      <Hidden implementation='css' smUp>
+        <CardsList cards={cards} handleEdit={handleEdit} />
+      </Hidden>
     </Layout>
   )
 }
