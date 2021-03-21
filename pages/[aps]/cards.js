@@ -1,5 +1,5 @@
 // import parser from 'ua-parser-js'
-import { aps } from 'src/constants/aps'
+import { aps, apsPaths } from 'src/constants/aps'
 import { CARDS, EDIT_CARD } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import Cards from 'src/components/cards/Cards'
