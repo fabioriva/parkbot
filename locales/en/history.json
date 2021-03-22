@@ -9,9 +9,15 @@
   "size": "Size",
 
   "history-total-count": "Total records {{count}}",
-  "history-query-result": "Query from {{from}} to {{to}}. Total rows {{count}}.",
+  "history-query-result": "From {{from}} To {{to}}. Total rows {{count}}.",
 
   "history-query": "Query",
+
+  "dialog-cancel": "Cancel",
+  "dialog-date-from": "From Date",
+  "dialog-date-to": "To Date",
+  "dialog-confirm": "Confirm",
+  "dialog-title": "Search",
 
   "op-id-1": "Alarm on",
   "op-id-2": "Alarm off",

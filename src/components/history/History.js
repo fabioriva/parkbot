@@ -7,6 +7,7 @@ import ParBot from 'src/components/ParkBot'
 import List from 'src/components/history/HistoryList'
 import Table from 'src/components/history/HistoryTable'
 import Query from 'src/components/history/HistoryQuery'
+import QueryDialog from 'src/components/history/HistoryQueryDialog'
 // material ui
 import Container from '@material-ui/core/Container'
 import Hidden from '@material-ui/core/Hidden'
@@ -18,9 +19,17 @@ export default function History ({ definitions, json, user }) {
   const { apsId, apsName, backendUrl, websockUrl } = definitions
 
   const [history, setHistory] = React.useState(json)
+  const [open, setOpen] = React.useState(false)
+
+  const handleCancel = () => {
+    setOpen(false)
+  }
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
 
   const handleConfirm = async data => {
-    console.log(typeof data['datetime-from'], data['datetime-to'])
     const json = await fetchHistory(apsId, backendUrl, {
       filter: 'a',
       dateFrom: data['datetime-from'],
@@ -28,6 +37,7 @@ export default function History ({ definitions, json, user }) {
     })
     console.log(json)
     setHistory(json)
+    setOpen(false)
   }
 
   return (
@@ -37,39 +47,33 @@ export default function History ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <Query onConfirm={handleConfirm} />
+      <Query onQuery={handleOpen} query={history} />
+      <QueryDialog
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+        open={open}
+      />
       <Container maxWidth='xl'>
         <Hidden implementation='css' xsDown>
-          {/* <Typography variant='subtitle2' gutterBottom>
-            {t('history-query-result', {
-              count: history.count,
-              from: history.dateFrom,
-              to: history.dateTo
-            })}
-          </Typography> */}
           {history.count > 0 ? (
             <Table count={history.count} query={history.query} />
           ) : (
-            <ParBot
-              message={t('history-query-result', {
-                count: history.count,
-                from: history.dateFrom,
-                to: history.dateTo
-              })}
-            />
+            <ParBot message='No records found.' />
           )}
         </Hidden>
       </Container>
       <Hidden implementation='css' smUp>
-        <Container maxWidth='xl'>
-          <Typography variant='subtitle2' gutterBottom>
-            {t('history-total-count', { count: history.count })}
-          </Typography>
-        </Container>
         {history.count > 0 ? (
-          <List query={history.query} user={user} />
+          <>
+            <Container maxWidth='xl'>
+              <Typography variant='subtitle2' gutterBottom>
+                {t('history-total-count', { count: history.count })}
+              </Typography>
+            </Container>
+            <List query={history.query} user={user} />
+          </>
         ) : (
-          <ParBot message='No records!' />
+          <ParBot message='No records found.' />
         )}
       </Hidden>
     </Layout>

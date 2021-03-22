@@ -9,7 +9,7 @@ export default function ParkBot ({ message }) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 96
+        marginTop: 32
         // height: '100vh'
       }}
     >
