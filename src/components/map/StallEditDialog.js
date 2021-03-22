@@ -1,4 +1,5 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 import useTranslation from 'next-translate/useTranslation'
 // material-ui
 import Button from '@material-ui/core/Button'
@@ -9,9 +10,12 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 // import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import { useForm } from 'react-hook-form'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { useTheme } from '@material-ui/core/styles'
 
 export default function EditDialog (props) {
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const { t } = useTranslation('map')
 
   const { onCancel, onConfirm, open, value } = props
@@ -27,7 +31,12 @@ export default function EditDialog (props) {
   }
 
   return (
-    <Dialog open={open} onClose={onCancel} aria-labelledby='form-dialog-title'>
+    <Dialog
+      open={open}
+      onClose={onCancel}
+      aria-labelledby='form-dialog-title'
+      fullScreen={fullScreen}
+    >
       <DialogTitle id='form-dialog-title'>
         {t('dialog-title', { number: stall })}
       </DialogTitle>

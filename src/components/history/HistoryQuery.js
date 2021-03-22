@@ -39,7 +39,7 @@ export default function HistoryQuery ({ onQuery, query }) {
   const { t } = useTranslation('history')
 
   return (
-    <Container maxWidth='xl'>
+    <Container maxWidth='xl' className={classes.container}>
       <Box flexGrow={1}>
         <Typography variant='subtitle2' gutterBottom>
           {t('history-query-result', {

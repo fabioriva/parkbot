@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     // backgroundColor: theme.palette.background.paper
   },
   gridList: {
-    width: 600
+    // width: 600
     // height: 450
   },
   icon: {
@@ -30,8 +30,8 @@ export default function TitlebarGridList ({ racks, user }) {
   console.log(racks)
   return (
     <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList} cols={3}>
-        <GridListTile key='Subheader' cols={3} style={{ height: 'auto' }}>
+      <GridList cellHeight={180} className={classes.gridList} cols={2}>
+        <GridListTile key='Subheader' cols={2} style={{ height: 'auto' }}>
           <ListSubheader component='div'>PLC Racks</ListSubheader>
         </GridListTile>
         {racks.map((tile, key) => (

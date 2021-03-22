@@ -25,7 +25,7 @@ function Bit ({ item, nr }) {
                 <br />
               </>
             )}
-            {label !== t(label) && (
+            {label !== '' && (
               <>
                 {t(label)}
                 <br />

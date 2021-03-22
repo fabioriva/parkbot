@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import Layout from 'src/components/Layout'
+import Layout from 'src/components/Layout_'
 import useTranslation from 'next-translate/useTranslation'
-import RacksList from 'src/components/racks/RacksList'
+// import RacksList from 'src/components/racks/RacksList'
 import GridList from 'src/components/racks/GridList'
+// material ui
+import Container from '@material-ui/core/Container'
 // import Typography from '@material-ui/core/Typography'
 
 export default function Racks ({ definitions, json, user }) {
@@ -23,8 +25,10 @@ export default function Racks ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      {/* <RacksList racks={racks} user={user} /> */}
-      <GridList racks={racks} user={user} />
+      <Container maxWidth='sm'>
+        {/* <RacksList racks={racks} user={user} /> */}
+        <GridList racks={racks} user={user} />
+      </Container>
     </Layout>
   )
 }

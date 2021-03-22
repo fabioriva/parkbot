@@ -6,6 +6,8 @@ import Layout from 'src/components/Layout'
 // import ET200S from 'src/components/racks/ET200S'
 import { useData } from 'src/lib/websocket'
 import useTranslation from 'next-translate/useTranslation'
+// material ui
+import Button from '@material-ui/core/Button'
 
 const componentList = {
   et200m: dynamic(() => import('src/components/racks/ET200M')),
@@ -35,9 +37,7 @@ export default function Rack ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <div>
-        [{aps}] Rack {rack}
-      </div>
+      <Button onClick={() => window.history.back()}>Back</Button>
       {/* {racks[rack].serie === 'et200m' && <ET200M rack={racks[rack]} />}
       {racks[rack].serie === 'et200s' && <ET200S rack={racks[rack]} />} */}
       <DynamicComponent rack={racks[rack]} />

@@ -25,7 +25,7 @@ function Bit ({ item, nr }) {
                 <br />
               </>
             )}
-            {label !== t(label) && (
+            {label !== '' && (
               <>
                 {t(label)}
                 <br />
@@ -193,7 +193,6 @@ function Bit ({ item, nr }) {
 
 function Byte ({ byte, nr }) {
   const { bits, label } = byte
-  console.log(typeof byte)
   return (
     <>
       <div className='label' id={'label-'.concat(nr)}>
