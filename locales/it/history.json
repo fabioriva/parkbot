@@ -9,7 +9,9 @@
   "size": "Dimensione",
 
   "history-total-count": "Numero registrazioni {{count}}",
-  "history-query": "Ricerca dal {{from}} al {{to}}. Totale elementi {{count}}.",
+  "history-query-result": "Ricerca dal {{from}} al {{to}}. Totale elementi {{count}}.",
+
+  "history-query": "Ricerca",
 
   "op-id-1": "Allarme on",
   "op-id-2": "Allarme off",

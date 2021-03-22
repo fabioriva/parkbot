@@ -1,36 +1,34 @@
-import { useState } from 'react'
-// import useJson from 'src/lib/useData'
-import Layout from 'src/components/Layout'
-import ParBot from 'src/components/ParkBot'
-import Table from 'src/components/history/HistoryTable'
+import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
+// import useJson from 'src/lib/useData'
+import { fetchHistory } from 'src/lib/fetchJson'
+import Layout from 'src/components/Layout_'
+import ParBot from 'src/components/ParkBot'
+import List from 'src/components/history/HistoryList'
+import Table from 'src/components/history/HistoryTable'
+import Query from 'src/components/history/HistoryQuery'
+// material ui
+import Container from '@material-ui/core/Container'
+import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
-
-import { format, endOfDay, startOfDay } from 'date-fns'
 
 export default function History ({ definitions, json, user }) {
   const { t } = useTranslation('history')
 
-  const { apsId, apsName, backendUrl, websockUrl, userRole } = definitions
+  const { apsId, apsName, backendUrl, websockUrl } = definitions
 
-  // const filter = 'a'
-  // const dateFrom = format(
-  //   startOfDay(new Date('2020-01-01')),
-  //   'yyyy-MM-dd HH:mm:ss'
-  // )
-  // const dateTo = format(endOfDay(new Date('2020-12-01')), 'yyyy-MM-dd HH:mm:ss')
-  // const number = 0
-  // const query = `system=${apsId}&dateFrom=${dateFrom}&dateTo=${dateTo}&filter=${filter}&device=0&number=${number}`
-  // const { data, isLoading, isError } = useJson(
-  //   backendUrl.concat('/history?', query),
-  //   json
-  // )
-  // if (isError) return <div>Failed to load</div>
-  // if (isLoading) return <div>Loading...</div>
+  const [history, setHistory] = React.useState(json)
 
-  const [history, setHistory] = useState(json)
-
-  console.log(history)
+  const handleConfirm = async data => {
+    console.log(typeof data['datetime-from'], data['datetime-to'])
+    const json = await fetchHistory(apsId, backendUrl, {
+      filter: 'a',
+      dateFrom: data['datetime-from'],
+      dateTo: data['datetime-to']
+    })
+    console.log(json)
+    setHistory(json)
+  }
 
   return (
     <Layout
@@ -39,20 +37,41 @@ export default function History ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      {history.count > 0 ? (
-        <>
-          <Typography variant='subtitle2' gutterBottom>
-            {t('history-query', {
+      <Query onConfirm={handleConfirm} />
+      <Container maxWidth='xl'>
+        <Hidden implementation='css' xsDown>
+          {/* <Typography variant='subtitle2' gutterBottom>
+            {t('history-query-result', {
               count: history.count,
               from: history.dateFrom,
               to: history.dateTo
             })}
+          </Typography> */}
+          {history.count > 0 ? (
+            <Table count={history.count} query={history.query} />
+          ) : (
+            <ParBot
+              message={t('history-query-result', {
+                count: history.count,
+                from: history.dateFrom,
+                to: history.dateTo
+              })}
+            />
+          )}
+        </Hidden>
+      </Container>
+      <Hidden implementation='css' smUp>
+        <Container maxWidth='xl'>
+          <Typography variant='subtitle2' gutterBottom>
+            {t('history-total-count', { count: history.count })}
           </Typography>
-          <Table count={history.count} query={history.query} />
-        </>
-      ) : (
-        <ParBot message='No records!' />
-      )}
+        </Container>
+        {history.count > 0 ? (
+          <List query={history.query} user={user} />
+        ) : (
+          <ParBot message='No records!' />
+        )}
+      </Hidden>
     </Layout>
   )
 }

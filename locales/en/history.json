@@ -9,7 +9,9 @@
   "size": "Size",
 
   "history-total-count": "Total records {{count}}",
-  "history-query": "Query from {{from}} to {{to}}. Total rows {{count}}.",
+  "history-query-result": "Query from {{from}} to {{to}}. Total rows {{count}}.",
+
+  "history-query": "Query",
 
   "op-id-1": "Alarm on",
   "op-id-2": "Alarm off",

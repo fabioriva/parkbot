@@ -8,8 +8,8 @@ export default function ParkBot ({ message }) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
-        // marginTop: 96
+        justifyContent: 'center',
+        marginTop: 96
         // height: '100vh'
       }}
     >

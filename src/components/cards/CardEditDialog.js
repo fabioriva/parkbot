@@ -1,4 +1,5 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 import useTranslation from 'next-translate/useTranslation'
 // material-ui
 import Button from '@material-ui/core/Button'
@@ -9,7 +10,6 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 // import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import { useForm } from 'react-hook-form'
 
 export default function EditDialog (props) {
   const { t } = useTranslation('cards')
@@ -56,6 +56,7 @@ export default function EditDialog (props) {
             inputProps={{ style: { textTransform: 'capitalize' } }}
             inputRef={register({
               required: true,
+              maxLength: 3,
               pattern: /^[a-fA-F0-9]{3}$/
             })}
             error={!!errors.code}
