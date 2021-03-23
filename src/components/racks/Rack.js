@@ -2,12 +2,12 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Layout from 'src/components/Layout'
-// import ET200M from 'src/components/racks/ET200M'
-// import ET200S from 'src/components/racks/ET200S'
+import ListView from 'src/components/racks/IOList'
 import { useData } from 'src/lib/websocket'
 import useTranslation from 'next-translate/useTranslation'
 // material ui
 import Button from '@material-ui/core/Button'
+import Hidden from '@material-ui/core/Hidden'
 
 const componentList = {
   et200m: dynamic(() => import('src/components/racks/ET200M')),
@@ -18,7 +18,7 @@ export default function Rack ({ definitions, json, user }) {
   const { t } = useTranslation('common')
   const router = useRouter()
   const { aps, rack } = router.query
-  const { apsName, websockUrl, userRole } = definitions
+  const { apsName, websockUrl } = definitions
   const [racks, setRacks] = useState(json)
   const { mesg } = useData('racks', `${websockUrl}?channel=ch1`)
 
@@ -30,17 +30,22 @@ export default function Rack ({ definitions, json, user }) {
 
   const DynamicComponent = componentList[racks[rack].serie]
 
+  const title = t('title-racks') + ' ' + racks[rack].title
+
   return (
     <Layout
       apsName={apsName}
-      pageTitle={t('title-racks')}
+      pageTitle={title}
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
       <Button onClick={() => window.history.back()}>Back</Button>
-      {/* {racks[rack].serie === 'et200m' && <ET200M rack={racks[rack]} />}
-      {racks[rack].serie === 'et200s' && <ET200S rack={racks[rack]} />} */}
-      <DynamicComponent rack={racks[rack]} />
+      <Hidden implementation='css' xsDown>
+        <DynamicComponent rack={racks[rack]} />
+      </Hidden>
+      <Hidden implementation='css' smUp>
+        <ListView rack={racks[rack]} />
+      </Hidden>
     </Layout>
   )
 }
