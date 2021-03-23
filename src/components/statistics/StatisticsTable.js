@@ -8,11 +8,11 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   table: {
-    // minWidth: 650
+    marginBottom: theme.spacing(1)
   }
-})
+}))
 
 export default function Statistics ({ data }) {
   const classes = useStyles()

@@ -9,7 +9,7 @@
   "size": "Size",
 
   "history-total-count": "Total records {{count}}",
-  "history-query-result": "From {{from}} To {{to}}. Total rows {{count}}.",
+  "history-query-result": "{{from}} | {{to}}",
 
   "history-query": "Query",
 

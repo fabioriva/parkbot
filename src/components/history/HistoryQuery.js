@@ -13,24 +13,13 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     marginBottom: theme.spacing(1)
   },
-  textField: {
-    marginBottom: theme.spacing(1),
-    marginRight: theme.spacing(1),
+  text: {
     [theme.breakpoints.down('xs')]: {
-      width: 170
-    },
-    [theme.breakpoints.up('sm')]: {
-      width: 200
-    }
-    // width: 190
-  },
-  input: {
-    [theme.breakpoints.down('xs')]: {
-      fontSize: 14
+      fontSize: 12
     }
     // [theme.breakpoints.up('sm')]: {
-    //   backgroundColor: theme.palette.primary.main,
-    // },
+    //   fontSize: 14
+    // }
   }
 }))
 
@@ -41,9 +30,9 @@ export default function HistoryQuery ({ onQuery, query }) {
   return (
     <Container maxWidth='xl' className={classes.container}>
       <Box flexGrow={1}>
-        <Typography variant='subtitle2' gutterBottom>
+        <Typography className={classes.text} variant='subtitle2' gutterBottom>
           {t('history-query-result', {
-            count: query.count,
+            // count: query.count,
             from: query.dateFrom,
             to: query.dateTo
           })}

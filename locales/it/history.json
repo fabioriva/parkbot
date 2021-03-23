@@ -9,7 +9,7 @@
   "size": "Dimensione",
 
   "history-total-count": "Numero registrazioni {{count}}",
-  "history-query-result": "Dal {{from}} Al {{to}}. Totale {{count}}.",
+  "history-query-result": "{{from}} | {{to}}",
 
   "history-query": "Ricerca",
 
