@@ -1,4 +1,3 @@
-import Error from 'next/error'
 import useTranslation from 'next-translate/useTranslation'
 import { useState, useEffect } from 'react'
 import { useData } from 'src/lib/websocket'
@@ -6,6 +5,7 @@ import { useSnackbar } from 'notistack'
 import fetchJson from 'src/lib/fetchJson'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
+import Error from 'src/components/Error'
 import Widget from 'src/components/Widget'
 // system
 import Device from 'src/components/system/Device'
@@ -27,7 +27,16 @@ const withSystem = WrappedComponent => {
     const { definitions, json, user } = props
     const { apsName, backendUrl, cards, websockUrl, userRole } = definitions
 
-    if (json.err) return <Error statusCode={500} />
+    if (json.err) {
+      return (
+        <Error
+          definitions={definitions}
+          message='Error 500'
+          title={t('title')}
+          user={user}
+        />
+      )
+    }
 
     const [overview, setOverview] = useState(json)
 

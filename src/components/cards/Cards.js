@@ -5,6 +5,7 @@ import { useSnackbar } from 'notistack'
 import fetchJson from 'src/lib/fetchJson'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout_'
+import Error from 'src/components/Error'
 import useTranslation from 'next-translate/useTranslation'
 import CardsList from 'src/components/cards/CardsList'
 import Container from '@material-ui/core/Container'
@@ -16,6 +17,17 @@ export default function Cards ({ definitions, json, user }) {
   const { enqueueSnackbar } = useSnackbar()
 
   const { apsName, backendUrl, websockUrl, userRole } = definitions
+
+  if (json.err) {
+    return (
+      <Error
+        definitions={definitions}
+        message='Error 500'
+        title={t('title')}
+        user={user}
+      />
+    )
+  }
 
   // const { data } = useJson(backendUrl.concat('/cards'), json)
 

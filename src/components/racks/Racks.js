@@ -1,22 +1,26 @@
-import { useState } from 'react'
 import Layout from 'src/components/Layout_'
+import Error from 'src/components/Error'
 import useTranslation from 'next-translate/useTranslation'
 // import RacksList from 'src/components/racks/RacksList'
 import GridList from 'src/components/racks/GridList'
 // material ui
 import Container from '@material-ui/core/Container'
-// import Typography from '@material-ui/core/Typography'
 
 export default function Racks ({ definitions, json, user }) {
   const { t } = useTranslation('common')
 
-  const { apsName, websockUrl, userRole } = definitions
+  const { apsName, websockUrl } = definitions
 
-  // const { data } = useJson(backendUrl.concat('/cards'), json)
-
-  const [racks, setRacks] = useState(json)
-
-  // console.log(racks)
+  if (json.err) {
+    return (
+      <Error
+        definitions={definitions}
+        message='Error 500'
+        title={t('title-racks')}
+        user={user}
+      />
+    )
+  }
 
   return (
     <Layout
@@ -27,7 +31,7 @@ export default function Racks ({ definitions, json, user }) {
     >
       <Container maxWidth='sm'>
         {/* <RacksList racks={racks} user={user} /> */}
-        <GridList racks={racks} user={user} />
+        <GridList racks={json} user={user} />
       </Container>
     </Layout>
   )

@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Layout from 'src/components/Layout'
+import Error from 'src/components/Error'
 import ListView from 'src/components/racks/IOList'
 import { useData } from 'src/lib/websocket'
 import useTranslation from 'next-translate/useTranslation'
@@ -19,6 +20,18 @@ export default function Rack ({ definitions, json, user }) {
   const router = useRouter()
   const { aps, rack } = router.query
   const { apsName, websockUrl } = definitions
+
+  if (json.err) {
+    return (
+      <Error
+        definitions={definitions}
+        message='Error 500'
+        title={t('title-racks')}
+        user={user}
+      />
+    )
+  }
+
   const [racks, setRacks] = useState(json)
   const { mesg } = useData('racks', `${websockUrl}?channel=ch1`)
 
@@ -30,7 +43,11 @@ export default function Rack ({ definitions, json, user }) {
 
   const DynamicComponent = componentList[racks[rack].serie]
 
-  const title = t('title-racks') + ' ' + racks[rack].title
+  const title = (
+    <span>
+      {t('title-racks')}: {racks[rack].title}
+    </span>
+  )
 
   return (
     <Layout

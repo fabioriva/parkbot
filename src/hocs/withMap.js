@@ -1,4 +1,3 @@
-import Error from 'next/error'
 import useTranslation from 'next-translate/useTranslation'
 import { useState, useEffect } from 'react'
 import { useData } from 'src/lib/websocket'
@@ -6,6 +5,7 @@ import { useSnackbar } from 'notistack'
 import fetchJson from 'src/lib/fetchJson'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
+import Error from 'src/components/Error'
 import Widget from 'src/components/Widget'
 // map
 import Dialog from 'src/components/map/StallEditDialog'
@@ -31,7 +31,16 @@ const withMap = WrappedComponent => {
       userRole
     } = definitions
 
-    if (json.err) return <Error statusCode={500} />
+    if (json.err) {
+      return (
+        <Error
+          definitions={definitions}
+          message='Error 500'
+          title={t('title')}
+          user={user}
+        />
+      )
+    }
 
     const [map, setMap] = useState(json)
 

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Layout from 'src/components/Layout'
+import Error from 'src/components/Error'
 import useTranslation from 'next-translate/useTranslation'
 import BarChart from 'src/components/statistics/BarChart'
 import Table from 'src/components/statistics/StatisticsTable'
@@ -26,6 +27,17 @@ export default function Statistics ({ definitions, json, user }) {
   const { t } = useTranslation('statistics')
 
   const { apsName, backendUrl, websockUrl, userRole } = definitions
+
+  if (json.err) {
+    return (
+      <Error
+        definitions={definitions}
+        message='Error 500'
+        title={t('title')}
+        user={user}
+      />
+    )
+  }
 
   const [statistics, setStatistics] = useState(json)
 
