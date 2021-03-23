@@ -57,7 +57,13 @@ export default function Rack ({ rack }) {
                   </ListItemAvatar>
                   <ListItemText
                     primary={
-                      bit.label !== '' ? bit.label + ' ' + bit.addr : bit.addr
+                      bit.label !== '' ? (
+                        <span>
+                          <strong>{bit.label}</strong> {bit.addr}
+                        </span>
+                      ) : (
+                        <span>bit.addr</span>
+                      )
                     }
                     secondary={bit.label !== '' && t(bit.label)}
                   />

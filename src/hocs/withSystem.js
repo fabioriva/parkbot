@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useData } from 'src/lib/websocket'
 import { useSnackbar } from 'notistack'
 import fetchJson from 'src/lib/fetchJson'
+import { isAllowed } from 'src/lib/auth-actions'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
@@ -13,11 +14,6 @@ import Operation from 'src/components/system/OperationDialog'
 import Queue from 'src/components/system/Queue'
 // material-ui
 import Grid from '@material-ui/core/Grid'
-
-const isAllowed = (user, rights) =>
-  rights.some(right =>
-    user.rights !== undefined ? user.rights.includes(right) : false
-  )
 
 const withSystem = WrappedComponent => {
   const Wrapper = props => {

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useData } from 'src/lib/websocket'
 import { useSnackbar } from 'notistack'
 import fetchJson from 'src/lib/fetchJson'
+import { isAllowed } from 'src/lib/auth-actions'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
@@ -79,8 +80,10 @@ const withMap = WrappedComponent => {
     }
 
     const handleOpen = (stall, value) => {
-      setOpen(true)
-      setDialog({ ...dialog, card: value, stall: stall })
+      if (isAllowed(user, [userRole])) {
+        setOpen(true)
+        setDialog({ ...dialog, card: value, stall: stall })
+      }
     }
 
     const levels = map.levels.map((item, key) => (

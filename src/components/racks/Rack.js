@@ -1,13 +1,14 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import Layout from 'src/components/Layout'
+import Layout from 'src/components/Layout_'
 import Error from 'src/components/Error'
 import ListView from 'src/components/racks/IOList'
 import { useData } from 'src/lib/websocket'
 import useTranslation from 'next-translate/useTranslation'
 // material ui
 import Button from '@material-ui/core/Button'
+import Container from '@material-ui/core/Container'
 import Hidden from '@material-ui/core/Hidden'
 
 const componentList = {
@@ -45,7 +46,7 @@ export default function Rack ({ definitions, json, user }) {
 
   const title = (
     <span>
-      {t('title-racks')}: {racks[rack].title}
+      {t('title-racks')} {racks[rack].title}
     </span>
   )
 
@@ -56,10 +57,12 @@ export default function Rack ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <Button onClick={() => window.history.back()}>Back</Button>
-      <Hidden implementation='css' xsDown>
-        <DynamicComponent rack={racks[rack]} />
-      </Hidden>
+      <Container maxWidth='xl'>
+        <Hidden implementation='css' xsDown>
+          <Button onClick={() => window.history.back()}>Back</Button>
+          <DynamicComponent rack={racks[rack]} />
+        </Hidden>
+      </Container>
       <Hidden implementation='css' smUp>
         <ListView rack={racks[rack]} />
       </Hidden>

@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function User ({ handleEdit, cards }) {
+export default function User ({ authorization, handleEdit, cards }) {
   const classes = useStyles()
   const { t } = useTranslation('cards')
 
@@ -86,7 +86,7 @@ export default function User ({ handleEdit, cards }) {
                 edge='end'
                 aria-label='delete'
                 onClick={() => handleOpen(item)}
-                // disabled
+                disabled={!authorization}
               >
                 <EditIcon />
               </IconButton>

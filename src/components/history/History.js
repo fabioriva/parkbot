@@ -3,7 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 // import useJson from 'src/lib/useData'
 import { fetchHistory } from 'src/lib/fetchJson'
 import Layout from 'src/components/Layout_'
-import ParBot from 'src/components/ParkBot'
+import ParkBot from 'src/components/ParkBot'
 import List from 'src/components/history/HistoryList'
 import Table from 'src/components/history/HistoryTable'
 import Query from 'src/components/history/HistoryQuery'
@@ -58,7 +58,7 @@ export default function History ({ definitions, json, user }) {
           {history.count > 0 ? (
             <Table count={history.count} query={history.query} />
           ) : (
-            <ParBot message='No records found.' />
+            <ParkBot message='No records found.' />
           )}
         </Hidden>
       </Container>
@@ -73,7 +73,7 @@ export default function History ({ definitions, json, user }) {
             <List query={history.query} user={user} />
           </>
         ) : (
-          <ParBot message='No records found.' />
+          <ParkBot message='No records found.' />
         )}
       </Hidden>
     </Layout>

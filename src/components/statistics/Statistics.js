@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import Layout from 'src/components/Layout'
+import ParkBot from 'src/components/ParkBot'
 import Error from 'src/components/Error'
 import useTranslation from 'next-translate/useTranslation'
 import BarChart from 'src/components/statistics/BarChart'
 import Table from 'src/components/statistics/StatisticsTable'
+// material-ui
+import Hidden from '@material-ui/core/Hidden'
 import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
 
@@ -56,28 +59,34 @@ export default function Statistics ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor='primary'
-        textColor='primary'
-        variant='fullWidth'
-        // className={classes.tabs}
-      >
+      <Hidden implementation='css' xsDown>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor='primary'
+          textColor='primary'
+          variant='fullWidth'
+          // className={classes.tabs}
+        >
+          {statistics.map((item, key) => (
+            <Tab
+              key={key}
+              label={item.i18n !== undefined ? t(item.i18n) : item.title}
+            />
+          ))}
+        </Tabs>
         {statistics.map((item, key) => (
-          <Tab
-            key={key}
-            label={item.i18n !== undefined ? t(item.i18n) : item.title}
-          />
+          <TabPanel key={key} value={value} index={key}>
+            <BarChart data={item} />
+          </TabPanel>
         ))}
-      </Tabs>
-      {statistics.map((item, key) => (
-        <TabPanel key={key} value={value} index={key}>
-          <BarChart data={item} />
-          <br />
-          <Table key={key} data={item.data} />
-        </TabPanel>
-      ))}
+      </Hidden>
+      <Hidden implementation='css' smUp>
+        {statistics.map(
+          (item, key) =>
+            item.data.length > 0 && <Table key={key} data={item.data} />
+        )}
+      </Hidden>
     </Layout>
   )
 }

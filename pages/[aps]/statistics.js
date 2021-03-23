@@ -38,7 +38,6 @@ export async function getStaticProps ({ params }) {
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
         pageRole: STATISTICS
-        // userRole: EDIT_CARD
       },
       json
     }

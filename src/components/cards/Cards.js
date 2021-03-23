@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react'
-// import useJson from 'src/lib/useData'
-import { useData } from 'src/lib/websocket'
+import useTranslation from 'next-translate/useTranslation'
 import { useSnackbar } from 'notistack'
+import { useData } from 'src/lib/websocket'
 import fetchJson from 'src/lib/fetchJson'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout_'
 import Error from 'src/components/Error'
-import useTranslation from 'next-translate/useTranslation'
 import CardsList from 'src/components/cards/CardsList'
+// material-ui
 import Container from '@material-ui/core/Container'
 import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
+
+import { isAllowed } from 'src/lib/auth-actions'
 
 export default function Cards ({ definitions, json, user }) {
   const { t } = useTranslation('cards')
@@ -28,8 +30,6 @@ export default function Cards ({ definitions, json, user }) {
       />
     )
   }
-
-  // const { data } = useJson(backendUrl.concat('/cards'), json)
 
   const [cards, setCards] = useState(json)
 
@@ -64,11 +64,19 @@ export default function Cards ({ definitions, json, user }) {
           {t('cards-total-count', { count: cards.length })}
         </Typography>
         <Hidden implementation='css' xsDown>
-          <CardsList cards={cards} handleEdit={handleEdit} />
+          <CardsList
+            cards={cards}
+            handleEdit={handleEdit}
+            authorization={isAllowed(user, [userRole])}
+          />
         </Hidden>
       </Container>
       <Hidden implementation='css' smUp>
-        <CardsList cards={cards} handleEdit={handleEdit} />
+        <CardsList
+          cards={cards}
+          handleEdit={handleEdit}
+          authorization={isAllowed(user, [userRole])}
+        />
       </Hidden>
     </Layout>
   )
