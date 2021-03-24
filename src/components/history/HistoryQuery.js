@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
+import SearchIcon from '@material-ui/icons/Search'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 export default function HistoryQuery ({ onQuery, query }) {
   const classes = useStyles()
   const { t } = useTranslation('history')
-
+  console.log(query)
   return (
     <Container maxWidth='xl' className={classes.container}>
       <Box flexGrow={1}>
@@ -38,7 +39,13 @@ export default function HistoryQuery ({ onQuery, query }) {
           })}
         </Typography>
       </Box>
-      <Button onClick={onQuery} color='primary' variant='outlined' size='small'>
+      <Button
+        onClick={onQuery}
+        color='primary'
+        variant='outlined'
+        size='small'
+        startIcon={<SearchIcon />}
+      >
         {t('history-query')}
       </Button>
     </Container>

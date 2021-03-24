@@ -8,7 +8,6 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Typography from '@material-ui/core/Typography'
-import statistics from 'pages/[aps]/statistics'
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -20,12 +19,12 @@ export default function Statistics ({ statistics }) {
   const classes = useStyles()
   const { t } = useTranslation('statistics')
 
-  const { data, label, title } = statistics
+  const { data, label, i18n } = statistics
 
   return (
     <TableContainer component={Paper} className={classes.table}>
-      <Typography variant='h6'>
-        {title}: {label}
+      <Typography variant='subtitle2'>
+        {i18n}: {label}
       </Typography>
       <Table size='small' aria-label='statistics'>
         <TableHead>

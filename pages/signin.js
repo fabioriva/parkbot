@@ -16,7 +16,7 @@ import Link from '@material-ui/core/Link'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 
-const START_PAGE = 'system'
+const START_PAGE = 'overview' // 'dashboard'
 
 const useStyles = makeStyles(theme => ({
   root: {

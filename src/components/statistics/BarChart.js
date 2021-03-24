@@ -34,6 +34,7 @@ export default function Bar (props) {
         data={props.data.data}
         // rotated
         // barWidth={6}
+        height={300}
       >
         <ArgumentAxis />
 

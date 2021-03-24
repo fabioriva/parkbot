@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Layout from 'src/components/Layout'
-import ParkBot from 'src/components/ParkBot'
+// import ParkBot from 'src/components/ParkBot'
 import Error from 'src/components/Error'
 import useTranslation from 'next-translate/useTranslation'
-import BarChart from 'src/components/statistics/BarChart'
+import Operations from 'src/components/statistics/BarChart'
 import Table from 'src/components/statistics/StatisticsTable'
 // material-ui
 import Hidden from '@material-ui/core/Hidden'
@@ -77,7 +77,7 @@ export default function Statistics ({ definitions, json, user }) {
         </Tabs>
         {statistics.map((item, key) => (
           <TabPanel key={key} value={value} index={key}>
-            <BarChart data={item} />
+            <Operations data={item} />
           </TabPanel>
         ))}
       </Hidden>

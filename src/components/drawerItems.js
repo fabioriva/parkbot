@@ -13,7 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 // import ListSubheader from '@material-ui/core/ListSubheader';
 import BarChartIcon from '@material-ui/icons/BarChart'
 import CreditCardIcon from '@material-ui/icons/CreditCard'
-// import DashboardIcon from '@material-ui/icons/Dashboard'
+import DashboardIcon from '@material-ui/icons/Dashboard'
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar'
 import HistoryIcon from '@material-ui/icons/History'
 // import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
@@ -43,7 +43,16 @@ export function mainListItems (diag, user) {
 
   return (
     <List>
-      <Link href={`/${user.aps}/system`} locale={lang}>
+      <Link href={`/${user.aps}/dashboard`} locale={lang}>
+        <ListItem button>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary={t('title-dashboard')} />
+        </ListItem>
+      </Link>
+
+      <Link href={`/${user.aps}/overview`} locale={lang}>
         <ListItem button>
           <ListItemIcon>
             <VisibilityIcon />

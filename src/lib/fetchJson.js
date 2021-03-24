@@ -30,11 +30,13 @@ export async function fetchHistory (
     filter = 'a',
     dateFrom = format(
       startOfDay(new Date()),
-      "yyyy-MM-dd'T'HH:mm:ss.SSS'z'" // 'yyyy-MM-dd HH:mm:ss'
+      'yyyy-MM-dd HH:mm:ss'
+      // "yyyy-MM-dd'T'HH:mm:ss.SSS'z'"
     ),
     dateTo = format(
       endOfDay(new Date()),
-      "yyyy-MM-dd'T'HH:mm:ss.SSS'z'" // 'yyyy-MM-dd HH:mm:ss'
+      'yyyy-MM-dd HH:mm:ss'
+      // "yyyy-MM-dd'T'HH:mm:ss.SSS'z'"
     ),
     number = 0
   }
@@ -44,7 +46,10 @@ export async function fetchHistory (
   return json
 }
 
-export async function fetchOperations (backendUrl, date) {
+export async function fetchOperations (
+  backendUrl,
+  date = format(new Date(), 'yyyy-MM-dd')
+) {
   const query = `dateString=${date}`
   const url = `${backendUrl}/statistics?${query}`
   const json = await fetcher(url)
