@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Statistics ({ Statistics }) {
+export default function Statistics ({ statistics }) {
   const classes = useStyles()
   const { t } = useTranslation('statistics')
 
