@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import Typography from '@material-ui/core/Typography'
+import statistics from 'pages/[aps]/statistics'
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -14,13 +16,18 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Statistics ({ data }) {
+export default function Statistics ({ Statistics }) {
   const classes = useStyles()
   const { t } = useTranslation('statistics')
 
+  const { data, label, title } = statistics
+
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} size='small' aria-label='statistics'>
+    <TableContainer component={Paper} className={classes.table}>
+      <Typography variant='h6'>
+        {title}: {label}
+      </Typography>
+      <Table size='small' aria-label='statistics'>
         <TableHead>
           <TableRow>
             <TableCell align='left' />

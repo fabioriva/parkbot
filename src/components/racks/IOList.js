@@ -62,7 +62,7 @@ export default function Rack ({ rack }) {
                           <strong>{bit.label}</strong> {bit.addr}
                         </span>
                       ) : (
-                        <span>bit.addr</span>
+                        <span>{bit.addr}</span>
                       )
                     }
                     secondary={bit.label !== '' && t(bit.label)}

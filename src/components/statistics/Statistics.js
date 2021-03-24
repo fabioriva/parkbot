@@ -29,7 +29,7 @@ function TabPanel (props) {
 export default function Statistics ({ definitions, json, user }) {
   const { t } = useTranslation('statistics')
 
-  const { apsName, backendUrl, websockUrl, userRole } = definitions
+  const { apsName, backendUrl, websockUrl } = definitions
 
   if (json.err) {
     return (
@@ -83,8 +83,7 @@ export default function Statistics ({ definitions, json, user }) {
       </Hidden>
       <Hidden implementation='css' smUp>
         {statistics.map(
-          (item, key) =>
-            item.data.length > 0 && <Table key={key} data={item.data} />
+          (item, key) => item.data.length > 0 && <Table key={key} data={item} />
         )}
       </Hidden>
     </Layout>
