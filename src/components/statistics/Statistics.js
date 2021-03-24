@@ -83,7 +83,8 @@ export default function Statistics ({ definitions, json, user }) {
       </Hidden>
       <Hidden implementation='css' smUp>
         {statistics.map(
-          (item, key) => item.data.length > 0 && <Table key={key} data={item} />
+          (item, key) =>
+            item.data.length > 0 && <Table key={key} statistics={item} />
         )}
       </Hidden>
     </Layout>
