@@ -122,7 +122,7 @@ function chipLabel (item) {
 
 export default function Cards ({ definitions, json, user }) {
   const classes = useStyles()
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   const { apsName, backendUrl, websockUrl } = definitions
 
@@ -136,7 +136,7 @@ export default function Cards ({ definitions, json, user }) {
       <Error
         definitions={definitions}
         message='Error 500'
-        title={t('title-dashboard')}
+        title={t('common:title-dashboard')}
         user={user}
       />
     )
@@ -155,7 +155,7 @@ export default function Cards ({ definitions, json, user }) {
   return (
     <Layout
       apsName={apsName}
-      pageTitle={t('title-dashboard')}
+      pageTitle={t('common:title-dashboard')}
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
@@ -210,7 +210,7 @@ export default function Cards ({ definitions, json, user }) {
         </Grid>
         <Grid item xs={12} md={6}>
           <Widget title='Recent Activity' link={`/${user.aps}/history`}>
-            <Activity query={data.activity.documents} user={user} />
+            <Activity data={data.activity} user={user} />
           </Widget>
         </Grid>
         {/* <Grid item xs={12} md={6}>

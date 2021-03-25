@@ -83,8 +83,10 @@ export default function HistoryTable ({ count, query }) {
                     {row.logged}
                     {/* {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')} */}
                   </TableCell>
-                  <TableCell align='left'>{row.device.name}</TableCell>
-                  <TableCell align='left'>{row.mode.info}</TableCell>
+                  <TableCell align='left'>
+                    {row.device.id === 0 ? t('dev-operator') : row.device.name}
+                  </TableCell>
+                  <TableCell align='left'>{t(row.mode.info)}</TableCell>
                   {/* <TableCell align='left'>{row.operation.info}</TableCell> */}
                   <TableCell align='left'>
                     <Item item={row} />

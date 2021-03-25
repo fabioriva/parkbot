@@ -1,24 +1,20 @@
 import Link from 'next/link'
+import { FixedSizeList as List } from 'react-window'
+import AutoSizer from 'react-virtualized-auto-sizer'
+import Avatar from './ListAvatar'
+import Text from './ListItem'
+// material-ui
 import { makeStyles } from '@material-ui/core/styles'
-// import Divider from '@material-ui/core/Divider'
 import Hidden from '@material-ui/core/Hidden'
-// import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import { format, formatDistance, parseISO } from 'date-fns'
-import Avatar from './ListAvatar'
-import Text from './ListItem'
-import { FixedSizeList as List } from 'react-window'
-import AutoSizer from 'react-virtualized-auto-sizer'
-
-// const appBarHeight = 149 + 56
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
-    // height: `calc(100vh - ${appBarHeight}px)`
     height: '100vh'
   },
   root: {
@@ -34,7 +30,6 @@ function renderRow ({ data, index, style }) {
     <div key={index}>
       <Link href={`/${user.aps}/log/${item._id}`}>
         <ListItem button style={style}>
-          {/* <ListItemText primary={`Item ${index + 1}`} /> */}
           <ListItemAvatar>
             <Avatar id={item.operation.id} />
           </ListItemAvatar>
@@ -53,7 +48,6 @@ function renderRow ({ data, index, style }) {
           </Hidden>
         </ListItem>
       </Link>
-      {/* <Divider variant="inset" component="li" /> */}
     </div>
   )
 }

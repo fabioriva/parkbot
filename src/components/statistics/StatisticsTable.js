@@ -13,7 +13,9 @@ const useStyles = makeStyles(theme => ({
   table: {
     marginBottom: theme.spacing(1)
   },
-  title: {}
+  title: {
+    marginBottom: theme.spacing(1)
+  }
 }))
 
 export default function Statistics ({ statistics }) {
@@ -32,9 +34,9 @@ export default function Statistics ({ statistics }) {
           <TableHead>
             <TableRow>
               <TableCell align='left' />
-              <TableCell align='center'>{t('total')}</TableCell>
               <TableCell align='center'>{t('entries')}</TableCell>
               <TableCell align='center'>{t('exits')}</TableCell>
+              <TableCell align='center'>{t('total')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -43,9 +45,9 @@ export default function Statistics ({ statistics }) {
                 <TableCell component='th' scope='row'>
                   {row.name}
                 </TableCell>
-                <TableCell align='center'>{row.total}</TableCell>
                 <TableCell align='center'>{row.entries}</TableCell>
                 <TableCell align='center'>{row.exits}</TableCell>
+                <TableCell align='center'>{row.total}</TableCell>
               </TableRow>
             ))}
           </TableBody>
