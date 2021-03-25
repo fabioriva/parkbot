@@ -12,7 +12,8 @@ import Typography from '@material-ui/core/Typography'
 const useStyles = makeStyles(theme => ({
   table: {
     marginBottom: theme.spacing(1)
-  }
+  },
+  title: {}
 }))
 
 export default function Statistics ({ statistics }) {
@@ -22,32 +23,34 @@ export default function Statistics ({ statistics }) {
   const { data, label, i18n } = statistics
 
   return (
-    <TableContainer component={Paper} className={classes.table}>
-      <Typography variant='subtitle2'>
+    <>
+      <Typography variant='subtitle2' className={classes.title}>
         {i18n}: {label}
       </Typography>
-      <Table size='small' aria-label='statistics'>
-        <TableHead>
-          <TableRow>
-            <TableCell align='left' />
-            <TableCell align='center'>{t('total')}</TableCell>
-            <TableCell align='center'>{t('entries')}</TableCell>
-            <TableCell align='center'>{t('exits')}</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(row => (
-            <TableRow key={row.name}>
-              <TableCell component='th' scope='row'>
-                {row.name}
-              </TableCell>
-              <TableCell align='center'>{row.total}</TableCell>
-              <TableCell align='center'>{row.entries}</TableCell>
-              <TableCell align='center'>{row.exits}</TableCell>
+      <TableContainer component={Paper} className={classes.table}>
+        <Table size='small' aria-label='statistics'>
+          <TableHead>
+            <TableRow>
+              <TableCell align='left' />
+              <TableCell align='center'>{t('total')}</TableCell>
+              <TableCell align='center'>{t('entries')}</TableCell>
+              <TableCell align='center'>{t('exits')}</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {data.map(row => (
+              <TableRow key={row.name}>
+                <TableCell component='th' scope='row'>
+                  {row.name}
+                </TableCell>
+                <TableCell align='center'>{row.total}</TableCell>
+                <TableCell align='center'>{row.entries}</TableCell>
+                <TableCell align='center'>{row.exits}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   )
 }
