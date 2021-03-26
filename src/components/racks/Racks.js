@@ -1,4 +1,4 @@
-import Layout from 'src/components/Layout_'
+import Layout from 'src/components/LayoutResponsive'
 import Error from 'src/components/Error'
 import useTranslation from 'next-translate/useTranslation'
 // import RacksList from 'src/components/racks/RacksList'

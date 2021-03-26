@@ -115,7 +115,7 @@ export default function DeviceList ({ devices }) {
               <Avatar className={classes.avatar}>{item.a.name}</Avatar>
             </ListItemAvatar> */}
             <ListItemText
-              primary={item.a.name}
+              primary={<strong>{item.a.name}</strong>}
               secondary={secondaryText(item.a)}
             />
             <ListItemSecondaryAction>

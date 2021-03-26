@@ -5,7 +5,7 @@ import { useData } from 'src/lib/websocket'
 import fetchJson from 'src/lib/fetchJson'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
-// import Layout from 'src/components/Layout_'
+// import Layout from 'src/components/LayoutResponsive'
 import Error from 'src/components/Error'
 import CardsList from 'src/components/cards/CardsList'
 // material-ui

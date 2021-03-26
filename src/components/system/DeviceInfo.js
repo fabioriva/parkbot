@@ -21,7 +21,7 @@ export default function Cards ({ definitions, json, user }) {
       <Error
         definitions={definitions}
         message='Error 500'
-        title={device.a.name}
+        title={'device.a.name'}
         user={user}
       />
     )

@@ -27,27 +27,33 @@ const useStyles = makeStyles(theme => ({
 export default function HistoryQuery ({ onQuery, query }) {
   const classes = useStyles()
   const { t } = useTranslation('history')
-  console.log(query)
+
   return (
     <Container maxWidth='xl' className={classes.container}>
-      <Box flexGrow={1}>
-        <Typography className={classes.text} variant='subtitle2' gutterBottom>
-          {t('history-query-result', {
-            // count: query.count,
-            from: query.dateFrom,
-            to: query.dateTo
-          })}
-        </Typography>
-      </Box>
-      <Button
-        onClick={onQuery}
-        color='primary'
-        variant='outlined'
-        size='small'
-        startIcon={<SearchIcon />}
-      >
-        {t('history-query')}
-      </Button>
+      <div style={{ width: '100%' }}>
+        <Box display='flex' alignItems='center' mb={1}>
+          <Box flexGrow={1}>
+            <Typography className={classes.text} variant='subtitle1'>
+              {t('history-query-result', {
+                // count: query.count,
+                from: query.dateFrom,
+                to: query.dateTo
+              })}
+            </Typography>
+          </Box>
+          <Box>
+            <Button
+              onClick={onQuery}
+              color='primary'
+              variant='outlined'
+              size='small'
+              startIcon={<SearchIcon />}
+            >
+              {t('history-query')}
+            </Button>
+          </Box>
+        </Box>
+      </div>
     </Container>
   )
 }

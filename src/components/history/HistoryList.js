@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { formatDistanceToNow } from 'date-fns'
+import useTranslation from 'next-translate/useTranslation'
 import { FixedSizeList as List } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import Avatar from './ListAvatar'
@@ -10,7 +12,6 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-import { format, formatDistance, parseISO } from 'date-fns'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -23,24 +24,29 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function renderRow ({ data, index, style }) {
+  const { t } = useTranslation('history')
   // Access the items array using the "data" prop:
   const { query, user } = data
   const item = query[index]
+
   return (
     <div key={index}>
-      <Link href={`/${user.aps}/log/${item._id}`}>
+      <Link href={`/${user.aps}/history/${item._id}`}>
         <ListItem button style={style}>
           <ListItemAvatar>
-            <Avatar id={item.operation.id} />
+            <Avatar item={item} />
           </ListItemAvatar>
           <ListItemText
-            primary={format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')}
+            // primary={format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')}
+            primary={
+              item.device.id === 0 ? t('dev-operator') : item.device.name
+            }
             secondary={<Text item={item} />}
           />
           <Hidden xsDown>
             <ListItemSecondaryAction>
               <div>
-                {formatDistance(new Date(item.date), new Date(), {
+                {formatDistanceToNow(new Date(item.date), {
                   addSuffix: true
                 })}
               </div>
@@ -52,7 +58,7 @@ function renderRow ({ data, index, style }) {
   )
 }
 
-export default function UserActivity ({ query, user }) {
+export default function HistoryList ({ query, user }) {
   const classes = useStyles()
 
   return (

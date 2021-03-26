@@ -8,6 +8,14 @@
   "stall": "Stallo",
   "size": "Dimensione",
 
+  "log-date": "Data",
+  "log-device": "Dispositivo",
+  "log-mode": "Funzione",
+  "log-operation": "Operazione",
+  "log-card": "Tessera",
+  "log-stall": "Stallo",
+  "log-size": "Dimensione",
+
   "history-total-count": "Numero registrazioni {{count}}",
   "history-query-result": "{{from}} | {{to}}",
 

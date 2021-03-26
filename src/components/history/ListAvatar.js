@@ -7,7 +7,7 @@ import DirectionsCarIcon from '@material-ui/icons/DirectionsCar'
 import PaymentIcon from '@material-ui/icons/Payment'
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {},
   danger: {
     background: '#f2dede',
@@ -27,10 +27,10 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-export default function HistoryAvatar ({ id }) {
+export default function HistoryAvatar ({ item }) {
   const classes = useStyles()
 
-  switch (id) {
+  switch (item.operation.id) {
     case 1:
       return (
         <Avatar className={classes.danger}>
@@ -57,6 +57,13 @@ export default function HistoryAvatar ({ id }) {
       )
     case 5:
     case 6:
+      if (item.card === 999) {
+        return (
+          <Avatar className={classes.warning}>
+            <BuildIcon />
+          </Avatar>
+        )
+      }
       return (
         <Avatar className={classes.info}>
           <DirectionsCarIcon />
@@ -70,6 +77,6 @@ export default function HistoryAvatar ({ id }) {
         </Avatar>
       )
     default:
-      return <Avatar>{id}</Avatar>
+      return <Avatar>{item.operation.id}</Avatar>
   }
 }

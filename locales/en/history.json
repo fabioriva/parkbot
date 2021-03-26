@@ -8,6 +8,14 @@
   "stall": "Destination",
   "size": "Size",
 
+  "log-date": "Date",
+  "log-device": "Device",
+  "log-mode": "Mode",
+  "log-operation": "Operation",
+  "log-card": "Card",
+  "log-stall": "Destination",
+  "log-size": "Size",
+
   "history-total-count": "Total records {{count}}",
   "history-query-result": "{{from}} | {{to}}",
 

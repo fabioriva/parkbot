@@ -7,6 +7,7 @@
     "/[aps]/dashboard": ["history", "map", "system", "statistics"],
     "/[aps]/devices/[device]": ["system", "io"],
     "/[aps]/history": ["history"],
+    "/[aps]/history/[log]": ["history"],
     "/[aps]/map": ["map"],
     "/[aps]/overview": ["system", "io"],
     "/[aps]/racks/[rack]": ["io"],

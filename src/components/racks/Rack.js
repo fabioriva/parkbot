@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import Layout from 'src/components/Layout_'
+import Layout from 'src/components/LayoutResponsive'
 import Error from 'src/components/Error'
 import ListView from 'src/components/racks/IOList'
 import { useData } from 'src/lib/websocket'

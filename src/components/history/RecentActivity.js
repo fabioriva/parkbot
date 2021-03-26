@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function UserActivity ({ data, user }) {
+export default function RecentActivity ({ data, user }) {
   const classes = useStyles()
   const { t } = useTranslation('history')
 
@@ -27,7 +27,7 @@ export default function UserActivity ({ data, user }) {
       {data.documents.map((item, key) => (
         <ListItem key={key}>
           <ListItemAvatar>
-            <Avatar id={item.operation.id} />
+            <Avatar item={item} />
           </ListItemAvatar>
           <ListItemText
             // primary={format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')}

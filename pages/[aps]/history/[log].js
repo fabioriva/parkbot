@@ -1,36 +1,32 @@
 import { aps } from 'src/constants/aps'
 import { HISTORY } from 'src/constants/roles'
-import { fetchHistory } from 'src/lib/fetchJson'
-import History from 'src/components/history/HistoryMobile'
+import fetchJson from 'src/lib/fetchJson'
 import withAuthSync from 'src/hocs/withAuthSync'
+import DeviceInfo from 'src/components/history/HistoryLog'
 
-const Page = props => {
-  return <History {...props} />
-}
+const Page = props => <DeviceInfo {...props} />
 
-export async function getServerSideProps ({ params, req }) {
+export async function getServerSideProps ({ params }) {
   if (aps(params.aps) === -1) {
     return {
       notFound: true
     }
   }
 
-  const { APS_ID, APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
+  const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
     `src/constants/${params.aps}`
   )
-  const json = await fetchHistory(APS_ID, BACKEND_URL, { filter: 'a' })
+  const log = await fetchJson(`${BACKEND_URL}/history/${params.log}`)
 
   return {
     props: {
       definitions: {
-        apsId: APS_ID,
         apsName: APS_NAME,
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
         pageRole: HISTORY
-        // userRole: {}
       },
-      json
+      log
     }
   }
 }
