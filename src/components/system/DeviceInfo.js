@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import Error from 'next/error'
 // import { useRouter } from 'next/router'
 import { useData } from 'src/lib/websocket'
 import Layout from 'src/components/Layout'
+import Error from 'src/components/Error'
 import Actuator from 'src/components/system/Actuator'
 import Motor from 'src/components/system/Motor'
 import Silomat from './SilomatInfo'
@@ -16,7 +16,16 @@ export default function Cards ({ definitions, json, user }) {
 
   const { apsName, backendUrl, websockUrl } = definitions
 
-  if (json.err) return <Error statusCode={500} />
+  if (json.err) {
+    return (
+      <Error
+        definitions={definitions}
+        message='Error 500'
+        title={device.a.name}
+        user={user}
+      />
+    )
+  }
 
   const [device, setDevice] = useState(json)
   const { mesg } = useData('diagnostic', `${websockUrl}?channel=ch1`)

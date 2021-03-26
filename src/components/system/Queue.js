@@ -16,7 +16,41 @@ const useStyles = makeStyles(() => ({
   root: {}
 }))
 
-export default function Queue ({ handleDelete, queueList }) {
+// function chipColor (item) {
+//   switch (item.status) {
+//     case 0:
+//       return 'secondary'
+//     default:
+//       return 'default'
+//   }
+// }
+
+// function chipIcon (item) {
+//   switch (item.status) {
+//     case 0:
+//       return <BuildIcon />
+//     case 1:
+//       return <CheckCircleOutlineIcon />
+//     case 3:
+//       return <ErrorOutlineIcon />
+//     default:
+//       return <DriveEtaIcon />
+//   }
+// }
+
+// function chipLabel (item) {
+//   return item.card === 0 ? (
+//     <span>
+//       <strong>{item.name}</strong> is {item.label}
+//     </span>
+//   ) : (
+//     <span>
+//       <strong>{item.name}</strong> is {item.label} card {item.card}
+//     </span>
+//   )
+// }
+
+export default function Queue ({ authorization, handleDelete, queueList }) {
   const classes = useStyles()
 
   const { t } = useTranslation('system')
@@ -64,6 +98,7 @@ export default function Queue ({ handleDelete, queueList }) {
                   aria-label='delete'
                   // onClick={handleOpen}
                   onClick={() => handleOpen(item.card, key)}
+                  disabled={!authorization}
                 >
                   <DeleteIcon />
                 </IconButton>

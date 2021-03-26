@@ -1,62 +1,37 @@
 import useTranslation from 'next-translate/useTranslation'
-import React from 'react'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import Activity from 'src/components/history/RecentActivity'
+// import DashboardGrid from 'src/components/system/DashboardGrid'
+import DeviceList from 'src/components/system/DeviceList'
+import Queue from 'src/components/system/Queue'
 import Occupancy from 'src/components/map/PieChart'
 import Operations from 'src/components/statistics/BarChart'
 import useData from 'src/lib/useData'
-
 // material-ui
-import Grid from '@material-ui/core/Grid'
-
-// import Avatar from '@material-ui/core/Avatar'
-import Chip from '@material-ui/core/Chip'
-
-import BuildIcon from '@material-ui/icons/Build'
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
-import DriveEtaIcon from '@material-ui/icons/DriveEta'
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
-import FaceIcon from '@material-ui/icons/Face'
-
 import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-
-const system = [
-  { name: 'EVT1', status: 5, label: 'Exiting', card: 123 },
-  { name: 'EVT2', status: 1, label: 'Ready', card: 0 },
-  { name: 'EVT3', status: 0, label: 'manual', card: 0 },
-  { name: 'IVT4', status: 4, label: 'Entering', card: 7 },
-  { name: 'IVT4', status: 3, label: 'Error', card: 55 }
-]
-
-// const occupancy = [
-//   { id: 'free', label: 'Free', value: 87 },
-//   { id: 'busy', label: 'Busy', value: 7 },
-//   { id: 'lock', label: 'Locked', value: 6 }
-// ]
+// import BuildIcon from '@material-ui/icons/Build'
+// import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
+// import DriveEtaIcon from '@material-ui/icons/DriveEta'
+// import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
+// import FaceIcon from '@material-ui/icons/Face'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    // direction: 'column',
-    // justifyContent: 'center',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(0.5)
-    }
+  gridItem: {
+    display: 'flex'
   },
   widget: {
-    minWidth: 275
-    // minHeight: 300
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    width: '100%'
   }
-  // title: {
-  //   fontSize: 14
-  // },
 }))
 
 function Widget ({ children, link, title }) {
@@ -65,13 +40,7 @@ function Widget ({ children, link, title }) {
   return (
     <Card className={classes.widget}>
       <CardContent>
-        <Typography
-          className={classes.title}
-          variant='h6'
-          component='h2'
-          // color='textPrimary'
-          gutterBottom
-        >
+        <Typography variant='h6' component='h2' gutterBottom>
           {title}
         </Typography>
         {children}
@@ -85,42 +54,7 @@ function Widget ({ children, link, title }) {
   )
 }
 
-function chipColor (item) {
-  switch (item.status) {
-    case 0:
-      return 'secondary'
-    default:
-      return 'default'
-  }
-}
-
-function chipIcon (item) {
-  switch (item.status) {
-    case 0:
-      return <BuildIcon />
-    case 1:
-      return <CheckCircleOutlineIcon />
-    case 3:
-      return <ErrorOutlineIcon />
-    default:
-      return <DriveEtaIcon />
-  }
-  return <FaceIcon />
-}
-
-function chipLabel (item) {
-  return item.card === 0 ? (
-    <span>
-      <strong>{item.name}</strong> is {item.label}
-    </span>
-  ) : (
-    <span>
-      <strong>{item.name}</strong> is {item.label} card {item.card}
-    </span>
-  )
-}
-
-export default function Cards ({ definitions, json, user }) {
+export default function Dashboard ({ definitions, json, user }) {
   const classes = useStyles()
   const { t } = useTranslation()
 
@@ -152,6 +86,19 @@ export default function Cards ({ definitions, json, user }) {
 
   console.log(data)
 
+  const { activity, occupancy, operations, system } = data
+
+  const handleDelete = async ({ card, index }) => {
+    console.log(card, index)
+    // const json = await fetchJson(`${backendUrl}/system/queue/delete`, {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ card, index })
+    // })
+    // const snack = message(json)
+    // enqueueSnackbar(snack.message, snack.options)
+  }
+
   return (
     <Layout
       apsName={apsName}
@@ -159,79 +106,44 @@ export default function Cards ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <Widget title='System Info' link={`/${user.aps}/overview`}>
-            <Typography variant='body1' gutterBottom>
-              Total cards {data.cards}
-            </Typography>
-            <div className={classes.root}>
-              {system.map((item, key) => (
-                <Chip
-                  key={key}
-                  // avatar={<Avatar>{item.name}</Avatar>}
-                  color={chipColor(item)}
-                  icon={chipIcon(item)}
-                  label={chipLabel(item)}
-                  // style={{ backgroundColor: 'green' }}
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <Grid container spacing={1}>
+            <Grid item className={classes.gridItem} xs={12} lg>
+              <Widget title='System Info' link={`/${user.aps}/overview`}>
+                <DeviceList devices={system.devices} />
+              </Widget>
+            </Grid>
+            <Grid item className={classes.gridItem} xs={12} lg>
+              <Widget title='Exit Queue' link={`/${user.aps}/overview`}>
+                <Queue
+                  authorization={false}
+                  handleDelete={handleDelete}
+                  queueList={system.exitQueue.queueList}
                 />
-
-                // <Grid container spacing={1} key={key}>
-                //   <Grid item xs={6}>
-                //     <Typography variant='body1'>{item.name}</Typography>
-                //   </Grid>
-                //   <Grid item xs={6}>
-                //     <Chip
-                //       // avatar={<Avatar>{item.name}</Avatar>}
-                //       label={
-                //         item.card === 0 ? (
-                //           item.status
-                //         ) : (
-                //           <span>
-                //             {item.status} {item.card}
-                //           </span>
-                //         )
-                //       }
-                //     />
-                //     {/* <Typography variant='body1'>
-                //       {item.card === 0 ? (
-                //         item.status
-                //       ) : (
-                //         <span>
-                //           {item.status} {item.card}
-                //         </span>
-                //       )}
-                //     </Typography> */}
-                //   </Grid>
-                // </Grid>
-              ))}
-            </div>
-          </Widget>
+              </Widget>
+            </Grid>
+            <Grid item className={classes.gridItem} xs={12} lg={6}>
+              <Widget title='Occupancy' link={`/${user.aps}/map`}>
+                <Occupancy data={occupancy} />
+              </Widget>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Widget title='Recent Activity' link={`/${user.aps}/history`}>
-            <Activity data={data.activity} user={user} />
-          </Widget>
+        <Grid item xs={12}>
+          <Grid container spacing={1}>
+            <Grid item className={classes.gridItem} xs={12} lg={6}>
+              <Widget title='Recent Activity' link={`/${user.aps}/history`}>
+                <Activity data={activity} user={user} />
+              </Widget>
+            </Grid>
+            <Grid item className={classes.gridItem} xs={12} lg={6}>
+              <Widget title='Operations' link={`/${user.aps}/statistics`}>
+                <Operations data={operations[0]} />
+              </Widget>
+            </Grid>
+          </Grid>
         </Grid>
-        {/* <Grid item xs={12} md={6}>
-          <Widget title='Cards' link={`/${user.aps}/cards`}>
-            Total cards {data.cards}
-          </Widget>
-        </Grid> */}
-        <Grid item xs={12} md={6}>
-          <Widget title='Occupancy' link={`/${user.aps}/map`}>
-            <Occupancy data={data.occupancy} />
-          </Widget>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Widget title='Operations' link={`/${user.aps}/statistics`}>
-            <Operations data={data.operations[1]} />
-          </Widget>
-        </Grid>
-
-        {/* <Grid item xs={12} md={6}>
-          PN network
-        </Grid> */}
       </Grid>
     </Layout>
   )

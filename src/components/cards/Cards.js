@@ -4,12 +4,13 @@ import { useSnackbar } from 'notistack'
 import { useData } from 'src/lib/websocket'
 import fetchJson from 'src/lib/fetchJson'
 import message from 'src/lib/message'
-import Layout from 'src/components/Layout_'
+import Layout from 'src/components/Layout'
+// import Layout from 'src/components/Layout_'
 import Error from 'src/components/Error'
 import CardsList from 'src/components/cards/CardsList'
 // material-ui
-import Container from '@material-ui/core/Container'
-import Hidden from '@material-ui/core/Hidden'
+// import Container from '@material-ui/core/Container'
+// import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
 
 import { isAllowed } from 'src/lib/auth-actions'
@@ -59,7 +60,16 @@ export default function Cards ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <Container maxWidth='xl'>
+      <Typography variant='subtitle2' gutterBottom>
+        {t('cards-total-count', { count: cards.length })}
+      </Typography>
+      <CardsList
+        cards={cards}
+        handleEdit={handleEdit}
+        authorization={isAllowed(user, [userRole])}
+      />
+
+      {/* <Container maxWidth='xl'>
         <Typography variant='subtitle2' gutterBottom>
           {t('cards-total-count', { count: cards.length })}
         </Typography>
@@ -77,7 +87,7 @@ export default function Cards ({ definitions, json, user }) {
           handleEdit={handleEdit}
           authorization={isAllowed(user, [userRole])}
         />
-      </Hidden>
+      </Hidden> */}
     </Layout>
   )
 }

@@ -45,7 +45,7 @@ export default function Bar (props) {
           valueField='entries'
           argumentField='name'
           // color="lime"
-          // barWidth={0.5}
+          barWidth={0.5}
         />
 
         <BarSeries
@@ -53,7 +53,7 @@ export default function Bar (props) {
           valueField='exits'
           argumentField='name'
           // color="red"
-          // barWidth={0.5}
+          barWidth={0.5}
         />
 
         {/* <BarSeries
