@@ -135,7 +135,7 @@ export default function Home (props) {
               Get Started
             </Button>
           </div>
-          <Grid
+          {/* <Grid
             container
             // direction='row'
             // justify='center'
@@ -157,7 +157,7 @@ export default function Home (props) {
                 <Paper className={classes.paper}>Feature 3</Paper>
               </Box>
             </Grid>
-          </Grid>
+          </Grid> */}
           <Box mt={4}>
             <Copyright />
           </Box>

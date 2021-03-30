@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
+import { ACTIONS, DIAGNOSTIC } from 'src/constants/roles'
+import { isAllowed } from 'src/lib/auth-actions'
 import Info from './Info'
 import Item from './Item'
 import Lamp from './Lamp'
@@ -127,7 +129,7 @@ export default function Device ({ actions, authorization, item, user }) {
           <Button
             // size='small'
             color='primary'
-            disabled={!authorization || !item.enable.status}
+            disabled={!isAllowed(user, [ACTIONS]) || !item.enable.status}
             key={key}
             onClick={
               () => actions[key] !== undefined && actions[key](id) //, item.write)
@@ -137,7 +139,11 @@ export default function Device ({ actions, authorization, item, user }) {
           </Button>
         ))}
         <Link href={`/${user.aps}/devices/${id - 1}`} locale={lang}>
-          <Button color='primary' style={{ marginLeft: 'auto' }}>
+          <Button
+            color='primary'
+            style={{ marginLeft: 'auto' }}
+            disabled={!isAllowed(user, [DIAGNOSTIC])}
+          >
             More
           </Button>
         </Link>

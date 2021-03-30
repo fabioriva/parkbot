@@ -16,7 +16,7 @@ export async function getServerSideProps ({ params }) {
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
     `src/constants/${params.aps}`
   )
-  const log = await fetchJson(`${BACKEND_URL}/history/${params.log}`)
+  const json = await fetchJson(`${BACKEND_URL}/history/${params.log}`)
 
   return {
     props: {
@@ -26,7 +26,7 @@ export async function getServerSideProps ({ params }) {
         websockUrl: WEBSOCK_URL,
         pageRole: HISTORY
       },
-      log
+      json
     }
   }
 }

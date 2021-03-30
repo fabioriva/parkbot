@@ -39,8 +39,12 @@
   "motor-traveling": "Traveling",
   "motor-rotation": "Rotation",
   "motor-door": "Door",
+  "motor-door-entry": "Entry door",
+  "motor-door-exit": "Exit door",
   "motor-flap": "Flap",
-  "motor-lock": "Locking {{type}}",
+  "motor-lock": "Locking",
+  "motor-lock-v": "Locking (V)",
+  "motor-lock-r": "Locking (R)",
 
   "motion-err": "---",
   "motion-no": "stop",

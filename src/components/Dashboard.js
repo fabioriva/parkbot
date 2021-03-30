@@ -65,26 +65,24 @@ export default function Dashboard ({ definitions, json, user }) {
   // const lang =
   //   user.locale === 'en-US' ? 'en' : user.locale === 'it-IT' ? 'it' : 'en'
 
-  if (json.err) {
-    return (
-      <Error
-        definitions={definitions}
-        message='Error 500'
-        title={t('common:title-dashboard')}
-        user={user}
-      />
-    )
-  }
+  const errorPage = (
+    <Error
+      definitions={definitions}
+      message='Error 500'
+      title={t('common:title-dashboard')}
+      user={user}
+    />
+  )
+
+  if (json.err) return errorPage
 
   const { data, isLoading, isError } = useData(`${backendUrl}/dashboard`, {
     initialData: json,
     refreshInterval: 1000
   })
 
-  if (isError) return <div>failed to load</div>
+  if (isError) return errorPage
   if (isLoading) return <div>loading...</div>
-
-  console.log(data)
 
   const { activity, occupancy, operations, system } = data
 

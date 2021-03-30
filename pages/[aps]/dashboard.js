@@ -1,5 +1,5 @@
 import { aps, apsPaths } from 'src/constants/aps'
-import { OVERVIEW, ACTIONS } from 'src/constants/roles'
+import { DASHBOARD, ACTIONS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import Dashboard from 'src/components/Dashboard'
 import withAuthSync from 'src/hocs/withAuthSync'
@@ -32,7 +32,7 @@ export async function getStaticProps ({ params }) {
         apsName: APS_NAME,
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
-        pageRole: OVERVIEW,
+        pageRole: DASHBOARD,
         userRole: ACTIONS
       },
       json

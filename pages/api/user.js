@@ -6,7 +6,7 @@ export default async function profile (req, res) {
     if (!token) {
       res.status(200).send({ user: false })
     } else {
-      const url = `${process.env.AUTH_PROVIDER}/profile.js`
+      const url = `${process.env.AUTH_PROVIDER}/profile` // .js`
       const response = await global.fetch(url, {
         method: 'POST',
         credentials: 'include',

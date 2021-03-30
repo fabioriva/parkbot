@@ -14,9 +14,10 @@ export const STATISTICS = 'statistics'
 export const ALARMS = 'alarms'
 // App
 export const DASHBOARD = 'dashboard'
+export const DEVICE = 'device'
 
 // rights (actions)
 export const ACTIONS = 'actions'
+export const DIAGNOSTIC = 'diagnostic'
 export const EDIT_CARD = 'edit-card'
 export const EDIT_STALL = 'edit-stall'
-export const DIAGNOSTIC = 'diagnostic'

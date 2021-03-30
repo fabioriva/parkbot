@@ -39,8 +39,12 @@
   "motor-traveling": "Traslazione",
   "motor-rotation": "Rotazione",
   "motor-door": "Porta",
+  "motor-door-entry": "Porta di entrata",
+  "motor-door-exit": "Porta di uscita",
   "motor-flap": "Clappa",
-  "motor-lock": "Martinetto {{type}}",
+  "motor-lock": "Martinetto",
+  "motor-lock-v": "Martinetto (V)",
+  "motor-lock-r": "Martinetto (R)",
 
   "motion-err": "---",
   "motion-no": "stop",

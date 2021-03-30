@@ -16,7 +16,7 @@ import Link from '@material-ui/core/Link'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 
-const START_PAGE = 'overview' // 'dashboard'
+const START_PAGE = 'dashboard'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,9 +63,11 @@ export default function Signin () {
         body: JSON.stringify(body)
       })
       if (res.status === 200) {
-        const { aps } = await res.json()
+        // const { aps } = await res.json()
+        const { aps, locale } = await res.json()
         const url = aps !== undefined ? `/${aps}/${START_PAGE}` : '/'
-        router.push(url, url, { locale: 'it' }) // TODO: get user locale from auth provider response
+        console.log(aps, locale, url)
+        router.push(url, url, { locale: locale })
       } else {
         console.log(res.status)
         throw new Error(await res.text())

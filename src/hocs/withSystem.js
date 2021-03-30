@@ -94,8 +94,8 @@ const withSystem = WrappedComponent => {
         key={key}
         item={item}
         actions={[handleOpen]} //, handleRollback]}
-        authorization={isAllowed(user, [userRole])}
         user={user}
+        // authorization={isAllowed(user, [userRole])
       />
     ))
 
