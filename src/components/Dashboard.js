@@ -60,11 +60,6 @@ export default function Dashboard ({ definitions, json, user }) {
 
   const { apsName, backendUrl, websockUrl } = definitions
 
-  console.log(json)
-
-  // const lang =
-  //   user.locale === 'en-US' ? 'en' : user.locale === 'it-IT' ? 'it' : 'en'
-
   const errorPage = (
     <Error
       definitions={definitions}
@@ -96,6 +91,8 @@ export default function Dashboard ({ definitions, json, user }) {
     // const snack = message(json)
     // enqueueSnackbar(snack.message, snack.options)
   }
+
+  const lang = user.locale !== undefined ? user.locale : 'en'
 
   return (
     <Layout

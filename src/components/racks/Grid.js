@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 function CardItem ({ rack, user }) {
   const classes = useStyles()
-  console.log(rack)
+
   return (
     <Card className={classes.root}>
       <CardActionArea>

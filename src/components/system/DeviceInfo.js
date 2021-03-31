@@ -38,10 +38,6 @@ export default function Cards ({ definitions, json, user }) {
     }
   }, [mesg])
 
-  // console.log(json)
-
-  // const d = overview.devices[device]
-
   return (
     <Layout
       apsName={apsName}

@@ -44,8 +44,6 @@ export default function Statistics ({ definitions, json, user }) {
 
   const [statistics, setStatistics] = useState(json)
 
-  console.log(statistics)
-
   const [value, setValue] = useState(0)
 
   const handleChange = (event, newValue) => {

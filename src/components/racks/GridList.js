@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList ({ racks, user }) {
   const classes = useStyles()
-  console.log(racks)
+
   return (
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList} cols={2}>

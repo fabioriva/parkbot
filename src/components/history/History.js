@@ -34,7 +34,6 @@ export default function History ({ definitions, json, user }) {
       dateFrom: data['datetime-from'],
       dateTo: data['datetime-to']
     })
-    console.log(json)
     setHistory(json)
     setOpen(false)
   }

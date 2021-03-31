@@ -37,9 +37,7 @@ export function mainListItems (diag, user) {
   //   setOpen(!open)
   // }
 
-  const lang =
-    user.locale === 'en-US' ? 'en' : user.locale === 'it-IT' ? 'it' : 'en'
-  // console.log(user.locale, lang)
+  const lang = user.locale !== undefined ? user.locale : 'en'
 
   return (
     <List>
