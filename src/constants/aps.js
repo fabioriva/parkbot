@@ -1,11 +1,11 @@
 const APS = [
-  'bassano',
+  // 'bassano',
   // 'chiattone',
-  'matalon',
+  // 'matalon',
   // 'muse',
   // 'nyu',
   'wallstreet',
-  'wareham',
+  // 'wareham',
   'washingtonblvd'
 ]
 
