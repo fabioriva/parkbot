@@ -69,12 +69,12 @@ export default function Signin () {
         console.log(aps, locale, url)
         router.push(url, url, { locale: locale })
       } else {
-        console.log(res.status)
         throw new Error(await res.text())
       }
     } catch (error) {
-      console.error('An unexpected error happened occurred:', error)
-      setError(error.message)
+      console.error('An unexpected error occurred:', error)
+      // setError(error.message)
+      setError('Unauthorized')
     }
   }
 
