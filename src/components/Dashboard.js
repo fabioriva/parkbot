@@ -139,7 +139,7 @@ export default function Dashboard ({ definitions, json, user }) {
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget title='Operations' link={`/${user.aps}/statistics`}>
-                {/* <Operations data={operations[0]} /> */}
+                <Operations data={data.operations[0]} />
               </Widget>
             </Grid>
           </Grid>
