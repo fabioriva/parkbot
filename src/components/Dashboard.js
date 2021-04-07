@@ -134,7 +134,7 @@ export default function Dashboard ({ definitions, json, user }) {
           <Grid container spacing={1}>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget title='Recent Activity' link={`/${user.aps}/history`}>
-                <Activity data={data.activity} user={user} />
+                {/* <Activity data={data.activity} user={user} /> */}
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>

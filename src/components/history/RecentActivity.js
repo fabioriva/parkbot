@@ -26,17 +26,15 @@ export default function RecentActivity ({ data, user }) {
     <List className={classes.root} dense>
       {data.documents.map((item, key) => (
         <ListItem key={key}>
-          {/* <ListItemAvatar>
+          <ListItemAvatar>
             <Avatar item={item} />
-          </ListItemAvatar> */}
+          </ListItemAvatar>
           <ListItemText
             // primary={format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')}
-            // primary={
-            //   item.device.id === 0 ? t('dev-operator') : item.device.name
-            // }
-            // secondary={<Text item={item} />}
-            primary='Primary'
-            secondary='Secondary'
+            primary={
+              item.device.id === 0 ? t('dev-operator') : item.device.name
+            }
+            secondary={<Text item={item} />}
           />
           <Hidden xsDown>
             <ListItemSecondaryAction>
