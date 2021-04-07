@@ -116,11 +116,11 @@ export default function Dashboard ({ definitions, json, user }) {
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg>
               <Widget title='Exit Queue' link={`/${user.aps}/overview`}>
-                {/* <Queue
+                <Queue
                   authorization={false}
                   handleDelete={handleDelete}
-                  queueList={system.exitQueue.queueList}
-                /> */}
+                  queueList={data.system.exitQueue.queueList}
+                />
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
