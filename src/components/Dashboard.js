@@ -82,7 +82,7 @@ export default function Dashboard ({ definitions, json, user }) {
   // if (isError) return errorPage
   // if (isLoading) return <div>loading...</div>
 
-  const { activity, occupancy, operations, system } = data
+  // const { activity, occupancy, operations, system } = data
 
   const handleDelete = async ({ card, index }) => {
     console.log(card, index)
@@ -109,21 +109,21 @@ export default function Dashboard ({ definitions, json, user }) {
           <Grid container spacing={1}>
             <Grid item className={classes.gridItem} xs={12} lg>
               <Widget title='System Info' link={`/${user.aps}/overview`}>
-                <DeviceList devices={system.devices} />
+                {/* <DeviceList devices={system.devices} /> */}
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg>
               <Widget title='Exit Queue' link={`/${user.aps}/overview`}>
-                <Queue
+                {/* <Queue
                   authorization={false}
                   handleDelete={handleDelete}
                   queueList={system.exitQueue.queueList}
-                />
+                /> */}
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget title='Occupancy' link={`/${user.aps}/map`}>
-                <Occupancy data={occupancy} />
+                {/* <Occupancy data={occupancy} /> */}
               </Widget>
             </Grid>
           </Grid>
@@ -132,12 +132,12 @@ export default function Dashboard ({ definitions, json, user }) {
           <Grid container spacing={1}>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget title='Recent Activity' link={`/${user.aps}/history`}>
-                <Activity data={activity} user={user} />
+                {/* <Activity data={activity} user={user} /> */}
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget title='Operations' link={`/${user.aps}/statistics`}>
-                <Operations data={operations[0]} />
+                {/* <Operations data={operations[0]} /> */}
               </Widget>
             </Grid>
           </Grid>
