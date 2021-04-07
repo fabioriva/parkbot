@@ -26,10 +26,9 @@ export default function RecentActivity ({ data, user }) {
     <List className={classes.root} dense>
       {data.documents.map((item, key) => (
         <ListItem key={key}>
-          <ListItemAvatar>
-            {/* <Avatar item={item} /> */}
-            <Avatar>{item.operation.id}</Avatar>
-          </ListItemAvatar>
+          {/* <ListItemAvatar>
+            <Avatar item={item} />
+          </ListItemAvatar> */}
           <ListItemText
             // primary={format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')}
             // primary={
