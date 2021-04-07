@@ -7,7 +7,7 @@ import withMap from 'src/hocs/withMap'
 
 const componentList = {
   bassano: dynamic(() => import('src/aps/bassano/Map')),
-  // chiattone: dynamic(() => import('src/aps/chiattone/Map')),
+  bmc: dynamic(() => import('src/aps/bmc/Map')),
   wareham: dynamic(() => import('src/aps/wareham/Map')),
   wallstreet: dynamic(() => import('src/aps/wallstreet/Map')),
   washingtonblvd: dynamic(() => import('src/aps/washingtonblvd/Map'))
@@ -32,14 +32,9 @@ export async function getStaticProps ({ params }) {
     }
   }
 
-  const {
-    APS_NAME,
-    BACKEND_URL,
-    WEBSOCK_URL,
-    CARDS,
-    STALLS,
-    STALL_STATUS
-  } = await import(`src/constants/${params.aps}`)
+  const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
+    `src/constants/${params.aps}`
+  )
   const json = await fetchJson(`${BACKEND_URL}/map`)
 
   return {
@@ -50,10 +45,7 @@ export async function getStaticProps ({ params }) {
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
         pageRole: MAP,
-        userRole: EDIT_STALL,
-        cards: CARDS,
-        stalls: STALLS,
-        stallStatus: STALL_STATUS
+        userRole: EDIT_STALL
       },
       json
     },

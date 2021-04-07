@@ -23,7 +23,8 @@ import clsx from 'clsx'
 const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: theme.spacing(3),
-    maxWidth: 345
+    width: '100%'
+    // maxWidth: 345
   },
   cardHeader: {
     backgroundColor: '#c0c0c0',
@@ -85,8 +86,7 @@ export default function Device ({ actions, authorization, item, user }) {
     </Grid>
   )
 
-  const lang =
-    user.locale === 'en-US' ? 'en' : user.locale === 'it-IT' ? 'it' : 'en'
+  const locale = user.locale !== undefined ? user.locale : 'en'
 
   return (
     <Card className={classes.root}>
@@ -138,7 +138,7 @@ export default function Device ({ actions, authorization, item, user }) {
             {t('system:' + item.label)}
           </Button>
         ))}
-        <Link href={`/${user.aps}/devices/${id - 1}`} locale={lang}>
+        <Link href={`/${user.aps}/devices/${id - 1}`} locale={locale}>
           <Button
             color='primary'
             style={{ marginLeft: 'auto' }}

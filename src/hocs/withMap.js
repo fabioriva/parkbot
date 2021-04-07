@@ -26,9 +26,9 @@ const withMap = WrappedComponent => {
       apsName,
       backendUrl,
       websockUrl,
-      cards,
-      stalls,
-      stallStatus,
+      // cards,
+      // stalls,
+      // stallStatus,
       userRole
     } = definitions
 
@@ -52,6 +52,8 @@ const withMap = WrappedComponent => {
         setMap(mesg)
       }
     }, [mesg])
+
+    const { cards, stalls, stallStatus } = map.definitions
 
     // Radio
     const [filter, setFilter] = useState('SHOW_NUMBERS')

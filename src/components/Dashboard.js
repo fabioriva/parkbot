@@ -92,7 +92,7 @@ export default function Dashboard ({ definitions, json, user }) {
     // enqueueSnackbar(snack.message, snack.options)
   }
 
-  const lang = user.locale !== undefined ? user.locale : 'en'
+  // const locale = user.locale !== undefined ? user.locale : 'en'
 
   return (
     <Layout

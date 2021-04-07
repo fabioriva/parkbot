@@ -5,7 +5,7 @@ import useTranslation from 'next-translate/useTranslation'
 function Bit ({ item, nr }) {
   const { t } = useTranslation('io')
 
-  const { addr, byte, bit, label, status } = item
+  const { addr, bit, label, status } = item
 
   return (
     <>
@@ -486,7 +486,7 @@ function Byte ({ byte, nr }) {
   const { bits, label } = byte
   return (
     <>
-      <div className='label' id={'label-'.concat(nr)}>
+      <div className='label' id={'label-' + nr}>
         {label}
       </div>
       {bits.map((item, key) => (
@@ -524,10 +524,10 @@ function Byte ({ byte, nr }) {
   )
 }
 
-function Card ({ card }) {
-  const { bytes, nr, type } = card
+export default function Module ({ module }) {
+  const { bytes, nr, type } = module
   return (
-    <div className='card' id={'card-'.concat(nr)}>
+    <div className='card' id={'card-' + nr}>
       <div className='card-title'>Card {nr}</div>
       <div className='card-type'>{type}</div>
       {bytes.map((item, key) => (
@@ -590,39 +590,6 @@ function Card ({ card }) {
           #card-8 {
             left: 1128px;
             top: 1px;
-          }
-        `}
-      </style>
-    </div>
-  )
-}
-
-export default function ET200M ({ rack }) {
-  const { cards, nr, serie } = rack
-  return (
-    <div className='rack-container' id={'rack-' + nr}>
-      <span className='rack'>Simatic PLC Rack {nr}</span>
-      {cards.map((item, key) => (
-        <Card key={key} card={item} />
-      ))}
-      <style jsx>
-        {`
-          .rack-container {
-            position: relative;
-            background-color: #c0c0c0;
-            border: 1px solid #000000;
-            height: 364px;
-            width: 100%;
-            left: 0px;
-            top: 20px;
-            text-align: center;
-          }
-          .rack {
-            color: #808080;
-            font-size: 48px;
-            font-weight: 600;
-            vertical-align: middle;
-            line-height: 364px;
           }
         `}
       </style>

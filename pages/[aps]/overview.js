@@ -7,6 +7,7 @@ import withSystem from 'src/hocs/withSystem'
 
 const componentList = {
   bassano: dynamic(() => import('src/aps/bassano/Overview')),
+  bmc: dynamic(() => import('src/aps/bmc/Overview')),
   wareham: dynamic(() => import('src/aps/wareham/Overview')),
   wallstreet: dynamic(() => import('src/aps/wallstreet/Overview')),
   washingtonblvd: dynamic(() => import('src/aps/washingtonblvd/Overview'))
@@ -37,8 +38,8 @@ export async function getServerSideProps ({ params }) {
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
         pageRole: OVERVIEW,
-        userRole: ACTIONS,
-        cards: CARDS
+        userRole: ACTIONS
+        // cards: CARDS
       },
       json
     }

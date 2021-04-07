@@ -2,7 +2,7 @@ import React from 'react'
 // import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import Link from 'next/link'
-import { makeStyles } from '@material-ui/core/styles'
+// import { makeStyles } from '@material-ui/core/styles'
 // import Badge from '@material-ui/core/Badge'
 // import Collapse from '@material-ui/core/Collapse'
 import List from '@material-ui/core/List'
@@ -37,11 +37,11 @@ export function mainListItems (diag, user) {
   //   setOpen(!open)
   // }
 
-  const lang = user.locale !== undefined ? user.locale : 'en'
+  const locale = user.locale !== undefined ? user.locale : 'en'
 
   return (
     <List>
-      <Link href={`/${user.aps}/dashboard`} locale={lang}>
+      <Link href={`/${user.aps}/dashboard`} locale={locale}>
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon />
@@ -50,7 +50,7 @@ export function mainListItems (diag, user) {
         </ListItem>
       </Link>
 
-      <Link href={`/${user.aps}/overview`} locale={lang}>
+      <Link href={`/${user.aps}/overview`} locale={locale}>
         <ListItem button>
           <ListItemIcon>
             <VisibilityIcon />
@@ -59,7 +59,7 @@ export function mainListItems (diag, user) {
         </ListItem>
       </Link>
 
-      <Link href={`/${user.aps}/map`} locale={lang}>
+      <Link href={`/${user.aps}/map`} locale={locale}>
         <ListItem button>
           <ListItemIcon>
             <DirectionsCarIcon />
@@ -68,7 +68,7 @@ export function mainListItems (diag, user) {
         </ListItem>
       </Link>
 
-      <Link href={`/${user.aps}/cards`} locale={lang}>
+      <Link href={`/${user.aps}/cards`} locale={locale}>
         <ListItem button>
           <ListItemIcon>
             <CreditCardIcon />
@@ -77,7 +77,7 @@ export function mainListItems (diag, user) {
         </ListItem>
       </Link>
 
-      <Link href={`/${user.aps}/racks`} locale={lang}>
+      <Link href={`/${user.aps}/racks`} locale={locale}>
         <ListItem button>
           <ListItemIcon>
             <ViewComfyIcon />
@@ -86,7 +86,7 @@ export function mainListItems (diag, user) {
         </ListItem>
       </Link>
 
-      <Link href={`/${user.aps}/history`} locale={lang}>
+      <Link href={`/${user.aps}/history`} locale={locale}>
         <ListItem button>
           <ListItemIcon>
             <HistoryIcon />
@@ -95,7 +95,7 @@ export function mainListItems (diag, user) {
         </ListItem>
       </Link>
 
-      <Link href={`/${user.aps}/statistics`} locale={lang}>
+      <Link href={`/${user.aps}/statistics`} locale={locale}>
         <ListItem button>
           <ListItemIcon>
             <BarChartIcon />

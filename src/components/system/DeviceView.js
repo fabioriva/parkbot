@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useData } from 'src/lib/websocket'
 import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
@@ -11,9 +11,6 @@ import Vfd from 'src/components/system/Vfd'
 import Grid from '@material-ui/core/Grid'
 
 export default function Cards ({ definitions, json, user }) {
-  // const router = useRouter()
-  // const { aps, device } = router.query
-
   const { apsName, backendUrl, websockUrl } = definitions
 
   if (json.err) {
@@ -21,49 +18,52 @@ export default function Cards ({ definitions, json, user }) {
       <Error
         definitions={definitions}
         message='Error 500'
-        title={'device.a.name'}
+        title='Device Info'
         user={user}
       />
     )
   }
 
-  const [device, setDevice] = useState(json)
+  const router = useRouter()
+  const { aps, device } = router.query
+
+  const [data, setData] = useState(json)
   const { mesg } = useData('diagnostic', `${websockUrl}?channel=ch1`)
 
-  const index = device.a.id - 1
+  // const index = device.a.id - 1
 
   useEffect(() => {
     if (mesg) {
-      setDevice(mesg[index])
+      setData(mesg[device])
     }
   }, [mesg])
 
   return (
     <Layout
       apsName={apsName}
-      pageTitle={device.a.name} // {t('title')}
+      pageTitle={data.a.name} // {t('title')}
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
       <Grid container spacing={3}>
-        {device.f?.map((item, key) => (
+        {data.f?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Actuator item={item} />
           </Grid>
         ))}
-        {device.g?.map((item, key) => (
+        {data.g?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Motor item={item} />
           </Grid>
         ))}
-        {device.h?.map((item, key) => (
+        {data.h?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Vfd item={item} />
           </Grid>
         ))}
-        {device.i !== undefined && (
+        {data.i !== undefined && (
           <Grid item xs={12} md={6} lg={4} xl={3}>
-            <Silomat item={device.i} />
+            <Silomat item={data.i} />
           </Grid>
         )}
       </Grid>

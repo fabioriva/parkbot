@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
@@ -28,6 +27,8 @@ const useStyles = makeStyles(theme => ({
 export default function TitlebarGridList ({ racks, user }) {
   const classes = useStyles()
 
+  const locale = user.locale !== undefined ? user.locale : 'en'
+
   return (
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList} cols={2}>
@@ -38,24 +39,24 @@ export default function TitlebarGridList ({ racks, user }) {
           <GridListTile key={tile.nr}>
             <img
               src={
-                tile.serie === 'et200m' ? '/et200mp-1.png' : '/et200sp-2.jpg'
+                tile.serie === 'et200m' ? '/et200mp-1.png' : '/et200sp-1.png'
               }
               alt={tile.title}
             />
-            <GridListTileBar
-              title={tile.title}
-              subtitle={<span>PLC Rack {tile.nr}</span>}
-              actionIcon={
-                <Link href={`/${user.aps}/racks/${key}`}>
+            <Link href={`/${user.aps}/racks/${key}`} locale={locale}>
+              <GridListTileBar
+                title={tile.title}
+                subtitle={<span>PLC Rack {tile.nr}</span>}
+                actionIcon={
                   <IconButton
                     aria-label={`PLC Rack ${tile.nr}`}
                     className={classes.icon}
                   >
                     <InfoIcon />
                   </IconButton>
-                </Link>
-              }
-            />
+                }
+              />
+            </Link>
           </GridListTile>
         ))}
       </GridList>

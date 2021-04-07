@@ -21,7 +21,7 @@ const withSystem = WrappedComponent => {
     const { enqueueSnackbar } = useSnackbar()
 
     const { definitions, json, user } = props
-    const { apsName, backendUrl, cards, websockUrl, userRole } = definitions
+    const { apsName, backendUrl, websockUrl, userRole } = definitions
 
     if (json.err) {
       return (
@@ -45,7 +45,12 @@ const withSystem = WrappedComponent => {
     }, [mesg])
 
     // Dialog
-    const DIALOG_INIT_VALUES = { id: 0, card: 1, minCard: 1, maxCard: cards }
+    const DIALOG_INIT_VALUES = {
+      id: 0,
+      card: 1,
+      minCard: 1,
+      maxCard: overview.definitions.cards
+    }
     const [open, setOpen] = useState(false)
     const [operation, setOperation] = useState(DIALOG_INIT_VALUES)
 

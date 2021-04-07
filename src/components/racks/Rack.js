@@ -1,25 +1,26 @@
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import Layout from 'src/components/LayoutResponsive'
+import { useData } from 'src/lib/websocket'
+import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
 import ListView from 'src/components/racks/IOList'
-import { useData } from 'src/lib/websocket'
 import useTranslation from 'next-translate/useTranslation'
 // material ui
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import Hidden from '@material-ui/core/Hidden'
 
-const componentList = {
-  et200m: dynamic(() => import('src/components/racks/ET200M')),
-  et200s: dynamic(() => import('src/components/racks/ET200S'))
-}
+import PlcRack from 'src/components/racks/PlcRack'
+
+// const componentList = {
+//   et200m: dynamic(() => import('src/components/racks/ET200M')),
+//   et200s: dynamic(() => import('src/components/racks/ET200S'))
+// }
 
 export default function Rack ({ definitions, json, user }) {
   const { t } = useTranslation('common')
-  const router = useRouter()
-  const { aps, rack } = router.query
+
   const { apsName, websockUrl } = definitions
 
   if (json.err) {
@@ -33,20 +34,23 @@ export default function Rack ({ definitions, json, user }) {
     )
   }
 
-  const [racks, setRacks] = useState(json)
+  const router = useRouter()
+  const { rack } = router.query
+
+  const [data, setData] = useState(json)
   const { mesg } = useData('racks', `${websockUrl}?channel=ch1`)
 
   useEffect(() => {
     if (mesg) {
-      setRacks(mesg)
+      setData(mesg[rack])
     }
   })
 
-  const DynamicComponent = componentList[racks[rack].serie]
+  // const DynamicComponent = componentList[rack.serie]
 
   const title = (
     <span>
-      {t('title-racks')} {racks[rack].title}
+      {t('title-racks')} {rack.title}
     </span>
   )
 
@@ -60,11 +64,12 @@ export default function Rack ({ definitions, json, user }) {
       <Container maxWidth='xl'>
         <Hidden implementation='css' xsDown>
           <Button onClick={() => window.history.back()}>Back</Button>
-          <DynamicComponent rack={racks[rack]} />
+          {/* <DynamicComponent rack={rack} /> */}
+          <PlcRack rack={data} />
         </Hidden>
       </Container>
       <Hidden implementation='css' smUp>
-        <ListView rack={racks[rack]} />
+        <ListView rack={data} />
       </Hidden>
     </Layout>
   )

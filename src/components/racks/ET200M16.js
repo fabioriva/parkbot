@@ -5,7 +5,7 @@ import useTranslation from 'next-translate/useTranslation'
 function Bit ({ item, nr }) {
   const { t } = useTranslation('io')
 
-  const { addr, byte, bit, label, status } = item
+  const { addr, bit, label, status } = item
 
   return (
     <>
@@ -60,7 +60,7 @@ function Bit ({ item, nr }) {
             border: 1px solid #000000;
             font-size: 0.78em;
 
-            width: 45px;
+            width: 90px;
           }
           .nr {
             position: absolute;
@@ -282,200 +282,6 @@ function Bit ({ item, nr }) {
             left: 22px;
             top: 312px;
           }
-
-          #id-20 {
-            left: 78px;
-            top: 23px;
-          }
-          #nr-20 {
-            left: 135px;
-            top: 23px;
-          }
-          #st-20 {
-            left: 123px;
-            top: 23px;
-          }
-          #id-21 {
-            left: 78px;
-            top: 40px;
-          }
-          #nr-21 {
-            left: 135px;
-            top: 40px;
-          }
-          #st-21 {
-            left: 123px;
-            top: 40px;
-          }
-          #id-22 {
-            left: 78px;
-            top: 57px;
-          }
-          #nr-22 {
-            left: 135px;
-            top: 57px;
-          }
-          #st-22 {
-            left: 123px;
-            top: 57px;
-          }
-          #id-23 {
-            left: 78px;
-            top: 74px;
-          }
-          #nr-23 {
-            left: 135px;
-            top: 74px;
-          }
-          #st-23 {
-            left: 123px;
-            top: 74px;
-          }
-          #id-24 {
-            left: 78px;
-            top: 91px;
-          }
-          #nr-24 {
-            left: 135px;
-            top: 91px;
-          }
-          #st-24 {
-            left: 123px;
-            top: 91px;
-          }
-          #id-25 {
-            left: 78px;
-            top: 108px;
-          }
-          #nr-25 {
-            left: 135px;
-            top: 108px;
-          }
-          #st-25 {
-            left: 123px;
-            top: 108px;
-          }
-          #id-26 {
-            left: 78px;
-            top: 125px;
-          }
-          #nr-26 {
-            left: 135px;
-            top: 125px;
-          }
-          #st-26 {
-            left: 123px;
-            top: 125px;
-          }
-          #id-27 {
-            left: 78px;
-            top: 142px;
-          }
-          #nr-27 {
-            left: 135px;
-            top: 142px;
-          }
-          #st-27 {
-            left: 123px;
-            top: 142px;
-          }
-
-          #id-30 {
-            left: 78px;
-            top: 193px;
-          }
-          #nr-30 {
-            left: 135px;
-            top: 193px;
-          }
-          #st-30 {
-            left: 123px;
-            top: 193px;
-          }
-          #id-31 {
-            left: 78px;
-            top: 210px;
-          }
-          #nr-31 {
-            left: 135px;
-            top: 210px;
-          }
-          #st-31 {
-            left: 123px;
-            top: 210px;
-          }
-          #id-32 {
-            left: 78px;
-            top: 227px;
-          }
-          #nr-32 {
-            left: 135px;
-            top: 227px;
-          }
-          #st-32 {
-            left: 123px;
-            top: 227px;
-          }
-          #id-33 {
-            left: 78px;
-            top: 244px;
-          }
-          #nr-33 {
-            left: 135px;
-            top: 244px;
-          }
-          #st-33 {
-            left: 123px;
-            top: 244px;
-          }
-          #id-34 {
-            left: 78px;
-            top: 261px;
-          }
-          #nr-34 {
-            left: 135px;
-            top: 261px;
-          }
-          #st-34 {
-            left: 123px;
-            top: 261px;
-          }
-          #id-35 {
-            left: 78px;
-            top: 278px;
-          }
-          #nr-35 {
-            left: 135px;
-            top: 278px;
-          }
-          #st-35 {
-            left: 123px;
-            top: 278px;
-          }
-          #id-36 {
-            left: 78px;
-            top: 295px;
-          }
-          #nr-36 {
-            left: 135px;
-            top: 295px;
-          }
-          #st-36 {
-            left: 123px;
-            top: 295px;
-          }
-          #id-37 {
-            left: 78px;
-            top: 312px;
-          }
-          #nr-37 {
-            left: 135px;
-            top: 312px;
-          }
-          #st-37 {
-            left: 123px;
-            top: 312px;
-          }
         `}
       </style>
     </>
@@ -486,7 +292,7 @@ function Byte ({ byte, nr }) {
   const { bits, label } = byte
   return (
     <>
-      <div className='label' id={'label-'.concat(nr)}>
+      <div className='label' id={'label-' + nr}>
         {label}
       </div>
       {bits.map((item, key) => (
@@ -500,7 +306,7 @@ function Byte ({ byte, nr }) {
             border: 1px solid #000000;
             font-size: 14px;
             height: 18px;
-            width: 69px;
+            width: 114px;
           }
           #label-0 {
             left: 10px;
@@ -524,10 +330,10 @@ function Byte ({ byte, nr }) {
   )
 }
 
-function Card ({ card }) {
-  const { bytes, nr, type } = card
+export default function Module ({ module }) {
+  const { bytes, nr, type } = module
   return (
-    <div className='card' id={'card-'.concat(nr)}>
+    <div className='card' id={'card-' + nr}>
       <div className='card-title'>Card {nr}</div>
       <div className='card-type'>{type}</div>
       {bytes.map((item, key) => (
@@ -590,39 +396,6 @@ function Card ({ card }) {
           #card-8 {
             left: 1128px;
             top: 1px;
-          }
-        `}
-      </style>
-    </div>
-  )
-}
-
-export default function ET200M ({ rack }) {
-  const { cards, nr, serie } = rack
-  return (
-    <div className='rack-container' id={'rack-' + nr}>
-      <span className='rack'>Simatic PLC Rack {nr}</span>
-      {cards.map((item, key) => (
-        <Card key={key} card={item} />
-      ))}
-      <style jsx>
-        {`
-          .rack-container {
-            position: relative;
-            background-color: #c0c0c0;
-            border: 1px solid #000000;
-            height: 364px;
-            width: 100%;
-            left: 0px;
-            top: 20px;
-            text-align: center;
-          }
-          .rack {
-            color: #808080;
-            font-size: 48px;
-            font-weight: 600;
-            vertical-align: middle;
-            line-height: 364px;
           }
         `}
       </style>
