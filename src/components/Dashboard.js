@@ -1,3 +1,5 @@
+import React from 'react'
+import useData from 'src/lib/useData'
 import useTranslation from 'next-translate/useTranslation'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
@@ -7,7 +9,6 @@ import DeviceList from 'src/components/system/DeviceList'
 import Queue from 'src/components/system/Queue'
 import Occupancy from 'src/components/map/PieChart'
 import Operations from 'src/components/statistics/BarChart'
-import useData from 'src/lib/useData'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
@@ -71,13 +72,15 @@ export default function Dashboard ({ definitions, json, user }) {
 
   if (json.err) return errorPage
 
-  const { data, isLoading, isError } = useData(`${backendUrl}/dashboard`, {
-    initialData: json,
-    refreshInterval: 1000
-  })
+  const [data] = React.useState(json)
 
-  if (isError) return errorPage
-  if (isLoading) return <div>loading...</div>
+  // const { data, isLoading, isError } = useData(`${backendUrl}/dashboard`, {
+  //   initialData: json,
+  //   refreshInterval: 1000
+  // })
+
+  // if (isError) return errorPage
+  // if (isLoading) return <div>loading...</div>
 
   const { activity, occupancy, operations, system } = data
 
