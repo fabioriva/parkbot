@@ -125,7 +125,7 @@ export default function Dashboard ({ definitions, json, user }) {
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget title='Occupancy' link={`/${user.aps}/map`}>
-                {/* <Occupancy data={occupancy} /> */}
+                <Occupancy data={data.occupancy} />
               </Widget>
             </Grid>
           </Grid>
