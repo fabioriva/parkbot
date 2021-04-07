@@ -111,7 +111,7 @@ export default function Dashboard ({ definitions, json, user }) {
           <Grid container spacing={1}>
             <Grid item className={classes.gridItem} xs={12} lg>
               <Widget title='System Info' link={`/${user.aps}/overview`}>
-                {/* <DeviceList devices={system.devices} /> */}
+                <DeviceList devices={data.system.devices} />
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg>
