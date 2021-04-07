@@ -31,9 +31,10 @@ export default function RecentActivity ({ data, user }) {
           </ListItemAvatar>
           <ListItemText
             // primary={format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')}
-            primary={
-              item.device.id === 0 ? t('dev-operator') : item.device.name
-            }
+            // primary={
+            //   item.device.id === 0 ? t('dev-operator') : item.device.name
+            // }
+            primary='Test'
             secondary={<Text item={item} />}
           />
           <Hidden xsDown>
