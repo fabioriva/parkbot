@@ -34,8 +34,9 @@ export default function RecentActivity ({ data, user }) {
             // primary={
             //   item.device.id === 0 ? t('dev-operator') : item.device.name
             // }
-            primary='Test'
-            secondary={<Text item={item} />}
+            // secondary={<Text item={item} />}
+            primary='Primary'
+            secondary='Secondary'
           />
           <Hidden xsDown>
             <ListItemSecondaryAction>
