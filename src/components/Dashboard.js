@@ -72,15 +72,17 @@ export default function Dashboard ({ definitions, json, user }) {
 
   if (json.err) return errorPage
 
-  const [data] = React.useState(json)
+  // const [data] = React.useState(json)
 
-  // const { data, isLoading, isError } = useData(`${backendUrl}/dashboard`, {
-  //   initialData: json,
-  //   refreshInterval: 1000
-  // })
+  const { data, isLoading, isError } = useData(`${backendUrl}/dashboard`, {
+    initialData: json,
+    refreshInterval: 1000
+  })
 
-  // if (isError) return errorPage
-  // if (isLoading) return <div>loading...</div>
+  if (isError) return errorPage
+  if (isLoading) return <div>loading...</div>
+
+  console.log(data)
 
   // const { activity, occupancy, operations, system } = data
 
