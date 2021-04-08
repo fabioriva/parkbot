@@ -1,6 +1,6 @@
 import useTranslation from 'next-translate/useTranslation'
 import { useState, useEffect } from 'react'
-import { useData } from 'src/lib/websocket'
+import { useData } from 'src/lib/useWebSocket'
 import { useSnackbar } from 'notistack'
 import fetchJson from 'src/lib/fetchJson'
 import { isAllowed } from 'src/lib/auth-actions'

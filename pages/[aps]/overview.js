@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { aps } from 'src/constants/aps'
 import { OVERVIEW, ACTIONS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
+import useData from 'src/lib/useData'
 import withAuthSync from 'src/hocs/withAuthSync'
 import withSystem from 'src/hocs/withSystem'
 
@@ -15,6 +16,13 @@ const componentList = {
 
 const Page = props => {
   const DynamicComponent = componentList[props.aps]
+  const { data, isLoading, isError } = useData(
+    `${props.definitions.backendUrl}/info`,
+    {
+      refreshInterval: 500
+    }
+  )
+  // console.log(data)
   return <DynamicComponent {...props} />
 }
 

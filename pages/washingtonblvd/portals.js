@@ -5,7 +5,7 @@ import {
   WEBSOCK_URL
 } from 'src/constants/washingtonblvd'
 import fetchJson from 'src/lib/fetchJson'
-import { useData } from 'src/lib/websocket'
+import { useData } from 'src/lib/useWebSocket'
 // import withAuthSync from 'src/hocs/withAuthSync'
 import ParkBot from 'src/components/ParkBot'
 // material-ui

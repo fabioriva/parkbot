@@ -10,6 +10,8 @@ const COMM_INITIAL_VALUE = {
 export function useComm (url) {
   // const { enqueueSnackbar } = useSnackbar()
 
+  const [waitingToReconnect, setWaitingToReconnect] = useState(null)
+
   const [error, setError] = useState('')
   const [comm, setComm] = useState(COMM_INITIAL_VALUE)
   const [diag, setDiag] = useState({})
@@ -19,9 +21,23 @@ export function useComm (url) {
   useEffect(() => {
     ws.current = new WebSocket(url)
     ws.current.onopen = () => console.log('ws opened')
-    ws.current.onclose = () => console.log('ws closed')
+    ws.current.onclose = () => {
+      if (ws.current) {
+        // Connection failed
+        console.log('ws closed by server')
+      } else {
+        // Cleanup initiated from app side, can return here, to not attempt a reconnect
+        console.log('ws closed by app component unmount')
+        return
+      }
+      if (waitingToReconnect) {
+        return
+      }
+      console.log('ws closed')
+      setWaitingToReconnect(true)
+    }
     return () => ws.current.close()
-  }, [])
+  }, [waitingToReconnect])
 
   useEffect(() => {
     if (!ws.current) return

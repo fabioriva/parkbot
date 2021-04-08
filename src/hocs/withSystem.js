@@ -1,8 +1,9 @@
+import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import { useState, useEffect } from 'react'
-import { useData } from 'src/lib/websocket'
+// import { useData } from 'src/lib/useWebSocket'
 import { useSnackbar } from 'notistack'
 import fetchJson from 'src/lib/fetchJson'
+import useData from 'src/lib/useData'
 import { isAllowed } from 'src/lib/auth-actions'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
@@ -23,7 +24,33 @@ const withSystem = WrappedComponent => {
     const { definitions, json, user } = props
     const { apsName, backendUrl, websockUrl, userRole } = definitions
 
-    if (json.err) {
+    // if (json.err) {
+    //   return (
+    //     <Error
+    //       definitions={definitions}
+    //       message='Error 500'
+    //       title={t('title')}
+    //       user={user}
+    //     />
+    //   )
+    // }
+
+    // const [overview, setOverview] = useState(json)
+
+    // const { mesg } = useData('overview', `${websockUrl}?channel=ch1`)
+
+    // useEffect(() => {
+    //   if (mesg) {
+    //     setOverview(mesg)
+    //   }
+    // }, [mesg])
+
+    const { data, isError } = useData(`${backendUrl}/overview`, {
+      initialData: json,
+      refreshInterval: 500
+    })
+
+    if (json.err || isError) {
       return (
         <Error
           definitions={definitions}
@@ -34,15 +61,9 @@ const withSystem = WrappedComponent => {
       )
     }
 
-    const [overview, setOverview] = useState(json)
+    // if (isLoading) return <div>loading...</div>
 
-    const { mesg } = useData('overview', `${websockUrl}?channel=ch1`)
-
-    useEffect(() => {
-      if (mesg) {
-        setOverview(mesg)
-      }
-    }, [mesg])
+    const overview = data
 
     // Dialog
     const DIALOG_INIT_VALUES = {
@@ -51,8 +72,8 @@ const withSystem = WrappedComponent => {
       minCard: 1,
       maxCard: overview.definitions.cards
     }
-    const [open, setOpen] = useState(false)
-    const [operation, setOperation] = useState(DIALOG_INIT_VALUES)
+    const [open, setOpen] = React.useState(false)
+    const [operation, setOperation] = React.useState(DIALOG_INIT_VALUES)
 
     const handleCancel = () => {
       setOpen(false)

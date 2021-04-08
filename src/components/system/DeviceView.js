@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useData } from 'src/lib/websocket'
+import { useData } from 'src/lib/useWebSocket'
 import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
 import Actuator from 'src/components/system/Actuator'

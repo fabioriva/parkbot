@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import { useSnackbar } from 'notistack'
-import { useData } from 'src/lib/websocket'
+import { useData } from 'src/lib/useWebSocket'
 import fetchJson from 'src/lib/fetchJson'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
