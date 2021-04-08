@@ -78,7 +78,7 @@ const withMap = WrappedComponent => {
       })
       const snack = message(json)
       enqueueSnackbar(snack.message, snack.options)
-      setMap(json.data)
+      // setMap(json.data)
     }
 
     const handleOpen = (stall, value) => {
