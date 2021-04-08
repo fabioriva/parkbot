@@ -8,7 +8,7 @@ const COMM_INITIAL_VALUE = {
 }
 
 export function useComm (url) {
-  // const { enqueueSnackbar } = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
 
   const [waitingToReconnect, setWaitingToReconnect] = useState(null)
 
@@ -35,7 +35,7 @@ export function useComm (url) {
       }
       console.log('ws closed')
       setWaitingToReconnect(true)
-      setTimeout(() => setWaitingToReconnect(null), 5000)
+      setTimeout(() => setWaitingToReconnect(null), 1000)
     }
     return () => ws.current.close()
   }, [waitingToReconnect])
@@ -63,7 +63,7 @@ export function useComm (url) {
         if (key === 'notification') {
           const snack = notification(data[key])
           console.log(snack)
-          // enqueueSnackbar(snack.message, snack.options)
+          enqueueSnackbar(snack.message, snack.options)
         }
       })
     }
