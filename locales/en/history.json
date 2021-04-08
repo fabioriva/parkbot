@@ -38,6 +38,18 @@
   "mode-preset": "Preset",
   "mode-auto": "Automatic",
 
+  "op-id-1": "Alarm on",
+  "op-id-2": "Alarm off",
+  "op-id-3": "Switch mode",
+  "op-id-4": "PIN changed",
+  "op-id-5": "Occupied stall {{stall}}, card {{card}}",
+  "op-id-6": "Cleared stall {{stall}}, card {{card}}",
+  "op-id-7": "Shuffle in",
+  "op-id-8": "Shuffle out",
+  "op-id-9": "Stall reserve",
+  "op-id-10": "Locked stall {{stall}}",
+  "op-id-11": "Cleared stall {{stall}}",
+
   "list-op-id-1": "Alarm on",
   "list-op-id-2": "Alarm off",
   "list-op-id-3": "Switch mode",

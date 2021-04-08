@@ -1,5 +1,5 @@
 // import Link from 'next/link'
-import { formatDistanceToNow } from 'date-fns'
+// import { formatDistanceToNow } from 'date-fns'
 import useTranslation from 'next-translate/useTranslation'
 import Avatar from './ListAvatar'
 import Text from './ListItem'
@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
 export default function RecentActivity ({ data, user }) {
   const classes = useStyles()
   const { t } = useTranslation('history')
-  console.log(data)
 
   return (
     <>

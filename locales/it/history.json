@@ -38,6 +38,18 @@
   "mode-preset": "Preset",
   "mode-auto": "Automatico",
 
+  "op-id-1": "Allarme on",
+  "op-id-2": "Allarme off",
+  "op-id-3": "Cambio funzione",
+  "op-id-4": "PIN modificato",
+  "op-id-5": "Occupato stallo {{stall}}, tessera {{card}}",
+  "op-id-6": "Liberato stallo {{stall}}, tessera {{card}}",
+  "op-id-7": "Shuffle in",
+  "op-id-8": "Shuffle out",
+  "op-id-9": "Prenotato stallo {{stall}}",
+  "op-id-10": "Bloccato stallo {{stall}}",
+  "op-id-11": "Liberato stallo {{stall}}",
+
   "list-op-id-1": "Allarme on",
   "list-op-id-2": "Allarme off",
   "list-op-id-3": "Cambio funzione",

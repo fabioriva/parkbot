@@ -1,10 +1,13 @@
+import useTranslation from 'next-translate/useTranslation'
+
 export default function notification (payload) {
-  console.log('notification:', payload)
+  const { t } = useTranslation('history')
+  // console.log('notification:', payload)
   const { type, message, description, card, stall } = payload
   switch (type) {
     case 1: {
       const snack = {
-        message: <span>{description}</span>,
+        message: <span>{t(description)}</span>,
         options: {
           variant: 'error'
         }
@@ -13,7 +16,7 @@ export default function notification (payload) {
     }
     case 2: {
       const snack = {
-        message: <span>{description}</span>,
+        message: <span>{t(description)}</span>,
         options: {
           variant: 'success'
         }
@@ -23,7 +26,7 @@ export default function notification (payload) {
     case 3:
     case 4: {
       const snack = {
-        message: <span>{description}</span>,
+        message: <span>{t(description)}</span>,
         options: {
           variant: 'warning'
         }
@@ -32,7 +35,7 @@ export default function notification (payload) {
     }
     case 5: {
       const snack = {
-        message: <span>{description}</span>,
+        message: <span>{t(description, { stall, card })}</span>,
         options: {
           variant: 'default'
         }
@@ -41,7 +44,7 @@ export default function notification (payload) {
     }
     case 6: {
       const snack = {
-        message: <span>{description}</span>,
+        message: <span>{t(description, { stall, card })}</span>,
         options: {
           variant: 'default'
         }
@@ -50,7 +53,7 @@ export default function notification (payload) {
     }
     default: {
       const snack = {
-        message: <span>{description}</span>,
+        message: <span>{t(description)}</span>,
         options: {
           variant: 'info'
         }

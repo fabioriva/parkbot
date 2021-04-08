@@ -1,5 +1,4 @@
 import { withStyles } from '@material-ui/core/styles'
-// import Paper from '@material-ui/core/Paper'
 import {
   Chart,
   BarSeries,
@@ -29,7 +28,6 @@ export default function Bar (props) {
   // console.log(props.data.data);
 
   return (
-    // <Paper>
     <Chart
       data={props.data.data}
       // rotated
@@ -75,6 +73,5 @@ export default function Bar (props) {
       <EventTracker />
       <Tooltip />
     </Chart>
-    // </Paper>
   )
 }
