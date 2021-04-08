@@ -37,6 +37,7 @@ export function useComm (url) {
         }
         if (key === 'notification') {
           const snack = notification(data[key])
+          console.log(snack)
           enqueueSnackbar(snack.message, snack.options)
         }
       })
