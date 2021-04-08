@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSnackbar } from 'notistack'
 import message from 'src/lib/message'
 import notification from 'src/lib/notification'
@@ -8,22 +8,30 @@ const COMM_INITIAL_VALUE = {
 }
 
 export function useComm (url) {
+  const { enqueueSnackbar } = useSnackbar()
+
   const [error, setError] = useState('')
   const [comm, setComm] = useState(COMM_INITIAL_VALUE)
   const [diag, setDiag] = useState({})
   const [map, setMap] = useState({})
-
-  const { enqueueSnackbar } = useSnackbar()
+  const ws = useRef(null)
 
   useEffect(() => {
-    const ws = new global.WebSocket(url)
+    ws.current = new WebSocket(url)
+    ws.current.onopen = () => console.log('ws opened')
+    ws.current.onclose = () => console.log('ws closed')
+    return () => ws.current.close()
+  }, [])
 
-    ws.onerror = e => {
+  useEffect(() => {
+    if (!ws.current) return
+
+    ws.current.onerror = e => {
       console.log(e)
       setError(e)
     }
 
-    ws.onmessage = e => {
+    ws.current.onmessage = e => {
       const data = JSON.parse(e.data)
       Object.keys(data).forEach(key => {
         if (key === 'comm') {
@@ -42,9 +50,7 @@ export function useComm (url) {
         }
       })
     }
-
-    return () => ws.close()
-  }, [url])
+  }, [])
 
   return {
     error,
@@ -53,6 +59,53 @@ export function useComm (url) {
     map
   }
 }
+
+// export function useComm (url) {
+//   const [error, setError] = useState('')
+//   const [comm, setComm] = useState(COMM_INITIAL_VALUE)
+//   const [diag, setDiag] = useState({})
+//   const [map, setMap] = useState({})
+
+//   const { enqueueSnackbar } = useSnackbar()
+
+//   useEffect(() => {
+//     const ws = new global.WebSocket(url)
+
+//     ws.onerror = e => {
+//       console.log(e)
+//       setError(e)
+//     }
+
+//     ws.onmessage = e => {
+//       const data = JSON.parse(e.data)
+//       Object.keys(data).forEach(key => {
+//         if (key === 'comm') {
+//           setComm(data[key])
+//         }
+//         if (key === 'diag') {
+//           setDiag(data[key])
+//         }
+//         if (key === 'map') {
+//           setMap(data[key])
+//         }
+//         if (key === 'notification') {
+//           const snack = notification(data[key])
+//           console.log(snack)
+//           enqueueSnackbar(snack.message, snack.options)
+//         }
+//       })
+//     }
+
+//     return () => ws.close()
+//   }, [url])
+
+//   return {
+//     error,
+//     comm,
+//     diag,
+//     map
+//   }
+// }
 
 export function useData (page, url) {
   const [client, setClient] = useState(null)
