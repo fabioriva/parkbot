@@ -1,5 +1,5 @@
 import { withStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
+// import Paper from '@material-ui/core/Paper'
 import {
   Chart,
   BarSeries,
@@ -29,52 +29,52 @@ export default function Bar (props) {
   // console.log(props.data.data);
 
   return (
-    <Paper>
-      <Chart
-        data={props.data.data}
-        // rotated
-        // barWidth={6}
-        height={300}
-      >
-        <ArgumentAxis />
+    // <Paper>
+    <Chart
+      data={props.data.data}
+      // rotated
+      // barWidth={6}
+      height={300}
+    >
+      <ArgumentAxis />
 
-        <ValueAxis max={100} />
+      <ValueAxis max={100} />
 
-        <BarSeries
-          name={t('entries')}
-          valueField='entries'
-          argumentField='name'
-          // color="lime"
-          barWidth={0.5}
-        />
+      <BarSeries
+        name={t('entries')}
+        valueField='entries'
+        argumentField='name'
+        // color="lime"
+        barWidth={0.5}
+      />
 
-        <BarSeries
-          name={t('exits')}
-          valueField='exits'
-          argumentField='name'
-          // color="red"
-          barWidth={0.5}
-        />
+      <BarSeries
+        name={t('exits')}
+        valueField='exits'
+        argumentField='name'
+        // color="red"
+        barWidth={0.5}
+      />
 
-        {/* <BarSeries
+      {/* <BarSeries
           name="total"
           valueField="total"
           argumentField="name"
         /> */}
 
-        <Animation />
-        <Legend position='bottom' rootComponent={Root} />
-        <Title text={props.data.label} />
-        <Stack
-          stacks={[
-            // { series: ['Hydro-electric', 'Oil', 'Natural gas', 'Coal', 'Nuclear'] },
-            // { series: ['entries', 'exits', 'total'] },
-            { series: [t('entries'), t('exits')] }
-          ]}
-        />
-        <EventTracker />
-        <Tooltip />
-      </Chart>
-    </Paper>
+      <Animation />
+      <Legend position='bottom' rootComponent={Root} />
+      <Title text={props.data.label} />
+      <Stack
+        stacks={[
+          // { series: ['Hydro-electric', 'Oil', 'Natural gas', 'Coal', 'Nuclear'] },
+          // { series: ['entries', 'exits', 'total'] },
+          { series: [t('entries'), t('exits')] }
+        ]}
+      />
+      <EventTracker />
+      <Tooltip />
+    </Chart>
+    // </Paper>
   )
 }

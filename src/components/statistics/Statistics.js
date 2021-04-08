@@ -7,6 +7,7 @@ import Operations from 'src/components/statistics/BarChart'
 import Table from 'src/components/statistics/StatisticsTable'
 // material-ui
 import Hidden from '@material-ui/core/Hidden'
+import Paper from '@material-ui/core/Paper'
 import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
 
@@ -65,6 +66,7 @@ export default function Statistics ({ definitions, json, user }) {
           textColor='primary'
           variant='fullWidth'
           // className={classes.tabs}
+          style={{ marginBottom: 16 }}
         >
           {statistics.map((item, key) => (
             <Tab
@@ -75,7 +77,9 @@ export default function Statistics ({ definitions, json, user }) {
         </Tabs>
         {statistics.map((item, key) => (
           <TabPanel key={key} value={value} index={key}>
-            <Operations data={item} />
+            <Paper>
+              <Operations data={item} />
+            </Paper>
           </TabPanel>
         ))}
       </Hidden>

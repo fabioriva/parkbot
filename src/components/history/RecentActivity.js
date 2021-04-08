@@ -23,30 +23,34 @@ export default function RecentActivity ({ data, user }) {
   const { t } = useTranslation('history')
 
   return (
-    <List className={classes.root} dense>
-      {data.documents.map((item, key) => (
-        <ListItem key={key}>
-          <ListItemAvatar>
-            <Avatar item={item} />
-          </ListItemAvatar>
-          <ListItemText
-            // primary={format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')}
-            primary={
-              item.device.id === 0 ? t('dev-operator') : item.device.name
-            }
-            secondary={<Text item={item} />}
-          />
-          <Hidden xsDown>
-            <ListItemSecondaryAction>
-              <div>
-                {formatDistanceToNow(new Date(item.logged), {
-                  addSuffix: true
-                })}
-              </div>
-            </ListItemSecondaryAction>
-          </Hidden>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      {data.documents.length > 0 && (
+        <List className={classes.root} dense>
+          {data.documents.map((item, key) => (
+            <ListItem key={key}>
+              <ListItemAvatar>
+                <Avatar item={item} />
+              </ListItemAvatar>
+              <ListItemText
+                // primary={format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')}
+                primary={
+                  item.device.id === 0 ? t('dev-operator') : item.device.name
+                }
+                secondary={<Text item={item} />}
+              />
+              <Hidden xsDown>
+                <ListItemSecondaryAction>
+                  <div>
+                    {formatDistanceToNow(new Date(item.logged), {
+                      addSuffix: true
+                    })}
+                  </div>
+                </ListItemSecondaryAction>
+              </Hidden>
+            </ListItem>
+          ))}
+        </List>
+      )}
+    </>
   )
 }
