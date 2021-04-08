@@ -1,7 +1,7 @@
-import useTranslation from 'next-translate/useTranslation'
+// import useTranslation from 'next-translate/useTranslation'
 
 export default function notification (payload) {
-  const { t } = useTranslation('history')
+  // const { t } = useTranslation('history')
   console.log('notification:', payload)
   const { type, message, description, card, stall } = payload
   switch (type) {
