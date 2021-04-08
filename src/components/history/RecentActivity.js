@@ -42,11 +42,11 @@ export default function RecentActivity ({ data, user }) {
               />
               <Hidden xsDown>
                 <ListItemSecondaryAction>
-                  <div>
+                  {/* <div>
                     {formatDistanceToNow(new Date(item.logged), {
                       addSuffix: true
                     })}
-                  </div>
+                  </div> */}
                 </ListItemSecondaryAction>
               </Hidden>
             </ListItem>
