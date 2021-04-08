@@ -5,7 +5,7 @@ export default function HistoryText ({ item }) {
 
   const { operation } = item
 
-  return operation.id
+  // return operation.id
 
   switch (operation.id) {
     case 1:
