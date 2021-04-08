@@ -35,7 +35,7 @@ export default function notification (payload) {
     }
     case 5: {
       const snack = {
-        message: <span>{t(description, { stall, card })}</span>,
+        message: <span>{description}</span>,
         options: {
           variant: 'default'
         }
@@ -44,7 +44,7 @@ export default function notification (payload) {
     }
     case 6: {
       const snack = {
-        message: <span>{t(description, { stall, card })}</span>,
+        message: <span>{description}</span>,
         options: {
           variant: 'default'
         }
