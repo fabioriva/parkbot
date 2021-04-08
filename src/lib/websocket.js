@@ -8,7 +8,7 @@ const COMM_INITIAL_VALUE = {
 }
 
 export function useComm (url) {
-  const { enqueueSnackbar } = useSnackbar()
+  // const { enqueueSnackbar } = useSnackbar()
 
   const [error, setError] = useState('')
   const [comm, setComm] = useState(COMM_INITIAL_VALUE)
@@ -46,7 +46,7 @@ export function useComm (url) {
         if (key === 'notification') {
           const snack = notification(data[key])
           console.log(snack)
-          enqueueSnackbar(snack.message, snack.options)
+          // enqueueSnackbar(snack.message, snack.options)
         }
       })
     }
