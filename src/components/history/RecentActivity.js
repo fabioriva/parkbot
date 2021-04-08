@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
 export default function RecentActivity ({ data, user }) {
   const classes = useStyles()
   const { t } = useTranslation('history')
+  console.log(data)
 
   return (
     <>

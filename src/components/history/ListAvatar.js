@@ -30,6 +30,8 @@ const useStyles = makeStyles(theme => ({
 export default function HistoryAvatar ({ item }) {
   const classes = useStyles()
 
+  return <Avatar>{item.operation.id}</Avatar>
+
   switch (item.operation.id) {
     case 1:
       return (

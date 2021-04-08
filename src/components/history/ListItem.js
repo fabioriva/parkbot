@@ -5,6 +5,8 @@ export default function HistoryText ({ item }) {
 
   const { operation } = item
 
+  return operation.id
+
   switch (operation.id) {
     case 1:
       return <span>{t('list-op-id-1', { id: item.alarm.id })}</span>
