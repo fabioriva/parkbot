@@ -35,6 +35,7 @@ export function useComm (url) {
       }
       console.log('ws closed')
       setWaitingToReconnect(true)
+      setTimeout(() => setWaitingToReconnect(null), 5000)
     }
     return () => ws.current.close()
   }, [waitingToReconnect])
