@@ -43,7 +43,7 @@ export default function TitlebarGridList ({ racks, user }) {
               }
               alt={tile.title}
             />
-            <Link href={`/${user.aps}/racks/${key}`} locale={locale}>
+            <Link href={`/${user.aps}/rack/${key}`} locale={locale}>
               <GridListTileBar
                 title={tile.title}
                 subtitle={<span>PLC Rack {tile.nr}</span>}

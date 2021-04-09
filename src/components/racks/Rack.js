@@ -13,11 +13,6 @@ import Hidden from '@material-ui/core/Hidden'
 
 import PlcRack from 'src/components/racks/PlcRack'
 
-// const componentList = {
-//   et200m: dynamic(() => import('src/components/racks/ET200M')),
-//   et200s: dynamic(() => import('src/components/racks/ET200S'))
-// }
-
 export default function Rack ({ definitions, json, user }) {
   const { t } = useTranslation('common')
 
@@ -35,29 +30,32 @@ export default function Rack ({ definitions, json, user }) {
   }
 
   const router = useRouter()
-  const { rack } = router.query
+  const { id } = router.query
 
-  const [data, setData] = useState(json)
-  const { mesg } = useData('racks', `${websockUrl}?channel=ch1`)
+  const [rack, setRack] = useState(json)
+  // const { mesg } = useData('racks', `${websockUrl}?channel=ch1`)
 
-  useEffect(() => {
-    if (mesg) {
-      setData(mesg[rack])
-    }
+  // useEffect(() => {
+  //   if (mesg) {
+  //     setData(mesg[id])
+  //   }
+  // })
+  const { data } = useData(`${websockUrl}?channel=ch1`, {
+    initialData: null,
+    page: 'racks'
   })
-
-  // const DynamicComponent = componentList[rack.serie]
-
-  const title = (
-    <span>
-      {t('title-racks')} {rack.title}
-    </span>
-  )
+  useEffect(() => {
+    if (data) setRack(data[id])
+  }, [data])
 
   return (
     <Layout
       apsName={apsName}
-      pageTitle={title}
+      pageTitle={
+        <span>
+          {t('title-racks')} {rack.title}
+        </span>
+      }
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
@@ -65,11 +63,11 @@ export default function Rack ({ definitions, json, user }) {
         <Hidden implementation='css' xsDown>
           <Button onClick={() => window.history.back()}>Back</Button>
           {/* <DynamicComponent rack={rack} /> */}
-          <PlcRack rack={data} />
+          <PlcRack rack={rack} />
         </Hidden>
       </Container>
       <Hidden implementation='css' smUp>
-        <ListView rack={data} />
+        <ListView rack={rack} />
       </Hidden>
     </Layout>
   )

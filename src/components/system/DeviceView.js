@@ -25,45 +25,49 @@ export default function Cards ({ definitions, json, user }) {
   }
 
   const router = useRouter()
-  const { aps, device } = router.query
+  const { id } = router.query
 
-  const [data, setData] = useState(json)
-  const { mesg } = useData('diagnostic', `${websockUrl}?channel=ch1`)
+  const [device, setDevice] = useState(json)
+  // const { mesg } = useData('diagnostic', `${websockUrl}?channel=ch1`)
 
   // const index = device.a.id - 1
 
+  const { data } = useData(`${websockUrl}?channel=ch1`, {
+    initialData: null,
+    page: 'diagnostic'
+  })
   useEffect(() => {
-    if (mesg) {
-      setData(mesg[device])
+    if (data) {
+      setDevice(data[id])
     }
-  }, [mesg])
+  }, [data])
 
   return (
     <Layout
       apsName={apsName}
-      pageTitle={data.a.name} // {t('title')}
+      pageTitle={device.a.name} // {t('title')}
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
       <Grid container spacing={3}>
-        {data.f?.map((item, key) => (
+        {device.f?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Actuator item={item} />
           </Grid>
         ))}
-        {data.g?.map((item, key) => (
+        {device.g?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Motor item={item} />
           </Grid>
         ))}
-        {data.h?.map((item, key) => (
+        {device.h?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Vfd item={item} />
           </Grid>
         ))}
-        {data.i !== undefined && (
+        {device.i !== undefined && (
           <Grid item xs={12} md={6} lg={4} xl={3}>
-            <Silomat item={data.i} />
+            <Silomat item={device.i} />
           </Grid>
         )}
       </Grid>

@@ -34,13 +34,12 @@ export default function Cards ({ definitions, json, user }) {
 
   const [cards, setCards] = useState(json)
 
-  const { mesg } = useData('cards', `${websockUrl}?channel=ch1`)
+  const { data } = useData(`${websockUrl}?channel=ch1`, {
+    initialData: cards,
+    page: 'cards'
+  })
 
-  useEffect(() => {
-    if (mesg) {
-      setCards(mesg)
-    }
-  }, [mesg])
+  useEffect(() => setCards(data), [data])
 
   const handleEdit = async ({ nr, code }) => {
     console.log(nr, code)
@@ -68,26 +67,6 @@ export default function Cards ({ definitions, json, user }) {
         handleEdit={handleEdit}
         authorization={isAllowed(user, [userRole])}
       />
-
-      {/* <Container maxWidth='xl'>
-        <Typography variant='subtitle2' gutterBottom>
-          {t('cards-total-count', { count: cards.length })}
-        </Typography>
-        <Hidden implementation='css' xsDown>
-          <CardsList
-            cards={cards}
-            handleEdit={handleEdit}
-            authorization={isAllowed(user, [userRole])}
-          />
-        </Hidden>
-      </Container>
-      <Hidden implementation='css' smUp>
-        <CardsList
-          cards={cards}
-          handleEdit={handleEdit}
-          authorization={isAllowed(user, [userRole])}
-        />
-      </Hidden> */}
     </Layout>
   )
 }

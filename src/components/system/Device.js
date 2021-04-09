@@ -138,7 +138,7 @@ export default function Device ({ actions, authorization, item, user }) {
             {t('system:' + item.label)}
           </Button>
         ))}
-        <Link href={`/${user.aps}/devices/${id - 1}`} locale={locale}>
+        <Link href={`/${user.aps}/device/${id - 1}`} locale={locale}>
           <Button
             color='primary'
             style={{ marginLeft: 'auto' }}

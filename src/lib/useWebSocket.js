@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { useSnackbar } from 'notistack'
-import message from 'src/lib/message'
+// import { useSnackbar } from 'notistack'
+// import message from 'src/lib/message'
 import notification from 'src/lib/notification'
 
 const COMM_INITIAL_VALUE = {
@@ -8,7 +8,7 @@ const COMM_INITIAL_VALUE = {
 }
 
 export function useComm (url) {
-  const { enqueueSnackbar } = useSnackbar()
+  // const { enqueueSnackbar } = useSnackbar()
 
   const [waitingToReconnect, setWaitingToReconnect] = useState(null)
 
@@ -16,10 +16,11 @@ export function useComm (url) {
   const [comm, setComm] = useState(COMM_INITIAL_VALUE)
   const [diag, setDiag] = useState({})
   const [map, setMap] = useState({})
+
   const ws = useRef(null)
 
   useEffect(() => {
-    ws.current = new WebSocket(url)
+    ws.current = new window.WebSocket(url)
     ws.current.onopen = () => console.log('ws opened')
     ws.current.onclose = () => {
       if (ws.current) {
@@ -63,11 +64,11 @@ export function useComm (url) {
         if (key === 'notification') {
           const snack = notification(data[key])
           console.log(snack)
-          enqueueSnackbar(snack.message, snack.options)
+          // enqueueSnackbar(snack.message, snack.options)
         }
       })
     }
-  }, [])
+  }, [comm, diag, map])
 
   return {
     error,
@@ -124,54 +125,90 @@ export function useComm (url) {
 //   }
 // }
 
-export function useData (page, url) {
-  const [client, setClient] = useState(null)
-  const [error, setError] = useState('')
-  const [mesg, setMesg] = useState(null)
+export function useData (url, options) {
+  const { initialData, page } = options
 
-  const { enqueueSnackbar } = useSnackbar()
+  const [error, setError] = useState(null)
+  const [data, setData] = useState(initialData)
 
-  const send = (event, data) => {
-    client.send(
-      JSON.stringify({
-        event: event,
-        data: data
-      })
-    )
-  }
+  const ws = useRef(null)
 
   useEffect(() => {
-    const ws = new global.WebSocket(url)
+    ws.current = new window.WebSocket(url)
+    ws.current.onopen = () => console.log('ws opened')
+    ws.current.onclose = () => console.log('ws closed')
+    return () => ws.current.close()
+  }, [])
 
-    setClient(ws)
+  useEffect(() => {
+    if (!ws.current) return
 
-    // ws.onopen = () => console.log('ws opened')
-    // ws.onclose = () => console.log('ws closed')
-    ws.onerror = e => {
+    ws.current.onerror = e => {
       console.log(e)
       setError(e)
     }
 
-    ws.onmessage = e => {
+    ws.current.onmessage = e => {
       const data = JSON.parse(e.data)
       Object.keys(data).forEach(key => {
         if (key === page) {
-          setMesg(data[key])
-        }
-        if (key === 'message') {
-          const snack = message(data[key])
-          enqueueSnackbar(snack.message, snack.options)
+          setData(data[key])
         }
       })
     }
+  }, [])
 
-    return () => ws.close()
-  }, [page, url])
-
-  return {
-    // client,
-    error,
-    mesg,
-    send
-  }
+  return { error, data }
 }
+
+// export function useData (page, url) {
+//   const [client, setClient] = useState(null)
+//   const [error, setError] = useState('')
+//   const [mesg, setMesg] = useState(null)
+
+//   const { enqueueSnackbar } = useSnackbar()
+
+//   const send = (event, data) => {
+//     client.send(
+//       JSON.stringify({
+//         event: event,
+//         data: data
+//       })
+//     )
+//   }
+
+//   useEffect(() => {
+//     const ws = new global.WebSocket(url)
+
+//     setClient(ws)
+
+//     // ws.onopen = () => console.log('ws opened')
+//     // ws.onclose = () => console.log('ws closed')
+//     ws.onerror = e => {
+//       console.log(e)
+//       setError(e)
+//     }
+
+//     ws.onmessage = e => {
+//       const data = JSON.parse(e.data)
+//       Object.keys(data).forEach(key => {
+//         if (key === page) {
+//           setMesg(data[key])
+//         }
+//         if (key === 'message') {
+//           const snack = message(data[key])
+//           enqueueSnackbar(snack.message, snack.options)
+//         }
+//       })
+//     }
+
+//     return () => ws.close()
+//   }, [page, url])
+
+//   return {
+//     // client,
+//     error,
+//     mesg,
+//     send
+//   }
+// }

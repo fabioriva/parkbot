@@ -1,12 +1,10 @@
 import { aps } from 'src/constants/aps'
-import { RACKS } from 'src/constants/roles'
+import { OVERVIEW } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
-import Rack from 'src/components/racks/Rack'
 import withAuthSync from 'src/hocs/withAuthSync'
+import DeviceView from 'src/components/system/DeviceView'
 
-const Page = props => {
-  return <Rack {...props} />
-}
+const Page = props => <DeviceView {...props} />
 
 export async function getServerSideProps ({ params }) {
   if (aps(params.aps) === -1) {
@@ -18,7 +16,7 @@ export async function getServerSideProps ({ params }) {
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
     `src/constants/${params.aps}`
   )
-  const json = await fetchJson(`${BACKEND_URL}/racks/${params.rack}`)
+  const json = await fetchJson(`${BACKEND_URL}/devices/${params.id}`)
 
   return {
     props: {
@@ -26,7 +24,7 @@ export async function getServerSideProps ({ params }) {
         apsName: APS_NAME,
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
-        pageRole: RACKS
+        pageRole: OVERVIEW
       },
       json
     }

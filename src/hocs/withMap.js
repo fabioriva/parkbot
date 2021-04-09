@@ -1,9 +1,9 @@
+import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import { useState, useEffect } from 'react'
-import { useData } from 'src/lib/useWebSocket'
 import { useSnackbar } from 'notistack'
-import fetchJson from 'src/lib/fetchJson'
 import { isAllowed } from 'src/lib/auth-actions'
+import fetchJson from 'src/lib/fetchJson'
+import { useData } from 'src/lib/useWebSocket'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
@@ -43,26 +43,25 @@ const withMap = WrappedComponent => {
       )
     }
 
-    const [map, setMap] = useState(json)
+    const [map, setMap] = React.useState(json)
 
-    const { mesg, send } = useData('map', `${websockUrl}?channel=ch1`)
+    const { data } = useData(`${websockUrl}?channel=ch1`, {
+      initialData: map,
+      page: 'map'
+    })
 
-    useEffect(() => {
-      if (mesg) {
-        setMap(mesg)
-      }
-    }, [mesg])
+    React.useEffect(() => setMap(data), [data])
 
     const { cards, stalls, stallStatus } = map.definitions
 
     // Radio
-    const [filter, setFilter] = useState('SHOW_NUMBERS')
+    const [filter, setFilter] = React.useState('SHOW_NUMBERS')
     const handleChange = event => setFilter(event.target.value)
 
     // Dialog
     const DIALOG_INIT_VALUES = { card: 0, stall: 0, minCard: 1, maxCard: cards }
-    const [open, setOpen] = useState(false)
-    const [dialog, setDialog] = useState(DIALOG_INIT_VALUES)
+    const [open, setOpen] = React.useState(false)
+    const [dialog, setDialog] = React.useState(DIALOG_INIT_VALUES)
 
     const handleCancel = () => {
       setOpen(false)
