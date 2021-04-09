@@ -3,8 +3,8 @@ import useTranslation from 'next-translate/useTranslation'
 import { useSnackbar } from 'notistack'
 import { isAllowed } from 'src/lib/auth-actions'
 import fetchJson from 'src/lib/fetchJson'
-import useData from 'src/lib/useData'
-// import { useData } from 'src/lib/useWebSocket'
+// import useData from 'src/lib/useData'
+import { useData } from 'src/lib/useWebSocket'
 import message from 'src/lib/message'
 import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
@@ -37,15 +37,15 @@ const withSystem = WrappedComponent => {
 
     const [overview, setOverview] = React.useState(json)
 
-    // const { data } = useData(`${websockUrl}?channel=ch1`, {
-    //   initialData: overview,
-    //   page: 'overview'
-    // })
-
-    const { data } = useData(`${backendUrl}/overview`, {
+    const { data } = useData(`${websockUrl}?channel=ch1`, {
       initialData: overview,
-      refreshInterval: 500
+      page: 'overview'
     })
+
+    // const { data } = useData(`${backendUrl}/overview`, {
+    //   initialData: overview,
+    //   refreshInterval: 500
+    // })
 
     React.useEffect(() => setOverview(data), [data])
 

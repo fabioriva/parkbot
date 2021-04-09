@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useData } from 'src/lib/useWebSocket'
+// import useData from 'src/lib/useData'
 import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
 import ListView from 'src/components/racks/IOList'
@@ -33,13 +34,7 @@ export default function Rack ({ definitions, json, user }) {
   const { id } = router.query
 
   const [rack, setRack] = useState(json)
-  // const { mesg } = useData('racks', `${websockUrl}?channel=ch1`)
 
-  // useEffect(() => {
-  //   if (mesg) {
-  //     setData(mesg[id])
-  //   }
-  // })
   const { data } = useData(`${websockUrl}?channel=ch1`, {
     initialData: null,
     page: 'racks'
@@ -47,6 +42,13 @@ export default function Rack ({ definitions, json, user }) {
   useEffect(() => {
     if (data) setRack(data[id])
   }, [data])
+
+  // const { data } = useData(`${backendUrl}/racks/${id}`, {
+  //   initialData: rack,
+  //   refreshInterval: 100
+  // })
+
+  // useEffect(() => setRack(data), [data])
 
   return (
     <Layout
