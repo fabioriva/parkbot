@@ -63,7 +63,6 @@ export function useComm (url) {
           setMap(data[key])
         }
         if (key === 'notification') {
-          console.log(data[key])
           setNotification(data[key])
           // const snack = notification(data[key])
           // enqueueSnackbar(snack.message, snack.options)
