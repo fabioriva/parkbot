@@ -8,7 +8,7 @@ const COMM_INITIAL_VALUE = {
 }
 
 export function useComm (url) {
-  const { enqueueSnackbar } = useSnackbar()
+  // const { enqueueSnackbar } = useSnackbar()
 
   const [waitingToReconnect, setWaitingToReconnect] = useState(null)
 
@@ -76,7 +76,8 @@ export function useComm (url) {
     error,
     comm,
     diag,
-    map
+    map,
+    notification
   }
 }
 
