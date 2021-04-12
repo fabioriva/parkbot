@@ -15,5 +15,9 @@
   "title-map": "Mappa",
   "title-history": "Storico",
   "title-racks": "PLC I/O",
-  "title-statistics": "Statistiche"
+  "title-statistics": "Statistiche",
+
+  "snackbar-op-id-1": "Allarme On {{id}}",
+  "snackbar-op-id-2": "Allarme Off {{id}}",
+  "snackbar-op-id-3": "Cambio modalità: {{mode}}"
 }

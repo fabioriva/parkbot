@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { useSnackbar } from 'notistack'
+import useTranslation from 'next-translate/useTranslation'
 import AppBar from 'src/components/AppBar'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
@@ -30,10 +32,17 @@ export default function AppLayout ({
 }) {
   const classes = useStyles()
 
+  const { enqueueSnackbar } = useSnackbar()
+
+  const { t } = useTranslation('common')
+
   const { comm, diag, map, notification } = useComm(socket)
 
   useEffect(() => {
-    if (notification) console.log(notification)
+    if (notification) {
+      console.log(notification)
+      enqueueSnackbar(t('snackbar-op-id-3'), { mode: t(`system:mode-auto`) })
+    }
   }, [notification])
 
   const [mobileOpen, setMobileOpen] = useState(false)
