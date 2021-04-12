@@ -17,6 +17,15 @@
   "title-racks": "PLC I/O",
   "title-statistics": "Statistics",
 
+  "mode-data-edit": "Data edit",
+  "mode-data-read": "Data read",
+  "mode-eme-1": "Emergency 1",
+  "mode-eme-2": "Emergency 2",
+  "mode-no-func": "---",
+  "mode-step": "Step by Step",
+  "mode-preset": "Preset",
+  "mode-auto": "Automatic",
+
   "snackbar-op-id-1": "Alarm On {{id}}",
   "snackbar-op-id-2": "Alarm Off {{id}}",
   "snackbar-op-id-3": "Switch function mode: {{mode}}"

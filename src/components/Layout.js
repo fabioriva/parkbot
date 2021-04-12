@@ -41,7 +41,7 @@ export default function AppLayout ({
   useEffect(() => {
     if (notification) {
       console.log(notification)
-      enqueueSnackbar(t('snackbar-op-id-3', { mode: t(`system:mode-auto`) }))
+      enqueueSnackbar(t('snackbar-op-id-3', { mode: t(`mode-auto`) }))
     }
   }, [notification])
 

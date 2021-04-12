@@ -17,6 +17,15 @@
   "title-racks": "PLC I/O",
   "title-statistics": "Statistiche",
 
+  "mode-data-edit": "Salva dati",
+  "mode-data-read": "Lettura dati",
+  "mode-eme-1": "Emergenza 1",
+  "mode-eme-2": "Emergenza 2",
+  "mode-no-func": "---",
+  "mode-step": "Passo Passo",
+  "mode-preset": "Preset",
+  "mode-auto": "Automatico",
+
   "snackbar-op-id-1": "Allarme On {{id}}",
   "snackbar-op-id-2": "Allarme Off {{id}}",
   "snackbar-op-id-3": "Cambio modalità: {{mode}}"
