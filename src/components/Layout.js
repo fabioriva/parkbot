@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AppBar from 'src/components/AppBar'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
@@ -30,7 +30,11 @@ export default function AppLayout ({
 }) {
   const classes = useStyles()
 
-  const { comm, diag, map } = useComm(socket)
+  const { comm, diag, map, notification } = useComm(socket)
+
+  useEffect(() => {
+    if (notification) console.log(notification)
+  })
 
   const [mobileOpen, setMobileOpen] = useState(false)
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import { useSnackbar } from 'notistack'
+// import { useSnackbar } from 'notistack'
 // import message from 'src/lib/message'
-import notification from 'src/lib/notification'
+// import notification from 'src/lib/notification'
 
 const COMM_INITIAL_VALUE = {
   isOnline: false
@@ -16,6 +16,7 @@ export function useComm (url) {
   const [comm, setComm] = useState(COMM_INITIAL_VALUE)
   const [diag, setDiag] = useState({})
   const [map, setMap] = useState({})
+  const [notification, setNotification] = useState(null)
 
   const ws = useRef(null)
 
@@ -62,9 +63,10 @@ export function useComm (url) {
           setMap(data[key])
         }
         if (key === 'notification') {
-          const snack = notification(data[key])
-          console.log(snack)
-          enqueueSnackbar(snack.message, snack.options)
+          console.log(data[key])
+          setNotification(data[key])
+          // const snack = notification(data[key])
+          // enqueueSnackbar(snack.message, snack.options)
         }
       })
     }
