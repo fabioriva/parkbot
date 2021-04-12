@@ -34,7 +34,7 @@ export default function AppLayout ({
 
   useEffect(() => {
     if (notification) console.log(notification)
-  })
+  }, [notification])
 
   const [mobileOpen, setMobileOpen] = useState(false)
 
