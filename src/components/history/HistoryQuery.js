@@ -4,7 +4,6 @@ import useTranslation from 'next-translate/useTranslation'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
-import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import SearchIcon from '@material-ui/icons/Search'
 
@@ -29,31 +28,29 @@ export default function HistoryQuery ({ onQuery, query }) {
   const { t } = useTranslation('history')
 
   return (
-    <Container maxWidth='xl' className={classes.container}>
-      <div style={{ width: '100%' }}>
-        <Box display='flex' alignItems='center' mb={1}>
-          <Box flexGrow={1}>
-            <Typography className={classes.text} variant='subtitle1'>
-              {t('history-query-result', {
-                // count: query.count,
-                from: query.dateFrom,
-                to: query.dateTo
-              })}
-            </Typography>
-          </Box>
-          <Box>
-            <Button
-              onClick={onQuery}
-              color='primary'
-              variant='outlined'
-              size='small'
-              startIcon={<SearchIcon />}
-            >
-              {t('history-query')}
-            </Button>
-          </Box>
+    <div style={{ width: '100%' }}>
+      <Box display='flex' alignItems='center' mb={1}>
+        <Box flexGrow={1}>
+          <Typography className={classes.text} variant='subtitle1'>
+            {t('history-query-result', {
+              // count: query.count,
+              from: query.dateFrom,
+              to: query.dateTo
+            })}
+          </Typography>
         </Box>
-      </div>
-    </Container>
+        <Box>
+          <Button
+            onClick={onQuery}
+            color='primary'
+            variant='outlined'
+            size='small'
+            startIcon={<SearchIcon />}
+          >
+            {t('history-query')}
+          </Button>
+        </Box>
+      </Box>
+    </div>
   )
 }

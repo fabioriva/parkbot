@@ -1,6 +1,7 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import { fetchHistory } from 'src/lib/fetchJson'
+// import Layout from 'src/components/Layout'
 import Layout from 'src/components/LayoutResponsive'
 import ParkBot from 'src/components/ParkBot'
 import List from 'src/components/history/HistoryList'
@@ -45,7 +46,7 @@ export default function History ({ definitions, json, user }) {
       socket={`${websockUrl}?channel=ch2`}
       user={user}
     >
-      <Query onQuery={handleOpen} query={history} />
+      {/* <Query onQuery={handleOpen} query={history} /> */}
       <QueryDialog
         onCancel={handleCancel}
         onConfirm={handleConfirm}
@@ -53,6 +54,7 @@ export default function History ({ definitions, json, user }) {
       />
       <Container maxWidth='xl'>
         <Hidden implementation='css' xsDown>
+          <Query onQuery={handleOpen} query={history} />
           {history.count > 0 ? (
             <Table count={history.count} query={history.query} />
           ) : (
@@ -61,6 +63,9 @@ export default function History ({ definitions, json, user }) {
         </Hidden>
       </Container>
       <Hidden implementation='css' smUp>
+        <Container maxWidth='xl'>
+          <Query onQuery={handleOpen} query={history} />
+        </Container>
         {history.count > 0 ? (
           <>
             <Container maxWidth='xl'>

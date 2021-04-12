@@ -12,10 +12,11 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles(theme => ({
   container: {
-    display: 'flex',
+    // display: 'flex',
     height: '100vh'
   },
   root: {
@@ -62,7 +63,7 @@ export default function HistoryList ({ query, user }) {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
+    <Paper className={classes.container}>
       <AutoSizer>
         {({ height, width }) => (
           <List
@@ -77,6 +78,6 @@ export default function HistoryList ({ query, user }) {
           </List>
         )}
       </AutoSizer>
-    </div>
+    </Paper>
   )
 }

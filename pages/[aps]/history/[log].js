@@ -2,9 +2,9 @@ import { aps } from 'src/constants/aps'
 import { HISTORY } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import withAuthSync from 'src/hocs/withAuthSync'
-import DeviceInfo from 'src/components/history/HistoryLog'
+import HistoryLog from 'src/components/history/HistoryLog'
 
-const Page = props => <DeviceInfo {...props} />
+const Page = props => <HistoryLog {...props} />
 
 export async function getServerSideProps ({ params }) {
   if (aps(params.aps) === -1) {

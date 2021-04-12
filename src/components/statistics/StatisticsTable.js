@@ -27,7 +27,8 @@ export default function Statistics ({ statistics }) {
   return (
     <>
       <Typography variant='subtitle2' className={classes.title}>
-        {t('i18n')}: {label}
+        {/* {t('i18n')}: {label} */}
+        {label}
       </Typography>
       <TableContainer component={Paper} className={classes.table}>
         <Table size='small' aria-label='statistics'>
