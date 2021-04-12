@@ -70,7 +70,7 @@ export function useComm (url) {
         }
       })
     }
-  }, [comm, diag, map])
+  }, [comm, diag, map, notification])
 
   return {
     error,
