@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSnackbar } from 'notistack'
-import useTranslation from 'next-translate/useTranslation'
+// import useTranslation from 'next-translate/useTranslation'
 import AppBar from 'src/components/AppBar'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
@@ -35,7 +35,7 @@ export default function AppLayout ({
 
   const { enqueueSnackbar } = useSnackbar()
 
-  const { t } = useTranslation('common')
+  // const { t } = useTranslation('common')
 
   const { comm, diag, map, notification } = useComm(socket)
 
@@ -43,7 +43,7 @@ export default function AppLayout ({
     if (notification) {
       console.log(notification)
       const snack = snackbar(notification, user.locale)
-      enqueueSnackbar(snack)
+      enqueueSnackbar(snack.message, snack.options)
     }
   }, [notification])
 

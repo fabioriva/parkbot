@@ -6,7 +6,7 @@ export default async function snackbar (payload, locale) {
 
   const { mode } = payload
   return {
-    message: ('snackbar-op-id-3', { mode: t(mode.info) }),
+    message: (t('snackbar-op-id-3'), { mode: t(mode.info) }),
     options: {
       variant: 'warning'
     }
