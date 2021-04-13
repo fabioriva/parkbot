@@ -39,10 +39,11 @@ export default function AppLayout ({
 
   const { comm, diag, map, notification } = useComm(socket)
 
-  useEffect(() => {
+  useEffect(async () => {
     if (notification) {
       console.log(notification)
-      const snack = snackbar(notification, user.locale)
+      const snack = await snackbar(notification, user.locale)
+      console.log(snack)
       enqueueSnackbar(snack.message, snack.options)
     }
   }, [notification])
