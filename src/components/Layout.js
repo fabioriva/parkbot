@@ -6,6 +6,7 @@ import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
 import { useComm } from 'src/lib/useWebSocket'
+import snackbar from 'src/lib/notification'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -41,7 +42,8 @@ export default function AppLayout ({
   useEffect(() => {
     if (notification) {
       console.log(notification)
-      enqueueSnackbar(t('snackbar-op-id-3', { mode: t(`mode-auto`) }))
+      const snack = snackbar(notification, user.locale)
+      enqueueSnackbar(snack)
     }
   }, [notification])
 
