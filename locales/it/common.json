@@ -28,5 +28,8 @@
 
   "snackbar-op-id-1": "Allarme On {{id}}",
   "snackbar-op-id-2": "Allarme Off {{id}}",
-  "snackbar-op-id-3": "Cambio modalità: {{mode}}"
+  "snackbar-op-id-3": "Cambio modalità: {{mode}}",
+  "snackbar-op-id-4": "Modificata tessera {{card}}",
+  "snackbar-op-id-5": "Occupato stallo {{stall}} con tessera {{card}}",
+  "snackbar-op-id-6": "Liberato stallo {{stall}}"
 }

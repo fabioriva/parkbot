@@ -1,73 +1,63 @@
 import getT from 'next-translate/getT'
 
 export default async function snackbar (payload, locale) {
-  console.log('notification:', payload, locale)
   const t = await getT(locale, 'common')
 
-  const { mode } = payload
-  const message = t('snackbar-op-id-3', { mode: t(mode.info) })
-  return {
-    message: message,
-    options: {
-      variant: 'warning'
-    }
+  const { alarm, card, mode, operation, stall } = payload
+
+  console.log('notification:', payload, locale)
+
+  switch (operation.id) {
+    case 1:
+      return {
+        message: t('snackbar-op-id-1', { alarm: t(alarm.id) }),
+        options: {
+          variant: 'error'
+        }
+      }
+    case 2:
+      return {
+        message: t('snackbar-op-id-2', { alarm: t(alarm.id) }),
+        options: {
+          variant: 'success'
+        }
+      }
+    case 3:
+      return {
+        message: t('snackbar-op-id-3', { mode: t(mode.info) }),
+        options: {
+          variant: 'warning'
+        }
+      }
+    case 4:
+      return {
+        message: t('snackbar-op-id-4', { card: card }),
+        options: {
+          variant: 'success'
+        }
+      }
+    case 5:
+    case 7:
+      return {
+        message: t('snackbar-op-id-5', { card: card, stall: stall }),
+        options: {
+          variant: 'default'
+        }
+      }
+    case 6:
+    case 8:
+      return {
+        message: t('snackbar-op-id-6', { stall: stall }),
+        options: {
+          variant: 'default'
+        }
+      }
+    default:
+      return {
+        message: t('snackbar-default'),
+        options: {
+          variant: 'default'
+        }
+      }
   }
-  // const { type, message, description, card, stall } = payload
-  // switch (type) {
-  //   case 1: {
-  //     const snack = {
-  //       message: <span>{description}</span>,
-  //       options: {
-  //         variant: 'error'
-  //       }
-  //     }
-  //     return snack
-  //   }
-  //   case 2: {
-  //     const snack = {
-  //       message: <span>{description}</span>,
-  //       options: {
-  //         variant: 'success'
-  //       }
-  //     }
-  //     return snack
-  //   }
-  //   case 3:
-  //   case 4: {
-  //     const snack = {
-  //       message: <span>{description}</span>,
-  //       options: {
-  //         variant: 'warning'
-  //       }
-  //     }
-  //     return snack
-  //   }
-  //   case 5: {
-  //     const snack = {
-  //       message: <span>{description}</span>,
-  //       options: {
-  //         variant: 'default'
-  //       }
-  //     }
-  //     return snack
-  //   }
-  //   case 6: {
-  //     const snack = {
-  //       message: <span>{description}</span>,
-  //       options: {
-  //         variant: 'default'
-  //       }
-  //     }
-  //     return snack
-  //   }
-  //   default: {
-  //     const snack = {
-  //       message: <span>{description}</span>,
-  //       options: {
-  //         variant: 'info'
-  //       }
-  //     }
-  //     return snack
-  //   }
-  // }
 }
