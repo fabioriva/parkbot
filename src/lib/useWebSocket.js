@@ -1,15 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
-// import { useSnackbar } from 'notistack'
 // import message from 'src/lib/message'
-// import notification from 'src/lib/notification'
 
 const COMM_INITIAL_VALUE = {
   isOnline: false
 }
 
 export function useComm (url) {
-  // const { enqueueSnackbar } = useSnackbar()
-
   const [waitingToReconnect, setWaitingToReconnect] = useState(null)
 
   const [error, setError] = useState('')
@@ -64,8 +60,6 @@ export function useComm (url) {
         }
         if (key === 'notification') {
           setNotification(data[key])
-          // const snack = notification(data[key])
-          // enqueueSnackbar(snack.message, snack.options)
         }
       })
     }

@@ -10,14 +10,14 @@ export default async function snackbar (payload, locale) {
   switch (operation.id) {
     case 1:
       return {
-        message: t('snackbar-op-id-1', { alarm: t(alarm.id) }),
+        message: t('snackbar-op-id-1', { id: alarm.id }),
         options: {
           variant: 'error'
         }
       }
     case 2:
       return {
-        message: t('snackbar-op-id-2', { alarm: t(alarm.id) }),
+        message: t('snackbar-op-id-2', { id: alarm.id }),
         options: {
           variant: 'success'
         }

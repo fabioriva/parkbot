@@ -9,6 +9,7 @@
   "APPBAR_MENU_LOCALE": "Change language",
   "APPBAR_MENU_PROFILE": "Profile",
 
+  "title-alarms": "Alarms",
   "title-dashboard": "Dashboard",
   "title-system": "System",
   "title-cards": "Cards",
@@ -26,8 +27,8 @@
   "mode-preset": "Preset",
   "mode-auto": "Automatic",
 
-  "snackbar-op-id-1": "Alarm On {{id}}",
-  "snackbar-op-id-2": "Alarm Off {{id}}",
+  "snackbar-op-id-1": "Alarm ID {{id}} On",
+  "snackbar-op-id-2": "Alarm ID {{id}} Off",
   "snackbar-op-id-3": "Switch function mode: {{mode}}",
   "snackbar-op-id-4": "Modified card {{card}}",
   "snackbar-op-id-5": "Occupied stall {{stall}} with card {{card}}",
