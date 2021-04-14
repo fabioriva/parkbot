@@ -16,6 +16,7 @@
   "log-stall": "Stallo",
   "log-size": "Dimensione",
 
+  "no-records": "Nessuna registrazione.",
   "history-total-count": "Numero registrazioni {{count}}",
   "history-query-result": "{{from}} | {{to}}",
 

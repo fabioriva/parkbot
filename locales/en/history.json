@@ -16,6 +16,7 @@
   "log-stall": "Destination",
   "log-size": "Size",
 
+  "no-records": "No records found.",
   "history-total-count": "Total records {{count}}",
   "history-query-result": "{{from}} | {{to}}",
 

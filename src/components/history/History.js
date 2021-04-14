@@ -52,7 +52,7 @@ export default function History (props) {
           {history.count > 0 ? (
             <Table count={history.count} query={history.query} />
           ) : (
-            <ParkBot message='No records found.' />
+            <ParkBot message={t('no-records')} />
           )}
         </Hidden>
       </Container>
@@ -70,7 +70,7 @@ export default function History (props) {
             <List query={history.query} user={user} />
           </>
         ) : (
-          <ParkBot message='No records found.' />
+          <ParkBot message={t('no-records')} />
         )}
       </Hidden>
     </Layout>

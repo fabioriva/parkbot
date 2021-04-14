@@ -12,9 +12,6 @@
     "/[aps]/map": ["map"],
     "/[aps]/overview": ["system", "io"],
     "/[aps]/rack/[id]": ["io"],
-    "/[aps]/statistics": ["statistics"],
-
-    "/m/[aps]/cards": ["cards"],
-    "/m/[aps]/history": ["history"]
+    "/[aps]/statistics": ["statistics"]
   }
 }

@@ -1,8 +1,12 @@
 import React from 'react'
+import useTranslation from 'next-translate/useTranslation'
 import useData from 'src/lib/useData'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
+import ParkBot from 'src/components/ParkBot'
 // material-ui
+import { useTheme } from '@material-ui/core/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Badge from '@material-ui/core/Badge'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -28,6 +32,7 @@ function TabPanel (props) {
 }
 
 export default function Alarms (props) {
+  const { t } = useTranslation('alarms')
   const { definitions, json } = props
 
   if (json.err) {
@@ -48,6 +53,9 @@ export default function Alarms (props) {
     setValue(newValue)
   }
 
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('md'))
+
   return (
     <Layout {...props}>
       <Tabs
@@ -55,10 +63,14 @@ export default function Alarms (props) {
         onChange={handleChange}
         indicatorColor='primary'
         textColor='primary'
-        variant='scrollable' // variant='fullWidth'
-        scrollButtons='auto'
+        variant={matches ? 'fullWidth' : 'scrollable'}
+        scrollButtons={matches ? 'auto' : 'on'}
+        centered={matches}
         // className={classes.tabs}
-        style={{ marginBottom: 16 }}
+        style={{
+          // backgroundColor: theme.palette.background.paper,
+          marginBottom: 16
+        }}
       >
         {alarms.map((item, key) => (
           <Tab
@@ -68,21 +80,25 @@ export default function Alarms (props) {
                 <span>{item.name}</span>
               </Badge>
             }
-            disabled={item.active.length === 0}
+            // disabled={item.active.length === 0}
           />
         ))}
       </Tabs>
       {alarms.map((item, key) => (
         <TabPanel key={key} value={value} index={key}>
-          <Paper>
-            <List>
-              {item.active.map((item, key) => (
-                <ListItem key={key}>
-                  <ListItemText primary={item.label} secondary={item.date} />
-                </ListItem>
-              ))}
-            </List>
-          </Paper>
+          {item.active.length > 0 ? (
+            <Paper>
+              <List>
+                {item.active.map((item, key) => (
+                  <ListItem key={key}>
+                    <ListItemText primary={item.label} secondary={item.date} />
+                  </ListItem>
+                ))}
+              </List>
+            </Paper>
+          ) : (
+            <ParkBot message={t('no-alarms')} />
+          )}
         </TabPanel>
       ))}
     </Layout>

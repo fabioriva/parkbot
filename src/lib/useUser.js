@@ -2,8 +2,9 @@ import { useEffect } from 'react'
 import Router from 'next/router'
 import useSWR from 'swr'
 
-// const hasAps = aps => {
+// const hasAps = (aps, userAps) => {
 //   const [apsFromUrl] = Router.pathname.substring(1).split('/')
+//   console.log(aps, apsFromUrl)
 //   return aps === apsFromUrl
 // }
 
@@ -13,6 +14,7 @@ const hasRole = (user, roles) =>
   )
 
 export default function useUser ({
+  aps,
   redirectTo = false,
   redirectIfFound = false,
   roles = []
@@ -31,7 +33,7 @@ export default function useUser ({
       // If redirectIfFound is also set, redirect if the user was found
       (redirectIfFound && hasUser) ||
       // If redirect is set, redirect if pathname aps is not user aps
-      // (redirectTo && !hasAps(user.aps)) ||
+      (redirectTo && aps !== user.aps) ||
       // If redirect is set, redirect if page role is not user role
       (redirectTo && !hasRole(user, roles))
     ) {

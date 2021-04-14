@@ -6,6 +6,7 @@ import Loading from 'src/components/Loading'
 const withAuthSync = WrappedComponent => {
   const Wrapper = props => {
     const router = useRouter()
+    const { aps } = router.query
 
     const syncLogout = event => {
       if (event.key === 'logout') {
@@ -23,6 +24,7 @@ const withAuthSync = WrappedComponent => {
     }, [])
 
     const { user } = useUser({
+      aps,
       redirectTo: '/',
       redirectIfFound: false,
       roles: [props.definitions.pageRole]
