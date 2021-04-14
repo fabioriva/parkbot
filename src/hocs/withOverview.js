@@ -1,6 +1,5 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import { useSnackbar } from 'notistack'
 import { isAllowed } from 'src/lib/auth-actions'
 import fetchJson from 'src/lib/fetchJson'
 // import useData from 'src/lib/useData'
@@ -19,20 +18,12 @@ import Grid from '@material-ui/core/Grid'
 const withSystem = WrappedComponent => {
   const Wrapper = props => {
     const { t } = useTranslation('system')
-    const { enqueueSnackbar } = useSnackbar()
 
     const { definitions, json, user } = props
-    const { apsName, backendUrl, websockUrl, userRole } = definitions
+    const { backendUrl, websockUrl, userRole } = definitions
 
     if (json.err) {
-      return (
-        <Error
-          definitions={definitions}
-          message='Error 500'
-          title={t('title')}
-          user={user}
-        />
-      )
+      return <Error {...props} message='Error 500' />
     }
 
     const [overview, setOverview] = React.useState(json)
@@ -41,11 +32,6 @@ const withSystem = WrappedComponent => {
       initialData: overview,
       page: 'overview'
     })
-
-    // const { data } = useData(`${backendUrl}/overview`, {
-    //   initialData: overview,
-    //   refreshInterval: 500
-    // })
 
     React.useEffect(() => setOverview(data), [data])
 
@@ -81,7 +67,7 @@ const withSystem = WrappedComponent => {
         })
       })
       const snack = message(json)
-      enqueueSnackbar(snack.message, snack.options)
+      props.enqueueSnackbar(snack.message, snack.options)
     }
 
     const handleOpen = id => {
@@ -96,7 +82,7 @@ const withSystem = WrappedComponent => {
         body: JSON.stringify({ card, index })
       })
       const snack = message(json)
-      enqueueSnackbar(snack.message, snack.options)
+      props.enqueueSnackbar(snack.message, snack.options)
     }
 
     const devices = overview.devices.map((item, key) => (
@@ -110,12 +96,7 @@ const withSystem = WrappedComponent => {
     ))
 
     return (
-      <Layout
-        apsName={apsName}
-        pageTitle={t('title')}
-        socket={`${websockUrl}?channel=ch2`}
-        user={user}
-      >
+      <Layout {...props}>
         <Grid container spacing={1}>
           <Grid item xs={12} md={8}>
             <WrappedComponent {...props} devices={devices} />

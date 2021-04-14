@@ -10,29 +10,19 @@ import Vfd from 'src/components/system/Vfd'
 // material-ui
 import Grid from '@material-ui/core/Grid'
 
-export default function Cards ({ definitions, json, user }) {
-  const { apsName, backendUrl, websockUrl } = definitions
+export default function Cards (props) {
+  const { definitions, json } = props
 
   if (json.err) {
-    return (
-      <Error
-        definitions={definitions}
-        message='Error 500'
-        title='Device Info'
-        user={user}
-      />
-    )
+    return <Error {...props} message='Error 500' />
   }
 
   const router = useRouter()
   const { id } = router.query
 
   const [device, setDevice] = useState(json)
-  // const { mesg } = useData('diagnostic', `${websockUrl}?channel=ch1`)
 
-  // const index = device.a.id - 1
-
-  const { data } = useData(`${websockUrl}?channel=ch1`, {
+  const { data } = useData(`${definitions.websockUrl}?channel=ch1`, {
     initialData: null,
     page: 'diagnostic'
   })
@@ -43,12 +33,7 @@ export default function Cards ({ definitions, json, user }) {
   }, [data])
 
   return (
-    <Layout
-      apsName={apsName}
-      pageTitle={device.a.name} // {t('title')}
-      socket={`${websockUrl}?channel=ch2`}
-      user={user}
-    >
+    <Layout {...props}>
       <Grid container spacing={3}>
         {device.f?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>

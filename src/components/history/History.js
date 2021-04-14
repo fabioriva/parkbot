@@ -13,10 +13,10 @@ import Container from '@material-ui/core/Container'
 import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
 
-export default function History ({ definitions, json, user }) {
+export default function History (props) {
   const { t } = useTranslation('history')
-
-  const { apsId, apsName, backendUrl, websockUrl } = definitions
+  const { definitions, json, user } = props
+  const { apsId, backendUrl } = definitions
 
   const [history, setHistory] = React.useState(json)
   const [open, setOpen] = React.useState(false)
@@ -40,13 +40,7 @@ export default function History ({ definitions, json, user }) {
   }
 
   return (
-    <Layout
-      apsName={apsName}
-      pageTitle={t('title')}
-      socket={`${websockUrl}?channel=ch2`}
-      user={user}
-    >
-      {/* <Query onQuery={handleOpen} query={history} /> */}
+    <Layout {...props}>
       <QueryDialog
         onCancel={handleCancel}
         onConfirm={handleConfirm}

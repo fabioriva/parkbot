@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
-import { useSnackbar } from 'notistack'
+import React from 'react'
+import useTranslation from 'next-translate/useTranslation'
 import AppBar from 'src/components/AppBar'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
-import { useComm } from 'src/lib/useWebSocket'
 import snackbar from 'src/lib/notification'
+import { useComm } from 'src/lib/useWebSocket'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -23,28 +23,26 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar
 }))
 
-export default function AppLayout ({
-  children,
-  apsName,
-  pageTitle,
-  socket,
-  user
-}) {
+export default function AppLayout (props) {
   const classes = useStyles()
+  const { t } = useTranslation('common')
 
-  const { enqueueSnackbar } = useSnackbar()
+  const { definitions, user } = props
+  const { apsName, pageTitle, websockUrl } = definitions
 
-  const { comm, diag, map, notification } = useComm(socket)
+  const { comm, diag, map, notification } = useComm(
+    websockUrl.concat('?channel=ch2')
+  )
 
-  useEffect(async () => {
+  React.useEffect(async () => {
     if (notification) {
       const snack = await snackbar(notification, user.locale)
       console.log(snack)
-      enqueueSnackbar(snack.message, snack.options)
+      props.enqueueSnackbar(snack.message, snack.options)
     }
   }, [notification])
 
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -64,12 +62,12 @@ export default function AppLayout ({
           <div className={classes.toolbar} />
           <Header
             aps={apsName}
-            pageTitle={pageTitle}
+            pageTitle={t(pageTitle)}
             comm={comm}
             diag={diag}
             map={map}
           />
-          {children}
+          {props.children}
         </Container>
         <Footer />
       </main>

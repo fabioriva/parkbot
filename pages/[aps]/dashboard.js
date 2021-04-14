@@ -3,6 +3,7 @@ import { DASHBOARD, ACTIONS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import Dashboard from 'src/components/Dashboard'
 import withAuthSync from 'src/hocs/withAuthSync'
+import { withSnackbar } from 'notistack'
 
 const Page = props => {
   return <Dashboard {...props} />
@@ -33,6 +34,7 @@ export async function getStaticProps ({ params }) {
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
         pageRole: DASHBOARD,
+        pageTitle: 'title-dashboard',
         userRole: ACTIONS
       },
       json
@@ -40,4 +42,4 @@ export async function getStaticProps ({ params }) {
   }
 }
 
-export default withAuthSync(Page)
+export default withAuthSync(withSnackbar(Page))

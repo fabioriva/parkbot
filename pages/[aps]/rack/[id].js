@@ -26,7 +26,8 @@ export async function getServerSideProps ({ params }) {
         apsName: APS_NAME,
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
-        pageRole: RACKS
+        pageRole: RACKS,
+        pageTitle: 'title-racks'
       },
       json
     }

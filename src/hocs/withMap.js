@@ -1,6 +1,5 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import { useSnackbar } from 'notistack'
 import { isAllowed } from 'src/lib/auth-actions'
 import fetchJson from 'src/lib/fetchJson'
 import { useData } from 'src/lib/useWebSocket'
@@ -19,28 +18,12 @@ import Grid from '@material-ui/core/Grid'
 const withMap = WrappedComponent => {
   const Wrapper = props => {
     const { t } = useTranslation('map')
-    const { enqueueSnackbar } = useSnackbar()
 
     const { definitions, json, user } = props
-    const {
-      apsName,
-      backendUrl,
-      websockUrl,
-      // cards,
-      // stalls,
-      // stallStatus,
-      userRole
-    } = definitions
+    const { backendUrl, websockUrl, userRole } = definitions
 
     if (json.err) {
-      return (
-        <Error
-          definitions={definitions}
-          message='Error 500'
-          title={t('title')}
-          user={user}
-        />
-      )
+      return <Error {...props} message='Error 500' />
     }
 
     const [map, setMap] = React.useState(json)
@@ -76,8 +59,7 @@ const withMap = WrappedComponent => {
         body: JSON.stringify({ card, stall })
       })
       const snack = message(json)
-      enqueueSnackbar(snack.message, snack.options)
-      // setMap(json.data)
+      props.enqueueSnackbar(snack.message, snack.options)
     }
 
     const handleOpen = (stall, value) => {
@@ -98,12 +80,7 @@ const withMap = WrappedComponent => {
     ))
 
     return (
-      <Layout
-        apsName={apsName}
-        pageTitle={t('title')}
-        socket={`${websockUrl}?channel=ch2`}
-        user={user}
-      >
+      <Layout {...props}>
         <Grid container spacing={1}>
           <Grid item xs={12} lg={8}>
             <WrappedComponent {...props} levels={levels} />

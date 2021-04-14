@@ -4,6 +4,7 @@ import { MAP, EDIT_STALL } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import withAuthSync from 'src/hocs/withAuthSync'
 import withMap from 'src/hocs/withMap'
+import { withSnackbar } from 'notistack'
 
 const componentList = {
   bassano: dynamic(() => import('src/aps/bassano/Map')),
@@ -45,6 +46,7 @@ export async function getStaticProps ({ params }) {
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
         pageRole: MAP,
+        pageTitle: 'title-map',
         userRole: EDIT_STALL
       },
       json
@@ -53,4 +55,4 @@ export async function getStaticProps ({ params }) {
   }
 }
 
-export default withAuthSync(withMap(Page))
+export default withAuthSync(withSnackbar(withMap(Page)))

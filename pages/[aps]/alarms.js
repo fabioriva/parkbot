@@ -3,6 +3,7 @@ import { ALARMS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import Alarms from 'src/components/alarms/Alarms'
 import withAuthSync from 'src/hocs/withAuthSync'
+import { withSnackbar } from 'notistack'
 
 const Page = props => {
   return <Alarms {...props} />
@@ -26,11 +27,12 @@ export async function getServerSideProps ({ params }) {
         apsName: APS_NAME,
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
-        pageRole: ALARMS
+        pageRole: ALARMS,
+        pageTitle: 'title-alarms'
       },
       json
     }
   }
 }
 
-export default withAuthSync(Page)
+export default withAuthSync(withSnackbar(Page))

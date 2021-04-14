@@ -3,6 +3,7 @@
   "defaultLocale": "en",
   "pages": {
     "*": ["common"],
+    "/[aps]/alarms": ["alarms"],
     "/[aps]/cards": ["cards"],
     "/[aps]/dashboard": ["history", "map", "system", "statistics"],
     "/[aps]/device/[id]": ["system", "io"],

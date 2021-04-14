@@ -1,8 +1,9 @@
 import { aps } from 'src/constants/aps'
 import { HISTORY } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
-import withAuthSync from 'src/hocs/withAuthSync'
 import HistoryLog from 'src/components/history/HistoryLog'
+import withAuthSync from 'src/hocs/withAuthSync'
+import { withSnackbar } from 'notistack'
 
 const Page = props => <HistoryLog {...props} />
 
@@ -24,11 +25,12 @@ export async function getServerSideProps ({ params }) {
         apsName: APS_NAME,
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
-        pageRole: HISTORY
+        pageRole: HISTORY,
+        pageTitle: 'title-history'
       },
       json
     }
   }
 }
 
-export default withAuthSync(Page)
+export default withAuthSync(withSnackbar(Page))

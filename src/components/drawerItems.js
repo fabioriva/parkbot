@@ -16,7 +16,7 @@ import CreditCardIcon from '@material-ui/icons/CreditCard'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar'
 import HistoryIcon from '@material-ui/icons/History'
-// import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
 import ViewComfyIcon from '@material-ui/icons/ViewComfy'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 // import ExpandLess from '@material-ui/icons/ExpandLess'
@@ -55,7 +55,7 @@ export function mainListItems (diag, user) {
           <ListItemIcon>
             <VisibilityIcon />
           </ListItemIcon>
-          <ListItemText primary={t('title-system')} />
+          <ListItemText primary={t('title-overview')} />
         </ListItem>
       </Link>
 
@@ -83,6 +83,15 @@ export function mainListItems (diag, user) {
             <ViewComfyIcon />
           </ListItemIcon>
           <ListItemText primary={t('title-racks')} />
+        </ListItem>
+      </Link>
+
+      <Link href={`/${user.aps}/alarms`} locale={locale}>
+        <ListItem button>
+          <ListItemIcon>
+            <NotificationsActiveIcon />
+          </ListItemIcon>
+          <ListItemText primary={t('title-alarms')} />
         </ListItem>
       </Link>
 

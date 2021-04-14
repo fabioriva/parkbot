@@ -4,6 +4,7 @@ import { STATISTICS } from 'src/constants/roles'
 import { fetchOperations } from 'src/lib/fetchJson'
 import Statistics from 'src/components/statistics/Statistics'
 import withAuthSync from 'src/hocs/withAuthSync'
+import { withSnackbar } from 'notistack'
 
 const Page = props => {
   return <Statistics {...props} />
@@ -37,11 +38,12 @@ export async function getStaticProps ({ params }) {
         apsName: APS_NAME,
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
-        pageRole: STATISTICS
+        pageRole: STATISTICS,
+        pageTitle: 'title-statistics'
       },
       json
     }
   }
 }
 
-export default withAuthSync(Page)
+export default withAuthSync(withSnackbar(Page))

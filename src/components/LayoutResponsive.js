@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import React from 'react'
+import useTranslation from 'next-translate/useTranslation'
 import AppBar from 'src/components/AppBar'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
+import snackbar from 'src/lib/notification'
 import { useComm } from 'src/lib/useWebSocket'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
@@ -21,18 +23,26 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar
 }))
 
-export default function AppLayout ({
-  children,
-  apsName,
-  pageTitle,
-  socket,
-  user
-}) {
+export default function AppLayout (props) {
   const classes = useStyles()
+  const { t } = useTranslation('common')
 
-  const { comm, diag, map } = useComm(socket)
+  const { definitions, user } = props
+  const { apsName, pageTitle, websockUrl } = definitions
 
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const { comm, diag, map, notification } = useComm(
+    websockUrl.concat('?channel=ch2')
+  )
+
+  React.useEffect(async () => {
+    if (notification) {
+      const snack = await snackbar(notification, user.locale)
+      console.log(snack)
+      props.enqueueSnackbar(snack.message, snack.options)
+    }
+  }, [notification])
+
+  const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -52,13 +62,13 @@ export default function AppLayout ({
           <div className={classes.toolbar} />
           <Header
             aps={apsName}
-            pageTitle={pageTitle}
+            pageTitle={t(pageTitle)}
             comm={comm}
             diag={diag}
             map={map}
           />
         </Container>
-        {children}
+        {props.children}
         <Footer />
       </main>
     </div>

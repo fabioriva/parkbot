@@ -4,7 +4,6 @@ import useTranslation from 'next-translate/useTranslation'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import Activity from 'src/components/history/RecentActivity'
-// import DashboardGrid from 'src/components/system/DashboardGrid'
 import DeviceList from 'src/components/system/DeviceList'
 import Queue from 'src/components/system/Queue'
 import Occupancy from 'src/components/map/PieChart'
@@ -17,11 +16,6 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-// import BuildIcon from '@material-ui/icons/Build'
-// import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
-// import DriveEtaIcon from '@material-ui/icons/DriveEta'
-// import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
-// import FaceIcon from '@material-ui/icons/Face'
 
 const useStyles = makeStyles(theme => ({
   gridItem: {
@@ -55,36 +49,23 @@ function Widget ({ children, link, title }) {
   )
 }
 
-export default function Dashboard ({ definitions, json, user }) {
+export default function Dashboard (props) {
   const classes = useStyles()
   const { t } = useTranslation()
+  const { definitions, json, user } = props
 
-  const { apsName, backendUrl, websockUrl } = definitions
+  if (json.err) {
+    return <Error {...props} message='Error 500' />
+  }
 
-  const errorPage = (
-    <Error
-      definitions={definitions}
-      message='Error 500'
-      title={t('common:title-dashboard')}
-      user={user}
-    />
-  )
+  const [dashboard, setDashboard] = React.useState(json)
 
-  if (json.err) return errorPage
-
-  // const [data] = React.useState(json)
-
-  const { data, isLoading, isError } = useData(`${backendUrl}/dashboard`, {
-    initialData: json,
+  const { data } = useData(`${definitions.backendUrl}/dashboard`, {
+    initialData: dashboard,
     refreshInterval: 1000
   })
 
-  if (isError) return errorPage
-  if (isLoading) return <div>loading...</div>
-
-  console.log(data)
-
-  // const { activity, occupancy, operations, system } = data
+  React.useEffect(() => setDashboard(data), [data])
 
   const handleDelete = async ({ card, index }) => {
     console.log(card, index)
@@ -97,21 +78,14 @@ export default function Dashboard ({ definitions, json, user }) {
     // enqueueSnackbar(snack.message, snack.options)
   }
 
-  // const locale = user.locale !== undefined ? user.locale : 'en'
-
   return (
-    <Layout
-      apsName={apsName}
-      pageTitle={t('common:title-dashboard')}
-      socket={`${websockUrl}?channel=ch2`}
-      user={user}
-    >
+    <Layout {...props}>
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <Grid container spacing={1}>
             <Grid item className={classes.gridItem} xs={12} lg>
               <Widget title='System Info' link={`/${user.aps}/overview`}>
-                <DeviceList devices={data.system.devices} />
+                <DeviceList devices={dashboard.system.devices} />
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg>
@@ -119,13 +93,13 @@ export default function Dashboard ({ definitions, json, user }) {
                 <Queue
                   authorization={false}
                   handleDelete={handleDelete}
-                  queueList={data.system.exitQueue.queueList}
+                  queueList={dashboard.system.exitQueue.queueList}
                 />
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget title='Occupancy' link={`/${user.aps}/map`}>
-                <Occupancy data={data.occupancy} />
+                <Occupancy data={dashboard.occupancy} />
               </Widget>
             </Grid>
           </Grid>
@@ -134,12 +108,12 @@ export default function Dashboard ({ definitions, json, user }) {
           <Grid container spacing={1}>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget title='Recent Activity' link={`/${user.aps}/history`}>
-                <Activity data={data.activity} user={user} />
+                <Activity data={dashboard.activity} user={user} />
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget title='Operations' link={`/${user.aps}/statistics`}>
-                <Operations data={data.operations[0]} />
+                <Operations data={dashboard.operations[0]} />
               </Widget>
             </Grid>
           </Grid>

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Layout from 'src/components/Layout'
-// import ParkBot from 'src/components/ParkBot'
 import Error from 'src/components/Error'
 import useTranslation from 'next-translate/useTranslation'
 import Operations from 'src/components/statistics/BarChart'
@@ -27,20 +26,12 @@ function TabPanel (props) {
   )
 }
 
-export default function Statistics ({ definitions, json, user }) {
+export default function Statistics (props) {
   const { t } = useTranslation('statistics')
-
-  const { apsName, backendUrl, websockUrl } = definitions
+  const { definitions, json } = props
 
   if (json.err) {
-    return (
-      <Error
-        definitions={definitions}
-        message='Error 500'
-        title={t('title')}
-        user={user}
-      />
-    )
+    return <Error {...props} message='Error 500' />
   }
 
   const [statistics, setStatistics] = useState(json)
@@ -52,12 +43,7 @@ export default function Statistics ({ definitions, json, user }) {
   }
 
   return (
-    <Layout
-      apsName={apsName}
-      pageTitle={t('title')}
-      socket={`${websockUrl}?channel=ch2`}
-      user={user}
-    >
+    <Layout {...props}>
       <Hidden implementation='css' xsDown>
         <Tabs
           value={value}

@@ -4,6 +4,7 @@ import { CARDS, EDIT_CARD } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import Cards from 'src/components/cards/Cards'
 import withAuthSync from 'src/hocs/withAuthSync'
+import { withSnackbar } from 'notistack'
 
 const Page = props => {
   return <Cards {...props} />
@@ -34,6 +35,7 @@ export async function getStaticProps ({ params }) {
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
         pageRole: CARDS,
+        pageTitle: 'title-cards',
         userRole: EDIT_CARD
       },
       json
@@ -41,7 +43,7 @@ export async function getStaticProps ({ params }) {
   }
 }
 
-export default withAuthSync(Page)
+export default withAuthSync(withSnackbar(Page))
 
 // export async function getServerSideProps ({ params, req }) {
 //   const ua = parser(req.headers['user-agent'])

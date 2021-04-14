@@ -9,14 +9,15 @@
   "APPBAR_MENU_LOCALE": "Cambia lingua",
   "APPBAR_MENU_PROFILE": "Profilo",
 
-  "title-alarms": "Alarmmi",
+  "title-alarms": "Allarmi",
   "title-dashboard": "Dashboard",
-  "title-system": "Sistema",
+  "title-overview": "Sistema",
   "title-cards": "Tessere",
   "title-map": "Mappa",
   "title-history": "Storico",
   "title-racks": "PLC I/O",
   "title-statistics": "Statistiche",
+  "title-motion": "Motion",
 
   "mode-data-edit": "Salva dati",
   "mode-data-read": "Lettura dati",

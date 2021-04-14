@@ -3,7 +3,8 @@ import { aps } from 'src/constants/aps'
 import { OVERVIEW, ACTIONS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import withAuthSync from 'src/hocs/withAuthSync'
-import withSystem from 'src/hocs/withSystem'
+import withOverview from 'src/hocs/withOverview'
+import { withSnackbar } from 'notistack'
 
 const componentList = {
   bassano: dynamic(() => import('src/aps/bassano/Overview')),
@@ -38,6 +39,7 @@ export async function getServerSideProps ({ params }) {
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
         pageRole: OVERVIEW,
+        pageTitle: 'title-overview',
         userRole: ACTIONS
         // cards: CARDS
       },
@@ -46,4 +48,4 @@ export async function getServerSideProps ({ params }) {
   }
 }
 
-export default withAuthSync(withSystem(Page))
+export default withAuthSync(withSnackbar(withOverview(Page)))

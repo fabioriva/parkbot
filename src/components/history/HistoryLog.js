@@ -1,4 +1,5 @@
-import { format, parseISO } from 'date-fns'
+import React from 'react'
+// import { format, parseISO } from 'date-fns'
 import useTranslation from 'next-translate/useTranslation'
 import Back from 'src/components/BackButton'
 import Error from 'src/components/Error'
@@ -26,30 +27,17 @@ const Item = ({ title, value }) => (
   </>
 )
 
-const Log = ({ definitions, json, user }) => {
+const Log = props => {
   const { t } = useTranslation('history')
-  const { apsName, websockUrl } = definitions
 
-  if (json.err) {
-    return (
-      <Error
-        definitions={definitions}
-        message='Error 500'
-        title={t('title')}
-        user={user}
-      />
-    )
+  if (props.json.err) {
+    return <Error {...props} message='Error 500' />
   }
 
-  const log = json
+  const [log] = React.useState(props.json)
 
   return (
-    <Layout
-      apsName={apsName}
-      pageTitle='Log'
-      socket={`${websockUrl}?channel=ch2`}
-      user={user}
-    >
+    <Layout {...props}>
       <Card>
         <CardContent>
           <Item

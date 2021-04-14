@@ -11,12 +11,13 @@
 
   "title-alarms": "Alarms",
   "title-dashboard": "Dashboard",
-  "title-system": "System",
+  "title-overview": "Overview",
   "title-cards": "Cards",
   "title-map": "Map",
   "title-history": "History",
   "title-racks": "PLC I/O",
   "title-statistics": "Statistics",
+  "title-motion": "Motion",
 
   "mode-data-edit": "Data edit",
   "mode-data-read": "Data read",

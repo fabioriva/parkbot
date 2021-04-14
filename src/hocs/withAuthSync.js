@@ -25,7 +25,7 @@ const withAuthSync = WrappedComponent => {
     const { user } = useUser({
       redirectTo: '/',
       redirectIfFound: false,
-      roles: [props.definitions?.pageRole]
+      roles: [props.definitions.pageRole]
     })
 
     if (!user) return <Loading />

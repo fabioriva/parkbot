@@ -14,20 +14,12 @@ import Hidden from '@material-ui/core/Hidden'
 
 import PlcRack from 'src/components/racks/PlcRack'
 
-export default function Rack ({ definitions, json, user }) {
+export default function Rack (props) {
   const { t } = useTranslation('common')
-
-  const { apsName, websockUrl } = definitions
+  const { definitions, json, user } = props
 
   if (json.err) {
-    return (
-      <Error
-        definitions={definitions}
-        message='Error 500'
-        title={t('title-racks')}
-        user={user}
-      />
-    )
+    return <Error {...props} message='Error 500' />
   }
 
   const router = useRouter()
@@ -35,7 +27,7 @@ export default function Rack ({ definitions, json, user }) {
 
   const [rack, setRack] = useState(json)
 
-  const { data } = useData(`${websockUrl}?channel=ch1`, {
+  const { data } = useData(`${definitions.websockUrl}?channel=ch1`, {
     initialData: null,
     page: 'racks'
   })
@@ -51,16 +43,7 @@ export default function Rack ({ definitions, json, user }) {
   // useEffect(() => setRack(data), [data])
 
   return (
-    <Layout
-      apsName={apsName}
-      pageTitle={
-        <span>
-          {t('title-racks')} {rack.title}
-        </span>
-      }
-      socket={`${websockUrl}?channel=ch2`}
-      user={user}
-    >
+    <Layout {...props}>
       <Container maxWidth='xl'>
         <Hidden implementation='css' xsDown>
           <Button onClick={() => window.history.back()}>Back</Button>

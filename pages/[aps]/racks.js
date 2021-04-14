@@ -3,6 +3,7 @@ import { RACKS } from 'src/constants/roles'
 import fetchJson from 'src/lib/fetchJson'
 import Racks from 'src/components/racks/Racks'
 import withAuthSync from 'src/hocs/withAuthSync'
+import { withSnackbar } from 'notistack'
 
 const Page = props => {
   return <Racks {...props} />
@@ -26,11 +27,12 @@ export async function getServerSideProps ({ params }) {
         apsName: APS_NAME,
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
-        pageRole: RACKS
+        pageRole: RACKS,
+        pageTitle: 'title-racks'
       },
       json
     }
   }
 }
 
-export default withAuthSync(Page)
+export default withAuthSync(withSnackbar(Page))

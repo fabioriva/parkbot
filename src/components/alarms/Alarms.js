@@ -1,6 +1,5 @@
 import React from 'react'
 import useData from 'src/lib/useData'
-import useTranslation from 'next-translate/useTranslation'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 // material-ui
@@ -28,25 +27,16 @@ function TabPanel (props) {
   )
 }
 
-export default function Dashboard ({ definitions, json, user }) {
-  const { t } = useTranslation()
-
-  const { apsName, backendUrl, websockUrl } = definitions
+export default function Alarms (props) {
+  const { definitions, json } = props
 
   if (json.err) {
-    return (
-      <Error
-        definitions={definitions}
-        message='Error 500'
-        title={t('title')}
-        user={user}
-      />
-    )
+    return <Error {...props} message='Error 500' />
   }
 
   const [alarms, setAlarms] = React.useState(json)
 
-  const { data } = useData(`${backendUrl}/alarms`, {
+  const { data } = useData(`${definitions.backendUrl}/alarms`, {
     initialData: alarms,
     refreshInterval: 1000
   })
@@ -59,18 +49,14 @@ export default function Dashboard ({ definitions, json, user }) {
   }
 
   return (
-    <Layout
-      apsName={apsName}
-      pageTitle={t('common:title-alarms')}
-      socket={`${websockUrl}?channel=ch2`}
-      user={user}
-    >
+    <Layout {...props}>
       <Tabs
         value={value}
         onChange={handleChange}
         indicatorColor='primary'
         textColor='primary'
-        variant='fullWidth'
+        variant='scrollable' // variant='fullWidth'
+        scrollButtons='auto'
         // className={classes.tabs}
         style={{ marginBottom: 16 }}
       >
@@ -78,11 +64,7 @@ export default function Dashboard ({ definitions, json, user }) {
           <Tab
             key={key}
             label={
-              <Badge
-                key={key}
-                badgeContent={item.active.length}
-                color='secondary'
-              >
+              <Badge badgeContent={item.active.length} color='secondary'>
                 <span>{item.name}</span>
               </Badge>
             }
