@@ -1,7 +1,16 @@
-const Map = ({ levels }) => {
+// material-ui
+import Grid from '@material-ui/core/Grid'
+
+const Map = ({ levels, occupancy, view }) => {
   return (
-    <>
-      {levels[0]}
+    <Grid container spacing={1}>
+      <Grid item xs={12} md={8}>
+        {levels[0]}
+        {view}
+      </Grid>
+      <Grid item xs={12} md={4}>
+        {occupancy}
+      </Grid>
       <style jsx global>
         {`
           .l {
@@ -331,7 +340,7 @@ const Map = ({ levels }) => {
           }
         `}
       </style>
-    </>
+    </Grid>
   )
 }
 

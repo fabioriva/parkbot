@@ -79,9 +79,23 @@ const withMap = WrappedComponent => {
       />
     ))
 
+    const view = <View filter={filter} handleChange={handleChange} />
+
+    const occupancy = (
+      <Widget title={t('chart-occupancy')}>
+        <Occupancy data={map.statistics[0]} />
+      </Widget>
+    )
+
     return (
       <Layout {...props}>
-        <Grid container spacing={1}>
+        <WrappedComponent
+          {...props}
+          levels={levels}
+          occupancy={occupancy}
+          view={view}
+        />
+        {/* <Grid container spacing={1}>
           <Grid item xs={12} lg={8}>
             <WrappedComponent {...props} levels={levels} />
             <View filter={filter} handleChange={handleChange} />
@@ -91,7 +105,7 @@ const withMap = WrappedComponent => {
               <Occupancy data={map.statistics[0]} />
             </Widget>
           </Grid>
-        </Grid>
+        </Grid> */}
         <Dialog
           open={open}
           onCancel={handleCancel}
