@@ -1,5 +1,5 @@
 import React from 'react'
-import format from 'date-fns/format'
+// import format from 'date-fns/format'
 import useTranslation from 'next-translate/useTranslation'
 import useData from 'src/lib/useData'
 import Error from 'src/components/Error'
@@ -12,10 +12,11 @@ import Badge from '@material-ui/core/Badge'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+// import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import Paper from '@material-ui/core/Paper'
 import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
+import Typography from '@material-ui/core/Typography'
 
 function TabPanel (props) {
   const { children, value, index, ...other } = props
@@ -94,17 +95,29 @@ export default function Alarms (props) {
                 {item.active.map((item, key) => (
                   <ListItem key={key}>
                     <ListItemText
-                      primary={item.label}
-                      secondary={`${
-                        item.info.length > 0 ? t(item.info) : '---'
-                      }`}
+                      primary={
+                        <Typography color='error'>{item.label}</Typography>
+                      }
+                      secondary={
+                        <Typography
+                          variant='overline'
+                          // align='center'
+                          // color='error'
+                        >
+                          {item.date}&nbsp;&rarr;&nbsp;
+                          {item.info.length > 0 ? t(item.info) : '---'}
+                        </Typography>
+                      }
+                      // secondary={`${
+                      //   item.info.length > 0 ? t(item.info) : '---'
+                      // }`}
                     />
-                    <ListItemSecondaryAction>
+                    {/* <ListItemSecondaryAction>
                       <span style={{ textAlign: 'right' }}>
                         <div>{format(new Date(item.date), 'yyyy-MM-dd')}</div>
                         <div>{format(new Date(item.date), 'HH:mm:ss.SSS')}</div>
                       </span>
-                    </ListItemSecondaryAction>
+                    </ListItemSecondaryAction> */}
                   </ListItem>
                 ))}
               </List>
