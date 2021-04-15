@@ -91,7 +91,10 @@ export default function Alarms (props) {
               <List>
                 {item.active.map((item, key) => (
                   <ListItem key={key}>
-                    <ListItemText primary={item.label} secondary={item.date} />
+                    <ListItemText
+                      primary={item.label}
+                      secondary={`${item.date}: ${t(item.info)}`}
+                    />
                   </ListItem>
                 ))}
               </List>

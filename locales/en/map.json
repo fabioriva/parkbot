@@ -16,5 +16,6 @@
   "stall-locked": "Stall {{stall}} is locked",
   "free": "Vacant",
   "busy": "Busy",
-  "lock": "Locked"
+  "lock": "Locked",
+  "occupancy": "Occupancy"
 }

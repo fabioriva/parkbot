@@ -1,3 +1,60 @@
 {
-  "no-alarms": "Nessun allarme attivo."
+  "no-alarms": "Nessun allarme attivo.",
+
+  "al-sil-01": "Silomat time out, motore di traslazione.",
+  "al-sil-02": "Silomat time out, motore di sollevamento",
+  "al-sil-03": "Silomat time out, motore centratore anteriore.",
+  "al-sil-04": "Silomat time out, motore centratore postriore.",
+  "al-sil-05": "Silomat controllo sensori MV-MH in partenza.",
+  "al-sil-06": "Silomat controllo sensori MV-MH in arrivo.",
+  "al-sil-07": "Silomat controllo sensori ES-EH.",
+  "al-sil-08": "Silomat controllo sensori EBV-EAV.",
+  "al-sil-09": "Silomat controllo sensori EBH-EAH.",
+  "al-sil-10": "Silomat traslazione verso stallo non abilitata.",
+  "al-sil-11": "Silomat allarme centratura.",
+  "al-sil-12": "Silomat ritorno al centro, traslazione non abilitata.",
+  "al-sil-13": "Silomat ritorno al centro, allarme sensori FTXV/FTXH.",
+  "al-sil-14": "Silomat controllo sensori MV-MH in velocità di livellamento.",
+  "al-sil-15": "Allarme avvolgicavo Silomat.",
+  "al-sil-16": "",
+
+  "al-v-to": "Time out motore di sollevamento.",
+  "al-v-fdbk": "Controllo feedback del motore di sollevamento.",
+  "al-lv": "Laser verticale fuori tolleranza.",
+  "al-lv-diff": "Differenza tra i valori dei laser verticali fuori tolleranza.",
+
+  "al-h-to": "Time out motore di traslazione.",
+  "al-h-fdbk": "Controllo feedback del motore di traslazione.",
+  "al-lh": "Laser orizzontale fuori tolleranza.",
+  "al-lh-diff": "Differenza tra i valori dei laser orizzontali fuori tolleranza.",
+
+  "al-r-to": "Time out motore di rotazione.",
+  "al-r-fdbk": "Controllo feedback del motore di rotazione.",
+  "al-enr": "Encoder rotazione fuori tolleranza.",
+
+  "al-v-lck-to": "Time out motore di bloccaggio sollevamento.",
+  "al-v-lck-fc": "Controllo sensori di posizione del bloccaggio sollevamento.",
+  "al-r-lck-to": "Time out motore di bloccaggio rotazione.",
+  "al-r-lck-fc": "Controllo sensori di posizione del bloccaggio rotazione.",
+
+  "al-flap-to": "Time out motore flap",
+  "al-flap-fc": "Controllo sensori di posizione flap.",
+
+  "al-sp-to": "Time out motore porta.",
+  "al-sp-fc": "Controllo sensori di posizione della porta.",
+
+  "al-spe-to": "Time out motore porta di entrata.",
+  "al-spe-fc": "Controllo sensori di posizione della porta di entrata.",
+
+  "al-spa-to": "Time out motore porta di uscita.",
+  "al-spa-fc": "Controllo sensori di posizione della porta di uscita.",
+
+  "al-spb-to": "Time out motore barriera.",
+  "al-spb-fc": "Controllo sensori di posizione della barriera.",
+
+  "al-spbe-to": "Time out motore barriera di entrata.",
+  "al-spbe-fc": "Controllo sensori di posizione della barriera di entrata.",
+
+  "al-spba-to": "Time out motore barriera di uscita.",
+  "al-spba-fc": "Controllo sensori di posizione della barriera di uscita."
 }

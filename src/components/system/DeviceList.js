@@ -42,50 +42,75 @@ export default function DeviceList ({ devices }) {
       stall,
       step
     } = data
-    switch (operation) {
-      case 1:
-        return (
-          <span>
-            Entering card <strong>{card}</strong> in stall{' '}
-            <strong>{stall}</strong>.
-          </span>
-        )
-      case 2:
-        return (
-          <span>
-            Exiting card <strong>{card}</strong> from stall{' '}
-            <strong>{stall}</strong>.
-          </span>
-        )
-      case 3:
-        return (
-          <span>
-            Step By Step operation card <strong>{card}</strong> stall{' '}
-            <strong>{stall}</strong>.
-          </span>
-        )
-      default:
-        return <span>Manual mode</span>
+    console.log(data)
+    if (mode.id === 8) {
+      switch (operation) {
+        case 1:
+          if (card === 0 && stall === 0) {
+            return <span>Entering car</span>
+          } else if (stall === 0) {
+            return (
+              <span>
+                Entering card <strong>{card}</strong>
+              </span>
+            )
+          } else {
+            return (
+              <span>
+                Entering card <strong>{card}</strong> in stall{' '}
+                <strong>{stall}</strong>
+              </span>
+            )
+          }
+        case 2:
+          if (card === 0 && stall === 0) {
+            return <span>Exiting car</span>
+          } else if (stall === 0) {
+            return (
+              <span>
+                Exiting card <strong>{card}</strong>
+              </span>
+            )
+          } else {
+            return (
+              <span>
+                Exiting card <strong>{card}</strong> in stall{' '}
+                <strong>{stall}</strong>
+              </span>
+            )
+          }
+        case 3:
+          if (card === 0 && stall === 0) {
+            return <span>In operation</span>
+          } else if (stall === 0) {
+            return (
+              <span>
+                Operating card <strong>{card}</strong>
+              </span>
+            )
+          } else {
+            return (
+              <span>
+                Operating card <strong>{card}</strong> stall{' '}
+                <strong>{stall}</strong>
+              </span>
+            )
+          }
+        default:
+          return <span>Device ready</span>
+      }
+    } else {
+      return <span>Device is offline</span>
     }
   }
 
-  const deviceStatus = status => {
-    switch (status) {
-      case 1:
+  const deviceStatus = data => {
+    if (data.mode.id === 8) {
+      if (data.operation === 0) {
         return (
           <Chip size='small' icon={<CheckCircleOutlineIcon />} label='Ready' />
         )
-      case 3:
-        return (
-          <Chip
-            size='small'
-            icon={<ErrorOutlineIcon />}
-            label='Error'
-            color='secondary'
-          />
-        )
-      case 4:
-      case 5:
+      } else {
         return (
           <Chip
             size='small'
@@ -94,17 +119,54 @@ export default function DeviceList ({ devices }) {
             color='primary'
           />
         )
-      default:
-        return (
-          <Chip
-            size='small'
-            icon={<BuildIcon />}
-            label='Manual'
-            color='secondary'
-          />
-        )
+      }
+    } else {
+      return (
+        <Chip
+          size='small'
+          icon={<BuildIcon />}
+          label='Manual'
+          color='secondary'
+        />
+      )
     }
   }
+  // const deviceStatus = status => {
+  //   switch (status) {
+  //     case 1:
+  //       return (
+  //         <Chip size='small' icon={<CheckCircleOutlineIcon />} label='Ready' />
+  //       )
+  //     case 3:
+  //       return (
+  //         <Chip
+  //           size='small'
+  //           icon={<ErrorOutlineIcon />}
+  //           label='Error'
+  //           color='secondary'
+  //         />
+  //       )
+  //     case 4:
+  //     case 5:
+  //       return (
+  //         <Chip
+  //           size='small'
+  //           icon={<DriveEtaIcon />}
+  //           label='Running'
+  //           color='primary'
+  //         />
+  //       )
+  //     default:
+  //       return (
+  //         <Chip
+  //           size='small'
+  //           icon={<BuildIcon />}
+  //           label='Manual'
+  //           color='secondary'
+  //         />
+  //       )
+  //   }
+  // }
 
   return (
     <List className={classes.root} dense>
@@ -119,7 +181,7 @@ export default function DeviceList ({ devices }) {
               secondary={secondaryText(item.a)}
             />
             <ListItemSecondaryAction>
-              {deviceStatus(item.a.position)}
+              {deviceStatus(item.a)}
             </ListItemSecondaryAction>
           </ListItem>
           {/* <Divider variant='inset' component='li' /> */}

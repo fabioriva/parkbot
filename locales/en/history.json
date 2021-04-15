@@ -1,5 +1,6 @@
 {
-  "title": "History",
+  "activity": "Recent Activity",
+  "history": "History",
   "date": "Date",
   "device": "Device",
   "mode": "Mode",

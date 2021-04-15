@@ -16,5 +16,6 @@
   "stall-locked": "Stallo {{stall}} è bloccato",
   "free": "Liberi",
   "busy": "Occupati",
-  "lock": "Bloccati"
+  "lock": "Bloccati",
+  "occupancy": "Occupazione"
 }

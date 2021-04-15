@@ -1,6 +1,9 @@
 import React from 'react'
 import useData from 'src/lib/useData'
 import useTranslation from 'next-translate/useTranslation'
+import { isAllowed } from 'src/lib/auth-actions'
+import fetchJson from 'src/lib/fetchJson'
+import message from 'src/lib/message'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import Activity from 'src/components/history/RecentActivity'
@@ -53,6 +56,7 @@ export default function Dashboard (props) {
   const classes = useStyles()
   const { t } = useTranslation()
   const { definitions, json, user } = props
+  const { backendUrl, userRole } = definitions
 
   if (json.err) {
     return <Error {...props} message='Error 500' />
@@ -60,7 +64,7 @@ export default function Dashboard (props) {
 
   const [dashboard, setDashboard] = React.useState(json)
 
-  const { data } = useData(`${definitions.backendUrl}/dashboard`, {
+  const { data } = useData(`${backendUrl}/dashboard`, {
     initialData: dashboard,
     refreshInterval: 1000
   })
@@ -68,14 +72,13 @@ export default function Dashboard (props) {
   React.useEffect(() => setDashboard(data), [data])
 
   const handleDelete = async ({ card, index }) => {
-    console.log(card, index)
-    // const json = await fetchJson(`${backendUrl}/system/queue/delete`, {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ card, index })
-    // })
-    // const snack = message(json)
-    // enqueueSnackbar(snack.message, snack.options)
+    const json = await fetchJson(`${backendUrl}/system/queue/delete`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ card, index })
+    })
+    const snack = message(json)
+    props.enqueueSnackbar(snack.message, snack.options)
   }
 
   return (
@@ -84,21 +87,27 @@ export default function Dashboard (props) {
         <Grid item xs={12}>
           <Grid container spacing={1}>
             <Grid item className={classes.gridItem} xs={12} lg>
-              <Widget title='System Info' link={`/${user.aps}/overview`}>
+              <Widget
+                title={t('common:title-overview')}
+                link={`/${user.aps}/overview`}
+              >
                 <DeviceList devices={dashboard.system.devices} />
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg>
-              <Widget title='Exit Queue' link={`/${user.aps}/overview`}>
+              <Widget
+                title={t('system:exit-queue')}
+                link={`/${user.aps}/overview`}
+              >
                 <Queue
-                  authorization={false}
+                  authorization={isAllowed(user, [userRole])}
                   handleDelete={handleDelete}
                   queueList={dashboard.system.exitQueue.queueList}
                 />
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
-              <Widget title='Occupancy' link={`/${user.aps}/map`}>
+              <Widget title={t('map:occupancy')} link={`/${user.aps}/map`}>
                 <Occupancy data={dashboard.occupancy} />
               </Widget>
             </Grid>
@@ -107,12 +116,18 @@ export default function Dashboard (props) {
         <Grid item xs={12}>
           <Grid container spacing={1}>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
-              <Widget title='Recent Activity' link={`/${user.aps}/history`}>
+              <Widget
+                title={t('history:activity')}
+                link={`/${user.aps}/history`}
+              >
                 <Activity data={dashboard.activity} user={user} />
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
-              <Widget title='Operations' link={`/${user.aps}/statistics`}>
+              <Widget
+                title={t('statistics:operations')}
+                link={`/${user.aps}/statistics`}
+              >
                 <Operations data={dashboard.operations[0]} />
               </Widget>
             </Grid>
