@@ -12,7 +12,9 @@ import Badge from '@material-ui/core/Badge'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-// import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+// import ListItemIcon from '@material-ui/core/ListItemIcon'
+// import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import Paper from '@material-ui/core/Paper'
 import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
@@ -31,6 +33,16 @@ function TabPanel (props) {
     >
       {value === index && children}
     </div>
+  )
+}
+
+function dt (date) {
+  const dt = date.split(' ')
+  return (
+    <span style={{ textAlign: 'right' }}>
+      <div>{dt[0]}</div>
+      <div>{dt[1]}</div>
+    </span>
   )
 }
 
@@ -99,12 +111,7 @@ export default function Alarms (props) {
                         <Typography color='error'>{item.label}</Typography>
                       }
                       secondary={
-                        <Typography
-                          variant='overline'
-                          // align='center'
-                          // color='error'
-                        >
-                          {item.date}&nbsp;&rarr;&nbsp;
+                        <Typography variant='subtitle2'>
                           {item.info.length > 0 ? t(item.info) : '---'}
                         </Typography>
                       }
@@ -112,12 +119,9 @@ export default function Alarms (props) {
                       //   item.info.length > 0 ? t(item.info) : '---'
                       // }`}
                     />
-                    {/* <ListItemSecondaryAction>
-                      <span style={{ textAlign: 'right' }}>
-                        <div>{format(new Date(item.date), 'yyyy-MM-dd')}</div>
-                        <div>{format(new Date(item.date), 'HH:mm:ss.SSS')}</div>
-                      </span>
-                    </ListItemSecondaryAction> */}
+                    <ListItemSecondaryAction>
+                      {dt(item.date)}
+                    </ListItemSecondaryAction>
                   </ListItem>
                 ))}
               </List>
