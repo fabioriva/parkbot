@@ -98,10 +98,10 @@ const withSystem = WrappedComponent => {
     return (
       <Layout {...props}>
         <Grid container spacing={1}>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={9}>
             <WrappedComponent {...props} devices={devices} />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Widget
               authorization={isAllowed(user, [userRole])}
               title={t('exit-queue')}
