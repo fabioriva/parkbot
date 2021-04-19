@@ -97,7 +97,7 @@ export default function Queue ({ authorization, handleDelete, queueList }) {
                   edge='end'
                   aria-label='delete'
                   // onClick={handleOpen}
-                  onClick={() => handleOpen(item.card, key)}
+                  onClick={() => handleOpen(item.card, key + 1)}
                   disabled={!authorization}
                 >
                   <DeleteIcon />
