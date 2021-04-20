@@ -9,6 +9,7 @@
   "stall": "Destination",
   "size": "Size",
 
+  "log-alarm": "Alarm",
   "log-date": "Date",
   "log-device": "Device",
   "log-mode": "Mode",
