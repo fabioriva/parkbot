@@ -4,6 +4,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Back from 'src/components/BackButton'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
+import Operation from 'src/components/history/HistoryTableItem'
 // material-ui
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -51,7 +52,7 @@ const Log = props => {
           />
           <Item title={t('log-card')} value={log.card} />
           <Item title={t('log-stall')} value={log.stall} />
-          <Item title={t('log-operation')} value={t(log.operation.info)} />
+          <Item title={t('log-operation')} value={<Operation item={log} />} />
           {log.alarm.id > 0 && (
             <Item title={t('log-alarm')} value={log.alarm.info} />
           )}
