@@ -51,7 +51,7 @@ const Log = props => {
           />
           <Item title={t('log-card')} value={log.card} />
           <Item title={t('log-stall')} value={log.stall} />
-          <Item title={t('log-operation')} value={t('log.operation.info')} />
+          <Item title={t('log-operation')} value={t(log.operation.info)} />
           {log.alarm.id > 0 && (
             <Item title={t('log-alarm')} value={log.alarm.info} />
           )}
