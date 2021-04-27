@@ -93,13 +93,12 @@ export default function Alarms (props) {
           marginBottom: 16
         }}
       >
-        {json.devices.map((item, key) => (
+        {alarms.map((group, key) => (
           <Tab
             key={key}
             label={
-              <Badge badgeContent={item.alarms.length} color='secondary'>
-                <span>{item.a.name}</span>
-                {/* <span>Group {key}</span> */}
+              <Badge badgeContent={group.length} color='secondary'>
+                <span>{json.devices[key].a.name}</span>
               </Badge>
             }
             // disabled={item.active.length === 0}
