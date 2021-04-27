@@ -8,13 +8,19 @@ import Lamp from './Lamp'
 import Mode from './Mode'
 import Silomat from './Silomat'
 // material-ui
+import Badge from '@material-ui/core/Badge'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardHeader from '@material-ui/core/CardHeader'
 import Grid from '@material-ui/core/Grid'
+import IconButton from '@material-ui/core/IconButton'
+// material-ui icons
+// import BuildIcon from '@material-ui/icons/Build'
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar'
+import InfoIcon from '@material-ui/icons/Info'
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore'
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz'
 import { makeStyles } from '@material-ui/core/styles'
@@ -45,6 +51,9 @@ const useStyles = makeStyles(theme => ({
   },
   pp: {
     backgroundColor: theme.palette.pp // '#d1ecf1',
+  },
+  button: {
+    marginLeft: 'auto'
   }
 }))
 
@@ -94,18 +103,23 @@ export default function Device ({ actions, authorization, item, user }) {
         className={classes.cardHeader}
         avatar={<Mode mode={mode} step={step} />}
         action={[
-          <Info key='3' item={item.c[3]}>
+          <Info key='6' item={item.c[3]}>
             <DirectionsCarIcon />
           </Info>,
-          <Info key='4' item={item.c[4]}>
+          <Info key='5' item={item.c[4]}>
             <SettingsBackupRestoreIcon />
           </Info>,
-          <Info key='5' item={item.c[5]}>
+          <Info key='4' item={item.c[5]}>
             <SwapHorizIcon />
           </Info>,
-          <Lamp key='0' item={item.c[2]} on='alarmOn' off='alarmOff' />,
-          <Lamp key='1' item={item.c[1]} on='centerOn' off='centerOff' />,
-          <Lamp key='2' item={item.c[0]} on='readyOn' off='readyOff' />
+          <Lamp key='3' item={item.c[2]} on='alarmOn' off='alarmOff' />,
+          <Lamp key='2' item={item.c[1]} on='centerOn' off='centerOff' />,
+          <Lamp key='1' item={item.c[0]} on='readyOn' off='readyOff' />,
+          <IconButton key='0' aria-label='active'>
+            <Badge badgeContent={item.alarms.length} color='secondary'>
+              <NotificationsActiveIcon />
+            </Badge>
+          </IconButton>
         ]}
         title={name}
         subheader={`Device ${id}`}
@@ -138,10 +152,11 @@ export default function Device ({ actions, authorization, item, user }) {
             {t('system:' + item.label)}
           </Button>
         ))}
+
         <Link href={`/${user.aps}/device/${id - 1}`} locale={locale}>
           <Button
             color='primary'
-            style={{ marginLeft: 'auto' }}
+            className={classes.button}
             disabled={!isAllowed(user, [DIAGNOSTIC])}
           >
             More

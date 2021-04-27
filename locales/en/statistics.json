@@ -6,5 +6,6 @@
   "daily": "Daily",
   "weekly": "Weekly",
   "monthly": "Monthly",
-  "yearly": "Yearly"
+  "yearly": "Yearly",
+  "select": "Select a date"
 }

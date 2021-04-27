@@ -23,21 +23,43 @@ const legendRootBase = ({ classes, ...restProps }) => (
 )
 const Root = withStyles(legendStyles, { name: 'LegendRoot' })(legendRootBase)
 
-export default function Bar (props) {
+const getIndexFromSeries = series => {
+  switch (series) {
+    case 'Entries':
+      return 'entries'
+    case 'Exits':
+      return 'exits'
+    case 'Total':
+      return 'total'
+    default:
+      return null
+  }
+}
+
+export default function Bar ({ data }) {
   const { t } = useTranslation('statistics')
-  // console.log(props.data.data);
+
+  const Content = ({ text, targetItem, ...restProps }) => {
+    const displayText =
+      data.data[targetItem.point][getIndexFromSeries(targetItem.series)]
+    return (
+      <Tooltip.Content
+        {...restProps}
+        text={displayText}
+        targetItem={targetItem}
+      />
+    )
+  }
 
   return (
     <Chart
-      data={props.data.data}
+      data={data.data}
       // rotated
       // barWidth={6}
-      height={300}
+      height={480}
     >
       <ArgumentAxis />
-
-      <ValueAxis max={100} />
-
+      <ValueAxis showLabels />
       <BarSeries
         name={t('entries')}
         valueField='entries'
@@ -45,7 +67,6 @@ export default function Bar (props) {
         // color="lime"
         barWidth={0.5}
       />
-
       <BarSeries
         name={t('exits')}
         valueField='exits'
@@ -53,25 +74,24 @@ export default function Bar (props) {
         // color="red"
         barWidth={0.5}
       />
-
-      {/* <BarSeries
-          name="total"
-          valueField="total"
-          argumentField="name"
-        /> */}
-
+      <BarSeries
+        name={t('total')}
+        valueField='total'
+        argumentField='name'
+        barWidth={0.5}
+      />
       <Animation />
       <Legend position='bottom' rootComponent={Root} />
-      <Title text={props.data.label} />
+      <Title text={data.label} />
       <Stack
         stacks={[
           // { series: ['Hydro-electric', 'Oil', 'Natural gas', 'Coal', 'Nuclear'] },
           // { series: ['entries', 'exits', 'total'] },
-          { series: [t('entries'), t('exits')] }
+          { series: [t('entries'), t('exits'), t('total')] }
         ]}
       />
       <EventTracker />
-      <Tooltip />
+      <Tooltip contentComponent={Content} />
     </Chart>
   )
 }

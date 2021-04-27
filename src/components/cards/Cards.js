@@ -21,7 +21,7 @@ export default function Cards (props) {
 
   const [cards, setCards] = useState(json)
 
-  const { data } = useData(`${definitions.websockUrl}?channel=ch1`, {
+  const { data } = useData(`${definitions.websockUrl}?channel=cards`, {
     initialData: cards,
     page: 'cards'
   })

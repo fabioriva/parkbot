@@ -14,7 +14,7 @@ export default function Racks (props) {
 
   return (
     <Layout {...props}>
-      <Container maxWidth='sm'>
+      <Container maxWidth='lg'>
         {/* <RacksList racks={racks} user={user} /> */}
         <GridList racks={json} user={user} />
       </Container>

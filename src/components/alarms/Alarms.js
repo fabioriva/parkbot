@@ -1,7 +1,8 @@
 import React from 'react'
 // import format from 'date-fns/format'
 import useTranslation from 'next-translate/useTranslation'
-import useData from 'src/lib/useData'
+// import useData from 'src/lib/useData'
+import { useData } from 'src/lib/useWebSocket'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import ParkBot from 'src/components/ParkBot'
@@ -54,14 +55,19 @@ export default function Alarms (props) {
     return <Error {...props} message='Error 500' />
   }
 
-  const [alarms, setAlarms] = React.useState(json)
+  const [alarms, setAlarms] = React.useState(json.devices.map(d => d.alarms))
 
-  const { data } = useData(`${definitions.backendUrl}/alarms`, {
-    initialData: alarms,
-    refreshInterval: 1000
+  // const { data } = useData(`${definitions.backendUrl}/alarms`, {
+  //   initialData: alarms,
+  //   refreshInterval: 1000
+  // })
+
+  const { data } = useData(`${definitions.websockUrl}?channel=alarms`, {
+    initialData: json,
+    page: 'overview'
   })
 
-  React.useEffect(() => setAlarms(data), [data])
+  React.useEffect(() => setAlarms(data.devices.map(d => d.alarms)), [data])
 
   const [value, setValue] = React.useState(0)
   const handleChange = (event, newValue) => {
@@ -87,32 +93,35 @@ export default function Alarms (props) {
           marginBottom: 16
         }}
       >
-        {alarms.map((item, key) => (
+        {json.devices.map((item, key) => (
           <Tab
             key={key}
             label={
-              <Badge badgeContent={item.active.length} color='secondary'>
-                <span>{item.name}</span>
+              <Badge badgeContent={item.alarms.length} color='secondary'>
+                <span>{item.a.name}</span>
+                {/* <span>Group {key}</span> */}
               </Badge>
             }
             // disabled={item.active.length === 0}
           />
         ))}
       </Tabs>
-      {alarms.map((item, key) => (
+      {alarms.map((group, key) => (
         <TabPanel key={key} value={value} index={key}>
-          {item.active.length > 0 ? (
+          {group.length > 0 ? (
             <Paper>
               <List>
-                {item.active.map((item, key) => (
+                {group.map((item, key) => (
                   <ListItem key={key}>
                     <ListItemText
                       primary={
                         <Typography color='error'>{item.label}</Typography>
                       }
                       secondary={
-                        <Typography variant='subtitle2'>
-                          {item.info.length > 0 ? t(item.info) : '---'}
+                        <Typography variant='subtitle1'>
+                          {/* {item.info.length > 0 ? t(item.info) : '---'} */}
+                          {item.i18n !== undefined &&
+                            t(item.i18n.key, item.i18n.query)}
                         </Typography>
                       }
                       // secondary={`${

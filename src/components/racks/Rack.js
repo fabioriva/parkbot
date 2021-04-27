@@ -9,7 +9,7 @@ import ListView from 'src/components/racks/IOList'
 import useTranslation from 'next-translate/useTranslation'
 // material ui
 import Button from '@material-ui/core/Button'
-import Container from '@material-ui/core/Container'
+// import Container from '@material-ui/core/Container'
 import Hidden from '@material-ui/core/Hidden'
 
 import PlcRack from 'src/components/racks/PlcRack'
@@ -27,7 +27,7 @@ export default function Rack (props) {
 
   const [rack, setRack] = useState(json)
 
-  const { data } = useData(`${definitions.websockUrl}?channel=ch1`, {
+  const { data } = useData(`${definitions.websockUrl}?channel=racks`, {
     initialData: null,
     page: 'racks'
   })
@@ -44,13 +44,13 @@ export default function Rack (props) {
 
   return (
     <Layout {...props}>
-      <Container maxWidth='xl'>
-        <Hidden implementation='css' xsDown>
-          <Button onClick={() => window.history.back()}>Back</Button>
-          {/* <DynamicComponent rack={rack} /> */}
-          <PlcRack rack={rack} />
-        </Hidden>
-      </Container>
+      {/* <Container maxWidth='xl'> */}
+      <Hidden implementation='css' xsDown>
+        <Button onClick={() => window.history.back()}>Back</Button>
+        {/* <DynamicComponent rack={rack} /> */}
+        <PlcRack rack={rack} />
+      </Hidden>
+      {/* </Container> */}
       <Hidden implementation='css' smUp>
         <ListView rack={rack} />
       </Hidden>

@@ -6,5 +6,6 @@
   "daily": "Giornaliere",
   "weekly": "Settimanali",
   "monthly": "Mensili",
-  "yearly": "Annuali"
+  "yearly": "Annuali",
+  "select": "Seleziona una data"
 }

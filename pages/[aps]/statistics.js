@@ -5,9 +5,16 @@ import { fetchOperations } from 'src/lib/fetchJson'
 import Statistics from 'src/components/statistics/Statistics'
 import withAuthSync from 'src/hocs/withAuthSync'
 import { withSnackbar } from 'notistack'
+// material-ui/pickers
+import DateFnsUtils from '@date-io/date-fns'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 
 const Page = props => {
-  return <Statistics {...props} />
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Statistics {...props} />
+    </MuiPickersUtilsProvider>
+  )
 }
 
 export async function getStaticPaths ({ locales }) {

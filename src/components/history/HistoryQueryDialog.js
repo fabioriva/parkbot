@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
   const classes = useStyles()
   const theme = useTheme()
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   const { t } = useTranslation('history')
   const { register, handleSubmit, errors, clearErrors } = useForm()
@@ -53,7 +53,7 @@ export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
   return (
     <form>
       <Dialog
-        fullScreen={fullScreen}
+        fullScreen={isMobile}
         open={open}
         onClose={onCancel}
         aria-labelledby='responsive-dialog-title'

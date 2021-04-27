@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
@@ -12,8 +13,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     // justifyContent: 'space-around',
-    overflow: 'hidden'
-    // backgroundColor: theme.palette.background.paper
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper
   },
   gridList: {
     // width: 600
@@ -26,13 +27,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList ({ racks, user }) {
   const classes = useStyles()
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  console.log('is mobile:', isMobile)
 
   const locale = user.locale !== undefined ? user.locale : 'en'
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList} cols={2}>
-        <GridListTile key='Subheader' cols={2} style={{ height: 'auto' }}>
+      <GridList
+        cellHeight={180}
+        className={classes.gridList}
+        cols={isMobile ? 2 : 4}
+      >
+        <GridListTile
+          key='Subheader'
+          cols={isMobile ? 2 : 4}
+          style={{ height: 'auto' }}
+        >
           <ListSubheader component='div'>PLC Racks</ListSubheader>
         </GridListTile>
         {racks.map((tile, key) => (

@@ -5,7 +5,9 @@ import useTranslation from 'next-translate/useTranslation'
 function Bit ({ item, nr }) {
   const { t } = useTranslation('io')
 
-  const { addr, bit, label, status } = item
+  // const { addr, bit, label, status } = item
+  const { addr, label, status } = item
+  const bit = addr.slice(-1)
 
   return (
     <>
@@ -210,6 +212,7 @@ function Byte ({ byte, nr }) {
             font-size: 14px;
             height: 18px;
             width: 65px;
+            line-height: 18px;
           }
           #label-0 {
             left: 10px;

@@ -13,7 +13,7 @@ import Level from 'src/components/map/Level'
 import Occupancy from 'src/components/map/PieChart'
 import View from 'src/components/map/View'
 // material-ui
-import Grid from '@material-ui/core/Grid'
+// import Grid from '@material-ui/core/Grid'
 
 const withMap = WrappedComponent => {
   const Wrapper = props => {
@@ -28,7 +28,7 @@ const withMap = WrappedComponent => {
 
     const [map, setMap] = React.useState(json)
 
-    const { data } = useData(`${websockUrl}?channel=ch1`, {
+    const { data } = useData(`${websockUrl}?channel=map`, {
       initialData: map,
       page: 'map'
     })
