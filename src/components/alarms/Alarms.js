@@ -62,7 +62,7 @@ export default function Alarms (props) {
   //   refreshInterval: 1000
   // })
 
-  const { data } = useData(`${definitions.websockUrl}?channel=alarms`, {
+  const { data } = useData(`${definitions.websockUrl}?channel=overview`, {
     initialData: json,
     page: 'overview'
   })
