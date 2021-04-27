@@ -639,8 +639,8 @@ const Map = ({ levels, occupancy, view }) => {
           }
           /* Level 3 */
           #s-145 {
-            top: 64px;
-            left: 2px;
+            top: 95px;
+            left: 863px;
           }
           #s-146 {
             top: 2px;

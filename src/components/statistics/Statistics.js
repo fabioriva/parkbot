@@ -54,9 +54,7 @@ export default function Statistics (props) {
     format(subDays(new Date(), 1), 'yyyy-MM-dd')
   )
 
-  React.useEffect(() => {
-    fetch(selectedDate)
-  }, [])
+  React.useEffect(() => fetch(selectedDate), [])
 
   const handleConfirm = async date => {
     handleDateChange(date)
@@ -66,7 +64,6 @@ export default function Statistics (props) {
   const fetch = async date => {
     const json = await fetchOperations(definitions.backendUrl, date)
     if (!json.err) setStatistics(json)
-    console.log(date, json)
   }
 
   const [value, setValue] = React.useState(0)

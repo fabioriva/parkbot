@@ -28,6 +28,13 @@ const withMap = WrappedComponent => {
 
     const [map, setMap] = React.useState(json)
 
+    React.useEffect(() => fetch(), [])
+
+    const fetch = async () => {
+      const json = await fetchJson(`${backendUrl}/map`)
+      if (!json.err) setMap(json)
+    }
+
     const { data } = useData(`${websockUrl}?channel=map`, {
       initialData: map,
       page: 'map'
