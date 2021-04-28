@@ -116,7 +116,10 @@ export default function Device ({ actions, authorization, item, user }) {
           <Lamp key='2' item={item.c[1]} on='centerOn' off='centerOff' />,
           <Lamp key='1' item={item.c[0]} on='readyOn' off='readyOff' />,
           <IconButton key='0' aria-label='active'>
-            <Badge badgeContent={item.alarms.length} color='secondary'>
+            <Badge
+              badgeContent={item.alarms !== undefined ? item.alarms.length : 0}
+              color='secondary'
+            >
               <NotificationsActiveIcon />
             </Badge>
           </IconButton>
