@@ -107,15 +107,6 @@ export default function Dashboard (props) {
               </Widget>
             </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
-              <Widget title={t('map:occupancy')} link={`/${user.aps}/map`}>
-                <Occupancy data={dashboard.occupancy} />
-              </Widget>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Grid container spacing={1}>
-            <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget
                 title={t('history:activity')}
                 link={`/${user.aps}/history`}
@@ -123,12 +114,21 @@ export default function Dashboard (props) {
                 <Activity data={dashboard.activity} user={user} />
               </Widget>
             </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container spacing={1}>
+            <Grid item className={classes.gridItem} xs={12} lg={6}>
+              <Widget title={t('map:occupancy')} link={`/${user.aps}/map`}>
+                <Occupancy data={dashboard.occupancy} />
+              </Widget>
+            </Grid>
             <Grid item className={classes.gridItem} xs={12} lg={6}>
               <Widget
                 title={t('statistics:operations')}
                 link={`/${user.aps}/statistics`}
               >
-                <Operations data={dashboard.operations[0]} />
+                <Operations data={dashboard.operations[0]} height={300} />
               </Widget>
             </Grid>
           </Grid>

@@ -36,7 +36,7 @@ const getIndexFromSeries = series => {
   }
 }
 
-export default function Bar ({ data }) {
+export default function Bar ({ data, height }) {
   const { t } = useTranslation('statistics')
 
   const Content = ({ text, targetItem, ...restProps }) => {
@@ -56,7 +56,7 @@ export default function Bar ({ data }) {
       data={data.data}
       // rotated
       // barWidth={6}
-      height={480}
+      height={height}
     >
       <ArgumentAxis />
       <ValueAxis showLabels />

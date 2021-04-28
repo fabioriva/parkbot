@@ -102,7 +102,7 @@ export default function Statistics (props) {
         {statistics.map((item, key) => (
           <TabPanel key={key} value={value} index={key}>
             <Paper>
-              <Operations data={item} />
+              <Operations data={item} height={480} />
             </Paper>
           </TabPanel>
         ))}
