@@ -72,6 +72,22 @@ const StyledBadge = withStyles(theme => ({
 export default function AppHeader ({ aps, pageTitle, comm, diag, map }) {
   const classes = useStyles()
 
+  const online = (
+    <Tooltip title='ONLINE' aria-label='online'>
+      <StyledBadge variant='dot'>
+        <RssFeedIcon />
+      </StyledBadge>
+    </Tooltip>
+  )
+
+  const offline = (
+    <Tooltip title='OFFLINE' aria-label='offline'>
+      <Badge variant='dot' classes={{ badge: classes.offline }}>
+        <RssFeedIcon />
+      </Badge>
+    </Tooltip>
+  )
+
   return (
     <>
       <Box display='flex' flexDirection='row' alignItems='center' p={0} mt={1}>
@@ -105,19 +121,7 @@ export default function AppHeader ({ aps, pageTitle, comm, diag, map }) {
         )}
 
         <Box p={0} className={classes.icon}>
-          {comm.isOnline ? (
-            <Tooltip title='ONLINE' aria-label='online'>
-              <StyledBadge variant='dot'>
-                <RssFeedIcon />
-              </StyledBadge>
-            </Tooltip>
-          ) : (
-            <Tooltip title='OFFLINE' aria-label='offline'>
-              <Badge variant='dot' classes={{ badge: classes.offline }}>
-                <RssFeedIcon />
-              </Badge>
-            </Tooltip>
-          )}
+          {comm ? online : offline}
         </Box>
       </Box>
       <Divider className={classes.navBar} />
