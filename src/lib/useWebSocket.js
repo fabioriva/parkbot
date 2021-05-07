@@ -1,15 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 // import message from 'src/lib/message'
 
-const COMM_INITIAL_VALUE = {
-  isOnline: false
-}
-
 export function useComm (url) {
   const [waitingToReconnect, setWaitingToReconnect] = useState(null)
 
   const [error, setError] = useState('')
-  const [comm, setComm] = useState(COMM_INITIAL_VALUE)
+  const [comm, setComm] = useState(false)
   const [diag, setDiag] = useState({})
   const [map, setMap] = useState({})
   const [notification, setNotification] = useState(null)
