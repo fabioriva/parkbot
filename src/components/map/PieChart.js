@@ -9,7 +9,7 @@ import {
 import { Animation, EventTracker, Palette } from '@devexpress/dx-react-chart'
 import useTranslation from 'next-translate/useTranslation'
 
-const scheme = ['#00ff00', '#ff0000', '#ff00ff']
+const scheme = ['#ff0000', '#00ff00', '#ff00ff']
 
 const legendStyles = () => ({
   root: {
