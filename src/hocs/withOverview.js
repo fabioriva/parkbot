@@ -28,7 +28,8 @@ const withSystem = WrappedComponent => {
 
     const [overview, setOverview] = React.useState(json)
 
-    const { data } = useData(`${websockUrl}?channel=overview`, {
+    // const { data } = useData(`${websockUrl}?channel=overview`, {
+    const { data } = useData(websockUrl.concat('/overview'), {
       initialData: overview,
       page: 'overview'
     })

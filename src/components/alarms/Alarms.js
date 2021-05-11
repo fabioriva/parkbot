@@ -55,6 +55,8 @@ export default function Alarms (props) {
     return <Error {...props} message='Error 500' />
   }
 
+  console.log(json)
+
   const [alarms, setAlarms] = React.useState(json.devices.map(d => d.alarms))
 
   // const { data } = useData(`${definitions.backendUrl}/alarms`, {

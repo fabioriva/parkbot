@@ -31,7 +31,8 @@ export default function AppLayout (props) {
   const { apsName, pageTitle, websockUrl } = definitions
 
   const { comm, diag, map, notification } = useComm(
-    websockUrl.concat('?channel=ch2')
+    // websockUrl.concat('?channel=ch2')
+    websockUrl.concat('/info')
   )
 
   React.useEffect(async () => {

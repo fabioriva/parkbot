@@ -27,7 +27,8 @@ export default function Rack (props) {
 
   const [rack, setRack] = useState(json)
 
-  const { data } = useData(`${definitions.websockUrl}?channel=racks`, {
+  // const { data } = useData(`${definitions.websockUrl}?channel=racks`, {
+  const { data } = useData(definitions.websockUrl.concat('/racks'), {
     initialData: null,
     page: 'racks'
   })

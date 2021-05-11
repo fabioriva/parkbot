@@ -142,11 +142,12 @@ export function useData (url, options) {
 
     ws.current.onmessage = e => {
       const data = JSON.parse(e.data)
-      Object.keys(data).forEach(key => {
-        if (key === page) {
-          setData(data[key])
-        }
-      })
+      setData(data)
+      // Object.keys(data).forEach(key => {
+      //   if (key === page) {
+      //     setData(data[key])
+      //   }
+      // })
     }
   }, [])
 

@@ -105,7 +105,7 @@ export default function AppHeader ({ aps, pageTitle, comm, diag, map }) {
             </Typography>
           </Box>
         </Box>
-        {diag.isActive && (
+        {/* {diag.isActive && (
           <Box p={0} className={classes.icon}>
             <Badge badgeContent={diag.count} color='secondary'>
               <NotificationsActiveIcon />
@@ -118,7 +118,19 @@ export default function AppHeader ({ aps, pageTitle, comm, diag, map }) {
               <DirectionsCarIcon />
             </Badge>
           </Box>
+        )} */}
+        {diag > 0 && (
+          <Box p={0} className={classes.icon}>
+            <Badge badgeContent={diag} color='secondary'>
+              <NotificationsActiveIcon />
+            </Badge>
+          </Box>
         )}
+        <Box p={0} className={classes.icon}>
+          <Badge badgeContent={map[0]?.value} color='primary' showZero>
+            <DirectionsCarIcon />
+          </Badge>
+        </Box>
 
         <Box p={0} className={classes.icon}>
           {comm ? online : offline}

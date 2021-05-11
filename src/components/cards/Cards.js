@@ -14,6 +14,7 @@ import { isAllowed } from 'src/lib/auth-actions'
 export default function Cards (props) {
   const { t } = useTranslation('cards')
   const { definitions, json, user } = props
+  const { backendUrl, websockUrl } = definitions
 
   if (json.err) {
     return <Error {...props} message='Error 500' />
@@ -21,7 +22,8 @@ export default function Cards (props) {
 
   const [cards, setCards] = useState(json)
 
-  const { data } = useData(`${definitions.websockUrl}?channel=cards`, {
+  // const { data } = useData(`${definitions.websockUrl}?channel=cards`, {
+  const { data } = useData(websockUrl.concat('/cards'), {
     initialData: cards,
     page: 'cards'
   })
@@ -29,7 +31,7 @@ export default function Cards (props) {
   useEffect(() => setCards(data), [data])
 
   const handleEdit = async ({ nr, code }) => {
-    const json = await fetchJson(`${definitions.backendUrl}/card/edit`, {
+    const json = await fetchJson(backendUrl.concat('/card/edit'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ card: nr, code })

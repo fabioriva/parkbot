@@ -18,7 +18,7 @@ export async function getServerSideProps ({ params }) {
   const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
     `src/constants/${params.aps}`
   )
-  const json = await fetchJson(`${BACKEND_URL}/racks/${params.id}`)
+  const json = await fetchJson(`${BACKEND_URL}/rack/${params.id}`)
 
   return {
     props: {

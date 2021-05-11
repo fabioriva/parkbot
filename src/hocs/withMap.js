@@ -35,7 +35,8 @@ const withMap = WrappedComponent => {
       if (!json.err) setMap(json)
     }
 
-    const { data } = useData(`${websockUrl}?channel=map`, {
+    // const { data } = useData(`${websockUrl}?channel=map`, {
+    const { data } = useData(websockUrl.concat('/map'), {
       initialData: map,
       page: 'map'
     })
@@ -90,7 +91,8 @@ const withMap = WrappedComponent => {
 
     const occupancy = (
       <Widget title={t('chart-occupancy')}>
-        <Occupancy data={map.statistics[0]} />
+        {/* <Occupancy data={map.statistics[0]} /> */}
+        <Occupancy data={map.occupancy} />
       </Widget>
     )
 
