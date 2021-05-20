@@ -57,7 +57,7 @@ export default function Inverter (props) {
           [classes.cardContent]: true,
           // [classes.ce]: operation === 1,
           // [classes.cu]: operation === 2,
-          [classes.pp]: props.motion.id === 1 || props.motion.id === 2 // [classes.pp]: operation === 3
+          [classes.pp]: props.speed !== 0 // [classes.pp]: operation === 3
         })}
       >
         <Grid container spacing={1}>
