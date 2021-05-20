@@ -73,9 +73,24 @@ export default function Motor (props) {
           <Grid item xs={6}>
             <Item title={t('motion')} value={t(props.motion.i18n)} />
           </Grid>
-          <Grid item xs={6}>
-            <Item title={t('position')} value={t(props.position.i18n)} />
-          </Grid>
+          {Array.isArray(props.position) ? (
+            <Grid item xs={6}>
+              <Item
+                title={t('position')}
+                value={
+                  <span>
+                    {props.position[0].position}&nbsp;&rarr;&nbsp;
+                    {props.position[0].destination}
+                  </span>
+                }
+              />
+            </Grid>
+          ) : (
+            <Grid item xs={6}>
+              <Item title={t('position')} value={t(props.position.i18n)} />
+            </Grid>
+          )}
+
           <Grid item xs={12}>
             <div className={classes.inputs}>
               {props.inputs.map((item, key) => (
