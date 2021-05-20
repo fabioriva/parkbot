@@ -46,6 +46,9 @@
   "motor-lock-v": "Locking (V)",
   "motor-lock-r": "Locking (R)",
 
+  "mot-flap": "Flap {{nr}}",
+  "mot-lock": "Lock {{nr}}",
+
   "motion-err": "---",
   "motion-no": "stop",
   "motion-up": "going up",
