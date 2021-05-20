@@ -32,6 +32,9 @@ const useStyles = makeStyles(theme => ({
   cardContent: {
     padding: theme.spacing(2)
   },
+  pp: {
+    backgroundColor: theme.palette.pp // '#d1ecf1',
+  },
   inputs: {
     display: 'flex',
     // justifyContent: 'center',
@@ -63,10 +66,10 @@ export default function Motor (props) {
       />
       <CardContent
         className={clsx({
-          [classes.cardContent]: true
+          [classes.cardContent]: true,
           // [classes.ce]: operation === 1,
           // [classes.cu]: operation === 2,
-          // [classes.pp]: operation === 3
+          [classes.pp]: props.motion.id === 1 || props.motion.id === 2
         })}
       >
         <Grid container spacing={1}>
