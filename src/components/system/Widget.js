@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-// import useTranslation from 'next-translate/useTranslation'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -31,15 +30,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function Widget (props) {
   const classes = useStyles()
-  // const { t } = useTranslation('system')
-  // console.log(props)
+  const { action, children, title } = props
 
   return (
     <Card className={classes.root}>
       <CardHeader
         className={classes.cardHeader}
-        action={props.action}
-        title={props.title}
+        action={action}
+        title={title}
         classes={{
           action: classes.cardHeaderAction,
           title: classes.cardHeaderTitle
@@ -49,12 +47,10 @@ export default function Widget (props) {
         className={clsx({
           [classes.cardContent]: true,
           [classes.pp]:
-            props.children.props[8] ||
-            props.children.props[9] ||
-            props.children.props[10]
+            children.props[8] || children.props[9] || children.props[10]
         })}
       >
-        {props.children}
+        {children}
       </CardContent>
     </Card>
   )

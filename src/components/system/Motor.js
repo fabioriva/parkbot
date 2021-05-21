@@ -3,6 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Item from './Item'
 // import Lamp from './Lamp'
 import Widget from './Widget'
+import Tooltip from 'src/components/Tooltip'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 // import Card from '@material-ui/core/Card'
@@ -27,19 +28,22 @@ const useStyles = makeStyles(theme => ({
 
 export default function Motor (props) {
   const classes = useStyles()
-  const { t } = useTranslation('system')
+  const { t } = useTranslation('system', 'io')
   console.log(props)
 
   return (
-    <Widget action={[]} title={t(props.name.key, props.name.query)}>
+    <Widget action={[]} title={t('system:' + props.name.key, props.name.query)}>
       <Grid container spacing={1}>
         <Grid item xs={6}>
-          <Item title={t('motion')} value={t(props.motion.i18n)} />
+          <Item
+            title={t('system:motion')}
+            value={t('system:' + props.motion.i18n)}
+          />
         </Grid>
         {Array.isArray(props.position) ? (
           <Grid item xs={6}>
             <Item
-              title={t('position')}
+              title={t('system:position')}
               value={
                 <span>
                   {props.position[0].position}&nbsp;&rarr;&nbsp;
@@ -50,33 +54,44 @@ export default function Motor (props) {
           </Grid>
         ) : (
           <Grid item xs={6}>
-            <Item title={t('position')} value={t(props.position.i18n)} />
+            <Item
+              title={t('system:position')}
+              value={t('system:' + props.position.i18n)}
+            />
           </Grid>
         )}
 
         <Grid item xs={12}>
           <div className={classes.inputs}>
             {props.inputs.map((item, key) => (
-              <Chip
+              <Tooltip
                 key={key}
-                // icon={<CheckCircleOutlineIcon />}
-                label={item.label}
-                color={item.status ? 'primary' : 'default'}
-                size='small'
-              />
+                title={<div>{item.addr + ' ' + t('io:' + item.label)}</div>}
+              >
+                <Chip
+                  // icon={<CheckCircleOutlineIcon />}
+                  label={item.label}
+                  color={item.status ? 'primary' : 'default'}
+                  size='small'
+                />
+              </Tooltip>
             ))}
           </div>
         </Grid>
         <Grid item xs={12}>
           <div className={classes.inputs}>
             {props.outputs.map((item, key) => (
-              <Chip
+              <Tooltip
                 key={key}
-                // icon={<CheckCircleOutlineIcon />}
-                label={item.label}
-                color={item.status ? 'primary' : 'default'}
-                size='small'
-              />
+                title={<div>{item.addr + ' ' + t('io:' + item.label)}</div>}
+              >
+                <Chip
+                  // icon={<CheckCircleOutlineIcon />}
+                  label={item.label}
+                  color={item.status ? 'primary' : 'default'}
+                  size='small'
+                />
+              </Tooltip>
             ))}
           </div>
         </Grid>
