@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardHeader: {
     // backgroundColor: '#c0c0c0',
-    padding: '4px 16px'
+    padding: '8px 16px'
   },
   cardHeaderAction: {
     margin: 0
@@ -58,7 +58,7 @@ export default function Motor (props) {
         //   <Lamp key='0' item={props.enable} on='readyOn' off='readyOff' />
         // ]}
         title={t(props.name.key, props.name.query)}
-        // subheader='Motor'
+        // subheader={t('motor')}
         classes={{
           action: classes.cardHeaderAction,
           title: classes.cardHeaderTitle
