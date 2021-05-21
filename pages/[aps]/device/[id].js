@@ -26,7 +26,7 @@ export async function getServerSideProps ({ params }) {
         backendUrl: BACKEND_URL,
         websockUrl: WEBSOCK_URL,
         pageRole: OVERVIEW,
-        pageTitle: 'title-motion'
+        pageTitle: 'title-motion' // json.device.a.name
       },
       json
     }

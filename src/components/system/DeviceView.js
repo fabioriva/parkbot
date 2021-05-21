@@ -4,10 +4,13 @@ import { useData } from 'src/lib/useWebSocket'
 import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
 // import Actuator from 'src/components/system/Actuator'
-import Motor from 'src/components/system/Motor'
+// import Motor from 'src/components/system/Motor'
 // import Silomat from './SilomatInfo'
 // import Vfd from 'src/components/system/Vfd'
 import Inverter from 'src/components/system/Inverter'
+import Motor from 'src/components/system/Motor'
+import Silomat from './Silomat'
+import Widget from './Widget'
 // material-ui
 import Grid from '@material-ui/core/Grid'
 
@@ -51,6 +54,11 @@ export default function Cards (props) {
             <Motor {...item} />
           </Grid>
         ))}
+        <Grid item xs={12} md={6} lg={3} xl={3}>
+          <Widget action={[]} title='Silomat'>
+            <Silomat data={device.device.e} />
+          </Widget>
+        </Grid>
         {/* {device.f?.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Actuator item={item} />

@@ -46,7 +46,7 @@ export default function Silomat (props) {
               // icon={<DoneIcon />}
               label={item.label}
             /> */}
-            <Tooltip title={<div>{t(item.label)}</div>}>
+            <Tooltip title={<div>{item.addr + ' ' + t(item.label)}</div>}>
               <Paper
                 className={clsx({
                   [classes.paper]: true,
