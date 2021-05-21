@@ -28,12 +28,12 @@ export default function Rack (props) {
   const [rack, setRack] = useState(json)
 
   // const { data } = useData(`${definitions.websockUrl}?channel=racks`, {
-  const { data } = useData(definitions.websockUrl.concat('/racks'), {
-    initialData: null,
+  const { data } = useData(definitions.websockUrl.concat('/racks/' + id), {
+    initialData: json,
     page: 'racks'
   })
   useEffect(() => {
-    if (data) setRack(data[id])
+    if (data) setRack(data) // [id])
   }, [data])
 
   // const { data } = useData(`${backendUrl}/racks/${id}`, {

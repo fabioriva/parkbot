@@ -26,13 +26,13 @@ export default function Cards (props) {
   const [device, setDevice] = useState(json)
 
   // const { data } = useData(`${definitions.websockUrl}?channel=diagnostic`, {
-  const { data } = useData(definitions.websockUrl.concat('/diagnostic'), {
-    initialData: null,
+  const { data } = useData(definitions.websockUrl.concat('/diagnostic/' + id), {
+    initialData: json,
     page: 'diagnostic'
   })
   useEffect(() => {
     if (data) {
-      setDevice(data[id])
+      setDevice(data) // [id])
     }
   }, [data])
 
