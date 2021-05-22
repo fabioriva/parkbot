@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Widget (props) {
   const classes = useStyles()
-  const { action, children, title } = props
+  const { action, motion, children, title } = props
 
   return (
     <Card className={classes.root}>
@@ -46,8 +46,7 @@ export default function Widget (props) {
       <CardContent
         className={clsx({
           [classes.cardContent]: true,
-          [classes.pp]:
-            children.props[8] || children.props[9] || children.props[10]
+          [classes.pp]: motion
         })}
       >
         {children}

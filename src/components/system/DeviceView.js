@@ -55,7 +55,13 @@ export default function Cards (props) {
           </Grid>
         ))}
         <Grid item xs={12} md={6} lg={3} xl={3}>
-          <Widget action={[]} title='Silomat'>
+          <Widget
+            action={[]}
+            motion={
+              device.device.e[8] || device.device.e[9] || device.device.e[10]
+            }
+            title='Silomat'
+          >
             <Silomat data={device.device.e} />
           </Widget>
         </Grid>

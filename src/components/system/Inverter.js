@@ -24,6 +24,7 @@ export default function Inverter (props) {
       action={[
         <Lamp key='0' item={props.enable} on='readyOn' off='readyOff' />
       ]}
+      motion={props.speed !== 0}
       title={props.name}
     >
       <Grid container spacing={1}>

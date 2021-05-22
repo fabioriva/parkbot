@@ -32,7 +32,11 @@ export default function Motor (props) {
   console.log(props)
 
   return (
-    <Widget action={[]} title={t('system:' + props.name.key, props.name.query)}>
+    <Widget
+      action={[]}
+      motion={props.motion.id === 1 || props.motion.id === 2}
+      title={t('system:' + props.name.key, props.name.query)}
+    >
       <Grid container spacing={1}>
         <Grid item xs={6}>
           <Item
