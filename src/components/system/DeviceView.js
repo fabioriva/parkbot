@@ -58,7 +58,9 @@ export default function Cards (props) {
           <Widget
             action={[]}
             motion={
-              device.device.e[8] || device.device.e[9] || device.device.e[10]
+              device.device.e[8].status ||
+              device.device.e[9].status ||
+              device.device.e[10].status
             }
             title='Silomat'
           >
