@@ -3,10 +3,6 @@ import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-// import Tooltip from '@material-ui/core/Tooltip'
-// import Chip from '@material-ui/core/Chip'
-// import FaceIcon from '@material-ui/icons/Face'
-// import DoneIcon from '@material-ui/icons/Done'
 import { grey, yellow } from '@material-ui/core/colors'
 import Tooltip from 'src/components/Tooltip'
 
@@ -15,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   paper: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0.5),
     textAlign: 'center'
   },
   on: {
@@ -37,15 +33,6 @@ export default function Silomat (props) {
       <Grid container spacing={1} justify='center'>
         {props.data.map((item, key) => (
           <Grid item xs={key < 8 ? 3 : 4} key={key}>
-            {/* <Chip
-              className={clsx({
-                [classes.paper]: true,
-                [classes.on]: item.status,
-                [classes.off]: !item.status
-              })}
-              // icon={<DoneIcon />}
-              label={item.label}
-            /> */}
             <Tooltip title={<div>{item.addr + ' ' + t(item.label)}</div>}>
               <Paper
                 className={clsx({
@@ -53,6 +40,7 @@ export default function Silomat (props) {
                   [classes.on]: item.status,
                   [classes.off]: !item.status
                 })}
+                elevation={0}
               >
                 <strong>{item.label}</strong>
               </Paper>

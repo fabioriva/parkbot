@@ -34,9 +34,9 @@ export default function Cards (props) {
     page: 'diagnostic'
   })
   useEffect(() => {
-    if (data) {
-      setDevice(data) // [id])
-    }
+    // if (data) {
+    setDevice(data) // [id])
+    // }
   }, [data])
 
   const { inverters, motors } = device
