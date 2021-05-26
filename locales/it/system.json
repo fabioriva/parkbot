@@ -54,6 +54,10 @@
   "motion-close": "chiusura",
   "motion-lock": "blocca",
   "motion-unlock": "sblocca",
+  "motion-anticlockwise": "antioraria",
+  "motion-clockwise": "oraria",
+  "motion-left": "sinistra",
+  "motion-right": "destra",
 
   "position-err": "---",
   "position-no": "---",

@@ -17,8 +17,8 @@ const useStyles = makeStyles(theme => ({
     margin: 0
   },
   cardHeaderTitle: {
-    // fontSize: '16px',
-    // fontWeight: 'bold'
+    fontSize: '16px',
+    fontWeight: 'bold'
   },
   cardContent: {
     padding: theme.spacing(2)

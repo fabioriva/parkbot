@@ -54,6 +54,10 @@
   "motion-close": "closing",
   "motion-lock": "locking",
   "motion-unlock": "unlocking",
+  "motion-anticlockwise": "anticlockwise",
+  "motion-clockwise": "clockwise",
+  "motion-left": "going left",
+  "motion-right": "going right",
 
   "position-err": "---",
   "position-no": "---",

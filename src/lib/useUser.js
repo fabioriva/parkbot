@@ -19,7 +19,7 @@ export default function useUser ({
   redirectIfFound = false,
   roles = []
 } = {}) {
-  const { data: user } = useSWR('/api/user')
+  const { data: user, mutate } = useSWR('/api/user')
   const hasUser = Boolean(user)
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function useUser ({
       // If redirectIfFound is also set, redirect if the user was found
       (redirectIfFound && hasUser) ||
       // If redirect is set, redirect if pathname aps is not user aps
-      (redirectTo && aps !== user.aps) ||
+      // (redirectTo && aps !== user.aps) ||
       // If redirect is set, redirect if page role is not user role
       (redirectTo && !hasRole(user, roles))
     ) {
@@ -41,5 +41,5 @@ export default function useUser ({
     }
   }, [user, redirectIfFound, redirectTo])
 
-  return { user }
+  return { user, mutate }
 }

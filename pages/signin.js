@@ -66,7 +66,6 @@ export default function Signin () {
         // const { aps } = await res.json()
         const { aps, locale } = await res.json()
         const url = aps !== undefined ? `/${aps}/${START_PAGE}` : '/'
-        console.log(aps, locale, url)
         router.push(url, url, { locale: locale })
       } else {
         throw new Error(await res.text())
@@ -92,6 +91,7 @@ export default function Signin () {
           autoComplete='off'
         >
           <TextField
+            autoComplete='username'
             variant='outlined'
             margin='normal'
             autoFocus
@@ -107,6 +107,7 @@ export default function Signin () {
           />
           {/* {errors.username && 'Username is required'} */}
           <TextField
+            autoComplete='current-password'
             variant='outlined'
             margin='normal'
             // required

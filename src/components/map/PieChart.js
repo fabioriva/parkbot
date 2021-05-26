@@ -43,7 +43,6 @@ const legendLabelBase = props => {
 const Label = withStyles(legendStyles)(legendLabelBase)
 
 export default function Occupancy (props) {
-  console.log(props)
   return (
     <Chart data={props.data} height={300} width={300}>
       <Legend position='bottom' rootComponent={Root} labelComponent={Label} />

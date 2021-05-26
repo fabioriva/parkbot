@@ -48,7 +48,6 @@ export default function User ({ authorization, handleEdit, cards }) {
   }
 
   const handleConfirm = data => {
-    console.log(data)
     setOpen(false)
     handleEdit(data)
   }
