@@ -7,9 +7,9 @@ import withMap from 'src/hocs/withMap'
 import { withSnackbar } from 'notistack'
 
 const componentList = {
-  bassano: dynamic(() => import('src/aps/bassano/Map')),
-  bmc: dynamic(() => import('src/aps/bmc/Map')),
-  wareham: dynamic(() => import('src/aps/wareham/Map')),
+  // bassano: dynamic(() => import('src/aps/bassano/Map')),
+  // bmc: dynamic(() => import('src/aps/bmc/Map')),
+  vl: dynamic(() => import('src/aps/vl/Map')),
   wallstreet: dynamic(() => import('src/aps/wallstreet/Map')),
   washingtonblvd: dynamic(() => import('src/aps/washingtonblvd/Map'))
 }

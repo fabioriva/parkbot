@@ -7,9 +7,9 @@ import withOverview from 'src/hocs/withOverview'
 import { withSnackbar } from 'notistack'
 
 const componentList = {
-  bassano: dynamic(() => import('src/aps/bassano/Overview')),
-  bmc: dynamic(() => import('src/aps/bmc/Overview')),
-  wareham: dynamic(() => import('src/aps/wareham/Overview')),
+  // bassano: dynamic(() => import('src/aps/bassano/Overview')),
+  // bmc: dynamic(() => import('src/aps/bmc/Overview')),
+  vl: dynamic(() => import('src/aps/vl/Overview')),
   wallstreet: dynamic(() => import('src/aps/wallstreet/Overview')),
   washingtonblvd: dynamic(() => import('src/aps/washingtonblvd/Overview'))
 }

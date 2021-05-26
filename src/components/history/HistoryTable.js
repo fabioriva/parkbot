@@ -86,7 +86,7 @@ export default function HistoryTable ({ count, query }) {
                   <TableCell align='left'>
                     {row.device.id === 0 ? t('dev-operator') : row.device.name}
                   </TableCell>
-                  <TableCell align='left'>{t(row.mode.info)}</TableCell>
+                  <TableCell align='left'>{t(row.mode.label)}</TableCell>
                   {/* <TableCell align='left'>{row.operation.info}</TableCell> */}
                   <TableCell align='left'>
                     <Item item={row} />
