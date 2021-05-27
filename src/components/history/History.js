@@ -21,6 +21,11 @@ export default function History (props) {
   const [history, setHistory] = React.useState(json)
   const [open, setOpen] = React.useState(false)
 
+  React.useEffect(async () => {
+    const json = await fetchHistory(apsId, backendUrl, { filter: 'a' })
+    setHistory(json)
+  }, [])
+
   const handleCancel = () => {
     setOpen(false)
   }
