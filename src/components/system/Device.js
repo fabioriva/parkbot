@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import { ACTIONS, DIAGNOSTIC } from 'src/constants/roles'
@@ -7,6 +8,7 @@ import Item from './Item'
 import Lamp from './Lamp'
 import Mode from './Mode'
 import Silomat from './Silomat'
+// import Alarms from 'src/components/alarms/AlarmsList'
 // material-ui
 import Badge from '@material-ui/core/Badge'
 import Button from '@material-ui/core/Button'
@@ -14,12 +16,13 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardHeader from '@material-ui/core/CardHeader'
+// import Collapse from '@material-ui/core/Collapse'
 import Grid from '@material-ui/core/Grid'
 import IconButton from '@material-ui/core/IconButton'
 // material-ui icons
 // import BuildIcon from '@material-ui/icons/Build'
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar'
-import InfoIcon from '@material-ui/icons/Info'
+// import InfoIcon from '@material-ui/icons/Info'
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore'
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz'
@@ -41,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold'
   },
   cardContent: {
-    padding: theme.spacing(2)
+    // padding: theme.spacing(2)
   },
   ce: {
     backgroundColor: theme.palette.ce // '#d4edda',
@@ -97,6 +100,12 @@ export default function Device ({ actions, authorization, item, user }) {
 
   const locale = user.locale !== undefined ? user.locale : 'en'
 
+  // const [expanded, setExpanded] = React.useState(false)
+
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded)
+  // }
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -114,15 +123,15 @@ export default function Device ({ actions, authorization, item, user }) {
           </Info>,
           <Lamp key='3' item={item.c[2]} on='alarmOn' off='alarmOff' />,
           <Lamp key='2' item={item.c[1]} on='centerOn' off='centerOff' />,
-          <Lamp key='1' item={item.c[0]} on='readyOn' off='readyOff' />,
-          <IconButton key='0' aria-label='active'>
-            <Badge
-              badgeContent={item.alarms !== undefined ? item.alarms.length : 0}
-              color='secondary'
-            >
-              <NotificationsActiveIcon />
-            </Badge>
-          </IconButton>
+          <Lamp key='1' item={item.c[0]} on='readyOn' off='readyOff' />
+          // <IconButton key='0' aria-label='active'>
+          //   <Badge
+          //     badgeContent={item.alarms !== undefined ? item.alarms.length : 0}
+          //     color='secondary'
+          //   >
+          //     <NotificationsActiveIcon />
+          //   </Badge>
+          // </IconButton>
         ]}
         title={name}
         subheader={`Device ${id}`}
@@ -159,14 +168,33 @@ export default function Device ({ actions, authorization, item, user }) {
         <Link href={`/${user.aps}/device/${id - 1}`} locale={locale}>
           <Button
             color='primary'
-            className={classes.button}
+            // className={classes.button}
             disabled={!isAllowed(user, [DIAGNOSTIC])}
+            // startIcon={<InfoIcon />}
           >
             More
           </Button>
         </Link>
+        <Link href={`/${user.aps}/alarms/${id - 1}`} locale={locale}>
+          <IconButton
+            key='0'
+            aria-label='active'
+            className={classes.button}
+            // onClick={handleExpandClick}
+            // aria-expanded={expanded}
+          >
+            <Badge badgeContent={item.alarms.length} color='secondary'>
+              <NotificationsActiveIcon />
+            </Badge>
+          </IconButton>
+        </Link>
       </CardActions>
       {/* )} */}
+      {/* <Collapse in={expanded} timeout='auto' unmountOnExit>
+        <CardContent>
+          <Alarms alarms={item.alarms} />
+        </CardContent>
+      </Collapse> */}
     </Card>
   )
 }

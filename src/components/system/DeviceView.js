@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useData } from 'src/lib/useWebSocket'
 import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
+// import Alarms from 'src/components/alarms/AlarmsList'
 // import Actuator from 'src/components/system/Actuator'
 // import Motor from 'src/components/system/Motor'
 // import Silomat from './SilomatInfo'
@@ -24,9 +25,11 @@ export default function Cards (props) {
   const router = useRouter()
   const { id } = router.query
 
-  console.log(json)
+  // console.log(json)
 
   const [device, setDevice] = useState(json)
+
+  // console.log(device.device)
 
   // const { data } = useData(`${definitions.websockUrl}?channel=diagnostic`, {
   const { data } = useData(definitions.websockUrl.concat('/diagnostic/' + id), {
@@ -44,6 +47,11 @@ export default function Cards (props) {
   return (
     <Layout {...props}>
       <Grid container spacing={3}>
+        {/* <Grid item xs={12}>
+          <Widget action={[]} motion={false} title='Active Alarms'>
+            <Alarms alarms={device.device.alarms} />
+          </Widget>
+        </Grid> */}
         {inverters.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={3} xl={3}>
             <Inverter {...item} />

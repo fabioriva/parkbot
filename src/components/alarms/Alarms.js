@@ -6,20 +6,21 @@ import { useData } from 'src/lib/useWebSocket'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import ParkBot from 'src/components/ParkBot'
+import AlarmsList from 'src/components/alarms/AlarmsList'
 // material-ui
 import { useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Badge from '@material-ui/core/Badge'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
+// import List from '@material-ui/core/List'
+// import ListItem from '@material-ui/core/ListItem'
+// import ListItemText from '@material-ui/core/ListItemText'
 // import ListItemIcon from '@material-ui/core/ListItemIcon'
 // import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+// import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import Paper from '@material-ui/core/Paper'
 import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
-import Typography from '@material-ui/core/Typography'
+// import Typography from '@material-ui/core/Typography'
 
 function TabPanel (props) {
   const { children, value, index, ...other } = props
@@ -37,15 +38,15 @@ function TabPanel (props) {
   )
 }
 
-function dt (date) {
-  const dt = date.split(' ')
-  return (
-    <span style={{ textAlign: 'right' }}>
-      <div>{dt[0]}</div>
-      <div>{dt[1]}</div>
-    </span>
-  )
-}
+// function dt (date) {
+//   const dt = date.split(' ')
+//   return (
+//     <span style={{ textAlign: 'right' }}>
+//       <div>{dt[0]}</div>
+//       <div>{dt[1]}</div>
+//     </span>
+//   )
+// }
 
 export default function Alarms (props) {
   const { t } = useTranslation('alarms')
@@ -109,30 +110,7 @@ export default function Alarms (props) {
         <TabPanel key={key} value={value} index={key}>
           {group.length > 0 ? (
             <Paper>
-              <List>
-                {group.map((item, key) => (
-                  <ListItem key={key}>
-                    <ListItemText
-                      primary={
-                        <Typography color='error'>{item.label}</Typography>
-                      }
-                      secondary={
-                        <Typography variant='subtitle1'>
-                          {/* {item.info.length > 0 ? t(item.info) : '---'} */}
-                          {item.i18n !== undefined &&
-                            t(item.i18n.key, item.i18n.query)}
-                        </Typography>
-                      }
-                      // secondary={`${
-                      //   item.info.length > 0 ? t(item.info) : '---'
-                      // }`}
-                    />
-                    <ListItemSecondaryAction>
-                      {dt(item.date)}
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                ))}
-              </List>
+              <AlarmsList alarms={group} />
             </Paper>
           ) : (
             <ParkBot message={t('no-alarms')} />
@@ -142,3 +120,34 @@ export default function Alarms (props) {
     </Layout>
   )
 }
+
+// {group.length > 0 ? (
+//   <Paper>
+//     <List>
+//       {group.map((item, key) => (
+//         <ListItem key={key}>
+//           <ListItemText
+//             primary={
+//               <Typography color='error'>{item.label}</Typography>
+//             }
+//             secondary={
+//               <Typography variant='subtitle1'>
+//                 {/* {item.info.length > 0 ? t(item.info) : '---'} */}
+//                 {item.i18n !== undefined &&
+//                   t(item.i18n.key, item.i18n.query)}
+//               </Typography>
+//             }
+//             // secondary={`${
+//             //   item.info.length > 0 ? t(item.info) : '---'
+//             // }`}
+//           />
+//           <ListItemSecondaryAction>
+//             {dt(item.date)}
+//           </ListItemSecondaryAction>
+//         </ListItem>
+//       ))}
+//     </List>
+//   </Paper>
+// ) : (
+//   <ParkBot message={t('no-alarms')} />
+// )}

@@ -21,10 +21,10 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold'
   },
   cardContent: {
-    padding: theme.spacing(2)
+    // padding: theme.spacing(2)
   },
   pp: {
-    backgroundColor: theme.palette.pp // '#d1ecf1',
+    backgroundColor: theme.palette.op // '#fff3cd',
   }
 }))
 
@@ -38,6 +38,7 @@ export default function Widget (props) {
         className={classes.cardHeader}
         action={action}
         title={title}
+        // subheader='Subtitle'
         classes={{
           action: classes.cardHeaderAction,
           title: classes.cardHeaderTitle
@@ -46,7 +47,7 @@ export default function Widget (props) {
       <CardContent
         className={clsx({
           [classes.cardContent]: true,
-          [classes.pp]: motion
+          [classes.op]: motion
         })}
       >
         {children}

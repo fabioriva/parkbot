@@ -4,9 +4,10 @@
   "pages": {
     "*": ["common"],
     "/[aps]/alarms": ["alarms"],
+    "/[aps]/alarms/[id]": ["alarms"],
     "/[aps]/cards": ["cards"],
     "/[aps]/dashboard": ["history", "map", "system", "statistics"],
-    "/[aps]/device/[id]": ["system", "io"],
+    "/[aps]/device/[id]": ["system", "alarms", "io"],
     "/[aps]/history": ["history"],
     "/[aps]/history/[log]": ["history"],
     "/[aps]/map": ["map"],
