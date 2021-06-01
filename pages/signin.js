@@ -49,7 +49,11 @@ export default function Signin () {
 
   const { t } = useTranslation('common')
 
-  const { register, handleSubmit, errors } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
 
   const [error, setError] = React.useState(null)
 
@@ -99,11 +103,12 @@ export default function Signin () {
             id='username'
             name='username'
             label='Username'
-            inputRef={register({
-              required: true
-            })}
+            // inputRef={register({
+            //   required: true
+            // })}
             error={!!(errors.username || error)}
             helperText={error}
+            {...register('username', { required: true })}
           />
           {/* {errors.username && 'Username is required'} */}
           <TextField
@@ -116,11 +121,12 @@ export default function Signin () {
             name='password'
             label='Password'
             type='password'
-            inputRef={register({
-              required: true
-            })}
+            // inputRef={register({
+            //   required: true
+            // })}
             error={!!(errors.password || error)}
             helperText={error}
+            {...register('password', { required: true })}
           />
           {/* {errors.password && 'Password is required'} */}
           <br />

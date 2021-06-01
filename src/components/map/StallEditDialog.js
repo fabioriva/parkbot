@@ -22,7 +22,12 @@ export default function EditDialog (props) {
 
   const { card, stall, minCard, maxCard } = value
 
-  const { register, handleSubmit, errors, clearErrors } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    clearErrors
+  } = useForm()
 
   React.useEffect(() => clearErrors(), [])
 
@@ -48,9 +53,10 @@ export default function EditDialog (props) {
             name='stall'
             type='hidden'
             defaultValue={stall}
-            inputRef={register({
-              required: true
-            })}
+            // inputRef={register({
+            //   required: true
+            // })}
+            {...register('stall', { required: true })}
           />
           <TextField
             autoFocus
@@ -60,13 +66,18 @@ export default function EditDialog (props) {
             label={t('dialog-card')}
             type='number'
             defaultValue={card}
-            inputRef={register({
+            // inputRef={register({
+            //   required: true,
+            //   min: minCard,
+            //   max: maxCard
+            // })}
+            error={!!errors.card}
+            helperText={`Min ${minCard} Max ${maxCard}`}
+            {...register('card', {
               required: true,
               min: minCard,
               max: maxCard
             })}
-            error={!!errors.card}
-            helperText={`Min ${minCard} Max ${maxCard}`}
           />
         </DialogContent>
         <DialogActions>

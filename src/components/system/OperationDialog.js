@@ -18,7 +18,12 @@ export default function OperationDialog (props) {
 
   const { card, id, minCard, maxCard } = value
 
-  const { register, handleSubmit, errors, clearErrors } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    clearErrors
+  } = useForm()
 
   useEffect(() => clearErrors(), [])
 
@@ -39,9 +44,10 @@ export default function OperationDialog (props) {
             name='id'
             type='hidden'
             defaultValue={id}
-            inputRef={register({
-              required: true
-            })}
+            // inputRef={register({
+            //   required: true
+            // })}
+            {...register('id', { required: true })}
           />
           <TextField
             autoFocus
@@ -51,13 +57,18 @@ export default function OperationDialog (props) {
             label={t('device-card')}
             type='number'
             defaultValue={card}
-            inputRef={register({
+            // inputRef={register({
+            //   required: true,
+            //   min: minCard,
+            //   max: maxCard
+            // })}
+            error={!!errors.card}
+            helperText={`Min ${minCard} Max ${maxCard}`}
+            {...register('card', {
               required: true,
               min: minCard,
               max: maxCard
             })}
-            error={!!errors.card}
-            helperText={`Min ${minCard} Max ${maxCard}`}
           />
         </DialogContent>
         <DialogActions>

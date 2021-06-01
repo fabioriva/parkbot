@@ -20,7 +20,12 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
 
   const { card, minCard, maxCard } = value
 
-  const { register, handleSubmit, errors, clearErrors } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    clearErrors
+  } = useForm()
 
   React.useEffect(() => clearErrors(), [])
 
@@ -46,11 +51,12 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
             name='nr'
             type='hidden'
             defaultValue={card.nr}
-            inputRef={register({
-              required: true,
-              min: minCard,
-              max: maxCard
-            })}
+            // inputRef={register({
+            //   required: true,
+            //   min: minCard,
+            //   max: maxCard
+            // })}
+            {...register('nr', { required: true, min: minCard, max: maxCard })}
           />
           <TextField
             autoFocus
@@ -61,13 +67,18 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
             type='string'
             defaultValue={card.code}
             inputProps={{ style: { textTransform: 'capitalize' } }}
-            inputRef={register({
+            // inputRef={register({
+            //   required: true,
+            //   maxLength: 3,
+            //   pattern: /^[a-fA-F0-9]{3}$/
+            // })}
+            error={!!errors.code}
+            helperText='3 digits, pattern [a-fA-F0-9]'
+            {...register('code', {
               required: true,
               maxLength: 3,
               pattern: /^[a-fA-F0-9]{3}$/
             })}
-            error={!!errors.code}
-            helperText='3 digits, pattern [a-fA-F0-9]'
           />
         </DialogContent>
         <DialogActions>

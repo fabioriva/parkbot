@@ -32,7 +32,12 @@ export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   const { t } = useTranslation('history')
-  const { register, handleSubmit, errors, clearErrors } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    clearErrors
+  } = useForm()
 
   React.useEffect(() => clearErrors(), [])
 
@@ -79,11 +84,12 @@ export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
             InputProps={{
               className: classes.input
             }}
-            inputRef={register({
-              required: true
-            })}
+            // inputRef={register({
+            //   required: true
+            // })}
             error={!!errors.code}
             size='small'
+            {...register('datetime-from', { required: true })}
           />
           <TextField
             id='datetime-to'
@@ -98,11 +104,12 @@ export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
             InputProps={{
               className: classes.input
             }}
-            inputRef={register({
-              required: true
-            })}
+            // inputRef={register({
+            //   required: true
+            // })}
             error={!!errors.code}
             size='small'
+            {...register('datetime-to', { required: true })}
           />
         </DialogContent>
         <DialogActions>
