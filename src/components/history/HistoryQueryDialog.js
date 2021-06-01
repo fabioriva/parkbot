@@ -42,10 +42,10 @@ export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
   React.useEffect(() => clearErrors(), [])
 
   const onSubmit = data => {
-    console.log(typeof data['datetime-to'], data['datetime-to'])
+    console.log(typeof data['dateTo'], data['dateTo'])
     console.log(
       format(
-        startOfDay(new Date(data['datetime-to'])),
+        startOfDay(new Date(data.dateTo)),
         "yyyy-MM-dd'T'HH:mm" // 'yyyy-MM-dd HH:mm:ss'
       )
     )
@@ -72,8 +72,8 @@ export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
 
         <DialogContent>
           <TextField
-            id='datetime-from'
-            name='datetime-from'
+            id='dateFrom'
+            name='dateFrom'
             label={t('dialog-date-from')}
             type='datetime-local'
             defaultValue={dateFrom}
@@ -87,13 +87,13 @@ export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
             // inputRef={register({
             //   required: true
             // })}
-            error={!!errors.code}
+            error={!!errors.dateFrom}
             size='small'
-            {...register('datetime-from', { required: true })}
+            {...register('dateFrom', { required: true })}
           />
           <TextField
-            id='datetime-to'
-            name='datetime-to'
+            id='dateTo'
+            name='dateTo'
             label={t('dialog-date-to')}
             type='datetime-local'
             defaultValue={dateTo}
@@ -107,9 +107,9 @@ export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
             // inputRef={register({
             //   required: true
             // })}
-            error={!!errors.code}
+            error={!!errors.dateTo}
             size='small'
-            {...register('datetime-to', { required: true })}
+            {...register('dateTo', { required: true })}
           />
         </DialogContent>
         <DialogActions>
