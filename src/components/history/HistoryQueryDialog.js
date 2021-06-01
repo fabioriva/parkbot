@@ -42,13 +42,13 @@ export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
   React.useEffect(() => clearErrors(), [])
 
   const onSubmit = data => {
-    console.log(typeof data['dateTo'], data['dateTo'])
-    console.log(
-      format(
-        startOfDay(new Date(data.dateTo)),
-        "yyyy-MM-dd'T'HH:mm" // 'yyyy-MM-dd HH:mm:ss'
-      )
-    )
+    // console.log(typeof data['dateTo'], data['dateTo'])
+    // console.log(
+    //   format(
+    //     startOfDay(new Date(data.dateTo)),
+    //     "yyyy-MM-dd'T'HH:mm" // 'yyyy-MM-dd HH:mm:ss'
+    //   )
+    // )
     onConfirm({ ...data })
   }
 

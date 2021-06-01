@@ -37,8 +37,8 @@ export default function History (props) {
   const handleConfirm = async data => {
     const json = await fetchHistory(apsId, backendUrl, {
       filter: 'a',
-      dateFrom: data['datetime-from'],
-      dateTo: data['datetime-to']
+      dateFrom: data['dateFrom'],
+      dateTo: data['dateTo']
     })
     setHistory(json)
     setOpen(false)
