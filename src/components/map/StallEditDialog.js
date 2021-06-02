@@ -27,7 +27,12 @@ export default function EditDialog (props) {
     handleSubmit,
     formState: { errors },
     clearErrors
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      stall,
+      card
+    }
+  })
 
   React.useEffect(() => clearErrors(), [])
 
