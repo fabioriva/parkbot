@@ -56,7 +56,7 @@ export default function EditDialog (props) {
             id='stall'
             name='stall'
             type='hidden'
-            defaultValue={stall}
+            // defaultValue={stall}
             // inputRef={register({
             //   required: true
             // })}
@@ -69,7 +69,7 @@ export default function EditDialog (props) {
             name='card'
             label={t('dialog-card')}
             type='number'
-            defaultValue={card}
+            // defaultValue={card}
             // inputRef={register({
             //   required: true,
             //   min: minCard,

@@ -49,7 +49,7 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
             id='nr'
             name='nr'
             type='hidden'
-            defaultValue={card.nr}
+            // defaultValue={card.nr}
             // inputRef={register({
             //   required: true,
             //   min: minCard,
@@ -64,7 +64,7 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
             name='code'
             label={t('dialog-code')}
             type='string'
-            defaultValue={card.code}
+            // defaultValue={card.code}
             inputProps={{ style: { textTransform: 'capitalize' } }}
             // inputRef={register({
             //   required: true,
