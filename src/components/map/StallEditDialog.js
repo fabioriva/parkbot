@@ -35,16 +35,16 @@ export default function EditDialog (props) {
   const onError = (errors, e) => console.log(errors, e)
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Dialog
-        open={open}
-        onClose={onCancel}
-        aria-labelledby='form-dialog-title'
-        fullScreen={fullScreen}
-      >
-        <DialogTitle id='form-dialog-title'>
-          {t('dialog-title', { number: stall })}
-        </DialogTitle>
+    <Dialog
+      open={open}
+      onClose={onCancel}
+      aria-labelledby='form-dialog-title'
+      fullScreen={fullScreen}
+    >
+      <DialogTitle id='form-dialog-title'>
+        {t('dialog-title', { number: stall })}
+      </DialogTitle>
+      <form onSubmit={handleSubmit(onSubmit, onError)}>
         <DialogContent>
           {/* <DialogContentText>{t('dialog-content')}</DialogContentText> */}
           <Input
@@ -100,7 +100,7 @@ export default function EditDialog (props) {
             {t('dialog-lock')}
           </Button>
         </DialogActions>
-      </Dialog>
-    </form>
+      </form>
+    </Dialog>
   )
 }
