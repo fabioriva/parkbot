@@ -43,7 +43,7 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
       <DialogTitle id='form-dialog-title'>
         {t('dialog-title', { number: card.nr })}
       </DialogTitle>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <DialogContent>
           {/* <DialogContentText>{t('dialog-content')}</DialogContentText> */}
           <Input

@@ -45,7 +45,7 @@ export default function EditDialog (props) {
       <DialogTitle id='form-dialog-title'>
         {t('dialog-title', { number: stall })}
       </DialogTitle>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <DialogContent>
           {/* <DialogContentText>{t('dialog-content')}</DialogContentText> */}
           <Input
