@@ -31,12 +31,11 @@ export default function EditDialog (props) {
 
   React.useEffect(() => clearErrors(), [])
 
-  const onSubmit = data => {
-    onConfirm({ ...data })
-  }
+  const onSubmit = data => onConfirm({ ...data })
+  const onError = (errors, e) => console.log(errors, e)
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit, onError)}>
       <Dialog
         open={open}
         onClose={onCancel}
