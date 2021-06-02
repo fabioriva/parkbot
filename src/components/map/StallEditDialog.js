@@ -84,7 +84,8 @@ export default function EditDialog (props) {
           <Button onClick={onCancel} color='default'>
             {t('dialog-cancel')}
           </Button>
-          <Button type='submit' color='primary'>
+          <Button onClick={handleSubmit(onSubmit)} color='primary'>
+            {/* <Button type='submit' color='primary'> */}
             {t('dialog-card')}
           </Button>
           <Button
