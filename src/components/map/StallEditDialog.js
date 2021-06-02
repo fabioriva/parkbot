@@ -36,16 +36,16 @@ export default function EditDialog (props) {
   }
 
   return (
-    <Dialog
-      open={open}
-      onClose={onCancel}
-      aria-labelledby='form-dialog-title'
-      fullScreen={fullScreen}
-    >
-      <DialogTitle id='form-dialog-title'>
-        {t('dialog-title', { number: stall })}
-      </DialogTitle>
-      <form>
+    <form>
+      <Dialog
+        open={open}
+        onClose={onCancel}
+        aria-labelledby='form-dialog-title'
+        fullScreen={fullScreen}
+      >
+        <DialogTitle id='form-dialog-title'>
+          {t('dialog-title', { number: stall })}
+        </DialogTitle>
         <DialogContent>
           {/* <DialogContentText>{t('dialog-content')}</DialogContentText> */}
           <Input
@@ -101,7 +101,7 @@ export default function EditDialog (props) {
             {t('dialog-lock')}
           </Button>
         </DialogActions>
-      </form>
-    </Dialog>
+      </Dialog>
+    </form>
   )
 }

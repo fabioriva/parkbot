@@ -85,7 +85,7 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
           <Button onClick={onCancel} color='default'>
             {t('dialog-cancel')}
           </Button>
-          <Button onClick={handleSubmit(onSubmit)} color='primary'>
+          <Button onClick={handleSubmit(onSubmit)()} color='primary'>
             {/* <Button type='submit' color='primary'> */}
             {t('dialog-confirm')}
           </Button>
