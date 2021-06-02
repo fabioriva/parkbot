@@ -34,16 +34,16 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
   }
 
   return (
-    <Dialog
-      open={open}
-      onClose={onCancel}
-      aria-labelledby='form-dialog-title'
-      fullScreen={fullScreen}
-    >
-      <DialogTitle id='form-dialog-title'>
-        {t('dialog-title', { number: card.nr })}
-      </DialogTitle>
-      <form>
+    <form>
+      <Dialog
+        open={open}
+        onClose={onCancel}
+        aria-labelledby='form-dialog-title'
+        fullScreen={fullScreen}
+      >
+        <DialogTitle id='form-dialog-title'>
+          {t('dialog-title', { number: card.nr })}
+        </DialogTitle>
         <DialogContent>
           {/* <DialogContentText>{t('dialog-content')}</DialogContentText> */}
           <Input
@@ -85,12 +85,12 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
           <Button onClick={onCancel} color='default'>
             {t('dialog-cancel')}
           </Button>
-          <Button onClick={handleSubmit(onSubmit)()} color='primary'>
+          <Button onClick={handleSubmit(onSubmit)} color='primary'>
             {/* <Button type='submit' color='primary'> */}
             {t('dialog-confirm')}
           </Button>
         </DialogActions>
-      </form>
-    </Dialog>
+      </Dialog>
+    </form>
   )
 }
