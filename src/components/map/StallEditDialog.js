@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import useTranslation from 'next-translate/useTranslation'
 // material-ui
 import Button from '@material-ui/core/Button'
@@ -23,26 +23,53 @@ export default function EditDialog (props) {
   const { card, stall, minCard, maxCard } = value
 
   const {
-    register,
+    // register,
+    control,
     handleSubmit,
     formState: { errors },
     clearErrors
-  } = useForm({
-    defaultValues: {
-      stall,
-      card
-    }
-  })
+    // setValue
+  } = useForm()
 
-  React.useEffect(() => clearErrors(), [])
+  const [data, setData] = React.useState({ card, stall })
+  // console.log(data)
+  // React.useEffect(() => clearErrors(), [])
+  React.useEffect(() => {
+    clearErrors()
+  }, [])
 
-  const onSubmit = data => onConfirm({ ...data })
+  const handleChange1 = e => {
+    console.log('onChange 1:', e.target.name, e.target.value)
+    setData({ ...data, stall: e.target.value })
+    // console.log('onChange 1', event.target.value, child)
+    // setValue('stall', event.target.value)
+  }
+
+  const handleChange2 = e => {
+    console.log('onChange 2:', e.target.name, e.target.value)
+    setData({ ...data, card: e.target.value })
+    // setValue('card', event.target.value)
+    // setData({ stall: data.stall, card: event.target.value })
+  }
+
+  const onEnter = () => {
+    console.log('onEnter', value)
+    const { card, stall } = value
+    setData({ card, stall })
+  }
+
+  const onSubmit = d => {
+    console.log(d, typeof data.card)
+    window.alert(JSON.stringify(data))
+    // onConfirm({ ...data })
+  }
   const onError = (errors, e) => console.log(errors, e)
 
   return (
     <Dialog
       open={open}
       onClose={onCancel}
+      onEnter={onEnter}
       aria-labelledby='form-dialog-title'
       fullScreen={fullScreen}
     >
@@ -51,25 +78,93 @@ export default function EditDialog (props) {
       </DialogTitle>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
         <DialogContent>
-          {/* <DialogContentText>{t('dialog-content')}</DialogContentText> */}
-          <Input
-            id='stall'
+          <Controller
+            render={({ field }) => <Input {...field} type='number' />}
             name='stall'
-            type='hidden'
-            // defaultValue={stall}
+            control={control}
+            defaultValue={data.stall}
+            // rules={{ required: true}}
+          />
+          <Controller
+            render={({ field: { onChange, onBlur, value, name, ref } }) => {
+              console.log(value, name, ref)
+              return (
+                <TextField
+                  // {...field}
+                  autoFocus
+                  fullWidth
+                  label={t('dialog-card')}
+                  type='number'
+                  // value={data.card}
+                  error={!!errors.card}
+                  helperText={`Min ${minCard} Max ${maxCard}`}
+                  // onChange={handleChange1}
+                  // value={data.card}
+                  inputRef={ref}
+                />
+              )
+            }}
+            name='card'
+            control={control}
+            defaultValue={data.card}
+            rules={{ required: true, min: minCard, max: maxCard }}
+          />
+          {/* <Input
+            name='stall'
+            onChange={handleChange1}
+            defaultValue={stall}
             // inputRef={register({
-            //   required: true
+            //   required: true,
+            //   min: minCard,
+            //   max: maxCard
             // })}
             {...register('stall', { required: true })}
           />
           <TextField
+            name='card'
+            defaultValue={card}
+            // inputRef={register({
+            //   required: true,
+            //   min: minCard,
+            //   max: maxCard
+            // })}
+            error={!!errors.card}
+            {...register('card', {
+              required: true,
+              min: minCard,
+              max: maxCard
+            })}
+          /> */}
+          {/* <TextField
+            autoFocus
+            fullWidth
+            label={t('dialog-card')}
+            type='number'
+            name='card'
+            defaultValue={card}
+            error={!!errors.card}
+            helperText={`Min ${minCard} Max ${maxCard}`}
+            onChange={handleChange2}
+            {...register('card', {
+              required: true,
+              min: minCard,
+              max: maxCard
+            })}
+          /> */}
+          {/* <Controller
+            render={({ field }) => <Input {...field} type='hidden' />}
+            name='stall'
+            control={control}
+            defaultValue={stall}
+          /> */}
+          {/* <TextField
             autoFocus
             fullWidth
             id='card'
             name='card'
             label={t('dialog-card')}
             type='number'
-            // defaultValue={card}
+            defaultValue={card}
             // inputRef={register({
             //   required: true,
             //   min: minCard,
@@ -78,18 +173,38 @@ export default function EditDialog (props) {
             error={!!errors.card}
             helperText={`Min ${minCard} Max ${maxCard}`}
             {...register('card', {
-              required: true,
-              min: minCard,
-              max: maxCard
+              required: true
+              // min: minCard,
+              // max: maxCard
             })}
-          />
+          /> */}
+          {/* <Controller
+            render={({ field }) => (
+              <TextField
+                {...field}
+                autoFocus
+                fullWidth
+                // defaultValue={card}
+                error={!!errors.card}
+                helperText={`Min ${minCard} Max ${maxCard}`}
+                label={t('dialog-card')}
+                type='number'
+                // value={field.value}
+                onChange={onChange}
+              />
+            )}
+            name='card'
+            control={control}
+            defaultValue={card}
+            // value={card}
+            rules={{ required: true, min: minCard, max: maxCard }}
+          /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={onCancel} color='default'>
             {t('dialog-cancel')}
           </Button>
-          {/* <Button onClick={handleSubmit(onSubmit)} color='primary'> */}
-          <Button type='submit' color='primary'>
+          <Button color='primary' type='submit'>
             {t('dialog-card')}
           </Button>
           <Button

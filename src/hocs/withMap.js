@@ -8,7 +8,7 @@ import Layout from 'src/components/Layout'
 import Error from 'src/components/Error'
 import Widget from 'src/components/Widget'
 // map
-import Dialog from 'src/components/map/StallEditDialog'
+import Dialog from 'src/components/map/StallEdit'
 import Level from 'src/components/map/Level'
 import Occupancy from 'src/components/map/PieChart'
 import View from 'src/components/map/View'

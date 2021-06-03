@@ -30,11 +30,11 @@ export default function Cards (props) {
 
   useEffect(() => setCards(data), [data])
 
-  const handleEdit = async ({ nr, code }) => {
+  const handleEdit = async ({ card, code }) => {
     const json = await fetchJson(backendUrl.concat('/card/edit'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ card: nr, code })
+      body: JSON.stringify({ card, code })
     })
     const snack = message(json)
     props.enqueueSnackbar(snack.message, snack.options)

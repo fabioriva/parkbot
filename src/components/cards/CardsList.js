@@ -1,6 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import Dialog from 'src/components/cards/CardEditDialog'
+import Dialog from 'src/components/cards/CardEdit'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
@@ -32,10 +32,12 @@ export default function User ({ authorization, handleEdit, cards }) {
 
   // Dialog
   const DIALOG_INIT_VALUES = {
-    card: {
-      nr: 1,
-      code: ''
-    },
+    // card: {
+    //   nr: 1,
+    //   code: ''
+    // },
+    card: 0,
+    code: '',
     minCard: 1,
     maxCard: cards.length
   }
@@ -53,8 +55,9 @@ export default function User ({ authorization, handleEdit, cards }) {
   }
 
   const handleOpen = card => {
+    console.log(card)
     setOpen(true)
-    setDialog({ ...dialog, card })
+    setDialog({ ...dialog, card: card.nr, code: card.code })
   }
 
   return (
