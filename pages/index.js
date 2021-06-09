@@ -21,15 +21,16 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center'
   },
   toolbar: {
-    borderBottom: `1px solid ${theme.palette.divider}`
+    // borderBottom: `1px solid ${theme.palette.divider}`
   },
   toolbarTitle: {
-    flex: 1
+    flexGrow: 1,
+    color: '#eceff1'
   },
-  toolbarSecondary: {
-    justifyContent: 'space-between',
-    overflowX: 'auto'
-  },
+  // toolbarSecondary: {
+  //   justifyContent: 'space-between',
+  //   overflowX: 'auto'
+  // },
   toolbarLink: {
     padding: theme.spacing(1),
     flexShrink: 0
@@ -128,7 +129,7 @@ export default function Home (props) {
             <Button
               className={classes.startButton}
               color='primary'
-              variant='outlined'
+              variant='contained'
               size='large'
               onClick={handleSignin}
             >
@@ -158,7 +159,7 @@ export default function Home (props) {
               </Box>
             </Grid>
           </Grid> */}
-          <Box mt={4}>
+          <Box mt={0}>
             <Copyright />
           </Box>
         </Container>
