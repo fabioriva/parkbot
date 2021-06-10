@@ -139,6 +139,7 @@ export default function Signin () {
             fullWidth
             variant='contained'
             color='primary'
+            size='large'
             className={classes.submit}
           >
             {t('SIGNIN_BUTTON')}

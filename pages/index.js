@@ -129,7 +129,7 @@ export default function Home (props) {
             <Button
               className={classes.startButton}
               color='primary'
-              variant='contained'
+              variant='outlined'
               size='large'
               onClick={handleSignin}
             >
