@@ -1,5 +1,10 @@
 {
   "I18N_TEST": "en",
+
+  "home-title": "The full stack solution for robotic parking systems.",
+  "home-text": "Hello, I am your robotic parking assistant!",
+  "home-button": "Get Started",
+
   "SIGNIN_TITLE": "Sign in to ParkBot",
   "SIGNIN_REMEMBER": "Remember me",
   "SIGNIN_BUTTON": "Sign in",

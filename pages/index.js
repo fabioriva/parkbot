@@ -115,7 +115,7 @@ export default function Home (props) {
               ParkBot
             </Typography>
             <Typography className={classes.subtitle} variant='h2' gutterBottom>
-              The full stack solution for robotic parking systems.
+              {t('home-title')}
             </Typography>
             <Image src='/bot.svg' alt='ParkBot' width={120} height={120} />
             <Typography
@@ -124,7 +124,7 @@ export default function Home (props) {
               // className={classes.description}
               // paragraph
             >
-              Hello, I am your robotic parking assistant!
+              {t('home-text')}
             </Typography>
             <Button
               className={classes.startButton}
@@ -133,7 +133,7 @@ export default function Home (props) {
               size='large'
               onClick={handleSignin}
             >
-              Get Started
+              {t('home-button')}
             </Button>
           </div>
           {/* <Grid
