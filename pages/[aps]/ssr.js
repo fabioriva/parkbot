@@ -1,5 +1,5 @@
 import React from 'react'
-// import fetch from 'src/lib/fetchJson'
+import fetch from 'src/lib/fetchJson'
 import { withSnackbar } from 'notistack'
 import { getCookies, getTokenCookie } from 'src/lib/auth-cookies'
 import { aps } from 'src/constants/aps'
@@ -29,14 +29,25 @@ export async function getServerSideProps (ctx) {
 
   const cookies = await getCookies(ctx.req)
 
+  var start = new Date()
+  var hrstart = process.hrtime()
+
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${cookies['parkbot-aps']}/ssr`
-  // const json = await fetch(url, {
-  //   headers: { Authorization: 'Bearer ' + token }
-  // })
-  const res = await global.fetch(url, {
+  const json = await fetch(url, {
     headers: { Authorization: 'Bearer ' + token }
   })
-  const json = await res.json()
+  // const res = await global.fetch(url, {
+  //   headers: { Authorization: 'Bearer ' + token }
+  // })
+  // console.log(res)
+  // const json = await res.json()
+  // console.log(json)
+
+  var end = new Date() - start,
+    hrend = process.hrtime(hrstart)
+
+  console.info('Execution time: %dms', end)
+  console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000)
 
   return {
     props: {
@@ -44,7 +55,8 @@ export async function getServerSideProps (ctx) {
       apsName: APS_NAME,
       locale: cookies['parkbot-i18n'],
       // pageTitle: 'title-cards',
-      json
+      json,
+      executionTime: end
     }
   }
 }

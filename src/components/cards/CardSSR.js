@@ -39,6 +39,7 @@ export default function Cards (props) {
 
   return (
     <Layout {...props} pageTitle={t('title-cards')}>
+      <h2>Execution time: {props.executionTime} ms</h2>
       <Typography variant='subtitle2' gutterBottom>
         {t('cards-total-count', { count: cards.length })}
       </Typography>

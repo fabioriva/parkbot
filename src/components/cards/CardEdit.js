@@ -16,11 +16,11 @@ export default function EditDialog ({ onCancel, onConfirm, open, value }) {
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const { t } = useTranslation('cards')
 
-  const { card, code, minCard, maxCard } = value
-  console.log(value)
+  const { card, code } = value
+
   const [data, setData] = React.useState({ card, code })
   const [error, setError] = React.useState(false)
-  console.log(data)
+
   React.useEffect(() => setData({ card, code }), [])
 
   const handleChange = e => {
