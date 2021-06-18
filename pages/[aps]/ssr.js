@@ -14,8 +14,9 @@ export async function getServerSideProps (ctx) {
     }
   }
 
+  const cookies = await getCookies(ctx.req)
+
   const token = await getTokenCookie(ctx.req)
-  // const { aps, locale, token } = await getCookies(ctx.req)
   if (!token) {
     return {
       redirect: {
@@ -27,36 +28,27 @@ export async function getServerSideProps (ctx) {
 
   const { APS_NAME } = await import(`src/constants/${ctx.params.aps}`)
 
-  const cookies = await getCookies(ctx.req)
-
-  var start = new Date()
+  // var start = new Date()
   var hrstart = process.hrtime()
 
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${cookies['parkbot-aps']}/ssr`
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/ssr`
   const json = await fetch(url, {
     headers: { Authorization: 'Bearer ' + token }
   })
-  // const res = await global.fetch(url, {
-  //   headers: { Authorization: 'Bearer ' + token }
-  // })
-  // console.log(res)
-  // const json = await res.json()
-  // console.log(json)
 
-  var end = new Date() - start,
-    hrend = process.hrtime(hrstart)
-
-  console.info('Execution time: %dms', end)
-  console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000)
+  // var end = new Date() - start
+  var hrend = process.hrtime(hrstart)
+  // console.info('Execution time: %dms', end)
+  // console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000)
 
   return {
     props: {
-      aps: cookies['parkbot-aps'],
+      aps: ctx.params.aps, // cookies.aps,
       apsName: APS_NAME,
-      locale: cookies['parkbot-i18n'],
-      // pageTitle: 'title-cards',
+      locale: cookies.i18n,
       json,
-      executionTime: end
+      token,
+      executionTime: hrend
     }
   }
 }

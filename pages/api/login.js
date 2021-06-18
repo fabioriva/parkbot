@@ -17,6 +17,7 @@ export default async function login (req, res) {
       // const session = await encryptSession(token)
       // setTokenCookie(res, token)
       const json = await response.json()
+      // json = { aps, locale, token }
       const { aps, locale } = json
       setCookies(res, json)
       res.status(200).send({ aps, locale })

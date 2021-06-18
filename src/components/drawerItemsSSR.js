@@ -38,11 +38,8 @@ export function mainListItems (aps, locale) {
   //   setOpen(!open)
   // }
 
-  // const locale = user.locale !== undefined ? user.locale : 'en'
-
   return (
     <List>
-      {/* <Link href={`/${user.aps}/dashboard`} locale={locale}> */}
       <Link href={`/${aps}/dashboard`} locale={locale}>
         <ListItem button>
           <ListItemIcon>

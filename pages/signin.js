@@ -69,7 +69,8 @@ export default function Signin () {
       if (res.status === 200) {
         // const { aps } = await res.json()
         const { aps, locale } = await res.json()
-        const url = aps !== undefined ? `/${aps}/${START_PAGE}` : '/'
+        // const url = aps !== undefined ? `/${aps}/${START_PAGE}` : '/'
+        const url = `/${aps}/${START_PAGE}`
         router.push(url, url, { locale: locale })
       } else {
         throw new Error(await res.text())

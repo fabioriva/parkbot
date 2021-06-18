@@ -1,18 +1,13 @@
 import { serialize, parse } from 'cookie'
 
-const APS_NAME = 'parkbot-aps'
-const I18N_NAME = 'parkbot-i18n'
-const TOKEN_NAME = 'parkbot-token'
+const APS = 'aps'
+const I18N = 'i18n'
+const TOKEN = 'token'
 const MAX_AGE = 60 * 60 * 8 // 8 hours
 
 export function getCookies (req) {
   const cookies = parseCookies(req)
   return cookies
-  // return {
-  //   aps: cookies[APS_NAME],
-  //   locale: cookies[I18N_NAME],
-  //   token: cookies[TOKEN_NAME]
-  // }
 }
 
 export function setCookies (res, json) {
@@ -24,14 +19,26 @@ export function setCookies (res, json) {
     path: '/',
     sameSite: 'lax'
   }
-  const aps = serialize('parkbot-aps', json.aps, options)
-  const i18n = serialize('parkbot-i18n', json.locale, options)
-  const token = serialize(TOKEN_NAME, json.token, options)
+  const aps = serialize(APS, json.aps, options)
+  const i18n = serialize(I18N, json.locale, options)
+  const token = serialize(TOKEN, json.token, options)
   res.setHeader('Set-Cookie', [aps, i18n, token])
 }
 
+export function removeCookies (res) {
+  const options = { maxAge: -1, path: '/' }
+  // const aps = serialize(APS, '', options)
+  // const i18n = serialize(I18N, '', options)
+  // const token = serialize(TOKEN, '', options)
+  res.setHeader('Set-Cookie', [
+    serialize(APS, '', options),
+    serialize(I18N, '', options),
+    serialize(TOKEN, '', options)
+  ])
+}
+
 export function setTokenCookie (res, token) {
-  const cookie = serialize(TOKEN_NAME, token, {
+  const cookie = serialize(TOKEN, token, {
     maxAge: MAX_AGE,
     expires: new Date(Date.now() + MAX_AGE * 1000),
     httpOnly: true,
@@ -43,7 +50,7 @@ export function setTokenCookie (res, token) {
 }
 
 export function removeTokenCookie (res) {
-  const cookie = serialize(TOKEN_NAME, '', {
+  const cookie = serialize(TOKEN, '', {
     maxAge: -1,
     path: '/'
   })
@@ -61,5 +68,5 @@ export function parseCookies (req) {
 
 export function getTokenCookie (req) {
   const cookies = parseCookies(req)
-  return cookies[TOKEN_NAME]
+  return cookies[TOKEN]
 }

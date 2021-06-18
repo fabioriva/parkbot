@@ -1,7 +1,7 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import { useData } from 'src/lib/useWebSocket'
-// import fetchJson from 'src/lib/fetchJson'
+import fetch from 'src/lib/fetchJson'
 // import message from 'src/lib/message'
 import Layout from 'src/components/LayoutSSR'
 import Error from 'src/components/ErrorSSR'
@@ -15,7 +15,7 @@ export default function Cards (props) {
   const { t } = useTranslation('cards')
 
   if (props.json.err) {
-    return <Error {...props} message='Error 500' pageTitle={t('title-cards')} />
+    return <Error {...props} message='Error 500' pageTitle={t('title')} />
   }
 
   const [cards, setCards] = React.useState(props.json)
@@ -28,6 +28,13 @@ export default function Cards (props) {
   React.useEffect(() => setCards(data), [data])
 
   const handleEdit = async ({ card, code }) => {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/card/edit`
+    const json = await fetch(url, {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + props.token },
+      body: JSON.stringify({ card, code })
+    })
+    console.log(url, json)
     // const json = await fetchJson(backendUrl.concat('/card/edit'), {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
@@ -38,8 +45,12 @@ export default function Cards (props) {
   }
 
   return (
-    <Layout {...props} pageTitle={t('title-cards')}>
-      <h2>Execution time: {props.executionTime} ms</h2>
+    <Layout {...props} pageTitle={t('title')}>
+      <h2>
+        Execution time: {props.executionTime[0]}
+        {'s '}
+        {props.executionTime[1] / 1000000}ms
+      </h2>
       <Typography variant='subtitle2' gutterBottom>
         {t('cards-total-count', { count: cards.length })}
       </Typography>

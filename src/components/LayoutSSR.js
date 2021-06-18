@@ -1,5 +1,5 @@
 import React from 'react'
-import useTranslation from 'next-translate/useTranslation'
+// import useTranslation from 'next-translate/useTranslation'
 import AppBar from 'src/components/AppBar'
 import Drawer from 'src/components/DrawerSSR'
 import Footer from 'src/components/Footer'
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function AppLayout (props) {
   const classes = useStyles()
-  const { t } = useTranslation('common')
+  // const { t } = useTranslation('common')
 
   const { aps, apsName, locale, pageTitle } = props
 
@@ -62,7 +62,7 @@ export default function AppLayout (props) {
           <div className={classes.toolbar} />
           <Header
             aps={apsName}
-            pageTitle={t(pageTitle)}
+            pageTitle={pageTitle}
             comm={comm}
             diag={diag}
             map={map}
