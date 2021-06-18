@@ -3,6 +3,9 @@
   "defaultLocale": "en",
   "pages": {
     "*": ["common"],
+
+    "/[aps]/ssr": ["cards"],
+
     "/[aps]/alarms": ["alarms"],
     "/[aps]/alarms/[id]": ["alarms"],
     "/[aps]/cards": ["cards"],

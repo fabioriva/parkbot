@@ -18,6 +18,7 @@ import { blue } from '@material-ui/core/colors'
 const useStyles = makeStyles(theme => ({
   root: {
     // backgroundColor: theme.palette.background.paper
+    maxWidth: 345
   },
   avatar: {
     color: theme.palette.getContrastText(blue[600]),
@@ -61,8 +62,8 @@ export default function User ({ authorization, handleEdit, cards }) {
   }
 
   return (
-    <Paper>
-      <List className={classes.root} dense>
+    <Paper className={classes.root}>
+      <List dense>
         {cards.map((item, key) => (
           <ListItem key={key}>
             <ListItemAvatar>

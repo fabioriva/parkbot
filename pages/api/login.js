@@ -1,5 +1,5 @@
 // import { encryptSession } from 'src/lib/iron'
-import { setTokenCookie } from 'src/lib/auth-cookies'
+import { setCookies, setTokenCookie } from 'src/lib/auth-cookies'
 
 export default async function login (req, res) {
   try {
@@ -13,9 +13,12 @@ export default async function login (req, res) {
       body: JSON.stringify({ username, password })
     })
     if (response.ok) {
-      const { aps, locale, token } = await response.json()
+      // const { aps, locale, token } = await response.json()
       // const session = await encryptSession(token)
-      setTokenCookie(res, token)
+      // setTokenCookie(res, token)
+      const json = await response.json()
+      const { aps, locale } = json
+      setCookies(res, json)
       res.status(200).send({ aps, locale })
     } else {
       const error = new Error(response.statusText)
