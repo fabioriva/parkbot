@@ -31,6 +31,7 @@ export default function Cards (props) {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/card/edit`
     const json = await fetch(url, {
       method: 'POST',
+      credentials: 'include',
       headers: { Authorization: 'Bearer ' + props.token },
       body: JSON.stringify({ card, code })
     })
