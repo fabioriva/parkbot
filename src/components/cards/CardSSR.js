@@ -2,7 +2,7 @@ import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import { useData } from 'src/lib/useWebSocket'
 import fetch from 'src/lib/fetchJson'
-// import message from 'src/lib/message'
+import message from 'src/lib/message'
 import Layout from 'src/components/LayoutSSR'
 import Error from 'src/components/ErrorSSR'
 import CardsList from 'src/components/cards/CardsList'
@@ -39,14 +39,13 @@ export default function Cards (props) {
       },
       body: JSON.stringify({ card, code })
     })
-    console.log(url, json)
     // const json = await fetchJson(backendUrl.concat('/card/edit'), {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
     //   body: JSON.stringify({ card, code })
     // })
-    // const snack = message(json)
-    // props.enqueueSnackbar(snack.message, snack.options)
+    const snack = message(json)
+    props.enqueueSnackbar(snack.message, snack.options)
   }
 
   return (

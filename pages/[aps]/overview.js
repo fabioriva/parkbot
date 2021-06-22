@@ -8,7 +8,7 @@ import { withSnackbar } from 'notistack'
 
 const componentList = {
   // bassano: dynamic(() => import('src/aps/bassano/Overview')),
-  // bmc: dynamic(() => import('src/aps/bmc/Overview')),
+  bmc: dynamic(() => import('src/aps/bmc/Overview')),
   chandan: dynamic(() => import('src/aps/chandan/Overview')),
   vl: dynamic(() => import('src/aps/vl/Overview')),
   wallstreet: dynamic(() => import('src/aps/wallstreet/Overview')),

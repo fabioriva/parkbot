@@ -16,6 +16,22 @@ export async function getServerSideProps (ctx) {
 
   const cookies = await getCookies(ctx.req)
 
+  // TODO: check user aps with path
+  // cookies.aps = user.aps
+  // ctx.params.aps = req aps in pathname
+  if (cookies.aps !== ctx.params.aps) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  // TODO: check user role for this page
+  // we need user.roles also!
+  // corrige user-role is verified in the backend uws so we don't need to check here
+
   const token = await getTokenCookie(ctx.req)
   if (!token) {
     return {
@@ -43,7 +59,7 @@ export async function getServerSideProps (ctx) {
 
   return {
     props: {
-      aps: ctx.params.aps, // cookies.aps,
+      aps: cookies.aps, // ctx.params.aps,
       apsName: APS_NAME,
       locale: cookies.i18n,
       json,
