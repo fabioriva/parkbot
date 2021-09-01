@@ -1,50 +1,21 @@
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { useTheme } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import Box from '@material-ui/core/Box'
 import Badge from '@material-ui/core/Badge'
 import Divider from '@material-ui/core/Divider'
+import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import RssFeedIcon from '@material-ui/icons/RssFeed'
+// icons
+import RouterIcon from '@material-ui/icons/Router'
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar'
-import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
-import { green, red } from '@material-ui/core/colors'
+import Active from 'src/components/Active'
 import Tooltip from 'src/components/Tooltip'
+import useTranslation from 'next-translate/useTranslation'
 
-const useStyles = makeStyles(theme => ({
-  navBar: {
-    marginBottom: theme.spacing(3)
-  },
-  title: {
-    // fontSize: 16
-  },
-  subtitle: {
-    [theme.breakpoints.down('xs')]: {
-      fontSize: 12
-    },
-    [theme.breakpoints.up('sm')]: {
-      fontSize: 16
-    }
-  },
-  icon: {
-    [theme.breakpoints.down('xs')]: {
-      paddingRight: theme.spacing(1)
-    },
-    [theme.breakpoints.up('sm')]: {
-      paddingRight: theme.spacing(2)
-    }
-  },
-  online: {
-    background: green[500]
-  },
-  offline: {
-    background: red[500]
-  }
-}))
-
-const StyledBadge = withStyles(theme => ({
+const StyledBadge = withStyles({
   badge: {
     backgroundColor: '#44b700',
     color: '#44b700',
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
     '&::after': {
       position: 'absolute',
       top: 0,
@@ -67,76 +38,74 @@ const StyledBadge = withStyles(theme => ({
       opacity: 0
     }
   }
-}))(Badge)
+})(Badge)
 
-export default function AppHeader ({ aps, pageTitle, comm, diag, map }) {
-  const classes = useStyles()
+export default function AppHeader ({
+  aps,
+  apsName,
+  pageTitle,
+  comm,
+  diag,
+  map
+}) {
+  const theme = useTheme()
+  const { t } = useTranslation('common')
 
   const online = (
-    <Tooltip title='ONLINE' aria-label='online'>
-      <StyledBadge variant='dot'>
-        <RssFeedIcon />
-      </StyledBadge>
-    </Tooltip>
+    <StyledBadge variant='dot'>
+      <Tooltip title='ONLINE' aria-label='online'>
+        <RouterIcon />
+      </Tooltip>
+    </StyledBadge>
   )
 
   const offline = (
-    <Tooltip title='OFFLINE' aria-label='offline'>
-      <Badge variant='dot' classes={{ badge: classes.offline }}>
-        <RssFeedIcon />
-      </Badge>
-    </Tooltip>
+    <Badge variant='dot' color='error'>
+      <Tooltip title='OFFLINE' aria-label='offline'>
+        <RouterIcon />
+      </Tooltip>
+    </Badge>
   )
 
   return (
     <>
-      <Box display='flex' flexDirection='row' alignItems='center' p={0} mt={1}>
+      <Box display='flex' flexDirection='row' alignItems='center' p={0} mt={2}>
         <Box p={0} flexGrow={1}>
           <Box p={0}>
-            <Typography className={classes.title} variant='h6'>
-              {pageTitle}
-            </Typography>
+            <Typography variant='h6'>{pageTitle}</Typography>
             <Typography
-              className={classes.subtitle}
               variant='subtitle1'
               color='textSecondary'
+              sx={{
+                [theme.breakpoints.down('sm')]: {
+                  fontSize: 12
+                }
+              }}
             >
-              {aps}
+              {apsName}
             </Typography>
           </Box>
         </Box>
-        {/* {diag.isActive && (
-          <Box p={0} className={classes.icon}>
-            <Badge badgeContent={diag.count} color='secondary'>
-              <NotificationsActiveIcon />
-            </Badge>
-          </Box>
-        )}
-        {map[1]?.value !== undefined && (
-          <Box p={0} className={classes.icon}>
-            <Badge badgeContent={map[1]?.value} color='primary' showZero>
-              <DirectionsCarIcon />
-            </Badge>
-          </Box>
-        )} */}
-        {diag > 0 && (
-          <Box p={0} className={classes.icon}>
-            <Badge badgeContent={diag} color='secondary'>
-              <NotificationsActiveIcon />
-            </Badge>
-          </Box>
-        )}
-        <Box p={0} className={classes.icon}>
-          <Badge badgeContent={map[0]?.value} color='primary' showZero>
-            <DirectionsCarIcon />
-          </Badge>
-        </Box>
-
-        <Box p={0} className={classes.icon}>
+        <Box sx={{ '& button': { m: 0 } }}>
+          {diag > 0 && <Active active={diag} aps={aps} />}
+          <Tooltip
+            title={t('header-cars', { count: map[0]?.value || 0 })}
+            aria-label='occupancy'
+          >
+            <IconButton
+              aria-label='occupancy'
+              size='small'
+              href={`/${aps}/map`}
+            >
+              <Badge badgeContent={map[0]?.value} color='primary' showZero>
+                <DirectionsCarIcon />
+              </Badge>
+            </IconButton>
+          </Tooltip>
           {comm ? online : offline}
         </Box>
       </Box>
-      <Divider className={classes.navBar} />
+      <Divider sx={{ mb: 2 }} />
     </>
   )
 }

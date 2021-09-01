@@ -1,0 +1,116 @@
+import React from 'react'
+import useTranslation from 'next-translate/useTranslation'
+import Grid from '@material-ui/core/Grid'
+import Layout from 'src/components/Layout'
+import Device from 'src/components/overview/Device'
+import OperationDialog from 'src/components/overview/OperationDialog'
+import Queue from 'src/components/overview/Queue'
+import fetch from 'src/lib/fetch'
+import { useData } from 'src/lib/useWebSocket'
+
+export default function Overview (props) {
+  const { t } = useTranslation('overview')
+
+  const [overview, setOverview] = React.useState(props.json)
+
+  const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/overview`
+  const { data } = useData(url, {
+    initialData: overview,
+    page: 'overview'
+  })
+  React.useEffect(() => setOverview(data), [data])
+
+  const handleDelete = async ({ card, index }) => {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/system/queue/delete`
+    const json = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ card, index })
+    })
+    console.log('delete queue:', card, index, json)
+    // const snack = message(json)
+    // props.enqueueSnackbar(snack.message, snack.options)
+  }
+
+  // Dialog
+  const DIALOG_INIT_VALUES = {
+    id: 0,
+    card: 1,
+    minCard: 1,
+    maxCard: overview.definitions.cards
+  }
+  const [open, setOpen] = React.useState(false)
+  const [operation, setOperation] = React.useState(DIALOG_INIT_VALUES)
+
+  const handleCancel = () => {
+    setOpen(false)
+    setOperation(DIALOG_INIT_VALUES)
+  }
+
+  const handleConfirm = async ({ card, id }) => {
+    setOpen(false)
+    setOperation(DIALOG_INIT_VALUES)
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/system/operation`
+    const json = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ card, id })
+    })
+    console.log(data, json)
+    // const snack = message(json)
+    // props.enqueueSnackbar(snack.message, snack.options)
+  }
+
+  // const handleOpen = id => {
+  //   setOpen(true)
+  //   setOperation({ ...operation, id: id })
+  // }
+
+  return (
+    <Layout {...props} pageTitle={t('header-title')}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6} md={8} xl={9}>
+          <Grid container spacing={2}>
+            {/* <WrappedComponent {...props} devices={devices} /> */}
+            {overview.devices.map((element, index) => (
+              <Grid item key={index} xs={12} md={6} xl={4}>
+                <Device
+                  item={element}
+                  aps={props.aps}
+                  // actions={[handleOpen]} //, handleRollback]}
+                  user={props.user}
+                  // authorization={isAllowed(user, [userRole])
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} xl={3}>
+          <Queue
+            data={overview.exitQueue}
+            onDelete={handleDelete}
+            onExit={() => setOpen(true)}
+          />
+          {/* <Widget
+              authorization={isAllowed(user, [userRole])}
+              title={t('exit-queue')}
+              button={overview.exitQueue.exitButton}
+              showModal={handleOpen}
+            >
+              <Queue
+                authorization={isAllowed(user, [userRole])}
+                handleDelete={handleDelete}
+                queueList={overview.exitQueue.queueList}
+              />
+            </Widget> */}
+        </Grid>
+      </Grid>
+      <OperationDialog
+        open={open}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+        value={operation}
+      />
+    </Layout>
+  )
+}

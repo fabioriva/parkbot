@@ -1,126 +1,80 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
-import useTranslation from 'next-translate/useTranslation'
-import { format, endOfDay, startOfDay } from 'date-fns'
-// material ui
+import { format, compareDesc, endOfDay, startOfDay } from 'date-fns'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
-// import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import TextField from '@material-ui/core/TextField'
+import Stack from '@material-ui/core/Stack'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import useTranslation from 'next-translate/useTranslation'
+import DateTimePicker from 'src/components/pickers/DateTimePicker'
 
-const useStyles = makeStyles(theme => ({
-  dialogTitle: {
-    // backgroundColor: '#24292e',
-    // color: '#fff'
-  },
-
-  textField: {
-    marginBottom: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200
-  }
-}))
-
-export default function HistoryQueryDialog ({ onCancel, onConfirm, open }) {
-  const classes = useStyles()
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-
+export default function HistoryQueryDialog ({
+  locale,
+  onCancel,
+  onConfirm,
+  open
+}) {
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
   const { t } = useTranslation('history')
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    clearErrors
-  } = useForm()
 
-  React.useEffect(() => clearErrors(), [])
+  const [from, setFrom] = React.useState(startOfDay(new Date()))
+  const [to, setTo] = React.useState(endOfDay(new Date()))
+  const [error, setError] = React.useState(false)
 
-  const onSubmit = data => {
-    // console.log(typeof data['dateTo'], data['dateTo'])
-    // console.log(
-    //   format(
-    //     startOfDay(new Date(data.dateTo)),
-    //     "yyyy-MM-dd'T'HH:mm" // 'yyyy-MM-dd HH:mm:ss'
-    //   )
-    // )
-    onConfirm({ ...data })
+  React.useEffect(() => {
+    console.log('compareDesc', compareDesc(from, to), from, to)
+    compareDesc(from, to) === -1 ? setError(true) : setError(false)
+  }, [from, to])
+
+  const handleConfirm = (from, to) => {
+    console.log(typeof from, from)
+    console.log(typeof to, to)
+    onConfirm(
+      format(from, "yyyy-MM-dd'T'HH:mm"),
+      format(to, "yyyy-MM-dd'T'HH:mm")
+    )
   }
-
-  const dateFrom = format(startOfDay(new Date()), "yyyy-MM-dd'T'HH:mm")
-  const dateTo = format(endOfDay(new Date()), "yyyy-MM-dd'T'HH:mm")
 
   return (
-    <form>
-      <Dialog
-        fullScreen={isMobile}
-        open={open}
-        onClose={onCancel}
-        aria-labelledby='responsive-dialog-title'
-      >
-        <DialogTitle
-          id='responsive-dialog-title'
-          className={classes.dialogTitle}
-        >
-          {t('dialog-title')}
-        </DialogTitle>
-
-        <DialogContent>
-          <TextField
-            id='dateFrom'
-            name='dateFrom'
+    <Dialog
+      open={open}
+      onClose={onCancel}
+      aria-labelledby='history-query'
+      fullScreen={isMobile}
+    >
+      <DialogTitle id='dialog-title'>{t('dialog-title')}</DialogTitle>
+      <DialogContent>
+        <Stack direction={isMobile ? 'column' : 'row'} spacing={3} mt={1}>
+          <DateTimePicker
             label={t('dialog-date-from')}
-            type='datetime-local'
-            defaultValue={dateFrom}
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true
-            }}
-            InputProps={{
-              className: classes.input
-            }}
-            // inputRef={register({
-            //   required: true
-            // })}
-            error={!!errors.dateFrom}
-            size='small'
-            {...register('dateFrom', { required: true })}
+            locale={locale}
+            value={from}
+            error={error}
+            onChange={dt => setFrom(dt)}
           />
-          <TextField
-            id='dateTo'
-            name='dateTo'
+          <DateTimePicker
             label={t('dialog-date-to')}
-            type='datetime-local'
-            defaultValue={dateTo}
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true
-            }}
-            InputProps={{
-              className: classes.input
-            }}
-            // inputRef={register({
-            //   required: true
-            // })}
-            error={!!errors.dateTo}
-            size='small'
-            {...register('dateTo', { required: true })}
+            locale={locale}
+            value={to}
+            error={error}
+            onChange={dt => setTo(dt)}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={onCancel} color='default' autoFocus>
-            {t('dialog-cancel')}
-          </Button>
-          <Button onClick={handleSubmit(onSubmit)} color='primary' autoFocus>
-            {t('dialog-confirm')}
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </form>
+        </Stack>
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={onCancel}>
+          {t('dialog-cancel')}
+        </Button>
+        <Button
+          color='primary'
+          onClick={() => handleConfirm(from, to)}
+          disabled={error}
+        >
+          {t('dialog-confirm')}
+        </Button>
+      </DialogActions>
+    </Dialog>
   )
 }

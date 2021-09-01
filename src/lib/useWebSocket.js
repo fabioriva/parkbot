@@ -1,48 +1,23 @@
 import { useState, useEffect, useRef } from 'react'
-// import message from 'src/lib/message'
 
 export function useComm (url) {
-  const [waitingToReconnect, setWaitingToReconnect] = useState(null)
-
-  const [error, setError] = useState('')
-  const [comm, setComm] = useState(false)
-  const [diag, setDiag] = useState({})
-  const [map, setMap] = useState({})
-  const [notification, setNotification] = useState(null)
-
   const ws = useRef(null)
 
-  useEffect(() => {
-    ws.current = new window.WebSocket(url)
-    ws.current.onopen = () => console.log('ws opened')
-    ws.current.onclose = () => {
-      if (ws.current) {
-        // Connection failed
-        console.log('ws closed by server')
-      } else {
-        // Cleanup initiated from app side, can return here, to not attempt a reconnect
-        console.log('ws closed by app component unmount')
-        return
-      }
-      if (waitingToReconnect) {
-        return
-      }
-      console.log('ws closed')
-      setWaitingToReconnect(true)
-      setTimeout(() => setWaitingToReconnect(null), 1000)
-    }
-    return () => ws.current.close()
-  }, [waitingToReconnect])
+  // const [error, setError] = useState('')
+  const [comm, setComm] = useState(true)
+  const [diag, setDiag] = useState({})
+  const [map, setMap] = useState({})
+  const [message, setMessage] = useState({})
 
   useEffect(() => {
-    if (!ws.current) return
+    const ws = new global.WebSocket(url)
 
-    ws.current.onerror = e => {
-      console.log(e)
-      setError(e)
+    ws.onerror = e => {
+      console.error(e)
+      // setError(e)
     }
 
-    ws.current.onmessage = e => {
+    ws.onmessage = e => {
       const data = JSON.parse(e.data)
       Object.keys(data).forEach(key => {
         if (key === 'comm') {
@@ -55,80 +30,35 @@ export function useComm (url) {
           setMap(data[key])
         }
         if (key === 'notification') {
-          setNotification(data[key])
+          setMessage(data[key])
         }
       })
     }
-  }, [comm, diag, map, notification])
+
+    return () => ws.close()
+  }, [])
 
   return {
-    error,
+    // error,
     comm,
     diag,
     map,
-    notification
+    message
   }
 }
 
-// export function useComm (url) {
-//   const [error, setError] = useState('')
-//   const [comm, setComm] = useState(COMM_INITIAL_VALUE)
-//   const [diag, setDiag] = useState({})
-//   const [map, setMap] = useState({})
-
-//   const { enqueueSnackbar } = useSnackbar()
-
-//   useEffect(() => {
-//     const ws = new global.WebSocket(url)
-
-//     ws.onerror = e => {
-//       console.log(e)
-//       setError(e)
-//     }
-
-//     ws.onmessage = e => {
-//       const data = JSON.parse(e.data)
-//       Object.keys(data).forEach(key => {
-//         if (key === 'comm') {
-//           setComm(data[key])
-//         }
-//         if (key === 'diag') {
-//           setDiag(data[key])
-//         }
-//         if (key === 'map') {
-//           setMap(data[key])
-//         }
-//         if (key === 'notification') {
-//           const snack = notification(data[key])
-//           console.log(snack)
-//           enqueueSnackbar(snack.message, snack.options)
-//         }
-//       })
-//     }
-
-//     return () => ws.close()
-//   }, [url])
-
-//   return {
-//     error,
-//     comm,
-//     diag,
-//     map
-//   }
-// }
-
 export function useData (url, options) {
-  const { initialData, page } = options
+  const { initialData } = options
 
-  const [error, setError] = useState(null)
+  // const [error, setError] = useState(null)
   const [data, setData] = useState(initialData)
 
   const ws = useRef(null)
 
   useEffect(() => {
     ws.current = new window.WebSocket(url)
-    ws.current.onopen = () => console.log('ws opened')
-    ws.current.onclose = () => console.log('ws closed')
+    // ws.current.onopen = () => console.log('ws opened')
+    // ws.current.onclose = () => console.log('ws closed')
     return () => ws.current.close()
   }, [])
 
@@ -136,72 +66,16 @@ export function useData (url, options) {
     if (!ws.current) return
 
     ws.current.onerror = e => {
-      console.log(e)
-      setError(e)
+      console.error(e)
+      // setError(e)
     }
 
     ws.current.onmessage = e => {
       const data = JSON.parse(e.data)
       setData(data)
-      // Object.keys(data).forEach(key => {
-      //   if (key === page) {
-      //     setData(data[key])
-      //   }
-      // })
     }
   }, [])
 
-  return { error, data }
+  // return { error, data }
+  return { data }
 }
-
-// export function useData (page, url) {
-//   const [client, setClient] = useState(null)
-//   const [error, setError] = useState('')
-//   const [mesg, setMesg] = useState(null)
-
-//   const { enqueueSnackbar } = useSnackbar()
-
-//   const send = (event, data) => {
-//     client.send(
-//       JSON.stringify({
-//         event: event,
-//         data: data
-//       })
-//     )
-//   }
-
-//   useEffect(() => {
-//     const ws = new global.WebSocket(url)
-
-//     setClient(ws)
-
-//     // ws.onopen = () => console.log('ws opened')
-//     // ws.onclose = () => console.log('ws closed')
-//     ws.onerror = e => {
-//       console.log(e)
-//       setError(e)
-//     }
-
-//     ws.onmessage = e => {
-//       const data = JSON.parse(e.data)
-//       Object.keys(data).forEach(key => {
-//         if (key === page) {
-//           setMesg(data[key])
-//         }
-//         if (key === 'message') {
-//           const snack = message(data[key])
-//           enqueueSnackbar(snack.message, snack.options)
-//         }
-//       })
-//     }
-
-//     return () => ws.close()
-//   }, [page, url])
-
-//   return {
-//     // client,
-//     error,
-//     mesg,
-//     send
-//   }
-// }

@@ -1,12 +1,12 @@
 {
-  "title": "Tessere",
+  "header-title": "Tessere",
   "card": "Tessera",
   "code": "Codice PIN",
   "cards-total-count": "Totale tessere {{count}}",
 
-  "dialog-cancel": "Cancel",
-  "dialog-card": "Card",
-  "dialog-code": "PIN code",
-  "dialog-confirm": "Confirm",
-  "dialog-title": "Edit card {{number}}"
+  "dialog-cancel": "Annulla",
+  "dialog-card": "Tessera",
+  "dialog-code": "Codice PIN",
+  "dialog-confirm": "Conferma",
+  "dialog-title": "Modifica tessera {{number}}"
 }

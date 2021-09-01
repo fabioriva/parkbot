@@ -1,56 +1,64 @@
+import React from 'react'
 import { format, subDays } from 'date-fns'
-import { aps, apsPaths } from 'src/constants/aps'
-import { STATISTICS } from 'src/constants/roles'
-import { fetchOperations } from 'src/lib/fetchJson'
-import Statistics from 'src/components/statistics/Statistics'
+import fetch from 'src/lib/fetch'
+import { getCookies, getTokenCookie } from 'src/lib/authCookies'
+import { aps } from 'src/constants/aps'
+import Operations from 'src/components/statistics/Operations'
 import withAuthSync from 'src/hocs/withAuthSync'
-import { withSnackbar } from 'notistack'
-// material-ui/pickers
-import DateFnsUtils from '@date-io/date-fns'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 
-const Page = props => {
-  return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Statistics {...props} />
-    </MuiPickersUtilsProvider>
-  )
-}
+const Page = props => <Operations {...props} />
 
-export async function getStaticPaths ({ locales }) {
-  return {
-    paths: await apsPaths(locales),
-    fallback: false
-  }
-}
-
-export async function getStaticProps ({ params }) {
-  if (aps(params.aps) === -1) {
+export async function getServerSideProps (ctx) {
+  if (aps(ctx.params.aps) === -1) {
     return {
       notFound: true
     }
   }
 
-  const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
-    `src/constants/${params.aps}`
-  )
+  const cookies = await getCookies(ctx.req)
 
-  const yesterday = format(subDays(new Date(), 1), 'yyyy-MM-dd')
+  if (ctx.params.aps !== cookies.aps) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
 
-  const json = await fetchOperations(BACKEND_URL, yesterday)
+  const token = await getTokenCookie(ctx.req)
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const { APS_NAME } = await import(`src/constants/${ctx.params.aps}`)
+
+  var hrstart = process.hrtime()
+
+  const date = format(subDays(new Date(), 1), 'yyyy-MM-dd')
+
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/statistics?dateString=${date}`
+  const json = await fetch(url, {
+    headers: { Authorization: 'Bearer ' + token }
+  })
+
+  var hrend = process.hrtime(hrstart)
 
   return {
     props: {
-      definitions: {
-        apsName: APS_NAME,
-        backendUrl: BACKEND_URL,
-        websockUrl: WEBSOCK_URL,
-        pageRole: STATISTICS,
-        pageTitle: 'title-statistics'
-      },
-      json
+      aps: cookies.aps, // ctx.params.aps,
+      apsName: APS_NAME,
+      locale: cookies.i18n,
+      json,
+      token,
+      executionTime: hrend
     }
   }
 }
 
-export default withAuthSync(withSnackbar(Page))
+export default withAuthSync(Page)

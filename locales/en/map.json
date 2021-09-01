@@ -1,5 +1,5 @@
 {
-  "title": "Map",
+  "header-title": "Map",
   "filter-label": "View",
   "filter-number": "Number",
   "filter-card": "Card",
@@ -8,14 +8,15 @@
   "dialog-card": "Card",
   "dialog-clear": "Clear",
   "dialog-lock": "Lock",
-  "dialog-content": "Insert a card, clear or lock the stall.",
+  "dialog-content": "Insert a card, clear or lock.",
   "dialog-title": "Edit stall {{number}}",
-  "chart-occupancy": "Parking spaces",
-  "stall-busy": "Stall {{stall}} is busy with card {{card}} since {{date}}",
+
+  "stall-busy": "Stall {{stall}} is busy with card {{card}} from {{date}}",
   "stall-empty": "Stall {{stall}} is vacant",
   "stall-locked": "Stall {{stall}} is locked",
-  "free": "Vacant",
+
+  "occupancy": "Parking spaces {{count}}",
   "busy": "Busy",
-  "lock": "Locked",
-  "occupancy": "Occupancy"
+  "free": "Free",
+  "lock": "Locked"
 }

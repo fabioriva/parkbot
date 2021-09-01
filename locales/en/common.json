@@ -1,28 +1,25 @@
 {
-  "I18N_TEST": "en",
-
   "home-title": "The full stack solution for robotic parking systems.",
   "home-text": "Hello, I am your robotic parking assistant!",
   "home-button": "Get Started",
 
-  "SIGNIN_TITLE": "Sign in to ParkBot",
-  "SIGNIN_REMEMBER": "Remember me",
-  "SIGNIN_BUTTON": "Sign in",
-  "SIGNIN_FORGOT": "Forgot password?",
-  "SIGNIN_SIGNUP": "Don't have an account? Sign Up",
-  "APPBAR_MENU_LOGOUT": "Logout",
-  "APPBAR_MENU_LOCALE": "Change language",
-  "APPBAR_MENU_PROFILE": "Profile",
+  "drawer-alarms": "Alarms",
+  "drawer-dashboard": "Dashboard",
+  "drawer-overview": "Overview",
+  "drawer-cards": "Cards",
+  "drawer-map": "Map",
+  "drawer-history": "History",
+  "drawer-racks": "PLC I/O",
+  "drawer-statistics": "Statistics",
+  "drawer-motion": "Motion",
 
-  "title-alarms": "Alarms",
-  "title-dashboard": "Dashboard",
-  "title-overview": "Overview",
-  "title-cards": "Cards",
-  "title-map": "Map",
-  "title-history": "History",
-  "title-racks": "PLC I/O",
-  "title-statistics": "Statistics",
-  "title-motion": "Motion",
+  "error-code": "Error {{code}}",
+  "error-title": "Error",
+
+  "header-cars": "Total cars {{count}}",
+  "header-alarms": "Active alarms {{count}}",
+
+  "navbar-logout": "Logout",
 
   "mode-data-edit": "Data edit",
   "mode-data-read": "Data read",
@@ -31,12 +28,5 @@
   "mode-no-func": "---",
   "mode-step": "Step by Step",
   "mode-preset": "Preset",
-  "mode-auto": "Automatic",
-
-  "snackbar-op-id-1": "Alarm ID {{id}} On",
-  "snackbar-op-id-2": "Alarm ID {{id}} Off",
-  "snackbar-op-id-3": "Switch function mode: {{mode}}",
-  "snackbar-op-id-4": "Modified card {{card}}",
-  "snackbar-op-id-5": "Occupied stall {{stall}} with card {{card}}",
-  "snackbar-op-id-6": "Freed stall {{stall}}"
+  "mode-auto": "Automatic"
 }

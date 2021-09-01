@@ -1,16 +1,4 @@
-const APS = [
-  // 'bassano',
-  'bmc',
-  'chandan',
-  // 'chiattone',
-  // 'matalon',
-  // 'muse',
-  // 'nyu',
-  'vl',
-  'wallstreet',
-  // 'wareham',
-  'washingtonblvd'
-]
+const APS = ['wallstreet', 'washingtonblvd']
 
 export const aps = aps => APS.indexOf(aps)
 

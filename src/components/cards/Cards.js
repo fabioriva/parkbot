@@ -1,55 +1,49 @@
-import { useState, useEffect } from 'react'
+import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import { useData } from 'src/lib/useWebSocket'
-import fetchJson from 'src/lib/fetchJson'
-import message from 'src/lib/message'
+import Paper from '@material-ui/core/Paper'
 import Layout from 'src/components/Layout'
-import Error from 'src/components/Error'
 import CardsList from 'src/components/cards/CardsList'
-// material-ui
-import Typography from '@material-ui/core/Typography'
-
-import { isAllowed } from 'src/lib/auth-actions'
+import fetch from 'src/lib/fetch'
+import { useData } from 'src/lib/useWebSocket'
 
 export default function Cards (props) {
   const { t } = useTranslation('cards')
-  const { definitions, json, user } = props
-  const { backendUrl, websockUrl } = definitions
 
-  if (json.err) {
-    return <Error {...props} message='Error 500' />
-  }
+  const [cards, setCards] = React.useState(props.json)
 
-  const [cards, setCards] = useState(json)
-
-  // const { data } = useData(`${definitions.websockUrl}?channel=cards`, {
-  const { data } = useData(websockUrl.concat('/cards'), {
+  const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/cards`
+  const { data } = useData(url, {
     initialData: cards,
     page: 'cards'
   })
-
-  useEffect(() => setCards(data), [data])
+  React.useEffect(() => setCards(data), [data])
 
   const handleEdit = async ({ card, code }) => {
-    const json = await fetchJson(backendUrl.concat('/card/edit'), {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/card/edit`
+    const json = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      // withCredentials: true,
+      // credentials: 'include',
+      headers: {
+        Authorization: 'Bearer ' + props.token,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ card, code })
     })
-    const snack = message(json)
-    props.enqueueSnackbar(snack.message, snack.options)
+    console.log(card, code, json)
+    // const snack = message(json)
+    // props.enqueueSnackbar(snack.message, snack.options)
   }
 
   return (
-    <Layout {...props}>
-      <Typography variant='subtitle2' gutterBottom>
-        {t('cards-total-count', { count: cards.length })}
-      </Typography>
-      <CardsList
-        cards={cards}
-        handleEdit={handleEdit}
-        authorization={isAllowed(user, [definitions.userRole])}
-      />
+    <Layout {...props} pageTitle={t('header-title')}>
+      <Paper sx={{ maxWidth: { md: 345, xs: '100%' } }}>
+        <CardsList
+          cards={cards}
+          handleEdit={handleEdit}
+          authorization={true} // {isAllowed(user, [definitions.userRole])}
+        />
+      </Paper>
     </Layout>
   )
 }

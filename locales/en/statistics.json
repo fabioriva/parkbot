@@ -1,5 +1,5 @@
 {
-  "operations": "Operations",
+  "header-title": "Operations",
   "entries": "Entries",
   "exits": "Exits",
   "total": "Total",
@@ -7,5 +7,14 @@
   "weekly": "Weekly",
   "monthly": "Monthly",
   "yearly": "Yearly",
-  "select": "Select a date"
+
+  "dialog-cancel": "Cancel",
+  "dialog-confirm": "Confirm",
+  "dialog-date-from": "Date",
+  "dialog-title": "Select a date",
+
+  "op-summary": "Operations summary: {{date}}",
+  "op-entries": "Entries {{count}}",
+  "op-exits": "Exits {{count}}",
+  "op-total": "Total {{count}}"
 }

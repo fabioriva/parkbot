@@ -1,22 +1,24 @@
-import { makeStyles } from '@material-ui/core/styles'
+import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Copyright from 'src/components/Copyright'
 
-const useStyles = makeStyles(theme => ({
-  footer: {
-    padding: theme.spacing(1, 0),
-    marginTop: 'auto'
-  }
-}))
-
-export default function AppDrawer () {
-  const classes = useStyles()
-
+export default function Footer () {
   return (
-    <footer className={classes.footer}>
-      <Container maxWidth='sm'>
+    <Box
+      component='footer'
+      sx={{
+        py: 1,
+        px: 0,
+        mt: 'auto',
+        backgroundColor: theme =>
+          theme.palette.mode === 'light'
+            ? theme.palette.grey[300]
+            : theme.palette.background.default // theme.palette.grey[800]
+      }}
+    >
+      <Container maxWidth='md'>
         <Copyright />
       </Container>
-    </footer>
+    </Box>
   )
 }

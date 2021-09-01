@@ -2,7 +2,7 @@ import {
   getTokenCookie,
   removeTokenCookie,
   removeCookies
-} from 'src/lib/auth-cookies'
+} from 'src/lib/authCookies'
 
 export default async function logout (req, res) {
   const token = await getTokenCookie(req)

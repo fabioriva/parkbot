@@ -1,45 +1,74 @@
-import { aps, apsPaths } from 'src/constants/aps'
-import { HISTORY } from 'src/constants/roles'
-import { fetchHistory } from 'src/lib/fetchJson'
+import React from 'react'
+import { format, endOfDay, startOfDay } from 'date-fns'
+import fetch from 'src/lib/fetch'
+import { getCookies, getTokenCookie } from 'src/lib/authCookies'
+import { aps } from 'src/constants/aps'
 import History from 'src/components/history/History'
 import withAuthSync from 'src/hocs/withAuthSync'
-import { withSnackbar } from 'notistack'
 
-const Page = props => {
-  return <History {...props} />
-}
+const Page = props => <History {...props} />
 
-export async function getStaticPaths ({ locales }) {
-  return {
-    paths: await apsPaths(locales),
-    fallback: false
-  }
-}
-
-export async function getStaticProps ({ params }) {
-  if (aps(params.aps) === -1) {
+export async function getServerSideProps (ctx) {
+  if (aps(ctx.params.aps) === -1) {
     return {
       notFound: true
     }
   }
 
-  const { APS_ID, APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
-    `src/constants/${params.aps}`
+  const cookies = await getCookies(ctx.req)
+
+  if (ctx.params.aps !== cookies.aps) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const token = await getTokenCookie(ctx.req)
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const { APS_NAME, DEVICES, MODES, OPERATIONS } = await import(
+    `src/constants/${ctx.params.aps}`
   )
-  const json = await fetchHistory(APS_ID, BACKEND_URL, { filter: 'a' })
+
+  var hrstart = process.hrtime()
+
+  const dateFrom = format(
+    startOfDay(new Date('2021-01-01')),
+    'yyyy-MM-dd HH:mm:ss'
+  )
+  const dateTo = format(endOfDay(new Date()), 'yyyy-MM-dd HH:mm:ss')
+  const filter = 'a'
+  const query = `system=0&dateFrom=${dateFrom}&dateTo=${dateTo}&filter=${filter}&device=0&number=0`
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/history?${query}`
+  const json = await fetch(url, {
+    headers: { Authorization: 'Bearer ' + token }
+  })
+
+  var hrend = process.hrtime(hrstart)
 
   return {
     props: {
-      definitions: {
-        apsName: APS_NAME,
-        backendUrl: BACKEND_URL,
-        websockUrl: WEBSOCK_URL,
-        pageRole: HISTORY,
-        pageTitle: 'title-history'
-      },
-      json
+      aps: cookies.aps, // ctx.params.aps,
+      apsName: APS_NAME,
+      locale: cookies.i18n,
+      json,
+      token,
+      executionTime: hrend
+      // devices: DEVICES,
+      // modes: MODES,
+      // operations: OPERATIONS
     }
   }
 }
 
-export default withAuthSync(withSnackbar(Page))
+export default withAuthSync(Page)

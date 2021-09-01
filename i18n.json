@@ -2,20 +2,17 @@
   "locales": ["en", "it"],
   "defaultLocale": "en",
   "pages": {
-    "*": ["common"],
-
-    "/[aps]/ssr": ["cards"],
-
-    "/[aps]/alarms": ["alarms"],
-    "/[aps]/alarms/[id]": ["alarms"],
+    "*": ["common", "history"],
+    "/signin": ["signin"],
     "/[aps]/cards": ["cards"],
-    "/[aps]/dashboard": ["history", "map", "system", "statistics"],
-    "/[aps]/device/[id]": ["system", "alarms", "io"],
-    "/[aps]/history": ["history"],
-    "/[aps]/history/[log]": ["history"],
+    "/[aps]/dashboard": ["dashboard", "overview"],
+    "/[aps]/device/[id]": ["alarms", "io", "overview"],
+    "/[aps]/history": ["history", "alarms"],
     "/[aps]/map": ["map"],
-    "/[aps]/overview": ["system", "io"],
-    "/[aps]/rack/[id]": ["io"],
-    "/[aps]/statistics": ["statistics"]
+    "/[aps]/overview": ["overview"],
+    "/[aps]/racks": ["racks"],
+    "/[aps]/rack/[id]": ["racks", "io"],
+    "/[aps]/statistics": ["statistics"],
+    "/[aps]/docs/[slug]": ["io"]
   }
 }

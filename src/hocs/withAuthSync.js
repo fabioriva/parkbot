@@ -1,20 +1,14 @@
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import useUser from 'src/lib/useUser'
-import Loading from 'src/components/Loading'
+import React from 'react'
 
 const withAuthSync = WrappedComponent => {
   const Wrapper = props => {
-    const router = useRouter()
-    const { aps } = router.query
-
     const syncLogout = event => {
       if (event.key === 'logout') {
         router.push('/')
       }
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
       window.addEventListener('storage', syncLogout)
 
       return () => {
@@ -23,16 +17,7 @@ const withAuthSync = WrappedComponent => {
       }
     }, [])
 
-    const { user } = useUser({
-      aps,
-      redirectTo: '/',
-      redirectIfFound: false,
-      roles: [props.definitions.pageRole]
-    })
-
-    if (!user) return <Loading />
-
-    return <WrappedComponent {...props} user={user} />
+    return <WrappedComponent {...props} />
   }
 
   return Wrapper

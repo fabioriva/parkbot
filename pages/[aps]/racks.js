@@ -1,38 +1,61 @@
+import React from 'react'
+import fetch from 'src/lib/fetch'
+import { getCookies, getTokenCookie } from 'src/lib/authCookies'
 import { aps } from 'src/constants/aps'
-import { RACKS } from 'src/constants/roles'
-import fetchJson from 'src/lib/fetchJson'
 import Racks from 'src/components/racks/Racks'
 import withAuthSync from 'src/hocs/withAuthSync'
-import { withSnackbar } from 'notistack'
 
-const Page = props => {
-  return <Racks {...props} />
-}
+const Page = props => <Racks {...props} />
 
-export async function getServerSideProps ({ params }) {
-  if (aps(params.aps) === -1) {
+export async function getServerSideProps (ctx) {
+  if (aps(ctx.params.aps) === -1) {
     return {
       notFound: true
     }
   }
 
-  const { APS_NAME, BACKEND_URL, WEBSOCK_URL } = await import(
-    `src/constants/${params.aps}`
-  )
-  const json = await fetchJson(`${BACKEND_URL}/racks`)
+  const cookies = await getCookies(ctx.req)
+
+  if (ctx.params.aps !== cookies.aps) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const token = await getTokenCookie(ctx.req)
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const { APS_NAME } = await import(`src/constants/${ctx.params.aps}`)
+
+  var hrstart = process.hrtime()
+
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/racks`
+  const json = await fetch(url, {
+    headers: { Authorization: 'Bearer ' + token }
+  })
+
+  var hrend = process.hrtime(hrstart)
 
   return {
     props: {
-      definitions: {
-        apsName: APS_NAME,
-        backendUrl: BACKEND_URL,
-        websockUrl: WEBSOCK_URL,
-        pageRole: RACKS,
-        pageTitle: 'title-racks'
-      },
-      json
+      aps: cookies.aps, // ctx.params.aps,
+      apsName: APS_NAME,
+      locale: cookies.i18n,
+      json,
+      token,
+      executionTime: hrend
     }
   }
 }
 
-export default withAuthSync(withSnackbar(Page))
+export default withAuthSync(Page)

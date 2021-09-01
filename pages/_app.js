@@ -1,37 +1,36 @@
-import React from 'react'
 import Head from 'next/head'
-// material-ui
-import { SnackbarProvider } from 'notistack'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import { CacheProvider } from '@emotion/react'
+import createCache from '@emotion/cache'
 import theme from 'src/theme'
 
-function MyApp ({ Component, pageProps }) {
-  React.useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side')
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles)
-    }
-  }, [])
+const cache = createCache({ key: 'css' })
+cache.compat = true
 
+export default function MyApp ({ Component, pageProps }) {
   return (
-    <>
+    <CacheProvider value={cache}>
       <Head>
-        <title>ParkBot</title>
+        <meta charSet='utf-8' />
+        <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta
           name='viewport'
-          content='minimum-scale=1, initial-scale=1, width=device-width'
+          content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'
         />
+        <meta name='description' content='Sotefin Web Service' />
+        <meta name='keywords' content='Sotefin, Robotic, Parking, System' />
+        <title>Park-Bot</title>
+        <link rel='shortcut icon' href='/favicon.ico' />
+        <link rel='manifest' href='/manifest.json' />
+        <link rel='apple-touch-icon' href='/apple-icon.png' />
+        <meta name='theme-color' content='#317EFB' />
       </Head>
       <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <SnackbarProvider maxSnack={3} hideIconVariant>
-          <Component {...pageProps} />
-        </SnackbarProvider>
+        <Component {...pageProps} />
       </ThemeProvider>
-    </>
+    </CacheProvider>
   )
 }
-
-export default MyApp

@@ -1,177 +1,98 @@
+import * as React from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import useTranslation from 'next-translate/useTranslation'
-import Copyright from 'src/components/Copyright'
-// material-ui
-import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    // height: 'calc(100vh - 64px)',
-    textAlign: 'center'
-  },
-  toolbar: {
-    // borderBottom: `1px solid ${theme.palette.divider}`
-  },
-  toolbarTitle: {
-    flexGrow: 1,
-    color: '#eceff1'
-  },
-  // toolbarSecondary: {
-  //   justifyContent: 'space-between',
-  //   overflowX: 'auto'
-  // },
-  toolbarLink: {
-    padding: theme.spacing(1),
-    flexShrink: 0
-  },
-  main: {
-    marginTop: theme.spacing(6),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-    // transform: 'translateY(-10%)'
-  },
-  title: {
-    color: '#ff9800',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '5rem'
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '6rem'
-    },
-    fontWeight: 500
-  },
-  subtitle: {
-    color: '#000',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 24
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: 32
-    },
-    // fontSize: 32,
-    fontWeight: 300
-  },
-  startButton: {
-    margin: 32,
-    width: 200
-  },
-  description: {
-    fontSize: 18,
-    fontWeight: 400,
-    lineHeight: '1.6',
-    letterSpacing: '-0.02em'
-  },
-  paper: {
-    padding: theme.spacing(3)
-  }
-}))
+import useTranslation from 'next-translate/useTranslation'
+import Footer from 'src/components/Footer'
 
 export default function Home (props) {
-  const classes = useStyles()
-
+  const { t } = useTranslation()
   const router = useRouter()
 
-  const { t } = useTranslation('common')
-
   const handleSignin = () =>
-    router.push('/signin', '/signin', { locale: props.locale })
+    router.push('/signin', '/signin', { locale: props.__lang })
 
   return (
-    <>
-      <Toolbar className={classes.toolbar}>
-        <Button size='small' href='https://www.sotefin.com'>
-          Sotefin
-        </Button>
-        <Typography
-          component='h2'
-          variant='h5'
-          color='inherit'
-          align='center'
-          noWrap
-          className={classes.toolbarTitle}
-        >
-          {t('I18N_TEST')}
-        </Typography>
-        <Button variant='outlined' size='small' onClick={handleSignin}>
-          Sign in
-        </Button>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        textAlign: 'center'
+        // backgroundColor: '#212121'
+      }}
+    >
+      <Toolbar sx={{ mb: 4 }}>
+        <Box>
+          <Button size='default' href='https://www.sotefin.com'>
+            Sotefin
+          </Button>
+        </Box>
+        <Box sx={{ marginLeft: 'auto' }}>
+          <Button variant='outlined' size='default' href='/signin'>
+            Sign in
+          </Button>
+        </Box>
       </Toolbar>
-      <div className={classes.root}>
-        <Container component='main' maxWidth='md'>
-          <div className={classes.main}>
-            <Typography className={classes.title} variant='h1' component='h2'>
-              ParkBot
-            </Typography>
-            <Typography className={classes.subtitle} variant='h2' gutterBottom>
-              {t('home-title')}
-            </Typography>
-            <Image src='/bot.svg' alt='ParkBot' width={120} height={120} />
-            <Typography
-              variant='overline'
-              align='center'
-              // className={classes.description}
-              // paragraph
-            >
-              {t('home-text')}
-            </Typography>
-            <Button
-              className={classes.startButton}
-              color='primary'
-              variant='outlined'
-              size='large'
-              onClick={handleSignin}
-            >
-              {t('home-button')}
-            </Button>
-          </div>
-          {/* <Grid
-            container
-            // direction='row'
-            // justify='center'
-            // alignItems='center'
-            spacing={3}
+      <Container component='main' maxWidth='md'>
+        <Typography
+          sx={{
+            color: '#ff9800',
+            fontSize: { xs: 48, md: 100 },
+            fontWeight: 500
+          }}
+          variant='h2'
+          component='h1'
+          // gutterBottom
+        >
+          <Box
+            sx={{
+              // bgcolor: '#212121',
+              display: 'inline-block',
+              px: 1.5,
+              py: 0
+            }}
           >
-            <Grid item xs={12} lg={4}>
-              <Box>
-                <Paper className={classes.paper}>Feature 1</Paper>
-              </Box>
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <Box>
-                <Paper className={classes.paper}>Feature 2</Paper>
-              </Box>
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <Box>
-                <Paper className={classes.paper}>Feature 3</Paper>
-              </Box>
-            </Grid>
-          </Grid> */}
-          <Box mt={0}>
-            <Copyright />
+            Park<span style={{ color: '#212121', paddingLeft: 3 }}>Bot</span>
           </Box>
-        </Container>
-      </div>
-    </>
+        </Typography>
+        <Typography
+          sx={{ fontSize: { xs: 16, md: 24 }, fontWeight: 300 }}
+          variant='h6'
+          component='h2'
+          // gutterBottom
+        >
+          {t('common:home-title')}
+        </Typography>
+        <Box
+          sx={{
+            m: 3
+          }}
+        >
+          <Image src='/bot.svg' alt='ParkBot' width={100} height={100} />
+          <Typography
+            // sx={{ display: { xs: 'none', md: 'block' } }}
+            sx={{ fontSize: { xs: 10, md: 14 } }}
+            variant='overline'
+            display='block'
+          >
+            {t('common:home-text')}
+          </Typography>
+        </Box>
+        <Button
+          // sx={{ width: 200 }}
+          variant='outlined'
+          size='large'
+          onClick={handleSignin}
+        >
+          {t('common:home-button')}
+        </Button>
+      </Container>
+      <Footer />
+    </Box>
   )
 }
-
-// export async function getServerSideProps (context) {
-//   return {
-//     props: {
-//       locale: context.locale
-//     }
-//   }
-// }

@@ -1,42 +1,23 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import Dialog from 'src/components/cards/CardEdit'
+import CardEdit from 'src/components/cards/CardEditForm'
 // material-ui
-import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
-import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import ListSubheader from '@material-ui/core/ListSubheader'
 import EditIcon from '@material-ui/icons/Edit'
 import PersonIcon from '@material-ui/icons/Person'
-import { blue } from '@material-ui/core/colors'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    // backgroundColor: theme.palette.background.paper
-    maxWidth: 345
-  },
-  avatar: {
-    color: theme.palette.getContrastText(blue[600]),
-    backgroundColor: blue[600],
-    fontSize: 16
-  }
-}))
-
-export default function User ({ authorization, handleEdit, cards }) {
-  const classes = useStyles()
+export default function CardsList ({ authorization, handleEdit, cards }) {
   const { t } = useTranslation('cards')
 
   // Dialog
   const DIALOG_INIT_VALUES = {
-    // card: {
-    //   nr: 1,
-    //   code: ''
-    // },
     card: 0,
     code: '',
     minCard: 1,
@@ -56,20 +37,25 @@ export default function User ({ authorization, handleEdit, cards }) {
   }
 
   const handleOpen = card => {
-    console.log(card)
     setOpen(true)
     setDialog({ ...dialog, card: card.nr, code: card.code })
   }
 
   return (
-    <Paper className={classes.root}>
-      <List dense>
+    <React.Fragment>
+      <List
+        subheader={
+          <ListSubheader component='div' id='list-subheader'>
+            {t('cards-total-count', { count: cards.length })}
+          </ListSubheader>
+        }
+        dense
+      >
         {cards.map((item, key) => (
           <ListItem key={key}>
             <ListItemAvatar>
-              <Avatar className={classes.avatar}>
+              <Avatar>
                 <PersonIcon />
-                {/* {key + 1} */}
               </Avatar>
             </ListItemAvatar>
             <ListItemText
@@ -87,7 +73,7 @@ export default function User ({ authorization, handleEdit, cards }) {
             <ListItemSecondaryAction>
               <IconButton
                 edge='end'
-                aria-label='delete'
+                aria-label='edit'
                 onClick={() => handleOpen(item)}
                 disabled={!authorization}
               >
@@ -97,12 +83,12 @@ export default function User ({ authorization, handleEdit, cards }) {
           </ListItem>
         ))}
       </List>
-      <Dialog
+      <CardEdit
         open={open}
         onCancel={handleCancel}
         onConfirm={handleConfirm}
         value={dialog}
       />
-    </Paper>
+    </React.Fragment>
   )
 }

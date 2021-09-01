@@ -1,52 +1,74 @@
-import dynamic from 'next/dynamic'
+import React from 'react'
+import fetch, { profile } from 'src/lib/fetch'
+import { getCookies, getTokenCookie } from 'src/lib/authCookies'
 import { aps } from 'src/constants/aps'
-import { OVERVIEW, ACTIONS } from 'src/constants/roles'
-import fetchJson from 'src/lib/fetchJson'
+import Overview from 'src/components/overview/Overview'
 import withAuthSync from 'src/hocs/withAuthSync'
-import withOverview from 'src/hocs/withOverview'
-import { withSnackbar } from 'notistack'
 
-const componentList = {
-  // bassano: dynamic(() => import('src/aps/bassano/Overview')),
-  bmc: dynamic(() => import('src/aps/bmc/Overview')),
-  chandan: dynamic(() => import('src/aps/chandan/Overview')),
-  vl: dynamic(() => import('src/aps/vl/Overview')),
-  wallstreet: dynamic(() => import('src/aps/wallstreet/Overview')),
-  washingtonblvd: dynamic(() => import('src/aps/washingtonblvd/Overview'))
-}
+const Page = props => <Overview {...props} />
 
-const Page = props => {
-  const DynamicComponent = componentList[props.aps]
-  return <DynamicComponent {...props} />
-}
-
-export async function getServerSideProps ({ params }) {
-  if (aps(params.aps) === -1) {
+export async function getServerSideProps (ctx) {
+  if (aps(ctx.params.aps) === -1) {
     return {
       notFound: true
     }
   }
 
-  const { APS_NAME, BACKEND_URL, WEBSOCK_URL, CARDS } = await import(
-    `src/constants/${params.aps}`
-  )
-  const json = await fetchJson(`${BACKEND_URL}/overview`)
+  const cookies = await getCookies(ctx.req)
+
+  if (ctx.params.aps !== cookies.aps) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const token = await getTokenCookie(ctx.req)
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const user = await profile(token)
+
+  const { APS_NAME } = await import(`src/constants/${ctx.params.aps}`)
+
+  var hrstart = process.hrtime()
+
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/overview`
+  const json = await fetch(url, {
+    headers: { Authorization: 'Bearer ' + token }
+  })
+
+  var hrend = process.hrtime(hrstart)
+
+  if (json.err) {
+    return {
+      redirect: {
+        destination: `/${ctx.params.aps}/error`,
+        permanent: false
+      }
+    }
+  }
 
   return {
     props: {
-      aps: params.aps,
-      definitions: {
-        apsName: APS_NAME,
-        backendUrl: BACKEND_URL,
-        websockUrl: WEBSOCK_URL,
-        pageRole: OVERVIEW,
-        pageTitle: 'title-overview',
-        userRole: ACTIONS
-        // cards: CARDS
-      },
-      json
+      aps: cookies.aps, // ctx.params.aps,
+      apsName: APS_NAME,
+      locale: cookies.i18n,
+      json,
+      token,
+      user,
+      executionTime: hrend
     }
   }
 }
 
-export default withAuthSync(withSnackbar(withOverview(Page)))
+export default withAuthSync(Page)

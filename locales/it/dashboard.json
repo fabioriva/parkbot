@@ -1,0 +1,14 @@
+{
+  "header-title": "Dashboard",
+
+  "system-title": "System Overview",
+  "queue-title": "Exit Queue",
+  "occupancy-title": "System Occupancy",
+  "cards-title": "Cards",
+  "activity-title": "Recent Activity",
+  "operations-title": "Daily Operations",
+
+  "busy": "Occupati",
+  "free": "Liberi",
+  "lock": "Bloccati"
+}

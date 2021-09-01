@@ -1,28 +1,25 @@
 {
-  "I18N_TEST": "it",
-
   "home-title": "La soluzione full stack per i sistemi di parcheggio robotici.",
   "home-text": "Ciao, sono il tuo assistente robotico!",
   "home-button": "Inizia",
 
-  "SIGNIN_TITLE": "Accedi a ParkBot",
-  "SIGNIN_REMEMBER": "Ricordami",
-  "SIGNIN_BUTTON": "Accedi",
-  "SIGNIN_FORGOT": "Password dimenticata?",
-  "SIGNIN_SIGNUP": "Non hai un account?",
-  "APPBAR_MENU_LOGOUT": "Esci",
-  "APPBAR_MENU_LOCALE": "Cambia lingua",
-  "APPBAR_MENU_PROFILE": "Profilo",
+  "drawer-alarms": "Allarmi",
+  "drawer-dashboard": "Dashboard",
+  "drawer-overview": "Overview",
+  "drawer-cards": "Tessere",
+  "drawer-map": "Mappa",
+  "drawer-history": "Storico",
+  "drawer-racks": "PLC I/O",
+  "drawer-statistics": "Statistiche",
+  "drawer-motion": "Motion",
 
-  "title-alarms": "Allarmi",
-  "title-dashboard": "Dashboard",
-  "title-overview": "Sistema",
-  "title-cards": "Tessere",
-  "title-map": "Mappa",
-  "title-history": "Storico",
-  "title-racks": "PLC I/O",
-  "title-statistics": "Statistiche",
-  "title-motion": "Motion",
+  "error-code": "Errore {{code}}",
+  "error-title": "Errore",
+
+  "header-cars": "Totale vetture {{count}}",
+  "header-alarms": "Allarmi attivi {{count}}",
+
+  "navbar-logout": "Esci",
 
   "mode-data-edit": "Salva dati",
   "mode-data-read": "Lettura dati",
@@ -31,12 +28,5 @@
   "mode-no-func": "---",
   "mode-step": "Passo Passo",
   "mode-preset": "Preset",
-  "mode-auto": "Automatico",
-
-  "snackbar-op-id-1": "Allarme ID {{id}} On",
-  "snackbar-op-id-2": "Allarme ID {{id}} Off",
-  "snackbar-op-id-3": "Cambio modalità: {{mode}}",
-  "snackbar-op-id-4": "Modificata tessera {{card}}",
-  "snackbar-op-id-5": "Occupato stallo {{stall}} con tessera {{card}}",
-  "snackbar-op-id-6": "Liberato stallo {{stall}}"
+  "mode-auto": "Automatico"
 }

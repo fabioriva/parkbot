@@ -1,47 +1,19 @@
 import React from 'react'
-import useTranslation from 'next-translate/useTranslation'
-import AppBar from 'src/components/AppBar'
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
+import Toolbar from '@material-ui/core/Toolbar'
+import Alert from 'src/components/Alert'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
-import snackbar from 'src/lib/notification'
+import Navbar from 'src/components/Navbar'
+import Snackbar from 'src/components/Snackbar'
 import { useComm } from 'src/lib/useWebSocket'
-// material-ui
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex'
-  },
-  sticky: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-    width: '100%'
-  },
-  toolbar: theme.mixins.toolbar
-}))
 
 export default function AppLayout (props) {
-  const classes = useStyles()
-  const { t } = useTranslation('common')
-
-  const { definitions, user } = props
-  const { apsName, pageTitle, websockUrl } = definitions
-
-  const { comm, diag, map, notification } = useComm(
-    // websockUrl.concat('?channel=ch2')
-    websockUrl.concat('/info')
+  const { comm, diag, map, message } = useComm(
+    `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/info`
   )
-
-  React.useEffect(async () => {
-    if (notification) {
-      const snack = await snackbar(notification, user.locale)
-      console.log(snack)
-      props.enqueueSnackbar(snack.message, snack.options)
-    }
-  }, [notification])
 
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
@@ -50,28 +22,53 @@ export default function AppLayout (props) {
   }
 
   return (
-    <div className={classes.root}>
-      <AppBar position='fixed' handleDrawerToggle={handleDrawerToggle} />
+    <Box
+      sx={{
+        display: 'flex',
+        backgroundColor: theme =>
+          theme.palette.mode === 'light'
+            ? theme.palette.grey[200]
+            : theme.palette.background.default
+      }}
+    >
+      <Navbar handleDrawerToggle={handleDrawerToggle} />
       <Drawer
-        mobileOpen={mobileOpen}
+        aps={props.aps}
+        locale={props.locale !== undefined ? props.locale : 'en'}
         handleDrawerToggle={handleDrawerToggle}
-        diag={diag}
-        user={user}
+        mobileOpen={mobileOpen}
       />
-      <main className={classes.sticky}>
-        <Container maxWidth='xl'>
-          <div className={classes.toolbar} />
+      <Box
+        component='main'
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+          width: '100%'
+        }}
+        // maxWidth='xl' // drawer responsive
+      >
+        <Container maxWidth='xl' sx={{ mb: 3 }}>
+          <Toolbar />
           <Header
-            aps={apsName}
-            pageTitle={t(pageTitle)}
+            aps={props.aps}
+            apsName={props.apsName}
+            pageTitle={props.pageTitle}
             comm={comm}
             diag={diag}
             map={map}
           />
+          {!comm && <Alert severity='error'>APS is offline.</Alert>}
+          <Alert severity='info'>
+            Execution time (SSR): {props.executionTime[0]}
+            {'s '}
+            {props.executionTime[1] / 1000000}ms
+          </Alert>
           {props.children}
+          <Snackbar message={message} />
         </Container>
         <Footer />
-      </main>
-    </div>
+      </Box>
+    </Box>
   )
 }

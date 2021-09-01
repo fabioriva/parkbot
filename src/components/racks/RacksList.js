@@ -1,63 +1,65 @@
-import Link from 'next/link'
-// import Error from 'next/error'
-import { makeStyles } from '@material-ui/core/styles'
-import Avatar from '@material-ui/core/Avatar'
-import Paper from '@material-ui/core/Paper'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-// import ViewModuleIcon from '@material-ui/icons/ViewModule'
-import { blue } from '@material-ui/core/colors'
-// import Layout from 'src/app/Layout'
-// import { hasRole } from 'src/lib/auth'
-// import { RACKS } from 'src/constants/roles'
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import * as React from 'react'
+import { useRouter } from 'next/router'
+import Box from '@material-ui/core/Box'
+import ImageList from '@material-ui/core/ImageList'
+import ImageListItem from '@material-ui/core/ImageListItem'
+import ImageListItemBar from '@material-ui/core/ImageListItemBar'
+import ListSubheader from '@material-ui/core/ListSubheader'
+import IconButton from '@material-ui/core/IconButton'
+import InfoIcon from '@material-ui/icons/Info'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.paper
-  },
-  pink: {
-    color: theme.palette.getContrastText(blue[500]),
-    backgroundColor: blue[500]
-  }
-}))
-
-export default function RacksList ({ racks, user }) {
-  const classes = useStyles()
-
-  // if (!hasRole(currentUser, [DASHBOARD])) return <Error statusCode={403} />
+export default function RacksList ({ aps, locale, racks }) {
+  const router = useRouter()
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
+  const cols = isMobile ? 2 : 5
 
   return (
-    <Paper>
-      <List className={classes.root} dense>
-        {racks !== undefined &&
-          racks.map((item, key) => (
-            <div key={key}>
-              <Link
-                href={`/${user.aps}/racks/${key}`}
-                // as={`/${user.aps}/racks/rack-${key}`}
-              >
-                <ListItem alignItems='flex-start' button>
-                  <ListItemAvatar>
-                    <Avatar className={classes.pink}>
-                      {/* <ViewModuleIcon /> */}
-                      {/* {item.type.toUpperCase()} */}
-                      {item.nr}
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={item.title}
-                    secondary={`PLC Rack ${item.nr}`} // {item.description}
-                  />
-                  <ListItemSecondaryAction>Action</ListItemSecondaryAction>
-                </ListItem>
-              </Link>
-              {/* <Divider variant='inset' component='li' /> */}
-            </div>
-          ))}
-      </List>
-    </Paper>
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        overflow: 'hidden',
+        bgcolor: '#fff'
+      }}
+    >
+      <ImageList cols={cols}>
+        {/* <ImageListItem key='Subheader' cols={cols}>
+          <ListSubheader component='div'>PLC Racks List</ListSubheader>
+        </ImageListItem> */}
+        {racks.map((item, key) => (
+          <ImageListItem key={key}>
+            <img
+              srcSet={`${
+                item.serie === 'et200m' ? '/et200mp-1.png' : '/et200sp-1.png'
+              }?w=248&fit=crop&auto=format 1x,
+                ${
+                  item.serie === 'et200m' ? '/et200mp-1.png' : '/et200sp-1.png'
+                }?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.title}
+              loading='lazy'
+            />
+            <ImageListItemBar
+              title={item.title}
+              subtitle={<span>PLC Rack # {item.nr}</span>}
+              actionIcon={
+                <IconButton
+                  sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                  aria-label={`info about ${item.title}`}
+                  onClick={() =>
+                    router.push(`/${aps}/rack/${key}`, `/${aps}/rack/${key}`, {
+                      locale: 'en'
+                    })
+                  }
+                >
+                  <InfoIcon />
+                </IconButton>
+              }
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </Box>
   )
 }
