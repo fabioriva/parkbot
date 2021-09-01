@@ -2,7 +2,7 @@ import React from 'react'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Toolbar from '@material-ui/core/Toolbar'
-import Alert from 'src/components/Alert'
+// import Alert from 'src/components/Alert'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
@@ -59,11 +59,11 @@ export default function AppLayout (props) {
             map={map}
           />
           {!comm && <Alert severity='error'>APS is offline.</Alert>}
-          <Alert severity='info'>
+          {/* <Alert severity='info'>
             Execution time (SSR): {props.executionTime[0]}
             {'s '}
             {props.executionTime[1] / 1000000}ms
-          </Alert>
+          </Alert> */}
           {props.children}
           <Snackbar message={message} />
         </Container>

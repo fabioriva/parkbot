@@ -69,14 +69,16 @@ function Row ({ devices, modes, operations, row }) {
         >
           {/* {row.operation.id} - {t(row.operation.label)} */}
           {/* {t(operations[row.operation.id])} */}
-          {row.alarm !== undefined
+          {/* {row.alarm !== undefined
             ? 'AL' +
               row.alarm.id +
               ' ' +
               t(`alarms:${row.alarm.i18n?.key}`, row.alarm.i18n?.query, {
                 fallback: ['alarms:fallback1', 'fallback2']
               })
-            : t(row.operation.info)}
+            : t(row.operation.label)} */}
+          {row.alarm?.id !== 0 && <strong>AL{row.alarm.id}</strong>}
+          {row.alarm?.id === 0 && t(row.operation.label)}
         </TableCell>
         <TableCell align='center'>{row.card}</TableCell>
         <TableCell align='center'>{row.stall}</TableCell>
