@@ -33,21 +33,10 @@ export default function Dashboard (props) {
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
-      <Box sx={{ flexGrow: 1, textAlign: 'left' }}>
+      {/* <Box sx={{ flexGrow: 1, textAlign: 'left' }}>
         <Grid container spacing={2}>
           <Grid item>
             <Widget link={`/${props.aps}/overview`} title={t('system-title')}>
-              {/* <Stack direction='row' spacing={1}>
-                {system.devices.map((e, i) => (
-                  <Chip
-                    label={t(`common:${e.a.mode.label}`)}
-                    color={e.a.mode.id === 8 ? 'primary' : 'warning'}
-                    // size='small'
-                    avatar={<Avatar>{e.a.name}</Avatar>}
-                    // key={i}
-                  />
-                ))}
-              </Stack> */}
               <DeviceTable data={system.devices} />
             </Widget>
           </Grid>
@@ -103,7 +92,7 @@ export default function Dashboard (props) {
             </Grid>
           )}
         </Grid>
-      </Box>
+      </Box> */}
     </Layout>
   )
 }
