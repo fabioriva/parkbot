@@ -53,10 +53,13 @@ export default function Overview (props) {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/system/operation`
     const json = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        Authorization: 'Bearer ' + props.token,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ card, id })
     })
-    console.log(data, json)
+    console.log(card, id, json)
     // const snack = message(json)
     // props.enqueueSnackbar(snack.message, snack.options)
   }
