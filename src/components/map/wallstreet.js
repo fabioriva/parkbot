@@ -1,5 +1,5 @@
 import Grid from '@material-ui/core/Grid'
-
+import Paper from '@material-ui/core/Paper'
 const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={10}>
@@ -8,7 +8,7 @@ const Map = ({ levels, occupancy, view }) => {
         {view}
       </Grid>
       <Grid item xs={12} md={4}>
-        {occupancy}
+        <Paper sx={{ p: 2 }}>{occupancy}</Paper>
       </Grid>
       <style jsx global>
         {`
@@ -17,7 +17,7 @@ const Map = ({ levels, occupancy, view }) => {
             background-color: #fff;
             /* border: 1px solid rgba(0, 0, 0, 0.26); */
             margin-bottom: 16px;
-            height: 132px;
+            height: 98px;
             width: 784px;
             box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
               rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;

@@ -7,6 +7,7 @@
   "history-query": "Query from {{from}} to {{to}}",
   "history-summary": "Query summary",
 
+  "alarm": "Alarm Id",
   "date": "Date",
   "device": "Device",
   "mode": "Mode",

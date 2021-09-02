@@ -3,12 +3,10 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardHeader from '@material-ui/core/CardHeader'
 import Chip from '@material-ui/core/Chip'
-import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 import Stack from '@material-ui/core/Stack'
 import Typography from '@material-ui/core/Typography'
 import Tooltip from 'src/components/Tooltip'
-// import { green, orange, red } from '@material-ui/core/colors'
 
 const Item = ({ title, value }) => (
   <>
@@ -51,7 +49,6 @@ export default function Motor (props) {
           />
         }
       />
-      <Divider />
       <CardContent>
         <Grid container spacing={1}>
           <Grid item xs={6}>

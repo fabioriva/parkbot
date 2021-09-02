@@ -67,7 +67,7 @@ function Row ({ devices, modes, operations, row }) {
           align='left'
           sx={{ color: color(row.operation.id) }}
         >
-          {/* {row.operation.id} - {t(row.operation.label)} */}
+          {row.operation.id} - {t(row.operation.label)}
           {/* {t(operations[row.operation.id])} */}
           {/* {row.alarm !== undefined
             ? 'AL' +
@@ -77,8 +77,11 @@ function Row ({ devices, modes, operations, row }) {
                 fallback: ['alarms:fallback1', 'fallback2']
               })
             : t(row.operation.label)} */}
+          {/* {row.alarm?.id !== 0 && <strong>AL{row.alarm.id}</strong>} */}
+          {/* {row.alarm?.id === 0 && t(row.operation.label)} */}
+        </TableCell>
+        <TableCell align='center' sx={{ color: color(row.operation.id) }}>
           {row.alarm?.id !== 0 && <strong>AL{row.alarm.id}</strong>}
-          {row.alarm?.id === 0 && t(row.operation.label)}
         </TableCell>
         <TableCell align='center'>{row.card}</TableCell>
         <TableCell align='center'>{row.stall}</TableCell>
@@ -119,6 +122,7 @@ export default function HistoryTable ({
               <TableCell align='left'>{t('device')}</TableCell>
               <TableCell align='left'>{t('mode')}</TableCell>
               <TableCell align='left'>{t('operation')}</TableCell>
+              <TableCell align='center'>{t('alarm')}</TableCell>
               <TableCell align='center'>{t('card')}</TableCell>
               <TableCell align='center'>{t('stall')}</TableCell>
               <TableCell align='center'>{t('size')}</TableCell>

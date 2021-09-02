@@ -1,5 +1,5 @@
 import React from 'react'
-import { format, endOfDay, startOfDay } from 'date-fns'
+import { format, endOfDay, startOfDay, subDays } from 'date-fns'
 import fetch from 'src/lib/fetch'
 import { getCookies, getTokenCookie } from 'src/lib/authCookies'
 import { aps } from 'src/constants/aps'
@@ -41,8 +41,14 @@ export async function getServerSideProps (ctx) {
   )
 
   var hrstart = process.hrtime()
-
-  const dateFrom = format(startOfDay(new Date()), 'yyyy-MM-dd HH:mm:ss')
+  const dateFrom = format(
+    subDays(startOfDay(new Date()), 1),
+    'yyyy-MM-dd HH:mm:ss'
+  )
+  // const dateFrom = format(
+  //   startOfDay(new Date()),
+  //   'yyyy-MM-dd HH:mm:ss'
+  // )
   const dateTo = format(endOfDay(new Date()), 'yyyy-MM-dd HH:mm:ss')
   const filter = 'a'
   const query = `system=0&dateFrom=${dateFrom}&dateTo=${dateTo}&filter=${filter}&device=0&number=0`

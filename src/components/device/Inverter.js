@@ -2,11 +2,8 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardHeader from '@material-ui/core/CardHeader'
 import Chip from '@material-ui/core/Chip'
-import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-// import Lamp from 'src/components/overview/Lamp'
-// import { green, orange, red } from '@material-ui/core/colors'
 import useTranslation from 'next-translate/useTranslation'
 
 const Item = ({ title, value }) => (
@@ -56,11 +53,7 @@ export default function Inverter (props) {
         }
         title={t('vfd-title', { id: props.name })}
       />
-      <Divider />
       <CardContent>
-        {/* <Typography sx={{ fontSize: 16, mb: 3 }} gutterBottom>
-          {props.name}
-        </Typography> */}
         <Grid container spacing={0}>
           <Grid item xs={6}>
             <Item

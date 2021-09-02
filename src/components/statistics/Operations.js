@@ -32,7 +32,7 @@ export default function Statistics (props) {
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
-      <Paper sx={{ width: '100%' }}>
+      {/* <Paper sx={{ width: '100%' }}>
         <Alert
           action={
             <IconButton
@@ -76,12 +76,38 @@ export default function Statistics (props) {
           onCancel={() => setOpen(false)}
           onConfirm={handleConfirm}
         />
-      </Paper>
+      </Paper> */}
       <Grid container spacing={3} sx={{ mb: 3 }}>
         {operations.map(
           (element, index) =>
             element.data.length > 0 && (
               <Grid item xs={12} key={index}>
+                <Paper sx={{ width: '100%' }}>
+                  <Alert
+                    action={
+                      <IconButton
+                        size='small'
+                        aria-label='query'
+                        onClick={() => setOpen(true)}
+                      >
+                        <SearchIcon color='primary' fontSize='inherit' />
+                      </IconButton>
+                    }
+                    severity='info'
+                    sx={{ mb: 2 }}
+                  >
+                    {t('op-summary', { date: element.label })}.&nbsp;
+                    {t('op-total', {
+                      count: element.data.reduce((p, c) => p + c.total, 0)
+                    })}
+                  </Alert>
+                  <OperationsQueryDialog
+                    locale={props.__lang}
+                    open={open}
+                    onCancel={() => setOpen(false)}
+                    onConfirm={handleConfirm}
+                  />
+                </Paper>
                 <Paper sx={{ p: 1 }}>
                   <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                     <OperationsMobileView key={index} statistics={element} />
