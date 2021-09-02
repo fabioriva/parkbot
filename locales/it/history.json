@@ -3,7 +3,7 @@
 
   "history": "Storico",
   "history-count": "Registrazioni {{count}}",
-  "history-query": "Ricerca da {{from}} a {{to}}",
+  "history-query": "Registrazioni da {{from}} a {{to}}",
   "history-summary": "Riepilogo della ricerca",
 
   "alarm": "Allarme",

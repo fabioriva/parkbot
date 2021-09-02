@@ -48,11 +48,14 @@ export default function History (props) {
           severity='info'
           sx={{ mb: 2 }}
         >
-          <AlertTitle>{t('history-summary')}</AlertTitle>
-          <div>
+          <AlertTitle sx={{ display: { xs: 'none', md: 'block' } }}>
+            {t('history-summary')}
+          </AlertTitle>
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             {t('history-query', { from: history.dateFrom, to: history.dateTo })}
-            .&nbsp;{t('history-count', { count: history.count })}.
-          </div>
+            .&nbsp;
+          </Box>
+          <Box>{t('history-count', { count: history.count })}.</Box>
         </Alert>
         <HistoryQueryDialog
           locale={props.__lang}

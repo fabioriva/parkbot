@@ -4,7 +4,7 @@
   "history": "History",
 
   "history-count": "Logs count {{count}}",
-  "history-query": "Query from {{from}} to {{to}}",
+  "history-query": "Logs from {{from}} to {{to}}",
   "history-summary": "Query summary",
 
   "alarm": "Alarm Id",
