@@ -1,16 +1,20 @@
 import Head from 'next/head'
-import { ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 import theme from 'src/theme'
 
-const cache = createCache({ key: 'css' })
-cache.compat = true
+const clientSideEmotionCache = createCache({ key: 'css' })
+// cache.compat = true
 
-export default function MyApp ({ Component, pageProps }) {
+export default function MyApp ({
+  Component,
+  emotionCache = clientSideEmotionCache,
+  pageProps
+}) {
   return (
-    <CacheProvider value={cache}>
+    <CacheProvider value={emotionCache}>
       <Head>
         <meta charSet='utf-8' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />

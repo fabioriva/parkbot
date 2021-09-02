@@ -1,7 +1,7 @@
-import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import { grey, yellow } from '@material-ui/core/colors'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import { grey, yellow } from '@mui/material/colors'
 import Tooltip from 'src/components/Tooltip'
 import useTranslation from 'next-translate/useTranslation'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import Grid from '@material-ui/core/Grid'
+import Grid from '@mui/material/Grid'
 import Layout from 'src/components/Layout'
 import Device from 'src/components/overview/Device'
 import OperationDialog from 'src/components/overview/OperationDialog'

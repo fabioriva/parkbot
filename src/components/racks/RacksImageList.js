@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react'
 import { useRouter } from 'next/router'
-import Box from '@material-ui/core/Box'
-import ImageList from '@material-ui/core/ImageList'
-import ImageListItem from '@material-ui/core/ImageListItem'
-import ImageListItemBar from '@material-ui/core/ImageListItemBar'
-import ListSubheader from '@material-ui/core/ListSubheader'
-import IconButton from '@material-ui/core/IconButton'
-import InfoIcon from '@material-ui/icons/Info'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Box from '@mui/material/Box'
+import ImageList from '@mui/material/ImageList'
+import ImageListItem from '@mui/material/ImageListItem'
+import ImageListItemBar from '@mui/material/ImageListItemBar'
+import ListSubheader from '@mui/material/ListSubheader'
+import IconButton from '@mui/material/IconButton'
+import InfoIcon from '@mui/icons-material/Info'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 export default function RacksList ({ aps, locale, racks }) {
   const router = useRouter()

@@ -1,6 +1,6 @@
 import Stall from './MapStall'
 // material-ui
-import Typography from '@material-ui/core/Typography'
+import Typography from '@mui/material/Typography'
 
 const Level = ({ level, stallStatus, visibilityFilter, openModal }) => {
   const elevators =

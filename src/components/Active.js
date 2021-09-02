@@ -1,7 +1,7 @@
 import useTranslation from 'next-translate/useTranslation'
-import Badge from '@material-ui/core/Badge'
-import IconButton from '@material-ui/core/IconButton'
-import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
+import Badge from '@mui/material/Badge'
+import IconButton from '@mui/material/IconButton'
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
 import Tooltip from 'src/components/Tooltip'
 
 export default function Active ({ active = 0, aps }) {

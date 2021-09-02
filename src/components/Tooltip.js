@@ -1,6 +1,6 @@
-// import { styled } from '@material-ui/styles'
-import { withStyles } from '@material-ui/styles'
-import Tooltip from '@material-ui/core/Tooltip'
+// import { styled } from '@mui/material/styles'
+import { withStyles } from '@mui/styles'
+import Tooltip from '@mui/material/Tooltip'
 
 const HtmlTooltip = withStyles({
   tooltip: {

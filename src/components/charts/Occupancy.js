@@ -1,5 +1,5 @@
 import { Pie } from 'react-chartjs-2'
-import Box from '@material-ui/core/Box'
+import Box from '@mui/material/Box'
 
 // const COLORS = ['#ff0000', '#00ff00', '#ff00ff']
 const COLORS = ['rgb(244, 67, 54)', 'rgb(102, 187, 106)', 'rgb(206, 147, 216)']

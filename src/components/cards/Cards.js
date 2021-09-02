@@ -1,6 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import Paper from '@material-ui/core/Paper'
+import Paper from '@mui/material/Paper'
 import Layout from 'src/components/Layout'
 import CardsList from 'src/components/cards/CardsList'
 import fetch from 'src/lib/fetch'

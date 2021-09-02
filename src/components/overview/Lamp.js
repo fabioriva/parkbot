@@ -1,6 +1,6 @@
 // import clsx from 'clsx'
-import IconButton from '@material-ui/core/IconButton'
-import Brightness1Rounded from '@material-ui/icons/Brightness1Rounded'
+import IconButton from '@mui/material/IconButton'
+import Brightness1Rounded from '@mui/icons-material/Brightness1Rounded'
 import Tooltip from 'src/components/Tooltip'
 
 export default function Lamp ({ color, title }) {

@@ -1,12 +1,12 @@
 import React from 'react'
 import enLocale from 'date-fns/locale/en-US'
 import itLocale from 'date-fns/locale/it'
-import TextField from '@material-ui/core/TextField'
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns'
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider'
-import DesktopDateTimePicker from '@material-ui/lab/DesktopDateTimePicker'
-import MobileDateTimePicker from '@material-ui/lab/MobileDateTimePicker'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import DesktopDateTimePicker from '@mui/lab/DesktopDateTimePicker'
+import MobileDateTimePicker from '@mui/lab/MobileDateTimePicker'
+import TextField from '@mui/material/TextField'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 const localeMap = {
   en: enLocale,

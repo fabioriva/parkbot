@@ -1,6 +1,6 @@
-import Avatar from '@material-ui/core/Avatar'
+import Avatar from '@mui/material/Avatar'
 // material-ui icons
-import DirectionsCarIcon from '@material-ui/icons/DirectionsCar'
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 
 // const useStyles = makeStyles(theme => ({
 //   root: {},

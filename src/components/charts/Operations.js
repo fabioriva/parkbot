@@ -1,6 +1,6 @@
 import { Bar } from 'react-chartjs-2'
-import Box from '@material-ui/core/Box'
-import { blue } from '@material-ui/core/colors'
+import Box from '@mui/material/Box'
+import { blue } from '@mui/material/colors'
 
 export default function Occupancy ({ data, labels, title, height, width }) {
   const data_ = { labels: [], entries: [], exits: [], total: [] }

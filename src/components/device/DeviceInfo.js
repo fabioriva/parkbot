@@ -1,7 +1,7 @@
 import React from 'react'
-import Alert from '@material-ui/core/Alert'
-import Button from '@material-ui/core/Button'
-import Paper from '@material-ui/core/Paper'
+import Alert from '@mui/material/Alert'
+import Button from '@mui/material/Button'
+import Paper from '@mui/material/Paper'
 import DeviceActive from 'src/components/device/DeviceActive'
 import useTranslation from 'next-translate/useTranslation'
 

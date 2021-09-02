@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import Grid from '@material-ui/core/Grid'
+import Grid from '@mui/material/Grid'
 import Layout from 'src/components/Layout'
 
 import DeviceInfo from 'src/components/device/DeviceInfo'

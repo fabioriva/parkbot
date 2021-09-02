@@ -1,9 +1,9 @@
 import React from 'react'
-import Paper from '@material-ui/core/Paper'
-import Alert from '@material-ui/core/Alert'
-import IconButton from '@material-ui/core/IconButton'
-import Collapse from '@material-ui/core/Collapse'
-import CloseIcon from '@material-ui/icons/Close'
+import Paper from '@mui/material/Paper'
+import Alert from '@mui/material/Alert'
+import IconButton from '@mui/material/IconButton'
+import Collapse from '@mui/material/Collapse'
+import CloseIcon from '@mui/icons-material/Close'
 
 export default function TransitionAlert (props) {
   const [open, setOpen] = React.useState(true)

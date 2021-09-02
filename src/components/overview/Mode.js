@@ -1,5 +1,5 @@
-import Avatar from '@material-ui/core/Avatar'
-import Badge from '@material-ui/core/Badge'
+import Avatar from '@mui/material/Avatar'
+import Badge from '@mui/material/Badge'
 import Tooltip from 'src/components/Tooltip'
 import useTranslation from 'next-translate/useTranslation'
 
