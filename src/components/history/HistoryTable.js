@@ -1,6 +1,6 @@
 import React from 'react'
 // import Link from 'next/link'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -41,7 +41,6 @@ function color (op) {
 
 function Row ({ devices, modes, operations, row }) {
   const { t } = useTranslation('history')
-
   // const [open, setOpen] = React.useState(false)
   // console.log(row)
   return (
@@ -50,13 +49,13 @@ function Row ({ devices, modes, operations, row }) {
         <TableCell component='th' scope='row'>
           {/* {row.logged} | {row.date} */}
           {/* {format(row.date, 'yyyy-MM-dd HH:mm:ss')} */}
-          {row.logged}
+          {row.dateStr} | {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')}
         </TableCell>
         <TableCell align='left'>
           {/* {row.device.id} - {row.device.id === 0 ? t('dev-operator') : row.device.name} */}
           {/* {row.device.id} - {devices[row.device.id]} */}
           {/* {row.device.id} -{' '} */}
-          {row.device.id === 0 ? t('dev-operator') : row.device.name}
+          {row.device?.id !== undefined ? row.device.name : t('dev-operator')}
         </TableCell>
         <TableCell align='left'>
           {row.mode.id} - {t(row.mode.label)}
@@ -81,7 +80,7 @@ function Row ({ devices, modes, operations, row }) {
           {/* {row.alarm?.id === 0 && t(row.operation.label)} */}
         </TableCell>
         <TableCell align='center' sx={{ color: color(row.operation.id) }}>
-          {row.alarm?.id !== 0 && <strong>AL{row.alarm.id}</strong>}
+          {row.alarm?.id !== undefined && <strong>AL{row.alarm.id}</strong>}
         </TableCell>
         <TableCell align='center'>{row.card}</TableCell>
         <TableCell align='center'>{row.stall}</TableCell>

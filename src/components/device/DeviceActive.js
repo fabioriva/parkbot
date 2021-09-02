@@ -52,6 +52,7 @@ export default function DeviceActive ({ alarms }) {
                         `/${aps}/docs/${item.i18n.key}?key=${item.i18n.query.thermic}`
                       )
                     }
+                    disabled
                   >
                     <HelpOutlineOutlinedIcon />
                   </IconButton>
