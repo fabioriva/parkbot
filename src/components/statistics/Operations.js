@@ -2,6 +2,7 @@ import React from 'react'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 import Box from '@mui/material/Box'
+import Fab from '@mui/material/Fab'
 import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
@@ -32,6 +33,20 @@ export default function Statistics (props) {
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
+      <Fab
+        color='primary'
+        aria-label='search'
+        onClick={() => setOpen(true)}
+        sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: 1299 }}
+      >
+        <SearchIcon />
+      </Fab>
+      <OperationsQueryDialog
+        locale={props.__lang}
+        open={open}
+        onCancel={() => setOpen(false)}
+        onConfirm={handleConfirm}
+      />
       {/* <Paper sx={{ width: '100%' }}>
         <Alert
           action={
@@ -82,7 +97,7 @@ export default function Statistics (props) {
           (element, index) =>
             element.data.length > 0 && (
               <Grid item xs={12} key={index}>
-                <Paper sx={{ width: '100%' }}>
+                {/* <Paper sx={{ width: '100%' }}>
                   <Alert
                     action={
                       <IconButton
@@ -107,7 +122,7 @@ export default function Statistics (props) {
                     onCancel={() => setOpen(false)}
                     onConfirm={handleConfirm}
                   />
-                </Paper>
+                </Paper> */}
                 <Paper sx={{ p: 1 }}>
                   <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                     <OperationsMobileView key={index} statistics={element} />

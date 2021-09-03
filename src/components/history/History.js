@@ -1,10 +1,10 @@
 import React from 'react'
-import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
+// import Alert from '@mui/material/Alert'
+// import AlertTitle from '@mui/material/AlertTitle'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
-import IconButton from '@mui/material/IconButton'
-import Paper from '@mui/material/Paper'
+// import IconButton from '@mui/material/IconButton'
+// import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
 // material-ui
 import Layout from 'src/components/Layout'
@@ -39,7 +39,7 @@ export default function History (props) {
         color='primary'
         aria-label='search'
         onClick={() => setOpen(true)}
-        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: 1299 }}
       >
         <SearchIcon />
       </Fab>

@@ -26,7 +26,7 @@ function renderRow ({ data, index, style }) {
     <div key={index}>
       {/* <Link href={`/${user.aps}/history/${item._id}`}> */}
       <ListItem
-        button
+        // button
         style={style}
         secondaryAction={
           item.operation.id === 1 && (
@@ -81,7 +81,6 @@ export default function HistoryList ({ count, query }) {
           <AutoSizer>
             {({ height, width }) => (
               <List
-                sx={{ bgcolor: '#fff' }}
                 height={height}
                 width={width}
                 itemCount={count}

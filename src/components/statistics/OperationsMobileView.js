@@ -15,7 +15,11 @@ export default function Statistics ({ statistics }) {
 
   return (
     <>
-      <Typography variant='subtitle2' color='primary.main' sx={{ mb: 1 }}>
+      <Typography
+        variant='subtitle2'
+        color='primary.main'
+        sx={{ mb: 3, pl: 1 }}
+      >
         {/* {t('i18n')}: {label} */}
         {title}: {label}
       </Typography>
