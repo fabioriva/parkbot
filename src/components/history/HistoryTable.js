@@ -47,9 +47,10 @@ function Row ({ devices, modes, operations, row }) {
     <React.Fragment>
       <TableRow sx={{ '&:hover': { cursor: 'pointer' } }} hover>
         <TableCell component='th' scope='row'>
+          {row.logged}
           {/* {row.logged} | {row.date} */}
           {/* {format(row.date, 'yyyy-MM-dd HH:mm:ss')} */}
-          {row.dateStr} | {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')}
+          {/* {row.dateStr} | {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')} */}
         </TableCell>
         <TableCell align='left'>
           {/* {row.device.id} - {row.device.id === 0 ? t('dev-operator') : row.device.name} */}

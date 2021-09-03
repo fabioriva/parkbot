@@ -2,6 +2,7 @@ import React from 'react'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 import Box from '@mui/material/Box'
+import Fab from '@mui/material/Fab'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
@@ -34,7 +35,21 @@ export default function History (props) {
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
-      <Paper sx={{ width: '100%' }}>
+      <Fab
+        color='primary'
+        aria-label='search'
+        onClick={() => setOpen(true)}
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+      >
+        <SearchIcon />
+      </Fab>
+      <HistoryQueryDialog
+        locale={props.__lang}
+        open={open}
+        onCancel={() => setOpen(false)}
+        onConfirm={handleConfirm}
+      />
+      {/* <Paper sx={{ width: '100%' }}>
         <Alert
           action={
             <IconButton
@@ -63,7 +78,7 @@ export default function History (props) {
           onCancel={() => setOpen(false)}
           onConfirm={handleConfirm}
         />
-      </Paper>
+      </Paper> */}
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
         <HistoryList count={history.count} query={history.query} />
       </Box>

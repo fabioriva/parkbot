@@ -8,6 +8,7 @@ import AutoSizer from 'react-virtualized-auto-sizer'
 import LogMessage from 'src/components/history/LogMessage'
 // material-ui
 import Avatar from '@mui/material/Avatar'
+import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
@@ -75,21 +76,23 @@ function renderRow ({ data, index, style }) {
 export default function HistoryList ({ count, query }) {
   return (
     <React.Fragment>
-      <Paper sx={{ height: '80vh' }}>
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              sx={{ color: '#fff' }}
-              height={height}
-              width={width}
-              itemCount={count}
-              itemData={{ query }}
-              itemSize={64}
-            >
-              {renderRow}
-            </List>
-          )}
-        </AutoSizer>
+      <Paper>
+        <Box sx={{ display: 'flex', height: '100vh' }}>
+          <AutoSizer>
+            {({ height, width }) => (
+              <List
+                sx={{ bgcolor: '#fff' }}
+                height={height}
+                width={width}
+                itemCount={count}
+                itemData={{ query }}
+                itemSize={64}
+              >
+                {renderRow}
+              </List>
+            )}
+          </AutoSizer>
+        </Box>
       </Paper>
     </React.Fragment>
   )
