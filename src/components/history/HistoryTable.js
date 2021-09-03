@@ -78,7 +78,7 @@ function Row ({ devices, modes, operations, row }) {
               })
             : t(row.operation.label)} */}
           {row.alarm?.id !== 0 &&
-            t(`alarms:${row.alarm.i18n.key}`, row.alarm.i18n.query, {
+            t(`alarms:${row.alarm.i18n?.key}`, row.alarm.i18n?.query, {
               fallback: ['alarms:fallback1', 'fallback2']
             })}
           {row.alarm?.id === 0 && t(row.operation.label)}

@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
+
 const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={10}>
@@ -8,7 +8,7 @@ const Map = ({ levels, occupancy, view }) => {
         {view}
       </Grid>
       <Grid item xs={12} md={4}>
-        <Paper sx={{ p: 2 }}>{occupancy}</Paper>
+        {occupancy}
       </Grid>
       <style jsx global>
         {`
