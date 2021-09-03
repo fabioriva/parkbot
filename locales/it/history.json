@@ -37,7 +37,7 @@
   "mode-data-read": "Lettura dati",
   "mode-eme-1": "Emergenza 1",
   "mode-eme-2": "Emergenza 2",
-  "mode-no-func": "---",
+  "mode-no": "---",
   "mode-step": "Passo Passo",
   "mode-preset": "Preset",
   "mode-auto": "Automatico",
@@ -46,9 +46,10 @@
   "op-alarm-off": "Allarme off",
   "op-switch-mode": "Cambio funzione",
   "op-change-pin": "PIN modificato",
+  "op-no": "---",
   "op-stall-in": "Stallo occupato",
   "op-stall-out": "Stallo liberato",
   "op-shuffle-in": "Scambio in",
   "op-shuffle-out": "Scambio out",
-  "table-op-id-9": "Stallo prenotato"
+  "op-stall-rsv": "Stallo prenotato"
 }

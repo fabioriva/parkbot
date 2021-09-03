@@ -42,7 +42,7 @@ function color (op) {
 function Row ({ devices, modes, operations, row }) {
   const { t } = useTranslation('history')
   // const [open, setOpen] = React.useState(false)
-  // console.log(row)
+  if (row.operation.id === 1) console.log(row)
   return (
     <React.Fragment>
       <TableRow sx={{ '&:hover': { cursor: 'pointer' } }} hover>
@@ -67,7 +67,7 @@ function Row ({ devices, modes, operations, row }) {
           align='left'
           sx={{ color: color(row.operation.id) }}
         >
-          {row.operation.id} - {t(row.operation.label)}
+          {/* {row.operation.id} - {t(row.operation.label)} */}
           {/* {t(operations[row.operation.id])} */}
           {/* {row.alarm !== undefined
             ? 'AL' +
@@ -77,11 +77,14 @@ function Row ({ devices, modes, operations, row }) {
                 fallback: ['alarms:fallback1', 'fallback2']
               })
             : t(row.operation.label)} */}
-          {/* {row.alarm?.id !== 0 && <strong>AL{row.alarm.id}</strong>} */}
-          {/* {row.alarm?.id === 0 && t(row.operation.label)} */}
+          {row.alarm?.id !== 0 &&
+            t(`alarms:${row.alarm.i18n.key}`, row.alarm.i18n.query, {
+              fallback: ['alarms:fallback1', 'fallback2']
+            })}
+          {row.alarm?.id === 0 && t(row.operation.label)}
         </TableCell>
         <TableCell align='center' sx={{ color: color(row.operation.id) }}>
-          {row.alarm?.id !== undefined && <strong>AL{row.alarm.id}</strong>}
+          {row.alarm?.id !== 0 && <strong>AL{row.alarm.id}</strong>}
         </TableCell>
         <TableCell align='center'>{row.card}</TableCell>
         <TableCell align='center'>{row.stall}</TableCell>
@@ -101,7 +104,7 @@ export default function HistoryTable ({
   const { t } = useTranslation('history')
 
   const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [rowsPerPage, setRowsPerPage] = React.useState(15)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -144,7 +147,7 @@ export default function HistoryTable ({
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 50]}
+        rowsPerPageOptions={[15, 25, 50]}
         component='div'
         count={count}
         rowsPerPage={rowsPerPage}
