@@ -7,7 +7,7 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemButton from '@mui/material/ListItemButton'
-import ListSubheader from '@mui/material/ListSubheader'
+// import ListSubheader from '@mui/material/ListSubheader'
 import ListItemText from '@mui/material/ListItemText'
 import Paper from '@mui/material/Paper'
 import PreviewIcon from '@mui/icons-material/Preview'
@@ -17,7 +17,8 @@ export default function RacksList ({ aps, locale, racks }) {
 
   return (
     <Paper>
-      <List subheader={<ListSubheader>PLC Racks</ListSubheader>}>
+      {/* <List subheader={<ListSubheader>PLC Racks</ListSubheader>}> */}
+      <List dense>
         {racks.map((item, key, arr) => (
           <React.Fragment key={key}>
             <ListItem

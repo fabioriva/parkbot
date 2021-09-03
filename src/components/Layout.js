@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Toolbar from '@mui/material/Toolbar'
+import useMediaQuery from '@mui/material/useMediaQuery'
 // import Alert from 'src/components/Alert'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
@@ -11,6 +12,8 @@ import Snackbar from 'src/components/Snackbar'
 import { useComm } from 'src/lib/useWebSocket'
 
 export default function AppLayout (props) {
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
+
   const { comm, diag, map, message } = useComm(
     `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/info`
   )
@@ -48,7 +51,7 @@ export default function AppLayout (props) {
         }}
         // maxWidth='xl' // drawer responsive
       >
-        <Container maxWidth='xl' sx={{ mb: 3 }}>
+        <Container maxWidth='xl'>
           <Toolbar />
           <Header
             aps={props.aps}
@@ -64,9 +67,22 @@ export default function AppLayout (props) {
             {'s '}
             {props.executionTime[1] / 1000000}ms
           </Alert> */}
-          {props.children}
-          <Snackbar message={message} />
         </Container>
+        {isMobile && props.children}
+        {!isMobile && (
+          <Container
+            maxWidth='xl'
+            sx={{
+              mb: 3
+              // display: { xs: isMobile ? 'none' : 'block', md: 'block' }
+            }}
+          >
+            {props.children}
+            <Snackbar message={message} />
+          </Container>
+        )}
+
+        <Box sx={{ mb: 3 }} />
         <Footer />
       </Box>
     </Box>
