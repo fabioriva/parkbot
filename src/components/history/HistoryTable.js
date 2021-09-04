@@ -78,13 +78,18 @@ function Row ({ devices, modes, operations, row }) {
               })
             : t(row.operation.label)} */}
           {row.alarm?.id !== 0 &&
+            row.alarm !== 0 &&
             t(`alarms:${row.alarm.i18n?.key}`, row.alarm.i18n?.query, {
               fallback: ['alarms:fallback1', 'fallback2']
             })}
-          {row.alarm?.id === 0 && t(row.operation.label)}
+          {row.operation.id !== 1 &&
+            row.operation.id !== 2 &&
+            t(row.operation.label)}
         </TableCell>
         <TableCell align='center' sx={{ color: color(row.operation.id) }}>
-          {row.alarm?.id !== 0 && <strong>AL{row.alarm.id}</strong>}
+          {row.alarm?.id !== 0 && row.alarm !== 0 && (
+            <strong>AL{row.alarm.id}</strong>
+          )}
         </TableCell>
         <TableCell align='center'>{row.card}</TableCell>
         <TableCell align='center'>{row.stall}</TableCell>

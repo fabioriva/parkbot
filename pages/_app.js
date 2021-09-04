@@ -24,7 +24,7 @@ export default function MyApp ({
         />
         <meta name='description' content='Sotefin Web Service' />
         <meta name='keywords' content='Sotefin, Robotic, Parking, System' />
-        <title>Park-Bot</title>
+        <title>ParkBot</title>
         <link rel='shortcut icon' href='/favicon.ico' />
         <link rel='manifest' href='/manifest.json' />
         <link rel='apple-touch-icon' href='/apple-icon.png' />
