@@ -1,12 +1,11 @@
 import React from 'react'
-// import Alert from '@mui/material/Alert'
-// import AlertTitle from '@mui/material/AlertTitle'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
-// import IconButton from '@mui/material/IconButton'
-// import Paper from '@mui/material/Paper'
+import Button from '@mui/material/Button'
+import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
-// material-ui
 import Layout from 'src/components/Layout'
 import HistoryList from 'src/components/history/HistoryListVirtualized'
 import HistoryQueryDialog from 'src/components/history/HistoryQueryDialog'
@@ -35,61 +34,69 @@ export default function History (props) {
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
-      <Fab
-        color='primary'
-        aria-label='search'
-        onClick={() => setOpen(true)}
-        sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: 1299 }}
-      >
-        <SearchIcon />
-      </Fab>
       <HistoryQueryDialog
         locale={props.__lang}
         open={open}
         onCancel={() => setOpen(false)}
         onConfirm={handleConfirm}
       />
-      {/* <Paper sx={{ width: '100%' }}>
-        <Alert
-          action={
-            <IconButton
-              size='small'
-              aria-label='query'
-              onClick={() => setOpen(true)}
-            >
-              <SearchIcon color='primary' fontSize='inherit' />
-            </IconButton>
-          }
-          severity='info'
-          sx={{ mb: 2 }}
-        >
-          <AlertTitle sx={{ display: { xs: 'none', md: 'block' } }}>
-            {t('history-summary')}
-          </AlertTitle>
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-            {t('history-query', { from: history.dateFrom, to: history.dateTo })}
-            .&nbsp;
-          </Box>
-          <Box>{t('history-count', { count: history.count })}.</Box>
-        </Alert>
-        <HistoryQueryDialog
-          locale={props.__lang}
-          open={open}
-          onCancel={() => setOpen(false)}
-          onConfirm={handleConfirm}
-        />
-      </Paper> */}
+
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
         <HistoryList count={history.count} query={history.query} />
+        <Fab
+          color='primary'
+          aria-label='search'
+          onClick={() => setOpen(true)}
+          sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: 1299 }}
+        >
+          <SearchIcon />
+        </Fab>
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-        <HistoryTable
-          count={history.count}
-          query={history.query}
-          // devices={props.devices}
-          // modes={props.modes}
-          // operations={props.operations}
-        />
+        <Paper sx={{ width: '100%' }}>
+          <Alert
+            action={
+              <Button
+                color='primary'
+                size='small'
+                // variant='outlined'
+                endIcon={<SearchIcon />}
+                onClick={() => setOpen(true)}
+              >
+                {t('dialog-title')}
+              </Button>
+            }
+            // action={
+            //   <IconButton
+            //     size='small'
+            //     aria-label='query'
+            //     onClick={() => setOpen(true)}
+            //   >
+            //     <SearchIcon color='primary' fontSize='inherit' />
+            //   </IconButton>
+            // }
+            severity='info'
+            sx={{ mb: 2 }}
+          >
+            {/* <AlertTitle sx={{ display: { xs: 'none', md: 'block' } }}>
+              {t('history-summary')}
+            </AlertTitle> */}
+            <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+              {t('history-query', {
+                from: history.dateFrom,
+                to: history.dateTo
+              })}
+              .&nbsp;{t('history-count', { count: history.count })}.
+            </Box>
+          </Alert>
+          <HistoryQueryDialog
+            locale={props.__lang}
+            open={open}
+            onCancel={() => setOpen(false)}
+            onConfirm={handleConfirm}
+          />
+        </Paper>
+        <HistoryTable count={history.count} query={history.query} />
       </Box>
     </Layout>
   )
