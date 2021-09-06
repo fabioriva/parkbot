@@ -42,14 +42,14 @@ export async function getServerSideProps (ctx) {
 
   var hrstart = process.hrtime()
   const dateFrom = format(
-    subDays(startOfDay(new Date('2021-04-01')), 1),
+    subDays(startOfDay(new Date()), 1),
     'yyyy-MM-dd HH:mm:ss'
   )
   // const dateFrom = format(
   //   startOfDay(new Date()),
   //   'yyyy-MM-dd HH:mm:ss'
   // )
-  const dateTo = format(endOfDay(new Date('2021-04-12')), 'yyyy-MM-dd HH:mm:ss')
+  const dateTo = format(endOfDay(new Date()), 'yyyy-MM-dd HH:mm:ss')
   const filter = 'a'
   const query = `system=0&dateFrom=${dateFrom}&dateTo=${dateTo}&filter=${filter}&device=0&number=0`
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/history?${query}`

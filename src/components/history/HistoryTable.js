@@ -83,9 +83,9 @@ function Row ({ devices, modes, operations, row }) {
             t(`alarms:${row.alarm.i18n?.key}`, row.alarm.i18n?.query, {
               fallback: ['alarms:fallback1', 'fallback2']
             })}
-          {row.operation.id !== 1 &&
-            row.operation.id !== 2 &&
-            t(row.operation.label)}
+          {/* {row.operation.id !== 1 &&
+            row.operation.id !== 2 && */}
+          {row.alarm === undefined && t(row.operation.label)}
         </TableCell>
         <TableCell align='center' sx={{ color: color(row.operation.id) }}>
           {/* {row.alarm?.id !== 0 && row.alarm !== 0 && (
