@@ -314,10 +314,12 @@ function Byte ({ byte, nr }) {
           #label-0 {
             left: 10px;
             top: 172px;
+            font-size: 12px;
           }
           #label-1 {
             left: 42px;
             top: 172px;
+            font-size: 12px;
           }
         `}
       </style>

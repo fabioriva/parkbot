@@ -2,7 +2,7 @@ import React from 'react'
 import { format, endOfDay, startOfDay, subDays } from 'date-fns'
 import fetch from 'src/lib/fetch'
 import { getCookies, getTokenCookie } from 'src/lib/authCookies'
-import { aps } from 'src/constants/aps'
+import { aps, aps_ } from 'src/constants/aps'
 import History from 'src/components/history/History'
 import withAuthSync from 'src/hocs/withAuthSync'
 
@@ -14,6 +14,16 @@ export async function getServerSideProps (ctx) {
       notFound: true
     }
   }
+
+  // const APS = aps_(ctx.params.aps)
+
+  // console.log(APS)
+
+  // if (APS === undefined || ctx.params.aps !== APS.ns) {
+  //   return {
+  //     notFound: true
+  //   }
+  // }
 
   const cookies = await getCookies(ctx.req)
 
@@ -36,9 +46,7 @@ export async function getServerSideProps (ctx) {
     }
   }
 
-  const { APS_NAME, DEVICES, MODES, OPERATIONS } = await import(
-    `src/constants/${ctx.params.aps}`
-  )
+  const { APS_NAME } = await import(`src/constants/${ctx.params.aps}`)
 
   var hrstart = process.hrtime()
   const dateFrom = format(
@@ -63,13 +71,11 @@ export async function getServerSideProps (ctx) {
     props: {
       aps: cookies.aps, // ctx.params.aps,
       apsName: APS_NAME,
+      // apsName: APS.name,
       locale: cookies.i18n,
       json,
       token,
       executionTime: hrend
-      // devices: DEVICES,
-      // modes: MODES,
-      // operations: OPERATIONS
     }
   }
 }

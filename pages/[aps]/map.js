@@ -8,7 +8,7 @@ import withAuthSync from 'src/hocs/withAuthSync'
 
 const componentList = {
   // bassano: dynamic(() => import('src/aps/bassano/Map')),
-  // bmc: dynamic(() => import('src/aps/bmc/Map')),
+  bmc: dynamic(() => import('src/components/map/bmc')),
   // chandan: dynamic(() => import('src/aps/chandan/Map')),
   // vl: dynamic(() => import('src/aps/vl/Map')),
   wallstreet: dynamic(() => import('src/components/map/wallstreet')),
