@@ -39,6 +39,7 @@
   "al-spa-to": "Door U time out",
   "al-spa-fc": "Door EZA/EOA",
 
+  "alarm-iv": "Inverter {{nr}}",
   "alarm-th": "Thermic check {{thermic}}",
 
   "fallback1": "No description"
