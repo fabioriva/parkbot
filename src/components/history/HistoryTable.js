@@ -42,7 +42,7 @@ function color (op) {
 function Row ({ devices, modes, operations, row }) {
   const { t } = useTranslation('history')
   // const [open, setOpen] = React.useState(false)
-  if (row.operation.id === 1) console.log(row)
+  console.log(row)
   return (
     <React.Fragment>
       <TableRow sx={{ '&:hover': { cursor: 'pointer' } }} hover>
@@ -77,8 +77,9 @@ function Row ({ devices, modes, operations, row }) {
                 fallback: ['alarms:fallback1', 'fallback2']
               })
             : t(row.operation.label)} */}
-          {row.alarm?.id !== 0 &&
-            row.alarm !== 0 &&
+          {/* {row.alarm?.id !== 0 &&
+            row.alarm !== 0 && */}
+          {row.alarm !== undefined &&
             t(`alarms:${row.alarm.i18n?.key}`, row.alarm.i18n?.query, {
               fallback: ['alarms:fallback1', 'fallback2']
             })}
@@ -87,9 +88,10 @@ function Row ({ devices, modes, operations, row }) {
             t(row.operation.label)}
         </TableCell>
         <TableCell align='center' sx={{ color: color(row.operation.id) }}>
-          {row.alarm?.id !== 0 && row.alarm !== 0 && (
+          {/* {row.alarm?.id !== 0 && row.alarm !== 0 && (
             <strong>AL{row.alarm.id}</strong>
-          )}
+          )} */}
+          {row.alarm !== undefined && <strong>AL{row.alarm.id}</strong>}
         </TableCell>
         <TableCell align='center'>{row.card}</TableCell>
         <TableCell align='center'>{row.stall}</TableCell>
