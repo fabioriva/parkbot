@@ -7,18 +7,24 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemButton from '@mui/material/ListItemButton'
-// import ListSubheader from '@mui/material/ListSubheader'
+import ListSubheader from '@mui/material/ListSubheader'
 import ListItemText from '@mui/material/ListItemText'
 import Paper from '@mui/material/Paper'
-import PreviewIcon from '@mui/icons-material/Preview'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 
 export default function RacksList ({ aps, locale, racks }) {
   const router = useRouter()
 
   return (
-    <Paper>
-      {/* <List subheader={<ListSubheader>PLC Racks</ListSubheader>}> */}
-      <List dense>
+    <Paper sx={{ maxWidth: { md: 345, xs: '100%' } }}>
+      <List
+        subheader={
+          <ListSubheader component='div' id='list-subheader'>
+            PLC Racks list
+          </ListSubheader>
+        }
+        dense
+      >
         {racks.map((item, key, arr) => (
           <React.Fragment key={key}>
             <ListItem
@@ -33,7 +39,7 @@ export default function RacksList ({ aps, locale, racks }) {
                     })
                   }
                 >
-                  <PreviewIcon />
+                  <InfoOutlinedIcon />
                 </IconButton>
               }
             >
@@ -64,7 +70,6 @@ export default function RacksList ({ aps, locale, racks }) {
                 />
               </ListItemButton>
             </ListItem>
-
             {arr.length - 1 !== key && (
               <Divider variant='inset' component='li' />
             )}

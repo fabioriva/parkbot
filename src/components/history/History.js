@@ -1,6 +1,6 @@
 import React from 'react'
 import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
+// import AlertTitle from '@mui/material/AlertTitle'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
 import Button from '@mui/material/Button'
@@ -89,12 +89,6 @@ export default function History (props) {
               .&nbsp;{t('history-count', { count: history.count })}.
             </Box>
           </Alert>
-          <HistoryQueryDialog
-            locale={props.__lang}
-            open={open}
-            onCancel={() => setOpen(false)}
-            onConfirm={handleConfirm}
-          />
         </Paper>
         <HistoryTable count={history.count} query={history.query} />
       </Box>
