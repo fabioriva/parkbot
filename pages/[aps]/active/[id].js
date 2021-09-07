@@ -3,14 +3,17 @@ import fetch from 'src/lib/fetch'
 import { getCookies, getTokenCookie } from 'src/lib/authCookies'
 import { aps } from 'src/constants/aps'
 import Error from 'src/components/Error'
-import DeviceActive from 'src/components/device/DeviceActive'
+import Layout from 'src/components/Layout'
+import DeviceInfo from 'src/components/device/DeviceInfo'
 import withAuthSync from 'src/hocs/withAuthSync'
 
 const Page = props =>
   props.json.err ? (
     <Error {...props} error='Error 500' />
   ) : (
-    <DeviceActive {...props} />
+    <Layout {...props} pageTitle={props.json.device.a.name}>
+      <DeviceInfo alarms={props.json.device.alarms} />
+    </Layout>
   )
 
 export async function getServerSideProps (ctx) {

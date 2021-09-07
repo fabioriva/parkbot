@@ -76,7 +76,9 @@ export default function DeviceActive ({ alarms }) {
                       >
                         {/* <strong>{t('al-id', { id: item.id })}</strong>&nbsp; */}
                         <strong>{item.label}</strong>&nbsp;
-                        {t(item.i18n.key, item.i18n.query)}
+                        {t(item.i18n.key, item.i18n.query, {
+                          fallback: 'fallback1'
+                        })}
                       </Typography>
                     </React.Fragment>
                   }

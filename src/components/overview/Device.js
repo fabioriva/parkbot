@@ -1,4 +1,4 @@
-import Link from 'next/link'
+// import Link from 'next/link'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
@@ -134,20 +134,25 @@ export default function Device (props) {
         {motor === 0 ? mainView : <Silomat data={props.item.e} />}
       </CardContent>
       <CardActions disableSpacing>
-        <Link
+        {/* <Link
           href={`/${props.aps}/device/${id - 1}`}
           locale={props.user.locale}
+        > */}
+        <Button
+          color='primary'
+          disabled={!isAllowed(props.user, [DIAGNOSTIC])}
+          href={`/${props.aps}/device/${id - 1}`}
         >
-          <Button
-            color='primary'
-            disabled={!isAllowed(props.user, [DIAGNOSTIC])}
-          >
-            More
-          </Button>
-        </Link>
+          More
+        </Button>
+        {/* </Link> */}
         {props.item.alarms && (
           <Box sx={{ marginLeft: 'auto' }}>
-            <Active active={props.item.alarms.length} aps={props.aps} />
+            <Active
+              active={props.item.alarms.length}
+              href={`/${props.aps}/device/${id - 1}`}
+              locale={props.user.locale}
+            />
           </Box>
         )}
       </CardActions>

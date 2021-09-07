@@ -4,6 +4,7 @@
   "pages": {
     "*": ["common", "history"],
     "/signin": ["signin"],
+    "/[aps]/active/[id]": ["alarms", "io"],
     "/[aps]/cards": ["cards"],
     "/[aps]/dashboard": ["dashboard", "overview"],
     "/[aps]/device/[id]": ["alarms", "io", "overview"],

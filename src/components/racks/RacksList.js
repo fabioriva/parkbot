@@ -7,7 +7,7 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemButton from '@mui/material/ListItemButton'
-import ListSubheader from '@mui/material/ListSubheader'
+// import ListSubheader from '@mui/material/ListSubheader'
 import ListItemText from '@mui/material/ListItemText'
 import Paper from '@mui/material/Paper'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
@@ -16,13 +16,13 @@ export default function RacksList ({ aps, locale, racks }) {
   const router = useRouter()
 
   return (
-    <Paper sx={{ maxWidth: { md: 345, xs: '100%' } }}>
+    <Paper sx={{ maxWidth: { md: '50%', xs: '100%' } }}>
       <List
-        subheader={
-          <ListSubheader component='div' id='list-subheader'>
-            PLC Racks list
-          </ListSubheader>
-        }
+        // subheader={
+        //   <ListSubheader component='div' id='list-subheader'>
+        //     PLC Racks list
+        //   </ListSubheader>
+        // }
         dense
       >
         {racks.map((item, key, arr) => (
