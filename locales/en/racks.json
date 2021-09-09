@@ -1,3 +1,4 @@
 {
-  "header-title": "PLC Racks"
+  "header-title": "PLC Racks",
+  "rack-title": "PLC Rack {{name}}"
 }

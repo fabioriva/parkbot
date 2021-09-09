@@ -31,6 +31,7 @@
 
   "motor": "Motore",
   "motor-silomat": "Silomat",
+  "mot-centering": "Centratura {{id}}",
   "mot-hoisting": "Sollevamento",
   "mot-traveling": "Traslazione",
   "mot-rotation": "Rotazione",

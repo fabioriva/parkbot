@@ -21,7 +21,7 @@ export default function Rack (props) {
   React.useEffect(() => setRack(data), [data])
 
   return (
-    <Layout {...props} pageTitle={t('header-title')}>
+    <Layout {...props} pageTitle={t('rack-title', { name: rack.title })}>
       <RackView rack={rack} />
     </Layout>
   )

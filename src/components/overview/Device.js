@@ -119,7 +119,6 @@ export default function Device (props) {
     <Card>
       <CardHeader
         sx={{
-          // bgcolor: '#ccc',
           py: 1,
           '& .MuiCardHeader-title': {
             fontSize: 16

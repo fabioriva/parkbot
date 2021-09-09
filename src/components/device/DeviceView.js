@@ -1,9 +1,10 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
+import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 import Layout from 'src/components/Layout'
-
 import DeviceInfo from 'src/components/device/DeviceInfo'
 import Inverter from 'src/components/device/Inverter'
 import Motor from 'src/components/device/Motor'
@@ -24,8 +25,8 @@ export default function DeviceView (props) {
   })
   React.useEffect(() => setDeviceView(data), [data])
 
-  const { device, inverters, motors } = deviceView
-  // console.log(deviceView)
+  const { device, inverters, motors, silomat } = deviceView
+
   return (
     <Layout
       {...props}
@@ -33,8 +34,43 @@ export default function DeviceView (props) {
       // pageTitle={t('device-view-title', { name: device.a.name })}
     >
       <DeviceInfo alarms={device.alarms} />
+      {/* <Divider textAlign='left'>Inverters</Divider> */}
+      <Grid container spacing={1} mt={1}>
+        {inverters.map((item, key) => (
+          <Grid item key={key} xs={12} md={6} lg={3} xl={3}>
+            <Inverter {...item} />
+          </Grid>
+        ))}
+      </Grid>
+      {/* <Divider textAlign='left'>Motors</Divider> */}
+      <Grid container spacing={1} mt={1}>
+        {motors.map((item, key) => (
+          <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
+            <Motor {...item} subheader={<span>Motor</span>} />
+          </Grid>
+        ))}
+      </Grid>
+      {/* <Divider textAlign='left'>Silomat&trade;</Divider> */}
+      {silomat !== undefined && (
+        <Grid container spacing={1} mt={1}>
+          <React.Fragment>
+            <Grid item xs={12} md={6} lg={4} xl={3}>
+              <Motor {...silomat.M1} subheader={<span>Silomat&trade;</span>} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} xl={3}>
+              <Motor {...silomat.M2} subheader={<span>Silomat&trade;</span>} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} xl={3}>
+              <Motor {...silomat.M3} subheader={<span>Silomat&trade;</span>} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} xl={3}>
+              <Motor {...silomat.M4} subheader={<span>Silomat&trade;</span>} />
+            </Grid>
+          </React.Fragment>
+        </Grid>
+      )}
 
-      <Grid container spacing={1}>
+      {/* <Grid container spacing={1}>
         {inverters.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={3} xl={3}>
             <Inverter {...item} />
@@ -42,10 +78,24 @@ export default function DeviceView (props) {
         ))}
         {motors.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
-            <Motor {...item} />
+            <Motor {...item} subheader={<span>Motor</span>} />
           </Grid>
         ))}
-      </Grid>
+        <React.Fragment>
+          <Grid item xs={12} md={6} lg={4} xl={3}>
+            <Motor {...silomat.M1} subheader={<span>Silomat&trade;</span>} />
+          </Grid>
+          <Grid item xs={12} md={6} lg={4} xl={3}>
+            <Motor {...silomat.M2} subheader={<span>Silomat&trade;</span>} />
+          </Grid>
+          <Grid item xs={12} md={6} lg={4} xl={3}>
+            <Motor {...silomat.M3} subheader={<span>Silomat&trade;</span>} />
+          </Grid>
+          <Grid item xs={12} md={6} lg={4} xl={3}>
+            <Motor {...silomat.M4} subheader={<span>Silomat&trade;</span>} />
+          </Grid>
+        </React.Fragment>
+      </Grid> */}
     </Layout>
   )
 }

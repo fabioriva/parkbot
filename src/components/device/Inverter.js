@@ -1,10 +1,15 @@
+import Avatar from '@mui/material/Avatar'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
-import Chip from '@mui/material/Chip'
+// import Chip from '@mui/material/Chip'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
+import { green } from '@mui/material/colors'
+import BoltIcon from '@mui/icons-material/Bolt'
 import useTranslation from 'next-translate/useTranslation'
+import Lamp from 'src/components/overview/Lamp'
+// import Tooltip from 'src/components/Tooltip'
 
 const Item = ({ title, value }) => (
   <>
@@ -14,7 +19,7 @@ const Item = ({ title, value }) => (
     <Typography
       variant='subtitle2'
       component='h2'
-      gutterBottom
+      // gutterBottom
       sx={{ color: 'info.dark', fontSize: 18, fontWeight: 'bold' }}
     >
       {value}
@@ -25,36 +30,44 @@ const Item = ({ title, value }) => (
 export default function Inverter (props) {
   const { t } = useTranslation('overview')
 
+  const EN = (
+    <Lamp
+      key={0}
+      color={props.enable ? green[500] : green[100]}
+      title={props.enable ? t('mot-enabled') : t('mot-disabled')}
+    />
+  )
   const IDLE = '---'
-  // console.log(props)
+
   return (
     <Card>
       <CardHeader
         sx={{
-          py: 1,
+          py: 0.5,
           '& .MuiCardHeader-title': {
-            fontSize: 16,
+            fontSize: 22,
             fontWeight: 'bold'
           }
         }}
-        // action={[
-        //   <Lamp
-        //     key={0}
-        //     color={props.enable.status ? green[500] : green[100]}
-        //     title={props.enable.status ? t('vfd-enabled') : t('vfd-disabled')}
+        // action={
+        //   <Chip
+        //     label={props.enable.status ? t('vfd-enabled') : t('vfd-disabled')}
+        //     color={props.enable.status ? 'success' : 'warning'}
+        //     // size='small'
         //   />
-        // ]}
-        action={
-          <Chip
-            label={props.enable.status ? t('vfd-enabled') : t('vfd-disabled')}
-            color={props.enable.status ? 'success' : 'warning'}
-            size='small'
-          />
+        // }
+        // avatar={props.speed !== 0 ? '⚡' : '🛑'}
+        action={EN}
+        avatar={
+          <Avatar sx={{ bgcolor: props.speed !== 0 && 'warning.main' }}>
+            <BoltIcon />
+          </Avatar>
         }
-        title={t('vfd-title', { id: props.name })}
+        title={props.name}
+        subheader={t('vfd-title', {})}
       />
       <CardContent>
-        <Grid container spacing={0}>
+        <Grid container spacing={1}>
           <Grid item xs={6}>
             <Item
               title={t('vfd-speed')}
