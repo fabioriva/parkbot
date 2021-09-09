@@ -43,10 +43,14 @@
   "motor-lock-v": "Locking (V)",
   "motor-lock-r": "Locking (R)",
 
-  "motion-err": "---",
+  "motion-err": "error",
   "motion-no": "stop",
+  "motion-bwd": "backward",
+  "motion-fwd": "forward",
   "motion-up": "going up",
   "motion-down": "going down",
+  "motion-center": "centering",
+  "motion-uncenter": "closing",
   "motion-open": "opening",
   "motion-close": "closing",
   "motion-lock": "locking",
@@ -56,7 +60,7 @@
   "motion-left": "going left",
   "motion-right": "going right",
 
-  "position-err": "---",
+  "position-err": "error",
   "position-no": "---",
   "position-high": "high",
   "position-low": "low",
@@ -64,6 +68,8 @@
   "position-closed": "closed",
   "position-locked": "locked",
   "position-unlocked": "unlocked",
+  "position-centered": "centered",
+  "position-uncentered": "closed",
 
   "queue-title": "Exit queue",
   "queue-item-primary": "Card {{number}}",

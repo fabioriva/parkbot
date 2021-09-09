@@ -43,10 +43,14 @@
   "motor-lock-v": "Martinetto (V)",
   "motor-lock-r": "Martinetto (R)",
 
-  "motion-err": "---",
+  "motion-err": "error",
   "motion-no": "stop",
+  "motion-bwd": "indietro",
+  "motion-fwd": "avanti",
   "motion-up": "salita",
   "motion-down": "discesa",
+  "motion-center": "centratura",
+  "motion-uncenter": "chiusura",
   "motion-open": "apertura",
   "motion-close": "chiusura",
   "motion-lock": "blocca",
@@ -56,7 +60,7 @@
   "motion-left": "sinistra",
   "motion-right": "destra",
 
-  "position-err": "---",
+  "position-err": "error",
   "position-no": "---",
   "position-high": "alto",
   "position-low": "basso",
@@ -64,6 +68,8 @@
   "position-closed": "chiuso",
   "position-locked": "bloccato",
   "position-unlocked": "sbloccato",
+  "position-centered": "centrato",
+  "position-uncentered": "chiuso",
 
   "queue-title": "Exit queue",
   "queue-item-primary": "Tessera {{number}}",
