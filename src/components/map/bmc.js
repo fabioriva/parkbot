@@ -14,7 +14,7 @@ const Map = ({ levels, occupancy, view }) => {
         {`
           .l {
             position: relative;
-            background-color: #f0f8ff;
+            background-color: #ddd;
             /* border: 1px solid #888; */
             margin-bottom: 16px;
             height: 100px;
