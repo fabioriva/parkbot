@@ -1,5 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import Paper from '@mui/material/Paper'
 import Layout from 'src/components/Layout'
 import RacksList from 'src/components/racks/RacksList'
 
@@ -10,7 +11,9 @@ export default function Racks (props) {
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
-      <RacksList aps={props.aps} locale={props.locale} racks={racks} />
+      <Paper sx={{ maxWidth: { md: '25%', xs: '100%' } }}>
+        <RacksList aps={props.aps} locale={props.locale} racks={racks} />
+      </Paper>
     </Layout>
   )
 }

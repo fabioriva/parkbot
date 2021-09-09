@@ -37,7 +37,7 @@ export default function Cards (props) {
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
-      <Paper sx={{ maxWidth: { md: 345, xs: '100%' } }}>
+      <Paper sx={{ maxWidth: { md: '25%', xs: '100%' } }}>
         <CardsList
           cards={cards}
           handleEdit={handleEdit}

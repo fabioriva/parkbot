@@ -5,7 +5,7 @@ import { CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 import theme from 'src/theme'
 
-const clientSideEmotionCache = createCache({ key: 'css' })
+const clientSideEmotionCache = createCache({ key: 'css', prepend: true })
 // cache.compat = true
 
 export default function MyApp ({
