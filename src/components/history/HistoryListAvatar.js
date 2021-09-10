@@ -1,40 +1,63 @@
 import Avatar from '@mui/material/Avatar'
 // material-ui icons
+import BuildIcon from '@mui/icons-material/Build'
+import CheckIcon from '@mui/icons-material/Check'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
+import LockIcon from '@mui/icons-material/Lock'
+// import PinIcon from '@mui/icons-material/Pin'
+import FiberPinOutlinedIcon from '@mui/icons-material/FiberPinOutlined'
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh'
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 
-// const useStyles = makeStyles(theme => ({
-//   root: {},
-//   danger: {
-//     background: '#f2dede',
-//     color: '#a94442'
-//   },
-//   info: {
-//     background: '#d9edf7',
-//     color: '#31708f'
-//   },
-//   success: {
-//     background: '#dff0d8',
-//     color: '#3c763d'
-//   },
-//   warning: {
-//     background: '#fcf8e3',
-//     color: '#8a6d3b'
-//   }
-// }))
-
-export default function HistoryListAvatar ({ id }) {
+export default function HistoryListAvatar ({ item }) {
+  const { id } = item.operation
   switch (id) {
     case 1:
       return (
-        <Avatar sx={{ bgcolor: '#d9edf7', color: '#31708f' }}>
+        <Avatar sx={{ background: '#f2dede', color: '#a94442' }}>
+          <PriorityHighIcon />
+        </Avatar>
+      )
+    case 2:
+      return (
+        <Avatar sx={{ background: '#dff0d8', color: '#3c763d' }}>
+          <CheckIcon />
+        </Avatar>
+      )
+    case 3:
+      return (
+        <Avatar sx={{ background: '#fcf8e3', color: '#8a6d3b' }}>
+          <BuildIcon />
+        </Avatar>
+      )
+    case 4:
+      return (
+        <Avatar sx={{ background: '#d9edf7', color: '#31708f' }}>
+          <FiberPinOutlinedIcon />
+        </Avatar>
+      )
+    case 5:
+    case 6:
+      if (item.card === 999) {
+        return (
+          <Avatar sx={{ background: '#fcf8e3', color: '#8a6d3b' }}>
+            <LockIcon />
+          </Avatar>
+        )
+      }
+      return (
+        <Avatar sx={{ background: '#d9edf7', color: '#31708f' }}>
           <DirectionsCarIcon />
+        </Avatar>
+      )
+    case 7:
+    case 8:
+      return (
+        <Avatar sx={{ background: '#d9edf7', color: '#31708f' }}>
+          <SwapHorizIcon />
         </Avatar>
       )
     default:
-      return (
-        <Avatar sx={{ bgcolor: '#d9edf7', color: '#31708f' }}>
-          <DirectionsCarIcon />
-        </Avatar>
-      )
+      return <Avatar>{item.operation.id}</Avatar>
   }
 }

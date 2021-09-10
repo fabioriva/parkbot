@@ -15,7 +15,7 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import PersonIcon from '@mui/icons-material/Person'
+// import PersonIcon from '@mui/icons-material/Person'
 import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded'
 
 function renderRow ({ data, index, style }) {
@@ -37,14 +37,17 @@ function renderRow ({ data, index, style }) {
         }
       >
         <ListItemAvatar>
+          {/* <Avatar item={item} /> */}
           <Avatar
             sx={{
-              bgcolor: randomColor({
-                luminosity: 'dark',
-                seed: item.device.name
-              }),
-              // color: 'text.primary',
-              fontSize: '1.0rem',
+              bgcolor:
+                item.device !== 0 &&
+                randomColor({
+                  luminosity: 'light',
+                  seed: item.device.name
+                }),
+              color: 'text.primary',
+              fontSize: '0.90rem',
               fontWeight: 'bolder'
             }}
           >
