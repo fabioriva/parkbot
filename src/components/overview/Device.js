@@ -6,6 +6,7 @@ import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
 import Grid from '@mui/material/Grid'
+import Skeleton from '@mui/material/Skeleton'
 import Typography from '@mui/material/Typography'
 import { green, orange, red } from '@mui/material/colors'
 import Active from 'src/components/Active'
@@ -28,7 +29,7 @@ const bg = (op, theme) => {
   }
 }
 
-const Item = ({ title, value }) => (
+const Item = ({ loading, title, value }) => (
   <>
     <Typography variant='body2' color='textSecondary' component='h1'>
       {title}
@@ -39,7 +40,11 @@ const Item = ({ title, value }) => (
       gutterBottom
       sx={{ color: 'info.dark', fontSize: 18, fontWeight: 'bold' }}
     >
-      {value}
+      {loading ? (
+        <Skeleton variant='text' animation='wave' width='90%' />
+      ) : (
+        value
+      )}
     </Typography>
   </>
 )
@@ -89,16 +94,17 @@ export default function Device (props) {
         <Item
           title={t('device-mode')}
           value={mode.label ? t(`common:${mode.label}`) : '---'}
+          loading={props.loading}
         />
       </Grid>
       <Grid item xs={6}>
-        <Item title={t('device-card')} value={card} />
+        <Item title={t('device-card')} value={card} loading={props.loading} />
       </Grid>
       <Grid item xs={6}>
-        <Item title={t('device-size')} value={size} />
+        <Item title={t('device-size')} value={size} loading={props.loading} />
       </Grid>
       <Grid item xs={6}>
-        <Item title={t('device-dest')} value={stall} />
+        <Item title={t('device-dest')} value={stall} loading={props.loading} />
       </Grid>
       {props.item.b.map((item, key) => (
         <Grid item key={key} xs={6}>
@@ -109,6 +115,7 @@ export default function Device (props) {
                 {item.position}&nbsp;&rarr;&nbsp;{item.destination}
               </span>
             }
+            loading={props.loading}
           />
         </Grid>
       ))}

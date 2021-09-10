@@ -1,9 +1,11 @@
 import React from 'react'
-import useTranslation from 'next-translate/useTranslation'
+import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
 import { useData } from 'src/lib/useWebSocket'
 import Layout from 'src/components/Layout'
+import ListView from 'src/components/racks/RackListView'
 import RackView from 'src/components/racks/RackView'
+import useTranslation from 'next-translate/useTranslation'
 
 export default function Rack (props) {
   const { t } = useTranslation('racks')
@@ -14,7 +16,7 @@ export default function Rack (props) {
   const [rack, setRack] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/racks/${id}`
-  const { data } = useData(url, {
+  const { data, loading } = useData(url, {
     initialData: rack,
     page: 'racks'
   })
@@ -22,7 +24,13 @@ export default function Rack (props) {
 
   return (
     <Layout {...props} pageTitle={t('rack-title', { name: rack.title })}>
-      <RackView rack={rack} />
+      <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+        <ListView rack={rack} loading={loading} />
+      </Box>
+      <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+        <RackView rack={rack} />
+      </Box>
+      {/* <RackView rack={rack} /> */}
     </Layout>
   )
 }

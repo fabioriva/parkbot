@@ -10,10 +10,16 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction'
 import ListSubheader from '@mui/material/ListSubheader'
+import Skeleton from '@mui/material/Skeleton'
 import EditIcon from '@mui/icons-material/Edit'
 import PersonIcon from '@mui/icons-material/Person'
 
-export default function CardsList ({ authorization, handleEdit, cards }) {
+export default function CardsList ({
+  authorization,
+  handleEdit,
+  cards,
+  loading
+}) {
   const { t } = useTranslation('cards')
 
   // Dialog
@@ -60,14 +66,22 @@ export default function CardsList ({ authorization, handleEdit, cards }) {
             </ListItemAvatar>
             <ListItemText
               primary={
-                <span>
-                  {t('card')} {item.nr}
-                </span>
+                loading ? (
+                  <Skeleton variant='text' />
+                ) : (
+                  <span>
+                    {t('card')} {item.nr}
+                  </span>
+                )
               }
               secondary={
-                <span>
-                  {t('code')} <strong>{item.code}</strong>
-                </span>
+                loading ? (
+                  <Skeleton variant='text' />
+                ) : (
+                  <span>
+                    {t('code')} <strong>{item.code}</strong>
+                  </span>
+                )
               }
             />
             <ListItemSecondaryAction>

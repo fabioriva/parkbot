@@ -14,7 +14,7 @@ export default function Overview (props) {
   const [overview, setOverview] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/overview`
-  const { data } = useData(url, {
+  const { data, loading } = useData(url, {
     initialData: overview,
     page: 'overview'
   })
@@ -83,6 +83,7 @@ export default function Overview (props) {
                   // actions={[handleOpen]} //, handleRollback]}
                   user={props.user}
                   // authorization={isAllowed(user, [userRole])
+                  loading={loading}
                 />
               </Grid>
             ))}

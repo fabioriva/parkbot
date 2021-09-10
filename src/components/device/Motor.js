@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
 import Chip from '@mui/material/Chip'
 import Grid from '@mui/material/Grid'
+import Skeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { green } from '@mui/material/colors'
@@ -12,7 +13,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Lamp from 'src/components/overview/Lamp'
 import Tooltip from 'src/components/Tooltip'
 
-const Item = ({ title, value }) => (
+const Item = ({ loading, title, value }) => (
   <>
     <Typography variant='body2' color='textSecondary' component='h1'>
       {title}
@@ -23,7 +24,12 @@ const Item = ({ title, value }) => (
       // gutterBottom
       sx={{ color: 'info.dark', fontSize: 18, fontWeight: 'bold' }}
     >
-      {value}
+      {/* {value} */}
+      {loading ? (
+        <Skeleton variant='text' animation='wave' width='90%' />
+      ) : (
+        value
+      )}
     </Typography>
   </>
 )
@@ -61,7 +67,11 @@ export default function Motor (props) {
       <CardContent sx={{ py: 0.5 }}>
         <Grid container spacing={1}>
           <Grid item xs={6}>
-            <Item title={t('mot-motion')} value={t(props.motion.i18n)} />
+            <Item
+              title={t('mot-motion')}
+              value={t(props.motion.i18n)}
+              loading={props.loading}
+            />
           </Grid>
           <Grid item xs={6}>
             {Array.isArray(props.position) ? (
@@ -74,6 +84,7 @@ export default function Motor (props) {
                       {props.position[0].destination}
                     </span>
                   }
+                  loading={props.loading}
                 />
               </Grid>
             ) : (
@@ -81,6 +92,7 @@ export default function Motor (props) {
                 <Item
                   title={t('mot-position')}
                   value={t(props.position.i18n)}
+                  loading={props.loading}
                 />
               </Grid>
             )}

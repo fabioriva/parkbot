@@ -42,6 +42,7 @@ export default function Cards (props) {
           cards={cards}
           handleEdit={handleEdit}
           authorization={true} // {isAllowed(user, [definitions.userRole])}
+          // loading={loading}
         />
       </Paper>
     </Layout>

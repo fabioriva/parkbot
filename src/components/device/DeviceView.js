@@ -19,7 +19,7 @@ export default function DeviceView (props) {
   const [deviceView, setDeviceView] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/diagnostic/${id}`
-  const { data } = useData(url, {
+  const { data, loading } = useData(url, {
     initialData: deviceView,
     page: 'diagnostic'
   })
@@ -38,7 +38,7 @@ export default function DeviceView (props) {
       <Grid container spacing={1} mt={1}>
         {inverters.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={3} xl={3}>
-            <Inverter {...item} />
+            <Inverter {...item} loading={loading} />
           </Grid>
         ))}
       </Grid>
@@ -46,7 +46,7 @@ export default function DeviceView (props) {
       <Grid container spacing={1} mt={1}>
         {motors.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
-            <Motor {...item} subheader={<span>Motor</span>} />
+            <Motor {...item} loading={loading} subheader={<span>Motor</span>} />
           </Grid>
         ))}
       </Grid>
@@ -55,16 +55,32 @@ export default function DeviceView (props) {
         <Grid container spacing={1} mt={1}>
           <React.Fragment>
             <Grid item xs={12} md={6} lg={4} xl={3}>
-              <Motor {...silomat.M1} subheader={<span>Silomat&trade;</span>} />
+              <Motor
+                {...silomat.M1}
+                loading={loading}
+                subheader={<span>Silomat&trade;</span>}
+              />
             </Grid>
             <Grid item xs={12} md={6} lg={4} xl={3}>
-              <Motor {...silomat.M2} subheader={<span>Silomat&trade;</span>} />
+              <Motor
+                {...silomat.M2}
+                loading={loading}
+                subheader={<span>Silomat&trade;</span>}
+              />
             </Grid>
             <Grid item xs={12} md={6} lg={4} xl={3}>
-              <Motor {...silomat.M3} subheader={<span>Silomat&trade;</span>} />
+              <Motor
+                {...silomat.M3}
+                loading={loading}
+                subheader={<span>Silomat&trade;</span>}
+              />
             </Grid>
             <Grid item xs={12} md={6} lg={4} xl={3}>
-              <Motor {...silomat.M4} subheader={<span>Silomat&trade;</span>} />
+              <Motor
+                {...silomat.M4}
+                loading={loading}
+                subheader={<span>Silomat&trade;</span>}
+              />
             </Grid>
           </React.Fragment>
         </Grid>

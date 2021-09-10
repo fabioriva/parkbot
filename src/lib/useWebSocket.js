@@ -52,6 +52,7 @@ export function useData (url, options) {
 
   // const [error, setError] = useState(null)
   const [data, setData] = useState(initialData)
+  const [loading, setLoading] = useState(true)
 
   const ws = useRef(null)
 
@@ -73,9 +74,10 @@ export function useData (url, options) {
     ws.current.onmessage = e => {
       const data = JSON.parse(e.data)
       setData(data)
+      setLoading(false)
     }
   }, [])
 
   // return { error, data }
-  return { data }
+  return { data, loading }
 }
