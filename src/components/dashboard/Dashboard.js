@@ -40,7 +40,7 @@ export default function Dashboard (props) {
           </Widget>
         </Grid>
         <Grid item sx={{ display: 'flex' }} xs={12} lg>
-          <Widget link={`/${props.aps}/overview`} title={t('queue-title')}>
+          <Widget link={`/${props.aps}/map`} title={t('occupancy-title')}>
             {/* <QueueList
               queue={system.exitQueue.queueList}
               onDelete={props.onDelete}
@@ -57,6 +57,14 @@ export default function Dashboard (props) {
             />
           </Widget>
         </Grid>
+        {/* <Grid item sx={{ display: 'flex' }} xs={12} lg>
+          <Widget link={`/${props.aps}/map`} title={t('occupancy-title')}>
+            <QueueList
+              queue={system.exitQueue.queueList}
+              onDelete={props.onDelete}
+            />
+          </Widget>
+        </Grid> */}
         {dailyOperations.data.length > 0 && (
           <Grid item xs={12}>
             <Widget

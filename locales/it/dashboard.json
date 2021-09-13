@@ -1,12 +1,12 @@
 {
   "header-title": "Dashboard",
 
-  "system-title": "System Overview",
+  "system-title": "Operazioni",
   "queue-title": "Exit Queue",
-  "occupancy-title": "System Occupancy",
-  "cards-title": "Cards",
-  "activity-title": "Recent Activity",
-  "operations-title": "Daily Operations",
+  "occupancy-title": "Posti auto",
+  "cards-title": "Tessere",
+  "activity-title": "Attività recente",
+  "operations-title": "Operazioni",
 
   "busy": "Occupati",
   "free": "Liberi",
