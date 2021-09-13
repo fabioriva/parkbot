@@ -7,6 +7,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction'
 import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
+import Skeleton from '@mui/material/Skeleton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import QueueDelete from 'src/components/overview/QueueDelete'
 
@@ -38,15 +39,29 @@ export default function QueueList (props) {
     <>
       <List dense>
         {props.queue
-          .filter(item => item.card !== 0)
+          .filter(item => item.card === 0)
           .map((element, index) => (
             <ListItem key={index} sx={{ p: 0 }}>
               <ListItemAvatar>
                 <Avatar>{element.nr}</Avatar>
               </ListItemAvatar>
               <ListItemText
-                primary={t('queue-item-primary', { number: element.card })}
-                secondary={t('queue-item-secondary', { number: element.id })}
+                // primary={t('queue-item-primary', { number: element.card })}
+                // secondary={t('queue-item-secondary', { number: element.id })}
+                primary={
+                  props.loading ? (
+                    <Skeleton variant='text' animation='wave' width='80%' />
+                  ) : (
+                    <>{t('queue-item-primary', { number: element.card })}</>
+                  )
+                }
+                secondary={
+                  props.loading ? (
+                    <Skeleton variant='text' animation='wave' width='80%' />
+                  ) : (
+                    <>{t('queue-item-secondary', { number: element.id })}</>
+                  )
+                }
               />
               <ListItemSecondaryAction>
                 <IconButton

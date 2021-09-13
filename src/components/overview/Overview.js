@@ -94,6 +94,7 @@ export default function Overview (props) {
             data={overview.exitQueue}
             onDelete={handleDelete}
             onExit={() => setOpen(true)}
+            loading={loading}
           />
           {/* <Widget
               authorization={isAllowed(user, [userRole])}

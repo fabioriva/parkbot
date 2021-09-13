@@ -41,7 +41,7 @@ const Item = ({ loading, title, value }) => (
       sx={{ color: 'info.dark', fontSize: 18, fontWeight: 'bold' }}
     >
       {loading ? (
-        <Skeleton variant='text' animation='wave' width='90%' />
+        <Skeleton variant='text' animation='wave' width='80%' />
       ) : (
         value
       )}

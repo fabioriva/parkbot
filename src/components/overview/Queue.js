@@ -17,7 +17,11 @@ export default function Queue (props) {
         <Typography sx={{ fontSize: 16 }} gutterBottom>
           {t('queue-title')}
         </Typography>
-        <QueueList queue={queueList} onDelete={props.onDelete} />
+        <QueueList
+          queue={queueList}
+          onDelete={props.onDelete}
+          loading={props.loading}
+        />
       </CardContent>
       <CardActions>
         <Button disabled={exitButton.status} onClick={props.onExit}>
