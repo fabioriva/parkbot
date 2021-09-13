@@ -2,7 +2,7 @@ import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 import Paper from '@mui/material/Paper'
 import Layout from 'src/components/Layout'
-import { aps, apsPaths } from 'src/constants/aps'
+import { aps_, apsPaths } from 'src/constants/aps'
 import useTranslation from 'next-translate/useTranslation'
 import withAuthSync from 'src/hocs/withAuthSync'
 
