@@ -1,8 +1,8 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import fetch from 'src/lib/fetch'
-import { getCookies, getTokenCookie } from 'src/lib/authCookies'
-import { aps } from 'src/constants/aps'
+import { getCookies } from 'src/lib/authCookies'
+import { aps_ } from 'src/constants/aps'
 import withMap from 'src/hocs/withMap'
 import withAuthSync from 'src/hocs/withAuthSync'
 
@@ -20,15 +20,17 @@ const Page = props => {
 }
 
 export async function getServerSideProps (ctx) {
-  if (aps(ctx.params.aps) === -1) {
+  const APS = aps_(ctx.params.aps)
+
+  if (APS === undefined || ctx.params.aps !== APS.ns) {
     return {
       notFound: true
     }
   }
 
-  const cookies = await getCookies(ctx.req)
+  const { aps, i18n, token } = await getCookies(ctx.req)
 
-  if (ctx.params.aps !== cookies.aps) {
+  if (ctx.params.aps !== aps || !token) {
     return {
       redirect: {
         destination: '/',
@@ -36,18 +38,6 @@ export async function getServerSideProps (ctx) {
       }
     }
   }
-
-  const token = await getTokenCookie(ctx.req)
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
-      }
-    }
-  }
-
-  const { APS_NAME } = await import(`src/constants/${ctx.params.aps}`)
 
   var hrstart = process.hrtime()
 
@@ -60,9 +50,9 @@ export async function getServerSideProps (ctx) {
 
   return {
     props: {
-      aps: cookies.aps, // ctx.params.aps,
-      apsName: APS_NAME,
-      locale: cookies.i18n,
+      aps: APS.ns,
+      apsName: APS.name,
+      locale: i18n,
       json,
       token,
       executionTime: hrend

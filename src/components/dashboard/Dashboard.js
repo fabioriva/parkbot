@@ -52,10 +52,6 @@ export default function Dashboard (props) {
         </Grid>
         <Grid item sx={{ display: 'flex' }} xs={12} lg>
           <Widget link={`/${props.aps}/map`} title={t('occupancy-title')}>
-            {/* <QueueList
-              queue={system.exitQueue.queueList}
-              onDelete={props.onDelete}
-            /> */}
             <Occupancy
               data={[
                 occupancy[0].value,
@@ -93,67 +89,6 @@ export default function Dashboard (props) {
           </Grid>
         )}
       </Grid>
-
-      {/* <Box sx={{ flexGrow: 1, textAlign: 'left' }}>
-        <Grid container spacing={2}>
-          <Grid item>
-            <Widget link={`/${props.aps}/overview`} title={t('system-title')}>
-              <DeviceTable data={system.devices} />
-            </Widget>
-          </Grid>
-          <Grid item>
-            <Widget link={`/${props.aps}/overview`} title={t('queue-title')}>
-              <QueueList
-                queue={system.exitQueue.queueList}
-                onDelete={props.onDelete}
-              />
-            </Widget>
-          </Grid>
-          <Grid item>
-            <Widget link={`/${props.aps}/map`} title={t('occupancy-title')}>
-              <Typography sx={{ mb: 1.5 }} color='text.secondary'>
-                Parking spaces {system.definitions.stalls}
-              </Typography>
-              <Occupancy
-                data={[
-                  occupancy[0].value,
-                  occupancy[1].value,
-                  occupancy[2].value
-                ]}
-                labels={[t('busy'), t('free'), t('lock')]}
-                height={300}
-                width={300}
-              />
-            </Widget>
-          </Grid>
-          <Grid item>
-            <Widget link={`/${props.aps}/cards`} title={t('cards-title')}>
-              Total cards {cards}
-            </Widget>
-          </Grid>
-          <Grid item>
-            <Widget link={`/${props.aps}/history`} title={t('activity-title')}>
-              Logs
-            </Widget>
-          </Grid>
-          {dailyOperations.data.length > 0 && (
-            <Grid item xs={12}>
-              <Widget
-                link={`/${props.aps}/statistics`}
-                title={t('operations-title')}
-              >
-                <Operations
-                  height={'40%'}
-                  width={'100%'}
-                  data={dailyOperations.data}
-                  labels={[t('entries'), t('exits'), t('total')]}
-                  // title={`${t(dailyOperations.i18n)}: ${dailyOperations.label}`}
-                />
-              </Widget>
-            </Grid>
-          )}
-        </Grid>
-      </Box> */}
     </Layout>
   )
 }
