@@ -1,11 +1,34 @@
 import useTranslation from 'next-translate/useTranslation'
 
 function text (item, t) {
+  console.log(item)
   switch (item.operation.id) {
     case 1:
-      return t('list-op-id-1', { id: item.alarm.id })
+      return (
+        <div>
+          <strong>AL{item.alarm.id}</strong>{' '}
+          {t(`alarms:${item.alarm.i18n.key}`, item.alarm.i18n.query, {
+            fallback: 'fallback1'
+          })}
+        </div>
+      )
+    // return t(`alarms:${item.alarm.i18n.key}`, item.alarm.i18n.query, {
+    //   fallback: 'fallback1'
+    // })
+    // return t('list-op-id-1', { id: item.alarm.id })
     case 2:
-      return t('list-op-id-2', { id: item.alarm.id })
+      return (
+        <div>
+          <strong>AL{item.alarm.id}</strong>{' '}
+          {t(`alarms:${item.alarm.i18n.key}`, item.alarm.i18n.query, {
+            fallback: 'fallback1'
+          })}
+        </div>
+      )
+    // return t(`alarms:${item.alarm.i18n.key}`, item.alarm.i18n.query, {
+    //   fallback: 'fallback1'
+    // })
+    // return t('list-op-id-2', { id: item.alarm.id })
     case 3:
       return t('list-op-id-3', { id: item.mode.id, label: t(item.mode.label) }) // TODO: correggere
     // return (
