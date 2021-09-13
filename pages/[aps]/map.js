@@ -8,7 +8,7 @@ import withAuthSync from 'src/hocs/withAuthSync'
 
 const componentList = {
   bmc: dynamic(() => import('src/components/map/bmc')),
-  // chandan: dynamic(() => import('src/aps/chandan/Map')),
+  chandan: dynamic(() => import('src/components/map/chandan')),
   vl: dynamic(() => import('src/components/map/vl')),
   wallstreet: dynamic(() => import('src/components/map/wallstreet')),
   washingtonblvd: dynamic(() => import('src/components/map/washingtonblvd'))
