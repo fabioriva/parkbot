@@ -40,7 +40,7 @@ export default function QueueList (props) {
         {props.queue
           .filter(item => item.card !== 0)
           .map((element, index) => (
-            <ListItem key={index}>
+            <ListItem key={index} sx={{ p: 0 }}>
               <ListItemAvatar>
                 <Avatar>{element.nr}</Avatar>
               </ListItemAvatar>

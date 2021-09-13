@@ -10,5 +10,14 @@
 
   "busy": "Occupati",
   "free": "Liberi",
-  "lock": "Bloccati"
+  "lock": "Bloccati",
+
+  "device-aut": "Automatico",
+  "device-man": "Manuale",
+  "device-ce-0": "Entrata in corso",
+  "device-ce-1": "Entrata tessera {{card}}",
+  "device-ce-2": "Entrata tessera {{card}} in stallo {{stall}}",
+  "device-cu-0": "Uscita in corso",
+  "device-cu-1": "Uscita tessera {{card}}",
+  "device-cu-2": "Uscita tessera {{card}} da stallo {{stall}}"
 }
