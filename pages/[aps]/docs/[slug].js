@@ -4,7 +4,7 @@ import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 import Paper from '@mui/material/Paper'
 import Layout from 'src/components/Layout'
-// import { aps, apsPaths } from 'src/constants/aps'
+import { aps_, apsPaths } from 'src/constants/aps'
 import { getDocBySlug, getAllDocs } from 'src/lib/api'
 import markdownToHtml from 'src/lib/markdownToHtml'
 import withAuthSync from 'src/hocs/withAuthSync'
@@ -47,7 +47,9 @@ export async function getStaticProps ({ locale, params }) {
   //   }
   // }
 
-  const { APS_NAME } = await import(`src/constants/${params.aps}`)
+  // const { APS_NAME } = await import(`src/constants/${params.aps}`)
+
+  const APS = aps_(params.aps)
 
   const doc = getDocBySlug(
     params.slug,
@@ -58,8 +60,10 @@ export async function getStaticProps ({ locale, params }) {
 
   return {
     props: {
-      aps: params.aps,
-      apsName: APS_NAME,
+      // aps: params.aps,
+      // apsName: APS_NAME,
+      aps: APS.ns,
+      apsName: APS.name,
       locale,
       executionTime: process.hrtime(),
       doc: {
@@ -85,7 +89,7 @@ export async function getStaticPaths ({ locales, defaultLocale }) {
     })
   })
 
-  console.log(locales, defaultLocale, paths)
+  // console.log(locales, defaultLocale, paths)
 
   return { paths, fallback: false }
 }
