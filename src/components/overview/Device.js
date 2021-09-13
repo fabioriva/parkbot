@@ -137,7 +137,11 @@ export default function Device (props) {
         // subheader={`Device ${id}`}
       />
       <CardContent sx={{ bgcolor: theme => bg(operation, theme) }}>
-        {motor === 0 ? mainView : <Silomat data={props.item.e} />}
+        {motor === 0 ? (
+          mainView
+        ) : (
+          <Silomat data={props.item.e} loading={props.loading} />
+        )}
       </CardContent>
       <CardActions disableSpacing>
         {/* <Link

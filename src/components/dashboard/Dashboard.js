@@ -33,7 +33,6 @@ export default function Dashboard (props) {
     initialData: dashboard,
     refreshInterval: 1000
   })
-  console.log(url, data, error)
   React.useEffect(() => {
     if (data) setDashboard(data)
   }, [data])
@@ -78,7 +77,7 @@ export default function Dashboard (props) {
           </Widget>
         </Grid> */}
         {dailyOperations.data.length > 0 && (
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ display: { xs: 'none', md: 'block' } }}>
             <Widget
               link={`/${props.aps}/statistics`}
               title={t('operations-title')}
