@@ -7,8 +7,11 @@ import Devices from 'src/components/dashboard/Devices'
 import Widget from 'src/components/dashboard/Widget'
 import Occupancy from 'src/components/charts/Occupancy'
 import Operations from 'src/components/charts/Operations'
-import QueueList from 'src/components/overview/QueueList'
-import { useData } from 'src/lib/useWebSocket'
+// import QueueList from 'src/components/overview/QueueList'
+// import { useData } from 'src/lib/useWebSocket'
+import useSWR from 'swr'
+
+const fetcher = url => global.fetch(url).then(r => r.json())
 
 export default function Dashboard (props) {
   const { t } = useTranslation('dashboard')
@@ -19,12 +22,21 @@ export default function Dashboard (props) {
 
   const dailyOperations = operations[2]
 
-  const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/dashboard`
-  const { data } = useData(url, {
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dashboard`
+  // const { data } = useData(url, {
+  //   initialData: dashboard,
+  //   page: 'dashboard'
+  // })
+  // React.useEffect(() => setDashboard(data), [data])
+
+  const { data, error } = useSWR(url, fetcher, {
     initialData: dashboard,
-    page: 'dashboard'
+    refreshInterval: 1000
   })
-  React.useEffect(() => setDashboard(data), [data])
+  console.log(url, data, error)
+  React.useEffect(() => {
+    if (data) setDashboard(data)
+  }, [data])
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>

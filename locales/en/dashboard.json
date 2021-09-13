@@ -12,6 +12,10 @@
   "free": "Free",
   "lock": "Locked",
 
+  "entries": "Entries",
+  "exits": "Exits",
+  "total": "Total",
+
   "device-aut": "Automatic mode",
   "device-man": "Manual mode",
   "device-ce-0": "Entry in progress",

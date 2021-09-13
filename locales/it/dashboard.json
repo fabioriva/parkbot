@@ -12,6 +12,10 @@
   "free": "Liberi",
   "lock": "Bloccati",
 
+  "entries": "Entrate",
+  "exits": "Uscite",
+  "total": "Totale",
+
   "device-aut": "Automatico",
   "device-man": "Manuale",
   "device-ce-0": "Entrata in corso",
