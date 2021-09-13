@@ -39,7 +39,7 @@ export default function QueueList (props) {
     <>
       <List dense>
         {props.queue
-          .filter(item => item.card === 0)
+          .filter(item => item.card !== 0)
           .map((element, index) => (
             <ListItem key={index} sx={{ p: 0 }}>
               <ListItemAvatar>
