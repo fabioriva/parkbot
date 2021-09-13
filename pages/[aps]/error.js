@@ -22,18 +22,18 @@ const Page = props => {
 }
 
 export async function getStaticProps ({ locale, params }) {
-  if (aps(params.aps) === -1) {
+  const APS = aps_(params.aps)
+
+  if (APS === undefined || params.aps !== APS.ns) {
     return {
       notFound: true
     }
   }
 
-  const { APS_NAME } = await import(`src/constants/${params.aps}`)
-
   return {
     props: {
-      aps: params.aps,
-      apsName: APS_NAME,
+      aps: APS.ns,
+      apsName: APS.name,
       locale,
       executionTime: process.hrtime()
     }
