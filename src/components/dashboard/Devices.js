@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Avatar from '@mui/material/Avatar'
-// import Chip from '@mui/material/Chip'
+import Badge from '@mui/material/Badge'
 import Divider from '@mui/material//Divider'
 import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
@@ -86,7 +86,16 @@ export default function Devices ({ aps, devices }) {
               </IconButton>
             }
           >
-            <ListItemAvatar>{itemData(item.a).avatar}</ListItemAvatar>
+            <ListItemAvatar>
+              <Badge
+                badgeContent={item.a.step}
+                overlap='circular'
+                color='primary'
+                // showZero
+              >
+                {itemData(item.a).avatar}
+              </Badge>
+            </ListItemAvatar>
             <ListItemText
               primary={<strong>{item.a.name}</strong>}
               secondary={itemData(item.a).text}
