@@ -3,11 +3,24 @@ import Grid from '@mui/material/Grid'
 const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={1}>
-      <Grid item xs={12} md={8}>
+      {/* <Grid item xs={12} md={8}>
         {levels}
         {view}
       </Grid>
       <Grid item xs={12} md={4}>
+        {occupancy}
+      </Grid> */}
+      <Grid item xs={12} xl={9}>
+        <Grid container spacing={1}>
+          {levels.map((level, key) => (
+            <Grid item key={key}>
+              {level}
+            </Grid>
+          ))}
+        </Grid>
+        {view}
+      </Grid>
+      <Grid item xs={12} xl={3}>
         {occupancy}
       </Grid>
       <style jsx global>
