@@ -10,7 +10,7 @@
 
   "dialog-cancel": "Cancel",
   "dialog-confirm": "Confirm",
-  "dialog-date-from": "Date",
+  "dialog-date": "Date",
   "dialog-title": "Select a date",
 
   "op-summary": "Operations summary: {{date}}",
