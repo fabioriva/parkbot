@@ -5,6 +5,7 @@
   "history-count": "Registrazioni {{count}}",
   "history-query": "Registrazioni da {{from}} a {{to}}",
   "history-summary": "Riepilogo della ricerca",
+  "history-no-found": "Nessuna registrazione trovata!",
 
   "alarm": "Allarme",
   "date": "Data",

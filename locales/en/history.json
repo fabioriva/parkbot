@@ -6,6 +6,7 @@
   "history-count": "Logs count {{count}}",
   "history-query": "Logs from {{from}} to {{to}}",
   "history-summary": "Query summary",
+  "history-no-found": "No records found!",
 
   "alarm": "Alarm Id",
   "date": "Date",

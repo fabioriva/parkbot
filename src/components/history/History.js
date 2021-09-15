@@ -22,6 +22,7 @@ export default function History (props) {
 
   const handleConfirm = async (dateFrom, dateTo) => {
     console.log(typeof dateFrom, dateFrom, typeof dateTo, dateTo)
+    setOpen(false)
     const filter = 'a'
     const query = `system=0&dateFrom=${dateFrom}&dateTo=${dateTo}&filter=${filter}&device=0&number=0`
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/history?${query}`
@@ -29,7 +30,7 @@ export default function History (props) {
       headers: { Authorization: 'Bearer ' + props.token }
     })
     setHistory(!json.err ? json : history)
-    setOpen(false)
+    // setOpen(false)
   }
 
   return (
@@ -42,7 +43,11 @@ export default function History (props) {
       />
 
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-        <HistoryList count={history.count} query={history.query} />
+        {history.count > 0 ? (
+          <HistoryList count={history.count} query={history.query} />
+        ) : (
+          <Alert severity='info'>{t('history-no-found')}</Alert>
+        )}
         <Fab
           color='primary'
           aria-label='search'
@@ -81,16 +86,17 @@ export default function History (props) {
             {/* <AlertTitle sx={{ display: { xs: 'none', md: 'block' } }}>
               {t('history-summary')}
             </AlertTitle> */}
-            <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-              {t('history-query', {
-                from: history.dateFrom,
-                to: history.dateTo
-              })}
-              .&nbsp;{t('history-count', { count: history.count })}.
-            </Box>
+            {/* <Box sx={{ display: { xs: 'none', md: 'block' } }}> */}
+            {t('history-query', {
+              from: history.dateFrom,
+              to: history.dateTo
+            })}
+            .&nbsp;{t('history-count', { count: history.count })}.{/* </Box> */}
           </Alert>
         </Paper>
-        <HistoryTable count={history.count} query={history.query} />
+        {history.count > 0 && (
+          <HistoryTable count={history.count} query={history.query} />
+        )}
       </Box>
     </Layout>
   )
