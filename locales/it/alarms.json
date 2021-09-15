@@ -2,8 +2,12 @@
   "al-active": "Allarmi attivi",
   "al-ready": "Nessun allarme attivo",
   "al-count": "Totale allarmi attivi {{count}}",
+
+  "al-fc": "Finecoesa {{fc1}} {{fc2}}",
   "al-id": "Allarme AL{{id}}",
+  "al-iv": "Inverter {{nr}}",
   "al-th": "Scatto termico {{thermic}}",
+  "al-tl": "Contattore {{name}}",
 
   "al-sil-01": "Time out traslazione Silomat",
   "al-sil-02": "Time out sollevamento Silomat",
@@ -36,13 +40,18 @@
   "al-r-lck-fc": "Finecorsa EOMD/EZMD",
   "al-flap-to": "Time out clappa",
   "al-flap-fc": "Finecorsa ECA/ECB",
+  "al-sp-to": "Time out porta",
+  "al-sp-fc": "Finecorsa porta",
+  "al-spb-to": "Time out barriera",
+  "al-spb-fc": "Finecorsa barriera",
   "al-spe-to": "Time out porta E",
   "al-spe-fc": "Porta EZE/EOE",
   "al-spa-to": "Time out porta U",
   "al-spa-fc": "Porta EZA/EOA",
-
-  "alarm-iv": "Inverter {{nr}}",
-  "alarm-th": "Scatto termico {{thermic}}",
+  "al-spbe-to": "Time out porta E",
+  "al-spbe-fc": "Porta EZE/EOE",
+  "al-spba-to": "Time out porta U",
+  "al-spba-fc": "Porta EZA/EOA",
 
   "fallback1": "Nessuna descrizione"
 }

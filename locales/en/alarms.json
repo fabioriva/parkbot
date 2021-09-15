@@ -2,8 +2,12 @@
   "al-active": "Active Alarms",
   "al-ready": "No active alarms",
   "al-count": "Total active alarms {{count}}",
+
+  "al-fc": "Limitswitches {{fc1}} {{fc2}} check",
   "al-id": "Alarm AL{{id}}",
+  "al-iv": "Inverter {{nr}}",
   "al-th": "Thermic check {{thermic}}",
+  "al-tl": "Contactor check {{name}}",
 
   "al-sil-01": "Silomat travelimg time out",
   "al-sil-02": "Silomat hoisting time out",
@@ -36,13 +40,18 @@
   "al-r-lck-fc": "Locking R EOM/EZM",
   "al-flap-to": "Flap time out",
   "al-flap-fc": "Flap ECA/ECB",
+  "al-sp-to": "Door time out",
+  "al-sp-fc": "Door limitswitches",
+  "al-spb-to": "Barrier time out",
+  "al-spb-fc": "Barrier limitswitches",
   "al-spe-to": "Door E time out",
   "al-spe-fc": "Door EZE/EOE",
   "al-spa-to": "Door U time out",
   "al-spa-fc": "Door EZA/EOA",
-
-  "alarm-iv": "Inverter {{nr}}",
-  "alarm-th": "Thermic check {{thermic}}",
+  "al-spbe-to": "Door E time out",
+  "al-spbe-fc": "Door EZE/EOE",
+  "al-spba-to": "Door U time out",
+  "al-spba-fc": "Door EZA/EOA",
 
   "fallback1": "No description"
 }
