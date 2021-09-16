@@ -6,7 +6,7 @@
     "/signin": ["signin"],
     "/[aps]/active/[id]": ["alarms", "io"],
     "/[aps]/cards": ["cards"],
-    "/[aps]/dashboard": ["dashboard", "overview"],
+    "/[aps]/dashboard": ["alarms", "dashboard", "overview"],
     "/[aps]/device/[id]": ["alarms", "io", "overview"],
     "/[aps]/history": ["history", "alarms"],
     "/[aps]/map": ["map"],

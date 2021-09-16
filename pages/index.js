@@ -42,7 +42,7 @@ export default function Home (props) {
         <Typography
           sx={{
             color: '#ff9800',
-            fontSize: { xs: 48, md: 100 },
+            fontSize: { xs: 64, md: 100 },
             fontWeight: 500
           }}
           variant='h2'
