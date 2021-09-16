@@ -18,22 +18,17 @@ export default function Dashboard (props) {
 
   const [dashboard, setDashboard] = React.useState(props.json)
 
-  const { activity, cards, occupancy, operations, system } = dashboard
-
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dashboard`
-  // const { data } = useData(url, {
-  //   initialData: dashboard,
-  //   page: 'dashboard'
-  // })
-  // React.useEffect(() => setDashboard(data), [data])
-
   const { data, error } = useSWR(url, fetcher, {
     initialData: dashboard,
     refreshInterval: 1000
   })
+
   React.useEffect(() => {
     if (data) setDashboard(data)
   }, [data])
+
+  const { activity, cards, occupancy, operations, system } = dashboard
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
@@ -51,14 +46,15 @@ export default function Dashboard (props) {
         <Grid item sx={{ display: 'flex' }} xs={12} lg>
           <Widget link={`/${props.aps}/map`} title={t('occupancy-title')}>
             <Occupancy
+              // animation
               data={[
                 occupancy[0].value,
                 occupancy[1].value,
                 occupancy[2].value
               ]}
               labels={[t('busy'), t('free'), t('lock')]}
-              height={300}
-              width={300}
+              height={320}
+              width={320}
             />
           </Widget>
         </Grid>
@@ -77,12 +73,12 @@ export default function Dashboard (props) {
               title={t('operations-title')}
             >
               <Operations
-                height={'40%'}
-                width={'100%'}
                 data={operations[2].data}
                 labels={[t('entries'), t('exits'), t('total')]}
                 title={`${operations[2].title}: ${operations[2].label}`}
                 // title={`${t(dailyOperations.i18n)}: ${dailyOperations.label}`}
+                height={'40%'}
+                width={'100%'}
               />
             </Widget>
           </Grid>

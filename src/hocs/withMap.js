@@ -76,6 +76,7 @@ const withMap = WrappedComponent => {
           ))}
           occupancy={
             <Occupancy
+              animation
               data={[
                 map.occupancy[0].value,
                 map.occupancy[1].value,

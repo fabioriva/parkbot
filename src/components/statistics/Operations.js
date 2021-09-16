@@ -99,12 +99,13 @@ export default function Statistics (props) {
                   <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                     <Operations
                       key={index}
-                      height={'30%'}
-                      width={'100%'}
+                      animation
                       data={element.data}
                       labels={[t('entries'), t('exits'), t('total')]}
                       // title={`${t(element.i18n)}: ${element.label}`}
                       title={`${element.title}: ${element.label}`}
+                      height={'30%'}
+                      width={'100%'}
                     />
                   </Box>
                 </Paper>

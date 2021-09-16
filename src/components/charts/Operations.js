@@ -2,7 +2,14 @@ import { Bar } from 'react-chartjs-2'
 import Box from '@mui/material/Box'
 import { blue } from '@mui/material/colors'
 
-export default function Occupancy ({ data, labels, title, height, width }) {
+export default function Occupancy ({
+  animation = false,
+  data,
+  labels,
+  title,
+  height,
+  width
+}) {
   const data_ = { labels: [], entries: [], exits: [], total: [] }
   data.forEach(e => {
     data_.labels.push(e.name)
@@ -58,6 +65,9 @@ export default function Occupancy ({ data, labels, title, height, width }) {
             }
           },
           responsive: true,
+          animation: {
+            duration: animation ? 1000 : 0 // 0 = off
+          },
           plugins: {
             legend: {
               position: 'top'
