@@ -14,26 +14,11 @@ function Bit ({ item, nr }) {
       <CustomTooltip
         placement='top'
         title={
-          <div>
-            {addr && (
-              <>
-                {addr}
-                <br />
-              </>
-            )}
-            {label && (
-              <>
-                {label}
-                <br />
-              </>
-            )}
-            {label !== '' && (
-              <>
-                {t(label)}
-                <br />
-              </>
-            )}
-          </div>
+          <ul className='tooltip'>
+            <li>{addr}</li>
+            <li>{label}</li>
+            <li>{t(label, {}, { fallback: 'fallback' })}</li>
+          </ul>
         }
       >
         <div className='id' id={'id-'.concat(nr, bit)}>
@@ -54,6 +39,11 @@ function Bit ({ item, nr }) {
       </div>
       <style jsx>
         {`
+          .tooltip {
+            list-style-type: none; /* Remove bullets */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margins */
+          }
           .id {
             position: absolute;
             height: 18px;
