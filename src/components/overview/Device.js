@@ -160,7 +160,7 @@ export default function Device (props) {
           <Box sx={{ marginLeft: 'auto' }}>
             <Active
               active={props.item.alarms.length}
-              href={`/${props.aps}/device/${id - 1}`}
+              href={`/${props.aps}/active/${id - 1}`}
               locale={props.user.locale}
             />
           </Box>

@@ -1,9 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import useTranslation from 'next-translate/useTranslation'
-import Divider from '@mui/material/Divider'
+// import useTranslation from 'next-translate/useTranslation'
 import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
 import Layout from 'src/components/Layout'
 import DeviceInfo from 'src/components/device/DeviceInfo'
 import Inverter from 'src/components/device/Inverter'
@@ -11,7 +9,7 @@ import Motor from 'src/components/device/Motor'
 import { useData } from 'src/lib/useWebSocket'
 
 export default function DeviceView (props) {
-  const { t } = useTranslation('overview')
+  // const { t } = useTranslation('overview')
 
   const router = useRouter()
   const { id } = router.query
