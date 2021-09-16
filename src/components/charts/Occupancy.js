@@ -1,10 +1,11 @@
+import React from 'react'
 import { Pie } from 'react-chartjs-2'
 import Box from '@mui/material/Box'
 
 // const COLORS = ['#ff0000', '#00ff00', '#ff00ff']
 const COLORS = ['rgb(244, 67, 54)', 'rgb(102, 187, 106)', 'rgb(206, 147, 216)']
 
-export default function Occupancy ({ data, labels, title, height, width }) {
+function Occupancy ({ data, labels, title, height, width }) {
   return (
     <Box
       sx={{
@@ -47,3 +48,5 @@ export default function Occupancy ({ data, labels, title, height, width }) {
     </Box>
   )
 }
+
+export default React.memo(Occupancy)
