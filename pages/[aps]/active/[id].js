@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import { useData } from 'src/lib/useWebSocket'
 import fetch from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
@@ -20,7 +21,18 @@ import withAuthSync from 'src/hocs/withAuthSync'
 const Page = props => {
   const router = useRouter()
   const { id } = router.query
-  const device = props.json.devices[id]
+
+  const [overview, setOverview] = React.useState(props.json)
+
+  const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/overview`
+  const { data, loading } = useData(url, {
+    initialData: overview,
+    page: 'overview'
+  })
+  React.useEffect(() => setOverview(data), [data])
+
+  // const device = props.json.devices[id]
+  const device = overview.devices[id]
 
   return props.json.err ? (
     <Error {...props} error='Error 500' />
