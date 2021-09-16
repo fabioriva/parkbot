@@ -16,24 +16,45 @@ const fetcher = url => global.fetch(url).then(r => r.json())
 export default function Dashboard (props) {
   const { t } = useTranslation('dashboard')
 
-  const [dashboard, setDashboard] = React.useState(props.json)
+  // const [dashboard, setDashboard] = React.useState(props.json)
 
-  const { activity, cards, occupancy, operations, system } = dashboard
+  // const { activity, cards, occupancy, operations, system } = dashboard
 
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dashboard`
-  // const { data } = useData(url, {
+  // const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dashboard`
+  // // const { data } = useData(url, {
+  // //   initialData: dashboard,
+  // //   page: 'dashboard'
+  // // })
+  // // React.useEffect(() => setDashboard(data), [data])
+
+  // const { data, error } = useSWR(url, fetcher, {
   //   initialData: dashboard,
-  //   page: 'dashboard'
+  //   refreshInterval: 1000
   // })
-  // React.useEffect(() => setDashboard(data), [data])
+  // React.useEffect(() => {
+  //   if (data) setDashboard(data)
+  // }, [data])
 
+  const [dashboard, setDashboard] = React.useState(props.json)
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dashboard`
   const { data, error } = useSWR(url, fetcher, {
     initialData: dashboard,
     refreshInterval: 1000
   })
+
+  const [activity, setActivity] = React.useState(dashboard.activity)
+  const [occupancy, setOccupancy] = React.useState(dashboard.occupancy)
+  const [operations, setOperations] = React.useState(dashboard.operations)
+  const [system, setSystem] = React.useState(dashboard.system)
+
   React.useEffect(() => {
-    if (data) setDashboard(data)
-  }, [data])
+    if (data) {
+      setActivity(data.activity)
+      setOccupancy(data.occupancy)
+      setOperations(data.operations)
+      setSystem(data.system)
+    }
+  }, [activity, occupancy, operations, system])
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
