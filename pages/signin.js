@@ -21,7 +21,7 @@ import Typography from '@mui/material/Typography'
 import Copyright from 'src/components/Copyright'
 import useTranslation from 'next-translate/useTranslation'
 
-const START_PAGE = 'overview'
+const START_PAGE = 'dashboard'
 
 export default function Signin () {
   const { t } = useTranslation('signin')

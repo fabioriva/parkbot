@@ -20,8 +20,6 @@ export default function Dashboard (props) {
 
   const { activity, cards, occupancy, operations, system } = dashboard
 
-  const dailyOperations = operations[2]
-
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dashboard`
   // const { data } = useData(url, {
   //   initialData: dashboard,
@@ -72,7 +70,7 @@ export default function Dashboard (props) {
             />
           </Widget>
         </Grid> */}
-        {dailyOperations.data.length > 0 && (
+        {operations[2].data.length > 0 && (
           <Grid item xs={12} sx={{ display: { xs: 'none', md: 'block' } }}>
             <Widget
               link={`/${props.aps}/statistics`}
@@ -81,8 +79,9 @@ export default function Dashboard (props) {
               <Operations
                 height={'40%'}
                 width={'100%'}
-                data={dailyOperations.data}
+                data={operations[2].data}
                 labels={[t('entries'), t('exits'), t('total')]}
+                title={`${operations[2].title}: ${operations[2].label}`}
                 // title={`${t(dailyOperations.i18n)}: ${dailyOperations.label}`}
               />
             </Widget>
