@@ -73,6 +73,7 @@ export default function Dashboard (props) {
               title={t('operations-title')}
             >
               <Operations
+                // animation
                 data={operations[2].data}
                 labels={[t('entries'), t('exits'), t('total')]}
                 title={`${operations[2].title}: ${operations[2].label}`}

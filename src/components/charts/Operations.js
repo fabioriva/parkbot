@@ -1,6 +1,5 @@
 import { Bar } from 'react-chartjs-2'
 import Box from '@mui/material/Box'
-import { blue } from '@mui/material/colors'
 
 export default function Occupancy ({
   animation = false,
@@ -29,9 +28,6 @@ export default function Occupancy ({
         mb: 3
       }}
     >
-      {/* <Typography variant='h6' component='h2' gutterBottom>
-        {title}
-      </Typography> */}
       <Bar
         height={height}
         width={width}
