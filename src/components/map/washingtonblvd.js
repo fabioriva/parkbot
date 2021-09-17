@@ -5,12 +5,12 @@ const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} xl={10}>
-        <Box sx={{ mb: 3, mx: { xs: 2, md: 0 }, overflow: 'scroll' }}>
+        <Box sx={{ mb: 3, mx: { xs: 1, md: 0 }, overflow: 'scroll' }}>
           {levels[2]}
           {levels[1]}
           {levels[0]}
         </Box>
-        <Box sx={{ mx: { xs: 2, md: 0 } }}>{view}</Box>
+        <Box sx={{ mx: { xs: 1, md: 0 } }}>{view}</Box>
       </Grid>
       <Grid item xs={12} xl={2}>
         <Box sx={{ display: { xs: 'none', xl: 'block' } }}>{occupancy}</Box>
