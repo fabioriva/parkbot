@@ -7,7 +7,7 @@ function text (item, t) {
       return (
         <div>
           <strong>AL{item.alarm.id}</strong>{' '}
-          {t(`alarms:${item.alarm.i18n.key}`, item.alarm.i18n.query, {
+          {t(`alarms:${item.alarm.i18n?.key}`, item.alarm.i18n?.query, {
             fallback: 'fallback1'
           })}
         </div>
@@ -20,7 +20,7 @@ function text (item, t) {
       return (
         <div>
           <strong>AL{item.alarm.id}</strong>{' '}
-          {t(`alarms:${item.alarm.i18n.key}`, item.alarm.i18n.query, {
+          {t(`alarms:${item.alarm.i18n?.key}`, item.alarm.i18n?.query, {
             fallback: 'fallback1'
           })}
         </div>
