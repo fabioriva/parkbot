@@ -1,5 +1,6 @@
-import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+
 const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={1}>
@@ -9,7 +10,7 @@ const Map = ({ levels, occupancy, view }) => {
           {levels[1]}
           {levels[0]}
         </div>
-        {view}
+        <Box sx={{ m: 3 }}>{view}</Box>
       </Grid>
       <Grid item xs={12} xl={2}>
         <Box sx={{ display: { xs: 'none', xl: 'block' } }}>{occupancy}</Box>
