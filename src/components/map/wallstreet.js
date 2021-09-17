@@ -1,14 +1,17 @@
+import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
 const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={10}>
       <Grid item xs={12} md={8}>
-        {levels.reverse()}
-        {view}
+        <Box sx={{ mb: 1, mx: { xs: 1, md: 0 }, overflow: 'scroll' }}>
+          {levels.reverse()}
+        </Box>
+        <Box sx={{ mx: { xs: 1, md: 0 } }}>{view}</Box>
       </Grid>
       <Grid item xs={12} md={4}>
-        {occupancy}
+        <Box sx={{ display: { xs: 'none', xl: 'block' } }}>{occupancy}</Box>
       </Grid>
       <style jsx global>
         {`

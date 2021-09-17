@@ -84,8 +84,8 @@ const withMap = WrappedComponent => {
               ]}
               labels={[t('busy'), t('free'), t('lock')]}
               title={t('occupancy', { count: stalls })}
-              height={240}
-              width={240}
+              height={280}
+              width={280}
             />
           }
           view={
