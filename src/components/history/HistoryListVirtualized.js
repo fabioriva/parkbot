@@ -15,7 +15,7 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-// import PersonIcon from '@mui/icons-material/Person'
+import PersonIcon from '@mui/icons-material/Person'
 import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded'
 
 function renderRow ({ data, index, style }) {
