@@ -1,6 +1,7 @@
 const APS_ = [
   { ns: 'bmc', name: 'BMC, Mumbai, 🇮🇳' },
   { ns: 'chandan', name: 'Chandan Society, Mumbai, 🇮🇳' },
+  { ns: 'ironbank', name: 'Iron Bank, Auckland, 🇳🇿' },
   { ns: 'nhidcl', name: 'NHIDCL, New Delhi, 🇮🇳' },
   { ns: 'trumpeldor', name: 'Trumpeldor, Tel Aviv, 🇮🇱' },
   { ns: 'vl', name: 'Vaibhab Lakshmi, Mumbai, 🇮🇳' },
@@ -16,6 +17,7 @@ export const aps_ = aps => APS_.find(a => aps === a.ns)
 const APS = [
   'bmc',
   'chandan',
+  'ironbank',
   'nhidcl',
   'trumpeldor',
   'vl',

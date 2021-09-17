@@ -9,6 +9,7 @@ import withAuthSync from 'src/hocs/withAuthSync'
 const componentList = {
   bmc: dynamic(() => import('src/components/map/bmc')),
   chandan: dynamic(() => import('src/components/map/chandan')),
+  ironbank: dynamic(() => import('src/components/map/ironbank')),
   nhidcl: dynamic(() => import('src/components/map/nhidcl')),
   trumpeldor: dynamic(() => import('src/components/map/trumpeldor')),
   vl: dynamic(() => import('src/components/map/vl')),
