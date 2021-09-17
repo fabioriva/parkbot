@@ -5,12 +5,12 @@ const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} xl={10}>
-        <div className='map'>
+        <Box sx={{ mb: 3, mx: { xs: 3, md: 0 }, overflow: 'scroll' }}>
           {levels[2]}
           {levels[1]}
           {levels[0]}
-        </div>
-        <Box sx={{ m: 3 }}>{view}</Box>
+        </Box>
+        <Box sx={{ mx: { xs: 3, md: 0 } }}>{view}</Box>
       </Grid>
       <Grid item xs={12} xl={2}>
         <Box sx={{ display: { xs: 'none', xl: 'block' } }}>{occupancy}</Box>
@@ -20,10 +20,6 @@ const Map = ({ levels, occupancy, view }) => {
         {`
           .s {
             width: 36px !important; /*overrides width in MapStall.js */
-          }
-          .map {
-            overflow: scroll;
-            margin: 16px;
           }
           .l {
             position: relative;
