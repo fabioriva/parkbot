@@ -1,9 +1,9 @@
 import React from 'react'
-import Box from '@mui/material/Box'
+// import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
 import { useData } from 'src/lib/useWebSocket'
 import Layout from 'src/components/Layout'
-import ListView from 'src/components/racks/RackListView'
+// import ListView from 'src/components/racks/RackListView'
 import RackView from 'src/components/racks/RackView'
 import useTranslation from 'next-translate/useTranslation'
 
@@ -24,13 +24,13 @@ export default function Rack (props) {
 
   return (
     <Layout {...props} pageTitle={t('rack-title', { name: rack.title })}>
-      <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+      {/* <Box sx={{ display: { xs: 'block', md: 'none' } }}>
         <ListView rack={rack} loading={loading} />
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'block' } }}>
         <RackView rack={rack} />
-      </Box>
-      {/* <RackView rack={rack} /> */}
+      </Box> */}
+      <RackView rack={rack} />
     </Layout>
   )
 }
