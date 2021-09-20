@@ -1,6 +1,5 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-// import useTranslation from 'next-translate/useTranslation'
 import Grid from '@mui/material/Grid'
 import Layout from 'src/components/Layout'
 import DeviceInfo from 'src/components/device/DeviceInfo'
@@ -9,8 +8,6 @@ import Motor from 'src/components/device/Motor'
 import { useData } from 'src/lib/useWebSocket'
 
 export default function DeviceView (props) {
-  // const { t } = useTranslation('overview')
-
   const router = useRouter()
   const { id } = router.query
 
@@ -33,15 +30,16 @@ export default function DeviceView (props) {
     >
       <DeviceInfo alarms={device.alarms} />
       {/* <Divider textAlign='left'>Inverters</Divider> */}
-      <Grid container spacing={1} mt={1}>
+      <Grid container spacing={1} mt={0}>
         {inverters.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={3} xl={3}>
             <Inverter {...item} loading={loading} />
           </Grid>
         ))}
       </Grid>
+
       {/* <Divider textAlign='left'>Motors</Divider> */}
-      <Grid container spacing={1} mt={1}>
+      <Grid container spacing={1} mt={0}>
         {motors.map((item, key) => (
           <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
             <Motor {...item} loading={loading} subheader={<span>Motor</span>} />
@@ -50,7 +48,7 @@ export default function DeviceView (props) {
       </Grid>
       {/* <Divider textAlign='left'>Silomat&trade;</Divider> */}
       {silomat !== undefined && (
-        <Grid container spacing={1} mt={1}>
+        <Grid container spacing={1} mt={0}>
           <React.Fragment>
             <Grid item xs={12} md={6} lg={4} xl={3}>
               <Motor
