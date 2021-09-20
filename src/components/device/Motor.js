@@ -20,6 +20,26 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import CircleIcon from '@mui/icons-material/Circle'
 
+const Bit = ({ addr, label }) => {
+  const { t } = useTranslation('io')
+  return (
+    <ul className='tooltip'>
+      <li>{addr}</li>
+      <li>{label}</li>
+      <li>{t(label, {}, { fallback: 'fallback' })}</li>
+      <style jsx>
+        {`
+          .tooltip {
+            list-style-type: none; /* Remove bullets */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margins */
+          }
+        `}
+      </style>
+    </ul>
+  )
+}
+
 const Item = ({ loading, title, value }) => (
   <>
     <Typography variant='body2' color='textSecondary' component='h1'>
@@ -185,12 +205,14 @@ export default function Motor (props) {
                 props.inputs.map((item, key) => (
                   <Tooltip
                     key={key}
-                    title={<div>{item.addr + ' ' + t('io:' + item.label)}</div>}
+                    title={<Bit {...item} />}
+                    // title={<div>{item.addr + ' ' + t('io:' + item.label)}</div>}
                   >
                     <Chip
                       label={item.label}
                       color={item.status ? 'primary' : 'default'}
                       size='small'
+                      // sx={{ fontSize: 11, fontWeight: 'medium' }}
                     />
                   </Tooltip>
                 ))}
@@ -205,12 +227,14 @@ export default function Motor (props) {
                 props.outputs.map((item, key) => (
                   <Tooltip
                     key={key}
-                    title={<div>{item.addr + ' ' + t('io:' + item.label)}</div>}
+                    title={<Bit {...item} />}
+                    // title={<div>{item.addr + ' ' + t('io:' + item.label)}</div>}
                   >
                     <Chip
                       label={item.label}
                       color={item.status ? 'warning' : 'default'}
                       size='small'
+                      // sx={{ fontSize: 11, fontWeight: 'medium' }}
                     />
                   </Tooltip>
                 ))}
