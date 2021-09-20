@@ -7,11 +7,18 @@ import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { green, orange } from '@mui/material/colors'
+import { green, orange, red } from '@mui/material/colors'
 import BoltIcon from '@mui/icons-material/Bolt'
 import useTranslation from 'next-translate/useTranslation'
 import Lamp from 'src/components/overview/Lamp'
 import Tooltip from 'src/components/Tooltip'
+
+import IconButton from '@mui/material/IconButton'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+// import ListItemAvatar from '@mui/material/ListItemAvatar'
+import ListItemText from '@mui/material/ListItemText'
+import CircleIcon from '@mui/icons-material/Circle'
 
 const Item = ({ loading, title, value }) => (
   <>
@@ -45,11 +52,75 @@ export default function Motor (props) {
     />
   )
 
-  const LC = (
+  const LA = (
     <Lamp
       key={1}
-      color={props.enable ? orange[500] : orange[100]}
-      title={props.enable ? t('device-ready-on') : t('device-ready-off')}
+      color={props.error ? red[500] : red[100]}
+      title={props.error ? t('device-alarm-on') : t('device-alarm-off')}
+    />
+  )
+
+  const LC = props.ready !== undefined && (
+    <Lamp
+      key={2}
+      color={props.ready.every(e => e.status) ? orange[500] : orange[100]}
+      // title={LCStatus ? t('device-ready-on') : t('device-ready-off')}
+      title={
+        <List
+          subheader={
+            <Typography variant='subtitle1' gutterBottom component='div'>
+              {props.ready.every(e => e.status)
+                ? t('device-ready-on')
+                : t('device-ready-off')}
+            </Typography>
+          }
+          dense
+        >
+          {props.ready.map((item, key) => (
+            <ListItem
+              disableGutters
+              key={key}
+              secondaryAction={
+                <IconButton aria-label='info' sx={{ px: 0, py: 1 }} disabled>
+                  <CircleIcon
+                    sx={{ color: item.status ? green[500] : green[100] }}
+                  />
+                </IconButton>
+              }
+            >
+              {/* <ListItemIcon sx={{ minWidth: 32 }}>
+                <CircleIcon
+                  sx={{
+                    color: item.status ? green[500] : green[100],
+                    fontSize: 20
+                  }}
+                />
+              </ListItemIcon> */}
+              {/* <ListItemAvatar>
+                <Avatar
+                  sx={{
+                    bgcolor: item.status && green[500],
+                    fontSize: 16,
+                    width: 20,
+                    height: 20
+                  }}
+                  variant='square'
+                >
+                  {item.status}
+                </Avatar>
+              </ListItemAvatar> */}
+              <ListItemText
+                primary={item.addr + ' ' + item.label}
+                primaryTypographyProps={{
+                  // color: 'primary',
+                  // fontWeight: 'medium',
+                  variant: 'body2'
+                }}
+              />
+            </ListItem>
+          ))}
+        </List>
+      }
     />
   )
 
@@ -63,7 +134,7 @@ export default function Motor (props) {
             fontWeight: 'bold'
           }
         }}
-        action={[LC, EN]}
+        action={[LC, LA, EN]}
         avatar={
           <Avatar sx={{ bgcolor: props.motion.id !== 0 && 'warning.main' }}>
             <BoltIcon />

@@ -69,7 +69,7 @@ export default function Inverter (props) {
           </Avatar>
         }
         title={props.name}
-        subheader={t('vfd-title', {})}
+        subheader={t('vfd-title', { id: props.id })}
       />
       <CardContent>
         <Grid container spacing={1}>
