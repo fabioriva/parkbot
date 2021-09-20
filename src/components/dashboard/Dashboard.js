@@ -34,7 +34,7 @@ export default function Dashboard (props) {
     <Layout {...props} pageTitle={t('header-title')}>
       <Grid container spacing={2}>
         <Grid item sx={{ display: 'flex' }} xs={12} lg>
-          <Widget link={`/${props.aps}/overview`} title={t('system-title')}>
+          <Widget link={`/${props.aps}/overview`} title={t('devices-title')}>
             <Devices devices={system.devices} aps={props.aps} />
           </Widget>
         </Grid>

@@ -50,49 +50,49 @@ export default function Statistics (props) {
         </Fab>
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-        <Paper sx={{ width: '100%' }}>
-          <Alert
-            action={
-              <Button
-                color='primary'
-                size='small'
-                // variant='outlined'
-                endIcon={<SearchIcon />}
-                onClick={() => setOpen(true)}
-              >
-                {t('dialog-title')}
-              </Button>
-            }
-            severity='info'
-            sx={{ mb: 2 }}
-          >
-            {/* <AlertTitle>
+        {/* <Paper sx={{ width: '100%' }}> */}
+        <Alert
+          action={
+            <Button
+              color='primary'
+              size='small'
+              // variant='outlined'
+              endIcon={<SearchIcon />}
+              onClick={() => setOpen(true)}
+            >
+              {t('dialog-title')}
+            </Button>
+          }
+          severity='info'
+          sx={{ mb: 2 }}
+        >
+          {/* <AlertTitle>
               {t('op-summary', { date: operations[0].label })}
             </AlertTitle> */}
-            <div>
-              {t('op-summary', { date: operations[0].label })}.&nbsp;
-              {t('op-total', {
-                count: operations[0].data.reduce((p, c) => p + c.total, 0)
-              })}
-              .&nbsp;
-              {t('op-entries', {
-                count: operations[0].data.reduce((p, c) => p + c.entries, 0)
-              })}
-              .&nbsp;
-              {t('op-exits', {
-                count: operations[0].data.reduce((p, c) => p + c.exits, 0)
-              })}
-              .&nbsp;
-            </div>
-          </Alert>
-        </Paper>
+          <div>
+            {t('op-summary', { date: operations[0].label })}.&nbsp;
+            {t('op-total', {
+              count: operations[0].data.reduce((p, c) => p + c.total, 0)
+            })}
+            .&nbsp;
+            {t('op-entries', {
+              count: operations[0].data.reduce((p, c) => p + c.entries, 0)
+            })}
+            .&nbsp;
+            {t('op-exits', {
+              count: operations[0].data.reduce((p, c) => p + c.exits, 0)
+            })}
+            .&nbsp;
+          </div>
+        </Alert>
+        {/* </Paper> */}
       </Box>
       <Grid container spacing={3} sx={{ mb: 3 }}>
         {operations.map(
           (element, index) =>
             element.data.length > 0 && (
               <Grid item xs={12} key={index}>
-                <Paper sx={{ p: 1 }}>
+                <Paper>
                   <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                     <OperationsMobileView key={index} statistics={element} />
                   </Box>

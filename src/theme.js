@@ -2,6 +2,21 @@ import { createTheme } from '@mui/material/styles'
 import { red } from '@mui/material/colors'
 
 const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiCard: {
+      defaultProps: {
+        // The props to change the default for.
+        variant: 'outlined' // No more ripple!
+      }
+    },
+    MuiPaper: {
+      defaultProps: {
+        // The props to change the default for.
+        variant: 'outlined' // No more ripple!
+      }
+    }
+  },
   palette: {
     mode: 'light',
     primary: {

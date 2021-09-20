@@ -10,7 +10,7 @@ export default function TransitionAlert (props) {
 
   return (
     <Collapse in={open}>
-      <Paper sx={{ width: '100%' }}>
+      <Paper>
         <Alert
           action={
             <IconButton

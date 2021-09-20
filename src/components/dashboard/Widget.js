@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography'
 export default function Widget ({ children, link, title }) {
   return (
     <Card
-      variant='outlined'
       sx={{
         display: 'flex',
         justifyContent: 'space-between',

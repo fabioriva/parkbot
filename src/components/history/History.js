@@ -4,7 +4,7 @@ import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
 import Button from '@mui/material/Button'
-import Paper from '@mui/material/Paper'
+// import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
 import Layout from 'src/components/Layout'
 import HistoryList from 'src/components/history/HistoryListVirtualized'
@@ -58,42 +58,42 @@ export default function History (props) {
         </Fab>
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-        <Paper sx={{ width: '100%' }}>
-          <Alert
-            action={
-              <Button
-                color='primary'
-                size='small'
-                // variant='outlined'
-                endIcon={<SearchIcon />}
-                onClick={() => setOpen(true)}
-              >
-                {t('dialog-title')}
-              </Button>
-            }
-            // action={
-            //   <IconButton
-            //     size='small'
-            //     aria-label='query'
-            //     onClick={() => setOpen(true)}
-            //   >
-            //     <SearchIcon color='primary' fontSize='inherit' />
-            //   </IconButton>
-            // }
-            severity='info'
-            sx={{ mb: 2 }}
-          >
-            {/* <AlertTitle sx={{ display: { xs: 'none', md: 'block' } }}>
+        {/* <Paper sx={{ width: '100%' }}> */}
+        <Alert
+          action={
+            <Button
+              color='primary'
+              size='small'
+              // variant='outlined'
+              endIcon={<SearchIcon />}
+              onClick={() => setOpen(true)}
+            >
+              {t('dialog-title')}
+            </Button>
+          }
+          // action={
+          //   <IconButton
+          //     size='small'
+          //     aria-label='query'
+          //     onClick={() => setOpen(true)}
+          //   >
+          //     <SearchIcon color='primary' fontSize='inherit' />
+          //   </IconButton>
+          // }
+          severity='info'
+          sx={{ mb: 2 }}
+        >
+          {/* <AlertTitle sx={{ display: { xs: 'none', md: 'block' } }}>
               {t('history-summary')}
             </AlertTitle> */}
-            {/* <Box sx={{ display: { xs: 'none', md: 'block' } }}> */}
-            {t('history-query', {
-              from: history.dateFrom,
-              to: history.dateTo
-            })}
-            .&nbsp;{t('history-count', { count: history.count })}.{/* </Box> */}
-          </Alert>
-        </Paper>
+          {/* <Box sx={{ display: { xs: 'none', md: 'block' } }}> */}
+          {t('history-query', {
+            from: history.dateFrom,
+            to: history.dateTo
+          })}
+          .&nbsp;{t('history-count', { count: history.count })}.{/* </Box> */}
+        </Alert>
+        {/* </Paper> */}
         {history.count > 0 && (
           <HistoryTable count={history.count} query={history.query} />
         )}

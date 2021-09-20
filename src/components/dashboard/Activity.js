@@ -1,12 +1,9 @@
 import * as React from 'react'
-// import Avatar from '@mui/material/Avatar'
-// import Chip from '@mui/material/Chip'
 import Divider from '@mui/material//Divider'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
-// import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction'
 import Typography from '@mui/material/Typography'
 import Avatar from 'src/components/history/HistoryListAvatar'
 import LogMessage from 'src/components/history/LogMessage'
@@ -32,6 +29,7 @@ export default function Activity ({ activity }) {
               }
               secondary={
                 <Typography variant='body2' color='text.primary'>
+                  <strong>{item.device.name} </strong>—{' '}
                   <LogMessage item={item} />
                 </Typography>
               }

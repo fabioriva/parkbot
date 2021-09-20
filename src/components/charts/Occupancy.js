@@ -43,7 +43,7 @@ export default function Occupancy ({
               title: {
                 display: true,
                 text: title,
-                color: 'blue',
+                color: 'rgb(102, 178, 255)',
                 font: {
                   size: 16,
                   weight: 'bold'

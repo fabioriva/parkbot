@@ -12,7 +12,7 @@ export default function Queue (props) {
   const { exitButton, queueList } = props.data
 
   return (
-    <Card variant='outlined' sx={{ mx: { xs: 0.5, md: 0 } }}>
+    <Card>
       <CardContent>
         <Typography sx={{ fontSize: 16 }} gutterBottom>
           {t('queue-title')}

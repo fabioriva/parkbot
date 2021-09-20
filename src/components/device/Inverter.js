@@ -45,7 +45,7 @@ export default function Inverter (props) {
   const IDLE = '---'
 
   return (
-    <Card variant='outlined'>
+    <Card>
       <CardHeader
         sx={{
           py: 0.5,

@@ -1,7 +1,7 @@
 {
   "header-title": "Dashboard",
 
-  "system-title": "System Overview",
+  "devices-title": "Devices",
   "queue-title": "Exit Queue",
   "occupancy-title": "System Occupancy",
   "cards-title": "Cards",

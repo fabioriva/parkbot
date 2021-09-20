@@ -54,7 +54,7 @@ export default function Motor (props) {
   )
 
   return (
-    <Card variant='outlined'>
+    <Card>
       <CardHeader
         sx={{
           py: 0.5,
