@@ -28,10 +28,11 @@ export default function AppLayout (props) {
     <Box
       sx={{
         display: 'flex',
-        backgroundColor: theme =>
-          theme.palette.mode === 'light'
-            ? theme.palette.grey[200]
-            : theme.palette.background.default
+        backgroundColor: '#f3f6f9'
+        // backgroundColor: theme =>
+        //   theme.palette.mode === 'light'
+        //     ? theme.palette.grey[200]
+        //     : theme.palette.background.default
       }}
     >
       <Navbar handleDrawerToggle={handleDrawerToggle} />

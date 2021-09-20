@@ -9,11 +9,11 @@ export default function Footer () {
       sx={{
         py: 1,
         px: 0,
-        mt: 'auto',
-        backgroundColor: theme =>
-          theme.palette.mode === 'light'
-            ? theme.palette.grey[300]
-            : theme.palette.background.default // theme.palette.grey[800]
+        mt: 'auto'
+        // backgroundColor: theme =>
+        //   theme.palette.mode === 'light'
+        //     ? theme.palette.grey[300]
+        //     : theme.palette.background.default // theme.palette.grey[800]
       }}
     >
       <Container maxWidth='md'>
