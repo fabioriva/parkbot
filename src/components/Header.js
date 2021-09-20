@@ -97,7 +97,12 @@ export default function AppHeader ({
               size='small'
               href={`/${aps}/map`}
             >
-              <Badge badgeContent={map[0]?.value} color='primary' showZero>
+              <Badge
+                badgeContent={map[0]?.value}
+                color='primary'
+                max={999}
+                showZero
+              >
                 <DirectionsCarIcon />
               </Badge>
             </IconButton>
