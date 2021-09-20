@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { green } from '@mui/material/colors'
+import { green, orange } from '@mui/material/colors'
 import BoltIcon from '@mui/icons-material/Bolt'
 import useTranslation from 'next-translate/useTranslation'
 import Lamp from 'src/components/overview/Lamp'
@@ -45,8 +45,16 @@ export default function Motor (props) {
     />
   )
 
+  const LC = (
+    <Lamp
+      key={1}
+      color={props.enable ? orange[500] : orange[100]}
+      title={props.enable ? t('device-ready-on') : t('device-ready-off')}
+    />
+  )
+
   return (
-    <Card>
+    <Card variant='outlined'>
       <CardHeader
         sx={{
           py: 0.5,
@@ -55,7 +63,7 @@ export default function Motor (props) {
             fontWeight: 'bold'
           }
         }}
-        action={EN}
+        action={[LC, EN]}
         avatar={
           <Avatar sx={{ bgcolor: props.motion.id !== 0 && 'warning.main' }}>
             <BoltIcon />

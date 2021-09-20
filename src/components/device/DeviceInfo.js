@@ -9,7 +9,7 @@ export default function DeviceInfo ({ alarms }) {
 
   return (
     <React.Fragment>
-      <Paper sx={{ mb: 3 }}>
+      <Paper variant='outlined' sx={{ mb: 1 }}>
         {alarms.length === 0 && (
           <Alert severity='success'>{t('al-ready')}</Alert>
         )}

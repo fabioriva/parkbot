@@ -5,7 +5,7 @@ import Layout from 'src/components/Layout'
 
 export default function ErrorPage (props) {
   return (
-    <Layout {...props} pageTitle={'Error'}>
+    <Layout {...props} pageTitle={props.title}>
       <Box
         sx={{
           display: 'flex',

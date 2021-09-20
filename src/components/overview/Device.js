@@ -123,7 +123,10 @@ export default function Device (props) {
   )
   return (
     // <Card sx={{ maxWidth: 345 }}>
-    <Card>
+    <Card
+      variant='outlined'
+      // sx={{ mx: { xs: 0.5, md: 0 } }}
+    >
       <CardHeader
         sx={{
           py: 1,

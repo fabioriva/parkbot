@@ -22,7 +22,8 @@ export default function DeviceActive ({ alarms }) {
 
   return (
     <Paper
-      sx={{ bgcolor: 'rgb(253, 237, 237)', color: 'rgb(95, 33, 32)', mb: 3 }}
+      variant='outlined'
+      sx={{ bgcolor: 'rgb(253, 237, 237)', color: 'rgb(95, 33, 32)', mb: 1 }}
     >
       {alarms.length > 0 && (
         <List
