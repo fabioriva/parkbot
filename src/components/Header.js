@@ -47,7 +47,8 @@ export default function AppHeader ({
   pageTitle,
   comm,
   diag,
-  map
+  map,
+  loading
 }) {
   const theme = useTheme()
   const { t } = useTranslation('common')
@@ -87,46 +88,41 @@ export default function AppHeader ({
             </Typography>
           </Box>
         </Box>
-        <Box sx={{ '& button': { m: 0 } }}>
-          {comm ? (
-            <Chip
-              sx={{ fontWeight: 'bold' }}
-              label='PLC'
-              color='success'
-              size='small'
-              // variant='outlined'
-            />
-          ) : (
-            <Chip
-              sx={{ fontWeight: 'bold' }}
-              label='PLC'
-              color='error'
-              size='small'
-              // variant='outlined'
-            />
-          )}
-          {diag > 0 && <Active active={diag} aps={aps} />}
-          <Tooltip
-            title={t('header-cars', { count: map[0]?.value || 0 })}
-            aria-label='occupancy'
-          >
-            <IconButton
+
+        {!loading && (
+          <Box sx={{ '& button': { m: 0 } }}>
+            {!comm && (
+              <Chip
+                sx={{ fontWeight: 'bold' }}
+                label='OFFLINE'
+                color='error'
+                size='small'
+                // variant='outlined'
+              />
+            )}
+            {diag > 0 && <Active active={diag} aps={aps} />}
+            <Tooltip
+              title={t('header-cars', { count: map[0]?.value || 0 })}
               aria-label='occupancy'
-              size='small'
-              href={`/${aps}/map`}
             >
-              <Badge
-                badgeContent={map[0]?.value}
-                color='primary'
-                max={999}
-                showZero
+              <IconButton
+                aria-label='occupancy'
+                size='small'
+                href={`/${aps}/map`}
               >
-                <DirectionsCarIcon />
-              </Badge>
-            </IconButton>
-          </Tooltip>
-          {comm ? online : offline}
-        </Box>
+                <Badge
+                  badgeContent={map[0]?.value}
+                  color='primary'
+                  max={999}
+                  showZero
+                >
+                  <DirectionsCarIcon />
+                </Badge>
+              </IconButton>
+            </Tooltip>
+            {comm ? online : offline}
+          </Box>
+        )}
       </Box>
       <Divider sx={{ mb: 2 }} />
     </>

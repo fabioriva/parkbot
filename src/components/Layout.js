@@ -14,7 +14,7 @@ import { useComm } from 'src/lib/useWebSocket'
 export default function AppLayout (props) {
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
-  const { comm, diag, map, message } = useComm(
+  const { comm, diag, map, message, loading } = useComm(
     `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/info`
   )
 
@@ -61,6 +61,7 @@ export default function AppLayout (props) {
             comm={comm}
             diag={diag}
             map={map}
+            loading={loading}
           />
           {/* {!comm && <Alert severity='error'>APS is offline.</Alert>} */}
           {/* <Alert severity='info'>

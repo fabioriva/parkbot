@@ -8,6 +8,7 @@ export function useComm (url) {
   const [diag, setDiag] = useState({})
   const [map, setMap] = useState({})
   const [message, setMessage] = useState({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const ws = new global.WebSocket(url)
@@ -33,6 +34,7 @@ export function useComm (url) {
           setMessage(data[key])
         }
       })
+      setLoading(false)
     }
 
     return () => ws.close()
@@ -43,7 +45,8 @@ export function useComm (url) {
     comm,
     diag,
     map,
-    message
+    message,
+    loading
   }
 }
 
