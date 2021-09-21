@@ -16,6 +16,13 @@ const fetcher = url => global.fetch(url).then(r => r.json())
 export default function Dashboard (props) {
   const { t } = useTranslation('dashboard')
 
+  if (props.json.err)
+    return (
+      <Layout {...props} pageTitle={t('header-title')}>
+        <div>Fetch Error</div>
+      </Layout>
+    )
+
   const [dashboard, setDashboard] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dashboard`

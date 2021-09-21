@@ -2,6 +2,7 @@ import { useTheme } from '@mui/material'
 import { withStyles } from '@mui/styles'
 import Box from '@mui/material/Box'
 import Badge from '@mui/material/Badge'
+import Chip from '@mui/material/Chip'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
@@ -87,6 +88,23 @@ export default function AppHeader ({
           </Box>
         </Box>
         <Box sx={{ '& button': { m: 0 } }}>
+          {comm ? (
+            <Chip
+              sx={{ fontWeight: 'bold' }}
+              label='PLC'
+              color='success'
+              size='small'
+              // variant='outlined'
+            />
+          ) : (
+            <Chip
+              sx={{ fontWeight: 'bold' }}
+              label='PLC'
+              color='error'
+              size='small'
+              // variant='outlined'
+            />
+          )}
           {diag > 0 && <Active active={diag} aps={aps} />}
           <Tooltip
             title={t('header-cars', { count: map[0]?.value || 0 })}

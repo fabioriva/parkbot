@@ -10,6 +10,13 @@ import useTranslation from 'next-translate/useTranslation'
 export default function Rack (props) {
   const { t } = useTranslation('racks')
 
+  if (props.json.err)
+    return (
+      <Layout {...props} pageTitle={t('header-title')}>
+        <div>Fetch Error</div>
+      </Layout>
+    )
+
   const router = useRouter()
   const { id } = router.query
 

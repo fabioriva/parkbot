@@ -12,6 +12,13 @@ const withMap = WrappedComponent => {
   const Wrapper = props => {
     const { t } = useTranslation('map')
 
+    if (props.json.err)
+      return (
+        <Layout {...props} pageTitle={t('header-title')}>
+          <div>Fetch Error</div>
+        </Layout>
+      )
+
     const [map, setMap] = React.useState(props.json)
 
     const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/map`

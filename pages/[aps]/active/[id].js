@@ -4,7 +4,7 @@ import { useData } from 'src/lib/useWebSocket'
 import fetch from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
-import Error from 'src/components/Error'
+// import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import DeviceInfo from 'src/components/device/DeviceInfo'
 import withAuthSync from 'src/hocs/withAuthSync'
@@ -22,6 +22,13 @@ const Page = props => {
   const router = useRouter()
   const { id } = router.query
 
+  if (props.json.err)
+    return (
+      <Layout {...props} pageTitle={'device.a.name'}>
+        <div>Fetch Error</div>
+      </Layout>
+    )
+
   const [overview, setOverview] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/overview`
@@ -34,9 +41,15 @@ const Page = props => {
   // const device = props.json.devices[id]
   const device = overview.devices[id]
 
-  return props.json.err ? (
-    <Error {...props} error='Error 500' />
-  ) : (
+  // return props.json.err ? (
+  //   <Error {...props} error='Error 500' />
+  // ) : (
+  //   <Layout {...props} pageTitle={device.a.name}>
+  //     <DeviceInfo alarms={device.alarms} />
+  //   </Layout>
+  // )
+
+  return (
     <Layout {...props} pageTitle={device.a.name}>
       <DeviceInfo alarms={device.alarms} />
     </Layout>

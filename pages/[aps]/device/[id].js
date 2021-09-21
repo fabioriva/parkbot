@@ -2,16 +2,18 @@ import React from 'react'
 import fetch from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
-import Error from 'src/components/Error'
+// import Error from 'src/components/Error'
 import DeviceView from 'src/components/device/DeviceView'
 import withAuthSync from 'src/hocs/withAuthSync'
 
-const Page = props =>
-  props.json.err ? (
-    <Error {...props} error='Error 500' />
-  ) : (
-    <DeviceView {...props} />
-  )
+const Page = props => <DeviceView {...props} />
+
+// const Page = props =>
+//   props.json.err ? (
+//     <Error {...props} error='Error 500' />
+//   ) : (
+//     <DeviceView {...props} />
+//   )
 
 export async function getServerSideProps (ctx) {
   const APS = aps_(ctx.params.aps)

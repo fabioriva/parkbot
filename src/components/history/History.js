@@ -16,6 +16,13 @@ import useTranslation from 'next-translate/useTranslation'
 export default function History (props) {
   const { t } = useTranslation('history')
 
+  if (props.json.err)
+    return (
+      <Layout {...props} pageTitle={t('header-title')}>
+        <div>Fetch Error</div>
+      </Layout>
+    )
+
   const [history, setHistory] = React.useState(props.json)
 
   const [open, setOpen] = React.useState(false)

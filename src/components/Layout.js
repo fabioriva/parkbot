@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Toolbar from '@mui/material/Toolbar'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import Alert from 'src/components/Alert'
+// import Alert from 'src/components/Alert'
 import Drawer from 'src/components/Drawer'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
@@ -62,7 +62,7 @@ export default function AppLayout (props) {
             diag={diag}
             map={map}
           />
-          {!comm && <Alert severity='error'>APS is offline.</Alert>}
+          {/* {!comm && <Alert severity='error'>APS is offline.</Alert>} */}
           {/* <Alert severity='info'>
             Execution time (SSR): {props.executionTime[0]}
             {'s '}

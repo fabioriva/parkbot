@@ -9,6 +9,13 @@ import { useData } from 'src/lib/useWebSocket'
 export default function Cards (props) {
   const { t } = useTranslation('cards')
 
+  if (props.json.err)
+    return (
+      <Layout {...props} pageTitle={t('header-title')}>
+        <div>Fetch Error</div>
+      </Layout>
+    )
+
   const [cards, setCards] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/cards`

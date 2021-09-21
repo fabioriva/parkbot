@@ -7,6 +7,13 @@ import RacksList from 'src/components/racks/RacksList'
 export default function Racks (props) {
   const { t } = useTranslation('racks')
 
+  if (props.json.err)
+    return (
+      <Layout {...props} pageTitle={t('header-title')}>
+        <div>Fetch Error</div>
+      </Layout>
+    )
+
   const [racks] = React.useState(props.json)
 
   return (

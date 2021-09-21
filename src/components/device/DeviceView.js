@@ -11,6 +11,13 @@ export default function DeviceView (props) {
   const router = useRouter()
   const { id } = router.query
 
+  if (props.json.err)
+    return (
+      <Layout {...props} pageTitle={'device.a.name'}>
+        <div>Fetch Error</div>
+      </Layout>
+    )
+
   const [deviceView, setDeviceView] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/diagnostic/${id}`

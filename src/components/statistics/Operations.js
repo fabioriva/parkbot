@@ -17,6 +17,13 @@ import useTranslation from 'next-translate/useTranslation'
 export default function Statistics (props) {
   const { t } = useTranslation('statistics')
 
+  if (props.json.err)
+    return (
+      <Layout {...props} pageTitle={t('header-title')}>
+        <div>Fetch Error</div>
+      </Layout>
+    )
+
   const [operations, setOperations] = React.useState(props.json)
   const [open, setOpen] = React.useState(false)
 

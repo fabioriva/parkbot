@@ -38,15 +38,6 @@ export async function getServerSideProps (ctx) {
 
   var hrend = process.hrtime(hrstart)
 
-  if (json.err) {
-    return {
-      redirect: {
-        destination: `/${ctx.params.aps}/error`,
-        permanent: false
-      }
-    }
-  }
-
   return {
     props: {
       aps: APS.ns,

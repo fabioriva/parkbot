@@ -11,6 +11,13 @@ import { useData } from 'src/lib/useWebSocket'
 export default function Overview (props) {
   const { t } = useTranslation('overview')
 
+  if (props.json.err)
+    return (
+      <Layout {...props} pageTitle={t('header-title')}>
+        <div>Fetch Error</div>
+      </Layout>
+    )
+
   const [overview, setOverview] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/overview`

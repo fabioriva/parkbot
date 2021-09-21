@@ -4,7 +4,7 @@ export function useComm (url) {
   const ws = useRef(null)
 
   // const [error, setError] = useState('')
-  const [comm, setComm] = useState(true)
+  const [comm, setComm] = useState(false)
   const [diag, setDiag] = useState({})
   const [map, setMap] = useState({})
   const [message, setMessage] = useState({})
