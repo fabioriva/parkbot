@@ -43,7 +43,8 @@ export default function Home (props) {
           sx={{
             color: '#ff9800',
             fontSize: { xs: 64, md: 100 },
-            fontWeight: 500
+            fontWeight: 500,
+            mb: 1
           }}
           variant='h2'
           component='h1'
@@ -61,7 +62,7 @@ export default function Home (props) {
           </Box>
         </Typography>
         <Typography
-          sx={{ fontSize: { xs: 16, md: 24 }, fontWeight: 300 }}
+          sx={{ fontSize: { xs: 18, md: 26 }, fontWeight: 300 }}
           variant='h6'
           component='h2'
           // gutterBottom
@@ -84,7 +85,7 @@ export default function Home (props) {
           </Typography>
         </Box>
         <Button
-          // sx={{ width: 200 }}
+          sx={{ width: { xs: '100%', sm: 200 } }}
           variant='outlined'
           size='large'
           onClick={handleSignin}

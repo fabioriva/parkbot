@@ -4,13 +4,6 @@ import Grid from '@mui/material/Grid'
 const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={1}>
-      {/* <Grid item xs={12} md={8}>
-        {levels}
-        {view}
-      </Grid>
-      <Grid item xs={12} md={4}>
-        {occupancy}
-      </Grid> */}
       <Grid item xs={12} xl={9}>
         <Grid container spacing={1}>
           {levels.map((level, key) => (
@@ -30,13 +23,13 @@ const Map = ({ levels, occupancy, view }) => {
         {`
           .l {
             position: relative;
-            background-color: #ddd;
-            /* border: 1px solid #888; */
+            background-color: rgb(234, 238, 243);
+            border: 1px solid rgba(0, 0, 0, 0.26);
             margin-bottom: 16px;
             height: 100px;
             width: 251px;
-            box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
-              rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+            /* box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
+              rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px; */
           }
           .el {
             position: absolute;

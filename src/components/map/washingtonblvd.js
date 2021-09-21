@@ -23,13 +23,13 @@ const Map = ({ levels, occupancy, view }) => {
           }
           .l {
             position: relative;
-            background-color: #fff; /*rgba(0, 0, 0, 0.12);*/
-            /*border: 1px solid rgba(0, 0, 0, 0.26);*/
+            background-color: rgb(234, 238, 243);
+            border: 1px solid rgba(0, 0, 0, 0.26);
             margin-bottom: 16px;
             height: 129px;
             width: 1078px;
-            box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
-              rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+            /* box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
+              rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px; */
           }
           .el {
             position: absolute;
