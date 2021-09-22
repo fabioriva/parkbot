@@ -122,10 +122,10 @@ export default function Device (props) {
     </Grid>
   )
   return (
-    // <Card sx={{ maxWidth: 345 }}>
     <Card>
       <CardHeader
         sx={{
+          // maxWidth: 345,
           py: 1,
           '& .MuiCardHeader-title': {
             fontSize: 16
@@ -136,7 +136,7 @@ export default function Device (props) {
         title={name}
         // subheader={`Device ${id}`}
       />
-      <CardContent sx={{ bgcolor: theme => bg(operation, theme), py: 0.5 }}>
+      <CardContent sx={{ bgcolor: theme => bg(operation, theme), py: 1 }}>
         {motor === 0 ? (
           mainView
         ) : (

@@ -31,7 +31,7 @@ function renderRow ({ data, index, style }) {
         secondaryAction={
           item.operation.id === 1 && (
             <IconButton edge='end' aria-label='active'>
-              <PriorityHighRoundedIcon color='error' />
+              <PriorityHighRoundedIcon color='error' fontSize='small' />
             </IconButton>
           )
         }

@@ -13,6 +13,7 @@ import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
 import Typography from '@mui/material/Typography'
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined'
+// import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded';
 import useTranslation from 'next-translate/useTranslation'
 
 export default function DeviceActive ({ alarms }) {
@@ -21,9 +22,7 @@ export default function DeviceActive ({ alarms }) {
   const { aps, id } = router.query
 
   return (
-    <Paper
-      sx={{ bgcolor: 'rgb(253, 237, 237)', color: 'rgb(95, 33, 32)', mb: 1 }}
-    >
+    <Paper sx={{ bgcolor: 'rgb(253, 237, 237)', color: 'rgb(95, 33, 32)' }}>
       {alarms.length > 0 && (
         <List
           dense
@@ -47,11 +46,7 @@ export default function DeviceActive ({ alarms }) {
                   <IconButton
                     edge='end'
                     aria-label='info'
-                    onClick={() =>
-                      router.push(
-                        `/${aps}/docs/${item.i18n.key}?key=${item.i18n.query.thermic}`
-                      )
-                    }
+                    href={`/${aps}/docs/${item.i18n.key}?key=${item.i18n.query.thermic}`}
                     disabled
                   >
                     <HelpOutlineOutlinedIcon />
@@ -59,8 +54,9 @@ export default function DeviceActive ({ alarms }) {
                 }
               >
                 <ListItemAvatar>
-                  <Avatar sx={{ bgcolor: 'error.main', fontSize: 16 }}>
+                  <Avatar sx={{ bgcolor: 'error.main', fontSize: 14 }}>
                     {item.label}
+                    {/* <PriorityHighRoundedIcon fontSize='small' /> */}
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText

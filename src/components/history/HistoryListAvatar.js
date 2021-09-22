@@ -4,9 +4,8 @@ import BuildIcon from '@mui/icons-material/Build'
 import CheckIcon from '@mui/icons-material/Check'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 import LockIcon from '@mui/icons-material/Lock'
-// import PinIcon from '@mui/icons-material/Pin'
 import FiberPinOutlinedIcon from '@mui/icons-material/FiberPinOutlined'
-import PriorityHighIcon from '@mui/icons-material/PriorityHigh'
+import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 
 export default function HistoryListAvatar ({ item }) {
@@ -15,7 +14,7 @@ export default function HistoryListAvatar ({ item }) {
     case 1:
       return (
         <Avatar sx={{ background: '#f2dede', color: '#a94442' }}>
-          <PriorityHighIcon />
+          <PriorityHighRoundedIcon />
         </Avatar>
       )
     case 2:

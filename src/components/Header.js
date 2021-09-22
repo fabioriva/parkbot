@@ -100,7 +100,7 @@ export default function AppHeader ({
                 // variant='outlined'
               />
             )}
-            {diag > 0 && <Active active={diag} aps={aps} />}
+            {diag > 0 && <Active active={diag} href={`/${aps}/overview`} />}
             <Tooltip
               title={t('header-cars', { count: map[0]?.value || 0 })}
               aria-label='occupancy'
