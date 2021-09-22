@@ -167,7 +167,7 @@ export default function Signin () {
             label={t('remember')}
           />
           <Button
-            sx={{ mb: 3, mt: 3 }}
+            sx={{ boxShadow: 'none', my: 3 }}
             type='submit'
             fullWidth
             variant='contained'

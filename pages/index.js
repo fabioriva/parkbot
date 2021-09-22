@@ -85,8 +85,8 @@ export default function Home (props) {
           </Typography>
         </Box>
         <Button
-          sx={{ width: { xs: '100%', sm: 200 } }}
-          variant='outlined'
+          sx={{ boxShadow: 'none', width: { xs: '100%', sm: 200 } }}
+          variant='contained'
           size='large'
           onClick={handleSignin}
         >

@@ -136,7 +136,7 @@ export default function Device (props) {
         title={name}
         // subheader={`Device ${id}`}
       />
-      <CardContent sx={{ bgcolor: theme => bg(operation, theme) }}>
+      <CardContent sx={{ bgcolor: theme => bg(operation, theme), py: 0.5 }}>
         {motor === 0 ? (
           mainView
         ) : (
