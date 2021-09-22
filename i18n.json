@@ -10,7 +10,7 @@
     "/[aps]/device/[id]": ["alarms", "io", "overview"],
     "/[aps]/history": ["history", "alarms"],
     "/[aps]/map": ["map"],
-    "/[aps]/overview": ["overview"],
+    "/[aps]/overview": ["overview", "io"],
     "/[aps]/racks": ["racks"],
     "/[aps]/rack/[id]": ["racks", "io"],
     "/[aps]/statistics": ["statistics"],
