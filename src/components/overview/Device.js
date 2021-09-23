@@ -144,9 +144,9 @@ export default function Device (props) {
         ) : (
           <Silomat data={props.item.e} loading={props.loading} />
         )} */}
-        {motor === 2 && mainView}
+        {motor === 0 && mainView}
         {motor === 1 && <Silomat data={props.item.e} loading={props.loading} />}
-        {motor === 0 && props.item.vg !== undefined && (
+        {motor === 2 && props.item.vg !== undefined && (
           <VirtualGarage
             loading={props.loading}
             panel={{
