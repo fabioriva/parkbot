@@ -13,6 +13,7 @@ import Active from 'src/components/Active'
 import Lamp from 'src/components/overview/Lamp'
 import Mode from 'src/components/overview/Mode'
 import Silomat from 'src/components/overview/Silomat'
+import VirtualGarage from 'src/components/overview/VirtualGarage'
 import useTranslation from 'next-translate/useTranslation'
 import { ACTIONS, DIAGNOSTIC, isAllowed } from 'src/constants/auth'
 
@@ -63,6 +64,7 @@ export default function Device (props) {
     stall,
     step
   } = props.item.a
+
   const LS = (
     <Lamp
       key={0}
@@ -137,10 +139,25 @@ export default function Device (props) {
         // subheader={`Device ${id}`}
       />
       <CardContent sx={{ bgcolor: theme => bg(operation, theme), py: 1 }}>
-        {motor === 0 ? (
+        {/* {motor === 0 ? (
           mainView
         ) : (
           <Silomat data={props.item.e} loading={props.loading} />
+        )} */}
+        {motor === 2 && mainView}
+        {motor === 1 && <Silomat data={props.item.e} loading={props.loading} />}
+        {motor === 0 && props.item.vg !== undefined && (
+          <VirtualGarage
+            loading={props.loading}
+            panel={{
+              l1: props.item.vg.panel[0].status,
+              l2: props.item.vg.panel[1].status,
+              l3: props.item.vg.panel[2].status,
+              l4: props.item.vg.panel[3].status,
+              l5: props.item.vg.panel[4].status
+            }}
+            sensors={props.item.vg.sensors}
+          />
         )}
       </CardContent>
       <CardActions disableSpacing>

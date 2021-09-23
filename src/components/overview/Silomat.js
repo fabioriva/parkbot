@@ -3,12 +3,10 @@ import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Skeleton from '@mui/material/Skeleton'
 import { grey, yellow } from '@mui/material/colors'
+import Bit from 'src/components/Bit'
 import Tooltip from 'src/components/Tooltip'
-import useTranslation from 'next-translate/useTranslation'
 
 export default function Silomat (props) {
-  const { t } = useTranslation('io')
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={1} justify='center'>
@@ -17,7 +15,7 @@ export default function Silomat (props) {
             {props.loading ? (
               <Skeleton variant='text' animation='wave' />
             ) : (
-              <Tooltip title={<div>{item.addr + ' ' + t(item.label)}</div>}>
+              <Tooltip title={<Bit {...item} />}>
                 <Paper
                   sx={{
                     bgcolor: item.status ? yellow[600] : grey[300],

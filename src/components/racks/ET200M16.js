@@ -1,26 +1,14 @@
-import CustomTooltip from 'src/components/Tooltip'
 import clsx from 'clsx'
-import useTranslation from 'next-translate/useTranslation'
+import BitTitle from 'src/components/Bit'
+import CustomTooltip from 'src/components/Tooltip'
 
 function Bit ({ item, nr }) {
-  const { t } = useTranslation('io')
-
-  // const { addr, bit, label, status } = item
   const { addr, label, status } = item
   const bit = addr.slice(-1)
 
   return (
     <>
-      <CustomTooltip
-        placement='top'
-        title={
-          <ul className='tooltip'>
-            <li>{addr}</li>
-            <li>{label}</li>
-            <li>{t(label, {}, { fallback: 'fallback' })}</li>
-          </ul>
-        }
-      >
+      <CustomTooltip placement='top' title={<BitTitle {...item} />}>
         <div className='id' id={'id-'.concat(nr, bit)}>
           {label}
         </div>
@@ -39,11 +27,6 @@ function Bit ({ item, nr }) {
       </div>
       <style jsx>
         {`
-          .tooltip {
-            list-style-type: none; /* Remove bullets */
-            padding: 0; /* Remove padding */
-            margin: 0; /* Remove margins */
-          }
           .id {
             position: absolute;
             height: 18px;

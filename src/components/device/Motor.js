@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography'
 import { green, orange, red } from '@mui/material/colors'
 import BoltIcon from '@mui/icons-material/Bolt'
 import useTranslation from 'next-translate/useTranslation'
+import Bit from 'src/components/Bit'
 import Lamp from 'src/components/overview/Lamp'
 import Tooltip from 'src/components/Tooltip'
 
@@ -19,26 +20,6 @@ import ListItem from '@mui/material/ListItem'
 // import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemText from '@mui/material/ListItemText'
 import CircleIcon from '@mui/icons-material/Circle'
-
-const Bit = ({ addr, label }) => {
-  const { t } = useTranslation('io')
-  return (
-    <ul className='tooltip'>
-      <li>{addr}</li>
-      <li>{label}</li>
-      <li>{t(label, {}, { fallback: 'fallback' })}</li>
-      <style jsx>
-        {`
-          .tooltip {
-            list-style-type: none; /* Remove bullets */
-            padding: 0; /* Remove padding */
-            margin: 0; /* Remove margins */
-          }
-        `}
-      </style>
-    </ul>
-  )
-}
 
 const Item = ({ loading, title, value }) => (
   <>
