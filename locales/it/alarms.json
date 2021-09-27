@@ -4,9 +4,11 @@
   "al-count": "Totale allarmi attivi {{count}}",
 
   "al-fc": "Finecoesa {{fc1}} {{fc2}}",
+  "al-fs": "Safety {{name}}",
   "al-id": "Allarme AL{{id}}",
   "al-iv": "Inverter {{nr}}",
-  "al-th": "Scatto termico {{thermic}}",
+  "al-pn": "Profinet nodo {{name}}",
+  "al-th": "Scatto termico {{name}}",
   "al-tl": "Contattore {{name}}",
 
   "al-sil-01": "Time out traslazione Silomat",
@@ -24,7 +26,7 @@
   "al-sil-13": "Controllo ciclo Silomat (FTX)",
   "al-sil-14": "Controllo sensori MV/MH (end)",
   "al-sil-15": "Avvolgicavo Silomat",
-  "al-sil-16": "16",
+  "al-sil-16": "Tempo ciclo massimo",
   "al-v-to": "Time out sollevamento",
   "al-v-fdbk": "Feedback sollevamento",
   "al-lv": "Laser V fuori campo",

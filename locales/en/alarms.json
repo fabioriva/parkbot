@@ -4,9 +4,11 @@
   "al-count": "Total active alarms {{count}}",
 
   "al-fc": "Limitswitches {{fc1}} {{fc2}} check",
+  "al-fs": "Safety {{name}}",
   "al-id": "Alarm AL{{id}}",
   "al-iv": "Inverter {{nr}}",
-  "al-th": "Thermic check {{thermic}}",
+  "al-pn": "Profinet node {{name}}",
+  "al-th": "Thermic check {{name}}",
   "al-tl": "Contactor check {{name}}",
 
   "al-sil-01": "Silomat traveling time out",
@@ -24,7 +26,7 @@
   "al-sil-13": "Silomat cycle check (FTX)",
   "al-sil-14": "Silomat sensors MV/MH check (end)",
   "al-sil-15": "Silomat cable-reel",
-  "al-sil-16": "16",
+  "al-sil-16": "Max cycle time limit",
   "al-v-to": "Hoisting time out",
   "al-v-fdbk": "Hoisting feedback check",
   "al-lv": "Laser V out of range",
