@@ -2,7 +2,7 @@
   "locales": ["en", "it"],
   "defaultLocale": "en",
   "pages": {
-    "*": ["common", "history"],
+    "*": ["alarms", "common", "history"],
     "/signin": ["signin"],
     "/[aps]/active/[id]": ["alarms", "io"],
     "/[aps]/cards": ["cards"],
