@@ -1,19 +1,18 @@
 import * as React from 'react'
-import Avatar from '@mui/material/Avatar'
+import { styled } from '@mui/material/styles'
+// import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import Link from '@mui/material/Link'
+import Paper from '@mui/material/Paper'
 import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
 import LoginIcon from '@mui/icons-material/Login'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Footer from 'src/components/Footer'
-
-import { styled } from '@mui/material/styles'
-import Paper from '@mui/material/Paper'
-import Grid from '@mui/material/Grid'
-import { Typography } from '@mui/material'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -96,14 +95,17 @@ export default function Home () {
               sx={{
                 mb: { xs: 3, md: 4 },
                 color: '#2F3A45',
-                maxWidth: 500,
-                typography: 'subtitle1'
+                maxWidth: 600,
+                typography: 'body1'
               }}
             >
-              Parkbot is a progressive web app. It provides an easy, robust, and
-              accessible library of foundational and advanced components,
-              enabling you to remotely monitor and control the automatic parking
-              systems faster.
+              Web based access to Parkbot in the cloud allows customers to use
+              the application from any location. All you need is an internet
+              access, up-to-date browser, and PC or smartphone. Users simply
+              sign in to immediately access the latest version of Parkbot from
+              anywhere, with no time or effort spent on installation, enabling
+              them to remotely control and monitor the automatic parking systems
+              faster.
             </Box>
           </Box>
           <Button
