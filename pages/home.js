@@ -20,6 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
   paddingLeft: theme.spacing(1.5),
   paddingRight: theme.spacing(1.5),
   textAlign: 'left',
+  backgroundColor: '#F3F6F9',
   color: theme.palette.text.secondary,
   display: 'flex',
   justifyContent: 'center',
@@ -80,12 +81,12 @@ export default function Home () {
           <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
             <Box
               sx={{
-                mb: { xs: 4, md: 4 },
+                mb: { xs: 3, md: 4 },
                 color: '#0A1929',
                 fontSize: { xs: '2.6rem', md: 72 },
                 fontWeight: { xs: 700, md: 700 },
                 letterSpacing: -0.85,
-                lineHeight: 1.05
+                lineHeight: 0.95
               }}
             >
               <span className='main'>Parkbot</span>
@@ -93,7 +94,7 @@ export default function Home () {
             </Box>
             <Box
               sx={{
-                mb: { xs: 4, md: 4 },
+                mb: { xs: 3, md: 4 },
                 color: '#2F3A45',
                 maxWidth: 500,
                 typography: 'subtitle1'
@@ -107,7 +108,7 @@ export default function Home () {
           </Box>
           <Button
             sx={{
-              mb: 4,
+              mb: { xs: 3, md: 4 },
               borderRadius: 2,
               boxShadow: 'none',
               fontSize: 16,
@@ -125,16 +126,7 @@ export default function Home () {
           >
             Get started
           </Button>
-          <Grid container mb={4} spacing={2}>
-            <Grid item xs={12} md={6}>
-              <Item>
-                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
-                  Real-time communication
-                </Typography>
-                Enables real-time bidirectional event-based communication
-                featuring the fastest and most reliable real-time engine.
-              </Item>
-            </Grid>
+          <Grid container sx={{ mb: { xs: 3, md: 4 } }} spacing={2}>
             <Grid item xs={12} md={6}>
               <Item>
                 <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
@@ -147,20 +139,29 @@ export default function Home () {
             <Grid item xs={12} md={6}>
               <Item>
                 <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
-                  Web based
+                  Mobile first
                 </Typography>
-                Web applications are popular due to the ubiquity of web
-                browsers, and the convenience of using a web browser as a
-                client.
+                It works on every platform, modern browser or device, focusing
+                equally on reliability and speed.
               </Item>
             </Grid>
             <Grid item xs={12} md={6}>
               <Item>
                 <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
-                  Mobile first
+                  Real-time communication
                 </Typography>
-                It works on every platform, modern browser or device, focusing
-                equally on reliability and speed.
+                Enables real-time bidirectional event-based communication
+                featuring the fastest and most reliable real-time engine.
+              </Item>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Item>
+                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
+                  Web based
+                </Typography>
+                Web applications are popular due to the ubiquity of web
+                browsers, and the convenience of using a web browser as a
+                client.
               </Item>
             </Grid>
           </Grid>
