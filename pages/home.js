@@ -82,20 +82,20 @@ export default function Home () {
               sx={{
                 mb: { xs: 3, md: 4 },
                 color: '#0A1929',
-                fontSize: { xs: '2.6rem', md: 72 },
+                fontSize: { xs: '2.4rem', md: 72 },
                 fontWeight: { xs: 700, md: 700 },
                 letterSpacing: -0.85,
                 lineHeight: 1.05
               }}
             >
-              <span className='main'>Parkbot</span>
+              <span className='parkbot'>Parkbot</span>
               &nbsp;the full stack solution for robotic parking systems
             </Box>
             <Box
+              // display={{ xs: 'none', md: 'block' }}
               sx={{
                 mb: { xs: 3, md: 4 },
                 color: '#2F3A45',
-                maxWidth: 600,
                 typography: 'body1'
               }}
             >
@@ -172,9 +172,9 @@ export default function Home () {
       </Box>
       <style jsx global>
         {`
-          .main {
-            background: -webkit-linear-gradient(left, #ff9933, #e9692c);
+          .parkbot {
             /* background: -webkit-linear-gradient(left, #007fff, #0059b2); */
+            background: -webkit-linear-gradient(left, #ff9933, #e9692c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
           }
