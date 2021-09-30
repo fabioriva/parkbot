@@ -18,6 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   paddingLeft: theme.spacing(1.5),
   paddingRight: theme.spacing(1.5),
+  fontFamily: '"IBM Plex Sans", sans-serif',
   textAlign: 'left',
   // backgroundColor: '#F3F6F9',
   color: theme.palette.text.secondary,
@@ -96,7 +97,9 @@ export default function Home () {
               sx={{
                 mb: { xs: 3, md: 4 },
                 color: '#2F3A45',
-                typography: 'body1'
+                fontFamily: '"IBM Plex Sans", sans-serif'
+                // fontFamily: 'Monospace'
+                // typography: 'body1'
               }}
             >
               Web based access to Parkbot in the cloud allows customers to use
