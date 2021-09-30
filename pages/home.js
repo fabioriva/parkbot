@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
   paddingLeft: theme.spacing(1.5),
   paddingRight: theme.spacing(1.5),
   textAlign: 'left',
-  backgroundColor: '#F3F6F9',
+  // backgroundColor: '#F3F6F9',
   color: theme.palette.text.secondary,
   display: 'flex',
   justifyContent: 'center',
@@ -40,7 +40,7 @@ export default function Home () {
       >
         <Toolbar
           sx={{
-            mb: { xs: 4, md: 8 },
+            mb: { xs: 3, md: 4 },
             borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
           }}
           disableGutters
@@ -78,7 +78,7 @@ export default function Home () {
           </Container>
         </Toolbar>
         <Container maxWidth='md'>
-          <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+          <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
             <Box
               sx={{
                 mb: { xs: 3, md: 4 },
@@ -86,7 +86,7 @@ export default function Home () {
                 fontSize: { xs: '2.6rem', md: 72 },
                 fontWeight: { xs: 700, md: 700 },
                 letterSpacing: -0.85,
-                lineHeight: 0.95
+                lineHeight: 1.05
               }}
             >
               <span className='main'>Parkbot</span>
@@ -102,8 +102,8 @@ export default function Home () {
             >
               Parkbot is a progressive web app. It provides an easy, robust, and
               accessible library of foundational and advanced components,
-              enabling you to remotely monitor and service your automatic
-              parking systems faster.
+              enabling you to remotely monitor and control the automatic parking
+              systems faster.
             </Box>
           </Box>
           <Button
