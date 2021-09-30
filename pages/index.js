@@ -85,7 +85,13 @@ export default function Home (props) {
           </Typography>
         </Box>
         <Button
-          sx={{ boxShadow: 'none', width: { xs: '100%', sm: 200 } }}
+          sx={{
+            boxShadow: 'none',
+            width: { xs: '100%', sm: 200 },
+            '&:hover': {
+              boxShadow: 'none'
+            }
+          }}
           variant='contained'
           size='large'
           onClick={handleSignin}

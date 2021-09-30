@@ -167,7 +167,13 @@ export default function Signin () {
             label={t('remember')}
           />
           <Button
-            sx={{ boxShadow: 'none', my: 3 }}
+            sx={{
+              boxShadow: 'none',
+              my: 3,
+              '&:hover': {
+                boxShadow: 'none'
+              }
+            }}
             type='submit'
             fullWidth
             variant='contained'

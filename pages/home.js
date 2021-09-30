@@ -6,10 +6,26 @@ import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import Link from '@mui/material/Link'
 import Toolbar from '@mui/material/Toolbar'
-import AccountCircle from '@mui/icons-material/AccountCircle'
 import LoginIcon from '@mui/icons-material/Login'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Footer from 'src/components/Footer'
+
+import { styled } from '@mui/material/styles'
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
+import { Typography } from '@mui/material'
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  paddingLeft: theme.spacing(1.5),
+  paddingRight: theme.spacing(1.5),
+  textAlign: 'left',
+  color: theme.palette.text.secondary,
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  minHeight: 100
+}))
 
 export default function Home () {
   return (
@@ -23,34 +39,35 @@ export default function Home () {
       >
         <Toolbar
           sx={{
-            mb: { xs: 6, md: 8 }
-            // borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
+            mb: { xs: 4, md: 8 },
+            borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
           }}
           disableGutters
         >
           <Container maxWidth='md'>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center'
-              }}
-            >
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              {/* <IconButton sx={{ mr: 1 }} disabled>
+                <Avatar src='/bot.svg' />
+              </IconButton> */}
               <Box sx={{ flexGrow: 1 }}>
-                <Avatar src='/bot.svg' sx={{ mr: 2 }} />
+                <Link
+                  href='https://www.sotefin.com'
+                  underline='hover'
+                  sx={{
+                    flexGrow: 1,
+                    color: 'inherit',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  Sotefin{' '}
+                  <Box display={{ xs: 'none', md: 'inline' }}>
+                    Computerized Parking Systems
+                  </Box>
+                </Link>
               </Box>
-              {/* <Link
-                href='https://www.sotefin.com'
-                underline='none'
-                sx={{ flexGrow: 1, color: 'inherit' }}
-              >
-                SOTEFIN
-              </Link> */}
-              {/* <Button href='/signin'>Login</Button> */}
               <IconButton
                 size='large'
-                aria-label='account of current user'
-                aria-controls='primary-search-account-menu'
-                aria-haspopup='true'
+                aria-label='login'
                 color='inherit'
                 href='/signin'
               >
@@ -82,17 +99,20 @@ export default function Home () {
                 typography: 'subtitle1'
               }}
             >
-              MUI provides a robust, customizable, and accessible library of
-              foundational and advanced components, enabling you to build your
-              own design system and develop React applications faster.
+              Parkbot is a progressive web app. It provides an easy, robust, and
+              accessible library of foundational and advanced components,
+              enabling you to remotely monitor and service your automatic
+              parking systems faster.
             </Box>
           </Box>
           <Button
             sx={{
+              mb: 4,
               borderRadius: 2,
               boxShadow: 'none',
               fontSize: 16,
               textTransform: 'none',
+              height: 56,
               width: { xs: '100%', sm: 200 },
               '&:hover': {
                 boxShadow: 'none'
@@ -105,6 +125,45 @@ export default function Home () {
           >
             Get started
           </Button>
+          <Grid container mb={4} spacing={2}>
+            <Grid item xs={12} md={6}>
+              <Item>
+                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
+                  Real-time communication
+                </Typography>
+                Enables real-time bidirectional event-based communication
+                featuring the fastest and most reliable real-time engine.
+              </Item>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Item>
+                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
+                  Analytics
+                </Typography>
+                Push data to clients that gets represented as real-time
+                messages, charts or logs.
+              </Item>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Item>
+                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
+                  Web based
+                </Typography>
+                Web applications are popular due to the ubiquity of web
+                browsers, and the convenience of using a web browser as a
+                client.
+              </Item>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Item>
+                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
+                  Mobile first
+                </Typography>
+                It works on every platform, modern browser or device, focusing
+                equally on reliability and speed.
+              </Item>
+            </Grid>
+          </Grid>
         </Container>
         <Footer />
       </Box>
