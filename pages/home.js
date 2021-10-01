@@ -31,120 +31,121 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Home () {
   return (
-    <div style={{ width: '100%' }}>
-      <Box
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh'
+      }}
+    >
+      <Toolbar
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh'
+          mb: { xs: 3, md: 4 },
+          borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
         }}
+        disableGutters
       >
-        <Toolbar
-          sx={{
-            mb: { xs: 3, md: 4 },
-            borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
-          }}
-          disableGutters
-        >
-          <Container maxWidth='md'>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              {/* <IconButton sx={{ mr: 1 }} disabled>
+        <Container maxWidth='md'>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {/* <IconButton sx={{ mr: 1 }} disabled>
                 <Avatar src='/bot.svg' />
               </IconButton> */}
-              <Box sx={{ flexGrow: 1 }}>
-                <Link
-                  href='https://www.sotefin.com'
-                  underline='hover'
-                  sx={{
-                    flexGrow: 1,
-                    color: 'inherit',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  Sotefin{' '}
-                  <Box display={{ xs: 'none', md: 'inline' }}>
-                    Computerized Parking Systems
-                  </Box>
-                </Link>
-              </Box>
-              <IconButton
-                size='large'
-                aria-label='login'
-                color='inherit'
-                href='/signin'
+            <Box sx={{ flexGrow: 1 }}>
+              <Link
+                href='https://www.sotefin.com'
+                underline='none'
+                sx={{
+                  flexGrow: 1,
+                  color: 'inherit',
+                  textTransform: 'uppercase'
+                }}
               >
-                <LoginIcon />
-              </IconButton>
+                Sotefin{' '}
+                <Box display={{ xs: 'none', md: 'inline' }}>
+                  Computerized Parking Systems
+                </Box>
+              </Link>
             </Box>
-          </Container>
-        </Toolbar>
-        <Container maxWidth='md'>
-          <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
-            <Box
-              sx={{
-                mb: { xs: 3, md: 4 },
-                color: '#0A1929',
-                fontSize: { xs: '2.7rem', md: 72 },
-                fontWeight: { xs: 700, md: 700 },
-                letterSpacing: -0.85,
-                lineHeight: 1.05
-              }}
+            <IconButton
+              size='large'
+              aria-label='login'
+              color='inherit'
+              href='/signin'
             >
-              <span className='parkbot'>Parkbot</span>
-              &nbsp;the full stack solution for robotic parking systems
-            </Box>
-            <Box
-              // display={{ xs: 'none', md: 'block' }}
-              sx={{
-                mb: { xs: 3, md: 4 },
-                color: '#2F3A45',
-                fontFamily: '"IBM Plex Sans", sans-serif'
-                // fontFamily: 'Monospace'
-                // typography: 'body1'
-              }}
-            >
-              Web based access to Parkbot in the cloud allows customers to use
-              the application from any location. All you need is an internet
-              access, up-to-date browser, and PC or smartphone. Users simply
-              sign in to immediately access the latest version of Parkbot from
-              anywhere, with no time or effort spent on installation, enabling
-              them to remotely control and monitor the automatic parking systems
-              faster.
-            </Box>
+              <LoginIcon />
+            </IconButton>
           </Box>
-          <Button
+        </Container>
+      </Toolbar>
+      <Container maxWidth='md'>
+        <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
+          <Box
             sx={{
               mb: { xs: 3, md: 4 },
-              borderRadius: 2,
-              boxShadow: 'none',
-              fontSize: 16,
-              textTransform: 'none',
-              height: 56,
-              width: { xs: '100%', sm: 200 },
-              '&:hover': {
-                boxShadow: 'none'
-              }
+              color: '#0A1929',
+              fontSize: { xs: '2.7rem', md: 72 },
+              fontWeight: { xs: 700, md: 700 },
+              letterSpacing: -0.85,
+              lineHeight: 1.05
             }}
-            variant='contained'
-            size='large'
-            endIcon={<KeyboardArrowRightIcon />}
-            href='/signin'
           >
-            Get started
-          </Button>
+            <span className='parkbot'>Parkbot</span>
+            &nbsp;the full stack solution for robotic parking systems
+          </Box>
+          <Box
+            // display={{ xs: 'none', md: 'block' }}
+            sx={{
+              mb: { xs: 3, md: 4 },
+              color: '#2F3A45',
+              fontFamily: '"IBM Plex Sans", sans-serif'
+              // typography: 'body1'
+            }}
+          >
+            Web based access to Parkbot in the cloud allows customers to use the
+            application from any location. All you need is an internet access,
+            up-to-date browser, and PC or smartphone.{' '}
+            <Box display={{ xs: 'none', md: 'inline' }}>
+              Users simply sign in to immediately access the latest version of
+              Parkbot from anywhere, with no time or effort spent on
+              installation, enabling them to remotely control and monitor the
+              automatic parking systems faster.
+            </Box>
+          </Box>
+        </Box>
+        <Button
+          sx={{
+            mb: { xs: 3, md: 4 },
+            borderRadius: 2,
+            boxShadow: 'none',
+            fontSize: 16,
+            textTransform: 'none',
+            height: 56,
+            width: { xs: '100%', sm: 200 },
+            '&:hover': {
+              boxShadow: 'none'
+            }
+          }}
+          variant='contained'
+          size='large'
+          endIcon={<KeyboardArrowRightIcon />}
+          href='/signin'
+        >
+          Get started
+        </Button>
+      </Container>
+      <Box sx={{ bgcolor: '#f3f6f9', flexGrow: 1, pt: { xs: 3, md: 4 } }}>
+        <Container maxWidth='md'>
           <Grid container sx={{ mb: { xs: 3, md: 4 } }} spacing={2}>
             <Grid item xs={12} md={6}>
               <Item>
-                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
-                  Analytics
-                </Typography>
+                <Typography sx={{ fontWeight: 'bold' }}>Analytics</Typography>
                 Push data to clients that gets represented as real-time
                 messages, charts or logs.
               </Item>
             </Grid>
             <Grid item xs={12} md={6}>
               <Item>
-                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
+                <Typography sx={{ fontWeight: 'bold' }}>
                   Mobile first
                 </Typography>
                 It works on every platform, modern browser or device, focusing
@@ -153,7 +154,7 @@ export default function Home () {
             </Grid>
             <Grid item xs={12} md={6}>
               <Item>
-                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
+                <Typography sx={{ fontWeight: 'bold' }}>
                   Real-time communication
                 </Typography>
                 Enables real-time bidirectional event-based communication
@@ -162,9 +163,7 @@ export default function Home () {
             </Grid>
             <Grid item xs={12} md={6}>
               <Item>
-                <Typography sx={{ fontWeight: 'bold' }} gutterBottom>
-                  Web based
-                </Typography>
+                <Typography sx={{ fontWeight: 'bold' }}>Web based</Typography>
                 Web applications are popular due to the ubiquity of web
                 browsers, and the convenience of using a web browser as a
                 client.
@@ -172,6 +171,8 @@ export default function Home () {
             </Grid>
           </Grid>
         </Container>
+      </Box>
+      <Box sx={{ bgcolor: '#f3f6f9' }}>
         <Footer />
       </Box>
       <style jsx global>
@@ -184,6 +185,6 @@ export default function Home () {
           }
         `}
       </style>
-    </div>
+    </Box>
   )
 }
