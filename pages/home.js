@@ -1,4 +1,5 @@
 import * as React from 'react'
+// import Image from 'next/image'
 import { styled } from '@mui/material/styles'
 // import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
@@ -83,7 +84,7 @@ export default function Home () {
               sx={{
                 mb: { xs: 3, md: 4 },
                 color: '#0A1929',
-                fontSize: { xs: '2.4rem', md: 72 },
+                fontSize: { xs: '2.7rem', md: 72 },
                 fontWeight: { xs: 700, md: 700 },
                 letterSpacing: -0.85,
                 lineHeight: 1.05
