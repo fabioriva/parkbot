@@ -7,6 +7,7 @@ import MapViewFilter from 'src/components/map/MapViewFilter'
 import Occupancy from 'src/components/charts/Occupancy'
 import fetch from 'src/lib/fetch'
 import { useData } from 'src/lib/useWebSocket'
+import { EDIT_STALL, isAllowed } from 'src/constants/auth'
 
 const withMap = WrappedComponent => {
   const Wrapper = props => {
@@ -59,10 +60,10 @@ const withMap = WrappedComponent => {
     }
 
     const handleOpen = (stall, value) => {
-      // if (isAllowed(user, [userRole])) {
-      setOpen(true)
-      setDialog({ ...dialog, card: value, stall: stall })
-      // }
+      if (isAllowed(props.user, [EDIT_STALL])) {
+        setOpen(true)
+        setDialog({ ...dialog, card: value, stall: stall })
+      }
     }
 
     // Radio

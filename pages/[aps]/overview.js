@@ -11,7 +11,8 @@ const Page = props => <Overview {...props} />
 export async function getServerSideProps (ctx) {
   const APS = aps_(ctx.params.aps)
 
-  if (APS === undefined || ctx.params.aps !== APS.ns) {
+  // if (APS === undefined || ctx.params.aps !== APS.ns) {
+  if (APS === undefined) {
     return {
       notFound: true
     }
@@ -54,8 +55,8 @@ export async function getServerSideProps (ctx) {
       apsName: APS.name,
       locale: i18n,
       json,
-      token,
       user,
+      token,
       executionTime: hrend
     }
   }

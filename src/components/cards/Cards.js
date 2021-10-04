@@ -5,6 +5,7 @@ import Layout from 'src/components/Layout'
 import CardsList from 'src/components/cards/CardsList'
 import fetch from 'src/lib/fetch'
 import { useData } from 'src/lib/useWebSocket'
+import { EDIT_CARD, isAllowed } from '/src/constants/auth'
 
 export default function Cards (props) {
   const { t } = useTranslation('cards')
@@ -19,7 +20,7 @@ export default function Cards (props) {
   const [cards, setCards] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/cards`
-  const { data } = useData(url, {
+  const { data, loading } = useData(url, {
     initialData: cards,
     page: 'cards'
   })
@@ -48,7 +49,7 @@ export default function Cards (props) {
         <CardsList
           cards={cards}
           handleEdit={handleEdit}
-          authorization={true} // {isAllowed(user, [definitions.userRole])}
+          authorization={isAllowed(props.user, [EDIT_CARD])}
           // loading={loading}
         />
       </Paper>

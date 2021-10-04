@@ -1,24 +1,17 @@
 import React from 'react'
-import fetch from 'src/lib/fetch'
+import fetch, { profile } from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
-// import Error from 'src/components/Error'
+import { DEVICE, hasRole } from '/src/constants/auth'
 import DeviceView from 'src/components/device/DeviceView'
 import withAuthSync from 'src/hocs/withAuthSync'
 
 const Page = props => <DeviceView {...props} />
 
-// const Page = props =>
-//   props.json.err ? (
-//     <Error {...props} error='Error 500' />
-//   ) : (
-//     <DeviceView {...props} />
-//   )
-
 export async function getServerSideProps (ctx) {
   const APS = aps_(ctx.params.aps)
 
-  if (APS === undefined || ctx.params.aps !== APS.ns) {
+  if (APS === undefined) {
     return {
       notFound: true
     }
@@ -27,6 +20,17 @@ export async function getServerSideProps (ctx) {
   const { aps, i18n, token } = await getCookies(ctx.req)
 
   if (ctx.params.aps !== aps || !token) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const user = await profile(token)
+
+  if (!hasRole(user, [DEVICE])) {
     return {
       redirect: {
         destination: '/',
@@ -50,6 +54,7 @@ export async function getServerSideProps (ctx) {
       apsName: APS.name,
       locale: i18n,
       json,
+      user,
       token,
       executionTime: hrend
     }

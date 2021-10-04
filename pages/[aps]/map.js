@@ -1,8 +1,9 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import fetch from 'src/lib/fetch'
+import fetch, { profile } from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
+import { MAP, hasRole } from '/src/constants/auth'
 import withMap from 'src/hocs/withMap'
 import withAuthSync from 'src/hocs/withAuthSync'
 
@@ -25,7 +26,7 @@ const Page = props => {
 export async function getServerSideProps (ctx) {
   const APS = aps_(ctx.params.aps)
 
-  if (APS === undefined || ctx.params.aps !== APS.ns) {
+  if (APS === undefined) {
     return {
       notFound: true
     }
@@ -34,6 +35,17 @@ export async function getServerSideProps (ctx) {
   const { aps, i18n, token } = await getCookies(ctx.req)
 
   if (ctx.params.aps !== aps || !token) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const user = await profile(token)
+
+  if (!hasRole(user, [MAP])) {
     return {
       redirect: {
         destination: '/',
@@ -57,6 +69,7 @@ export async function getServerSideProps (ctx) {
       apsName: APS.name,
       locale: i18n,
       json,
+      user,
       token,
       executionTime: hrend
     }

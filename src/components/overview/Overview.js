@@ -5,9 +5,9 @@ import Layout from 'src/components/Layout'
 import Device from 'src/components/overview/Device'
 import OperationDialog from 'src/components/overview/OperationDialog'
 import Queue from 'src/components/overview/Queue'
-import { ACTIONS, isAllowed } from '/src/constants/auth'
 import fetch from 'src/lib/fetch'
 import { useData } from 'src/lib/useWebSocket'
+import { ACTIONS, isAllowed } from '/src/constants/auth'
 
 export default function Overview (props) {
   const { t } = useTranslation('overview')
@@ -74,11 +74,6 @@ export default function Overview (props) {
     // props.enqueueSnackbar(snack.message, snack.options)
   }
 
-  // const handleOpen = id => {
-  //   setOpen(true)
-  //   setOperation({ ...operation, id: id })
-  // }
-
   return (
     <Layout {...props} pageTitle={t('header-title')}>
       <Grid container spacing={2}>
@@ -107,18 +102,6 @@ export default function Overview (props) {
             onExit={() => setOpen(true)}
             loading={loading}
           />
-          {/* <Widget
-              authorization={isAllowed(user, [userRole])}
-              title={t('exit-queue')}
-              button={overview.exitQueue.exitButton}
-              showModal={handleOpen}
-            >
-              <Queue
-                authorization={isAllowed(user, [userRole])}
-                handleDelete={handleDelete}
-                queueList={overview.exitQueue.queueList}
-              />
-            </Widget> */}
         </Grid>
       </Grid>
       <OperationDialog
