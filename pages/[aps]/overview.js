@@ -2,6 +2,7 @@ import React from 'react'
 import fetch, { profile } from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
+import { OVERVIEW, hasRole } from '/src/constants/auth'
 import Overview from 'src/components/overview/Overview'
 import withAuthSync from 'src/hocs/withAuthSync'
 
@@ -28,6 +29,15 @@ export async function getServerSideProps (ctx) {
   }
 
   const user = await profile(token)
+
+  if (!hasRole(user, [OVERVIEW])) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
 
   var hrstart = process.hrtime()
 

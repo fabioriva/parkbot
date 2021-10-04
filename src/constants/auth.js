@@ -22,6 +22,11 @@ export const DIAGNOSTIC = 'diagnostic'
 export const EDIT_CARD = 'edit-card'
 export const EDIT_STALL = 'edit-stall'
 
+export const hasRole = (user, roles) =>
+  roles.some(role =>
+    user.roles !== undefined ? user.roles.includes(role) : false
+  )
+
 export const isAllowed = (user, rights) =>
   rights.some(right =>
     user.rights !== undefined ? user.rights.includes(right) : false

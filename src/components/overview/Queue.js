@@ -18,13 +18,17 @@ export default function Queue (props) {
           {t('queue-title')}
         </Typography>
         <QueueList
+          auth={props.auth}
           queue={queueList}
           onDelete={props.onDelete}
           loading={props.loading}
         />
       </CardContent>
       <CardActions>
-        <Button disabled={exitButton.status} onClick={props.onExit}>
+        <Button
+          disabled={!props.auth || !exitButton.enable.status}
+          onClick={props.onExit}
+        >
           {t('dialog-exit')}
         </Button>
       </CardActions>

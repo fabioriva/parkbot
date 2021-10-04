@@ -31,7 +31,7 @@ export async function profile (token) {
     }
   })
   const user = await response.json()
-  console.log('User profile:', user)
+  // console.log('User profile:', user)
   return user
 }
 

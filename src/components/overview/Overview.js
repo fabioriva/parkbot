@@ -5,6 +5,7 @@ import Layout from 'src/components/Layout'
 import Device from 'src/components/overview/Device'
 import OperationDialog from 'src/components/overview/OperationDialog'
 import Queue from 'src/components/overview/Queue'
+import { ACTIONS, isAllowed } from '/src/constants/auth'
 import fetch from 'src/lib/fetch'
 import { useData } from 'src/lib/useWebSocket'
 
@@ -18,8 +19,10 @@ export default function Overview (props) {
       </Layout>
     )
 
-  const [overview, setOverview] = React.useState(props.json)
+  // const [auth, setAuth] = React.useState(false)
+  // React.useEffect(() => setAuth(isAllowed(props.user, [ACTIONS])), [])
 
+  const [overview, setOverview] = React.useState(props.json)
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/overview`
   const { data, loading } = useData(url, {
     initialData: overview,
@@ -98,6 +101,7 @@ export default function Overview (props) {
         </Grid>
         <Grid item xs={12} sm={6} md={4} xl={3}>
           <Queue
+            auth={isAllowed(props.user, [ACTIONS])}
             data={overview.exitQueue}
             onDelete={handleDelete}
             onExit={() => setOpen(true)}

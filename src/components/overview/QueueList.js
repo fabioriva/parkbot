@@ -67,8 +67,8 @@ export default function QueueList (props) {
                 <IconButton
                   edge='end'
                   aria-label='delete'
+                  disabled={!props.auth}
                   onClick={() => handleOpen(element.card, index + 1)}
-                  // disabled={!props.authorization}
                 >
                   <DeleteIcon />
                 </IconButton>
