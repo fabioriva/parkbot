@@ -1,5 +1,5 @@
-import Badge from './Badge'
-import Panel from './Panel'
+import Badge from 'src/components/lab/Badge'
+import Panel from 'src/components/lab/Panel'
 // import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
 
