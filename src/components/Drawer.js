@@ -19,18 +19,19 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 import HistoryIcon from '@mui/icons-material/History'
 import ViewComfyIcon from '@mui/icons-material/ViewComfy'
 import VisibilityIcon from '@mui/icons-material/Visibility'
+import * as roles from 'src/constants/auth'
 
 const drawerWidth = 240
 
 export default function AppDrawer (props) {
   const { t } = useTranslation('common')
 
-  const { aps, locale } = props
+  const { aps, locale, user } = props
 
   const items = (
     <List>
       <Link href={`/${aps}/dashboard`} locale={locale}>
-        <ListItem button>
+        <ListItem button disabled={!roles.hasRole(user, [roles.DASHBOARD])}>
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
@@ -38,7 +39,7 @@ export default function AppDrawer (props) {
         </ListItem>
       </Link>
       <Link href={`/${aps}/overview`} locale={locale}>
-        <ListItem button>
+        <ListItem button disabled={!roles.hasRole(user, [roles.OVERVIEW])}>
           <ListItemIcon>
             <VisibilityIcon />
           </ListItemIcon>
@@ -46,7 +47,7 @@ export default function AppDrawer (props) {
         </ListItem>
       </Link>
       <Link href={`/${aps}/map`} locale={locale}>
-        <ListItem button>
+        <ListItem button disabled={!roles.hasRole(user, [roles.MAP])}>
           <ListItemIcon>
             <DirectionsCarIcon />
           </ListItemIcon>
@@ -54,7 +55,7 @@ export default function AppDrawer (props) {
         </ListItem>
       </Link>
       <Link href={`/${aps}/cards`} locale={locale}>
-        <ListItem button>
+        <ListItem button disabled={!roles.hasRole(user, [roles.CARDS])}>
           <ListItemIcon>
             <CreditCardIcon />
           </ListItemIcon>
@@ -62,7 +63,7 @@ export default function AppDrawer (props) {
         </ListItem>
       </Link>
       <Link href={`/${aps}/racks`} locale={locale}>
-        <ListItem button>
+        <ListItem button disabled={!roles.hasRole(user, [roles.RACKS])}>
           <ListItemIcon>
             <ViewComfyIcon />
           </ListItemIcon>
@@ -70,7 +71,7 @@ export default function AppDrawer (props) {
         </ListItem>
       </Link>
       <Link href={`/${aps}/history`} locale={locale}>
-        <ListItem button>
+        <ListItem button disabled={!roles.hasRole(user, [roles.HISTORY])}>
           <ListItemIcon>
             <HistoryIcon />
           </ListItemIcon>
@@ -78,7 +79,7 @@ export default function AppDrawer (props) {
         </ListItem>
       </Link>
       <Link href={`/${aps}/statistics`} locale={locale}>
-        <ListItem button>
+        <ListItem button disabled={!roles.hasRole(user, [roles.STATISTICS])}>
           <ListItemIcon>
             <BarChartIcon />
           </ListItemIcon>

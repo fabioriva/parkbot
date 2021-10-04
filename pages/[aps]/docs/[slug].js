@@ -3,7 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 import Paper from '@mui/material/Paper'
-import Layout from 'src/components/Layout'
+// import Layout from 'src/components/Layout'
 import { aps_, apsPaths } from 'src/constants/aps'
 import { getDocBySlug, getAllDocs } from 'src/lib/api'
 import markdownToHtml from 'src/lib/markdownToHtml'
@@ -17,26 +17,26 @@ const Page = props => {
   const { t } = useTranslation('io')
 
   return (
-    <Layout {...props} pageTitle={props.doc.title}>
-      <Paper sx={{ p: 0 }}>
-        {/* <h2>{props.doc.slug}</h2>
+    // <Layout {...props} pageTitle={props.doc.title}>
+    <Paper sx={{ p: 0 }}>
+      {/* <h2>{props.doc.slug}</h2>
         <p>Title: {props.doc.title}</p>
         <p>Description: {props.doc.description}</p>
         <p>Content: {props.doc.content}</p>
         <p>{locale}</p>
         <p>{aps}</p>
         <p>{slug}</p> */}
-        <Alert severity='warning'>
-          <AlertTitle>Help</AlertTitle>
-          <h1 dangerouslySetInnerHTML={{ __html: props.doc.description }} />
-          <p>
-            <strong>{key}</strong> {t(key)}
-          </p>
-          <div dangerouslySetInnerHTML={{ __html: props.doc.content }} />
-          {/* <p>{query}</p> */}
-        </Alert>
-      </Paper>
-    </Layout>
+      <Alert severity='warning'>
+        <AlertTitle>Help</AlertTitle>
+        <h1 dangerouslySetInnerHTML={{ __html: props.doc.description }} />
+        <p>
+          <strong>{key}</strong> {t(key)}
+        </p>
+        <div dangerouslySetInnerHTML={{ __html: props.doc.content }} />
+        {/* <p>{query}</p> */}
+      </Alert>
+    </Paper>
+    // </Layout>
   )
 }
 

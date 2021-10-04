@@ -15,7 +15,7 @@ import Mode from 'src/components/overview/Mode'
 import Silomat from 'src/components/overview/Silomat'
 import VirtualGarage from 'src/components/overview/VirtualGarage'
 import useTranslation from 'next-translate/useTranslation'
-import { DIAGNOSTIC, isAllowed } from 'src/constants/auth'
+import { ALARMS, DIAGNOSTIC, hasRole, isAllowed } from 'src/constants/auth'
 
 const bg = (op, theme) => {
   switch (op) {
@@ -177,8 +177,8 @@ export default function Device (props) {
           <Box sx={{ marginLeft: 'auto' }}>
             <Active
               active={props.item.alarms.length}
+              disabled={!hasRole(props.user, [ALARMS])}
               href={`/${props.aps}/active/${id - 1}`}
-              locale={props.user.locale}
             />
           </Box>
         )}

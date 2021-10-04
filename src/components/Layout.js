@@ -39,6 +39,7 @@ export default function AppLayout (props) {
       <Drawer
         aps={props.aps}
         locale={props.locale !== undefined ? props.locale : 'en'}
+        user={props.user}
         handleDrawerToggle={handleDrawerToggle}
         mobileOpen={mobileOpen}
       />

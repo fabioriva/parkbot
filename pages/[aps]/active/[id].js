@@ -1,22 +1,13 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { useData } from 'src/lib/useWebSocket'
-import fetch from 'src/lib/fetch'
+import fetch, { profile } from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
-// import Error from 'src/components/Error'
+import { ALARMS, hasRole } from 'src/constants/auth'
 import Layout from 'src/components/Layout'
 import DeviceInfo from 'src/components/device/DeviceInfo'
 import withAuthSync from 'src/hocs/withAuthSync'
-
-// const Page = props =>
-//   props.json.err ? (
-//     <Error {...props} error='Error 500' />
-//   ) : (
-//     <Layout {...props} pageTitle={props.json.device.a.name}>
-//       <DeviceInfo alarms={props.json.device.alarms} />
-//     </Layout>
-//   )
 
 const Page = props => {
   const router = useRouter()
@@ -32,7 +23,7 @@ const Page = props => {
   const [overview, setOverview] = React.useState(props.json)
 
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/overview`
-  const { data, loading } = useData(url, {
+  const { data } = useData(url, {
     initialData: overview,
     page: 'overview'
   })
@@ -59,7 +50,7 @@ const Page = props => {
 export async function getServerSideProps (ctx) {
   const APS = aps_(ctx.params.aps)
 
-  if (APS === undefined || ctx.params.aps !== APS.ns) {
+  if (APS === undefined) {
     return {
       notFound: true
     }
@@ -68,6 +59,17 @@ export async function getServerSideProps (ctx) {
   const { aps, i18n, token } = await getCookies(ctx.req)
 
   if (ctx.params.aps !== aps || !token) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  const user = await profile(token)
+
+  if (!hasRole(user, [ALARMS])) {
     return {
       redirect: {
         destination: '/',
@@ -92,6 +94,7 @@ export async function getServerSideProps (ctx) {
       apsName: APS.name,
       locale: i18n,
       json,
+      user,
       token,
       executionTime: hrend
     }

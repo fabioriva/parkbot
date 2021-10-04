@@ -1,7 +1,8 @@
 import React from 'react'
-import fetch from 'src/lib/fetch'
+import fetch, { profile } from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
+import { RACKS, hasRole } from '/src/constants/auth'
 import Rack from 'src/components/racks/Rack'
 import withAuthSync from 'src/hocs/withAuthSync'
 
@@ -27,6 +28,17 @@ export async function getServerSideProps (ctx) {
     }
   }
 
+  const user = await profile(token)
+
+  if (!hasRole(user, [RACKS])) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
   var hrstart = process.hrtime()
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/rack/${ctx.params.id}`
@@ -42,6 +54,7 @@ export async function getServerSideProps (ctx) {
       apsName: APS.name,
       locale: i18n,
       json,
+      user,
       token,
       executionTime: hrend
     }
