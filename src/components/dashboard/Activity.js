@@ -13,7 +13,7 @@ export default function Activity ({ activity }) {
     <List dense>
       {activity.documents.map((item, key) => (
         <React.Fragment key={key}>
-          <ListItem sx={{ p: 0 }}>
+          <ListItem sx={{ py: 0 }}>
             <ListItemAvatar>
               <Avatar item={item} />
             </ListItemAvatar>
@@ -28,10 +28,18 @@ export default function Activity ({ activity }) {
                 </Typography>
               }
               secondary={
-                <Typography variant='body2' color='text.primary'>
-                  <strong>{item.device.name} </strong>—{' '}
+                <React.Fragment>
+                  <Typography
+                    sx={{ display: 'inline' }}
+                    component='span'
+                    variant='body2'
+                    color='text.primary'
+                  >
+                    {item.device.name}
+                  </Typography>
+                  {' — '}
                   <LogMessage item={item} />
-                </Typography>
+                </React.Fragment>
               }
             />
           </ListItem>

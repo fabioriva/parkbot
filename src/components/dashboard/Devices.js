@@ -74,7 +74,7 @@ export default function Devices ({ aps, devices }) {
       {devices.map((item, key) => (
         <React.Fragment key={key}>
           <ListItem
-            sx={{ p: 0 }}
+            sx={{ py: 0 }}
             secondaryAction={
               <IconButton
                 edge='end'

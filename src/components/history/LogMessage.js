@@ -1,16 +1,16 @@
 import useTranslation from 'next-translate/useTranslation'
 
 function text (item, t) {
-  console.log(item)
+  // console.log(item)
   switch (item.operation.id) {
     case 1:
       return (
-        <div>
+        <>
           <strong>AL{item.alarm.id}</strong>{' '}
           {t(`alarms:${item.alarm.i18n?.key}`, item.alarm.i18n?.query, {
             fallback: 'fallback1'
           })}
-        </div>
+        </>
       )
     // return t(`alarms:${item.alarm.i18n.key}`, item.alarm.i18n.query, {
     //   fallback: 'fallback1'
@@ -18,12 +18,12 @@ function text (item, t) {
     // return t('list-op-id-1', { id: item.alarm.id })
     case 2:
       return (
-        <div>
+        <>
           <strong>AL{item.alarm.id}</strong>{' '}
           {t(`alarms:${item.alarm.i18n?.key}`, item.alarm.i18n?.query, {
             fallback: 'fallback1'
           })}
-        </div>
+        </>
       )
     // return t(`alarms:${item.alarm.i18n.key}`, item.alarm.i18n.query, {
     //   fallback: 'fallback1'
@@ -73,9 +73,9 @@ function text (item, t) {
     // )
     default:
       return (
-        <div>
+        <>
           {item.device.name} - {item.operation.id} - {t(item.operation.label)}
-        </div>
+        </>
       )
   }
 }

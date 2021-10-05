@@ -35,7 +35,7 @@ export default function AppLayout (props) {
         //     : theme.palette.background.default
       }}
     >
-      <Navbar handleDrawerToggle={handleDrawerToggle} />
+      <Navbar user={props.user} handleDrawerToggle={handleDrawerToggle} />
       <Drawer
         aps={props.aps}
         locale={props.locale !== undefined ? props.locale : 'en'}

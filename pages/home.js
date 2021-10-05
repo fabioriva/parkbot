@@ -109,8 +109,8 @@ export default function Home () {
                   mb: { xs: 3, md: 4 },
                   // color: '#2F3A45',
                   color: '#0A1929',
-                  fontFamily: '"IBM Plex Sans", sans-serif',
-                  typography: 'body1'
+                  fontFamily: '"IBM Plex Sans", sans-serif'
+                  // typography: 'body1'
                 }}
               >
                 Web based access to Parkbot in the cloud allows customers to use

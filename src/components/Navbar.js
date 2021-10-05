@@ -2,9 +2,13 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { useTheme } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
+import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemIcon from '@mui/material/ListItemIcon'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Toolbar from '@mui/material/Toolbar'
@@ -12,6 +16,7 @@ import Typography from '@mui/material/Typography'
 import { orange } from '@mui/material/colors'
 // material-ui icons
 import AccountCircle from '@mui/icons-material/AccountCircle'
+import Logout from '@mui/icons-material/Logout'
 import MenuIcon from '@mui/icons-material/Menu'
 import useTranslation from 'next-translate/useTranslation'
 
@@ -53,7 +58,7 @@ export default function NavBar (props) {
         open={true}
       >
         <Container maxWidth='xl'>
-          <Toolbar sx={{ p: 0 }} disableGutters>
+          <Toolbar disableGutters>
             <IconButton
               color='inherit'
               aria-label='open drawer'
@@ -79,19 +84,60 @@ export default function NavBar (props) {
             <Menu
               id='menu-appbar'
               anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
+              // anchorOrigin={{
+              //   vertical: 'top',
+              //   horizontal: 'right'
+              // }}
               keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
+              // transformOrigin={{
+              //   vertical: 'top',
+              //   horizontal: 'right'
+              // }}
               open={open}
               onClose={handleClose}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: 'visible',
+                  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                  mt: 1.5,
+                  '& .MuiAvatar-root': {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1
+                  },
+                  '&:before': {
+                    content: '""',
+                    display: 'block',
+                    position: 'absolute',
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: 'background.paper',
+                    transform: 'translateY(-50%) rotate(45deg)',
+                    zIndex: 0
+                  }
+                }
+              }}
+              transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-              <MenuItem onClick={handleLogout}>{t('navbar-logout')}</MenuItem>
+              <MenuItem disabled>
+                <Avatar /> {props.user.username}
+                {/* <ListItemIcon>
+                  <AccountCircle />
+                </ListItemIcon>
+                <ListItemText>{props.user.username}</ListItemText> */}
+              </MenuItem>
+              <Divider />
+              <MenuItem onClick={handleLogout}>
+                <ListItemIcon>
+                  <Logout fontSize='small' />
+                </ListItemIcon>
+                {t('navbar-logout')}
+              </MenuItem>
             </Menu>
           </Toolbar>
         </Container>
