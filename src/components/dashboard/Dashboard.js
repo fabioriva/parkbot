@@ -39,19 +39,24 @@ export default function Dashboard (props) {
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
-      <Grid container spacing={2}>
-        <Grid item sx={{ display: 'flex' }} xs={12} lg>
-          <Widget link={`/${props.aps}/overview`} title={t('devices-title')}>
+      <Grid
+        container
+        alignItems='center'
+        justifyContent='space-around'
+        spacing={2}
+      >
+        <Grid item xs={12} lg>
+          <Widget href={`/${props.aps}/overview`} title={t('devices-title')}>
             <Devices devices={system.devices} aps={props.aps} />
           </Widget>
         </Grid>
-        <Grid item sx={{ display: 'flex' }} xs={12} lg>
-          <Widget link={`/${props.aps}/history`} title={t('activity-title')}>
+        <Grid item xs={12} lg>
+          <Widget href={`/${props.aps}/history`} title={t('activity-title')}>
             <Activity activity={activity} />
           </Widget>
         </Grid>
-        <Grid item sx={{ display: 'flex' }} xs={12} lg>
-          <Widget link={`/${props.aps}/map`} title={t('occupancy-title')}>
+        <Grid item xs={12} lg>
+          <Widget href={`/${props.aps}/map`} title={t('occupancy-title')}>
             <Occupancy
               // animation
               data={[
@@ -66,7 +71,7 @@ export default function Dashboard (props) {
           </Widget>
         </Grid>
         {/* <Grid item sx={{ display: 'flex' }} xs={12} lg>
-          <Widget link={`/${props.aps}/map`} title={t('occupancy-title')}>
+          <Widget href={`/${props.aps}/map`} title={t('occupancy-title')}>
             <QueueList
               queue={system.exitQueue.queueList}
               onDelete={props.onDelete}
@@ -76,7 +81,7 @@ export default function Dashboard (props) {
         {operations[2].data.length > 0 && (
           <Grid item xs={12} sx={{ display: { xs: 'none', md: 'block' } }}>
             <Widget
-              link={`/${props.aps}/statistics`}
+              href={`/${props.aps}/statistics`}
               title={t('operations-title')}
             >
               <Operations

@@ -1,22 +1,12 @@
-import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
-import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 
-export default function Widget ({ children, link, title }) {
+export default function Widget ({ children, href, title }) {
   return (
-    <Card
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
-        width: '100%'
-        // mx: { xs: 0.5, md: 0 }
-      }}
-    >
-      <CardActionArea href={link}>
+    <Card sx={{ width: '100%' }}>
+      <CardActionArea href={href}>
         <CardContent>
           {title && (
             <Typography variant='h6' component='h2' gutterBottom>
@@ -26,11 +16,6 @@ export default function Widget ({ children, link, title }) {
           {children}
         </CardContent>
       </CardActionArea>
-      {/* <CardActions>
-        <Button size='small' href={link}>
-          More
-        </Button>
-      </CardActions> */}
     </Card>
   )
 }
