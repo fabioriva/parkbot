@@ -9,13 +9,16 @@ import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
 import Layout from 'src/components/Layout'
 import Operations from 'src/components/charts/Operations'
-import OperationsMobileView from 'src/components/statistics/OperationsMobileView'
+// import OperationsMobileView from 'src/components/statistics/OperationsMobileView'
 import OperationsQueryDialog from 'src/components/statistics/OperationsQueryDialog'
 import fetch from 'src/lib/fetch'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import useTranslation from 'next-translate/useTranslation'
 
 export default function Statistics (props) {
   const { t } = useTranslation('statistics')
+
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
   if (props.json.err)
     return (
@@ -100,18 +103,19 @@ export default function Statistics (props) {
             element.data.length > 0 && (
               <Grid item xs={12} key={index}>
                 <Paper>
-                  <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                  {/* <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                     <OperationsMobileView key={index} statistics={element} />
-                  </Box>
-                  <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                  </Box> */}
+                  <Box sx={{ display: { xs: 'block', md: 'block' } }}>
                     <Operations
                       key={index}
                       animation
+                      axis={isMobile ? 'y' : 'x'}
                       data={element.data}
                       labels={[t('entries'), t('exits'), t('total')]}
                       // title={`${t(element.i18n)}: ${element.label}`}
                       title={`${element.title}: ${element.label}`}
-                      height={'30%'}
+                      height={isMobile ? '100%' : '30%'}
                       width={'100%'}
                     />
                   </Box>
