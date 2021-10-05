@@ -150,7 +150,7 @@ export default function Home () {
       </div>
       <Box sx={{ bgcolor: '#f3f6f9', flexGrow: 1, pt: { xs: 3, md: 4 } }}>
         <Container maxWidth='md'>
-          <Grid container sx={{ mb: { xs: 3, md: 4 } }} spacing={2}>
+          <Grid container sx={{ mb: { xs: 3, md: 4 } }} spacing={3}>
             <Grid item xs={12} sm={6}>
               <Item>
                 <Typography sx={{ fontWeight: 'bold' }}>Analytics</Typography>
