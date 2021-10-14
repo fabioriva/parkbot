@@ -30,7 +30,7 @@ const withMap = WrappedComponent => {
     React.useEffect(() => setMap(data), [data])
 
     const { cards, stalls, stallStatus } = map.definitions
-
+    console.log(stallStatus)
     // Dialog
     const DIALOG_INIT_VALUES = { card: 0, stall: 0, minCard: 1, maxCard: cards }
     const [open, setOpen] = React.useState(false)
@@ -43,6 +43,7 @@ const withMap = WrappedComponent => {
 
     const handleConfirm = async ({ card, stall }) => {
       setOpen(false)
+      console.log(card, stall)
       const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/map/edit`
       const json = await fetch(url, {
         method: 'POST',
@@ -108,6 +109,7 @@ const withMap = WrappedComponent => {
           open={open}
           onCancel={handleCancel}
           onConfirm={handleConfirm}
+          stallStatus={stallStatus}
           value={dialog}
         />
       </Layout>

@@ -10,7 +10,13 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-export default function MapEditDialog ({ onCancel, onConfirm, open, value }) {
+export default function MapEditDialog ({
+  onCancel,
+  onConfirm,
+  open,
+  stallStatus,
+  value
+}) {
   const fullScreen = useMediaQuery(theme => theme.breakpoints.down('sm'))
   const { t } = useTranslation('map')
 
@@ -80,7 +86,7 @@ export default function MapEditDialog ({ onCancel, onConfirm, open, value }) {
         </Button>
         <Button
           color='primary'
-          onClick={() => onConfirm({ card: 999, stall: stall })}
+          onClick={() => onConfirm({ card: stallStatus.LOCK, stall: stall })}
         >
           {t('dialog-lock')}
         </Button>

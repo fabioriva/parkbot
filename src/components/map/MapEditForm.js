@@ -9,7 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import useTranslation from 'next-translate/useTranslation'
 import { useForm, Controller } from 'react-hook-form'
 
-const MapEditDialog = ({ onCancel, onConfirm, open, value }) => {
+const MapEditDialog = ({ onCancel, onConfirm, open, stallStatus, value }) => {
   const fullScreen = useMediaQuery(theme => theme.breakpoints.down('sm'))
   const { t } = useTranslation('map')
 
@@ -80,7 +80,7 @@ const MapEditDialog = ({ onCancel, onConfirm, open, value }) => {
           </Button>
           <Button
             color='primary'
-            onClick={() => onConfirm({ card: 999, stall: stall })}
+            onClick={() => onConfirm({ card: stallStatus.LOCK, stall: stall })}
           >
             {t('dialog-lock')}
           </Button>
