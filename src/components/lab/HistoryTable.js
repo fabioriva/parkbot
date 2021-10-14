@@ -1,6 +1,4 @@
 import React from 'react'
-// import Link from 'next/link'
-import { format, parseISO } from 'date-fns'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -10,21 +8,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TablePagination from '@mui/material/TablePagination'
 import useTranslation from 'next-translate/useTranslation'
-
-// function bgcolor (op, theme) {
-//   switch (op) {
-//     case 1:
-//       return theme.palette.cu // 'rgb(244,67,54)'
-//     case 2:
-//       return theme.palette.ce // 'rgb(102,187,106)'
-//     case 3:
-//       return theme.palette.op // 'rgb(244,167,38)'
-//     case 4:
-//       return theme.palette.pp // 'rgb(41,182,246)'
-//     // default:
-//     //   return '#fff' // 'rgba(0, 0, 0, 0.87)'
-//   }
-// }
+import { format, parseISO } from 'date-fns'
 
 function color (op) {
   switch (op) {
@@ -41,58 +25,33 @@ function color (op) {
 
 function Row ({ row }) {
   const { t } = useTranslation('history')
-  // const [open, setOpen] = React.useState(false)
   console.log(row)
-
   return (
     <React.Fragment>
       <TableRow sx={{ '&:hover': { cursor: 'pointer' } }} hover>
         <TableCell component='th' scope='row'>
-          {/* {row.logged} */}
+          {/* {row.dateStr} */}
           {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')}
-          {/* {row.logged} | {row.date} */}
-          {/* {format(row.date, 'yyyy-MM-dd HH:mm:ss')} */}
-          {/* {row.dateStr} | {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')} */}
         </TableCell>
+        <TableCell align='left'>{row.device.key}</TableCell>
         <TableCell align='left'>
-          {/* {row.device.id} - {row.device.id === 0 ? t('dev-operator') : row.device.name} */}
-          {/* {row.device.id} - {devices[row.device.id]} */}
-          {/* {row.device.id} -{' '} */}
-          {row.device?.id !== undefined ? row.device.name : t('dev-operator')}
+          {row.mode.id}: {t(row.mode.key)}
         </TableCell>
-        <TableCell align='left'>
-          {row.mode.id} - {t(row.mode.label)}
-          {/* {row.mode.id} - {t(modes[row.mode.id])} */}
-        </TableCell>
-        <TableCell
-          // sx={{ bgcolor: theme => bgcolor(row.operation.id, theme) }}
-          align='left'
-          sx={{ color: color(row.operation.id) }}
-        >
-          {/* {row.operation.id} - {t(row.operation.label)} */}
-          {/* {t(operations[row.operation.id])} */}
-          {/* {row.alarm !== undefined
-            ? 'AL' +
-              row.alarm.id +
-              ' ' +
-              t(`alarms:${row.alarm.i18n?.key}`, row.alarm.i18n?.query, {
+        <TableCell align='left' sx={{ color: color(row.operation.id) }}>
+          {row.alarm !== undefined && (
+            <>
+              {/* <span>AL{row.alarm.id}</span>&nbsp;
+              {t('alarms:' + row.alarm.key, row.alarm.query, {
                 fallback: ['alarms:fallback1', 'fallback2']
-              })
-            : t(row.operation.label)} */}
-          {/* {row.alarm?.id !== 0 &&
-            row.alarm !== 0 && */}
-          {row.alarm !== undefined &&
-            t(`alarms:${row.alarm.i18n?.key}`, row.alarm.i18n?.query, {
-              fallback: ['alarms:fallback1', 'fallback2']
-            })}
-          {/* {row.operation.id !== 1 &&
-            row.operation.id !== 2 && */}
-          {row.alarm === undefined && t(row.operation.label)}
+              })} */}
+              {t('alarms:' + row.alarm.key, row.alarm.query, {
+                fallback: ['alarms:fallback1', 'fallback2']
+              })}
+            </>
+          )}
+          {row.alarm === undefined && t(row.operation.key)}
         </TableCell>
         <TableCell align='center' sx={{ color: color(row.operation.id) }}>
-          {/* {row.alarm?.id !== 0 && row.alarm !== 0 && (
-            <strong>AL{row.alarm.id}</strong>
-          )} */}
           {row.alarm !== undefined && <strong>AL{row.alarm.id}</strong>}
         </TableCell>
         <TableCell align='center'>{row.card}</TableCell>
@@ -137,8 +96,8 @@ export default function HistoryTable ({ count, query }) {
           <TableBody>
             {query
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(row => (
-                <Row key={row._id} row={row} />
+              .map((row, index) => (
+                <Row key={index} row={row} />
               ))}
           </TableBody>
         </Table>

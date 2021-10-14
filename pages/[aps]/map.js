@@ -8,6 +8,7 @@ import withMap from 'src/hocs/withMap'
 import withAuthSync from 'src/hocs/withAuthSync'
 
 const componentList = {
+  alumim: dynamic(() => import('src/components/map/alumim')),
   bmc: dynamic(() => import('src/components/map/bmc')),
   chandan: dynamic(() => import('src/components/map/chandan')),
   ironbank: dynamic(() => import('src/components/map/ironbank')),

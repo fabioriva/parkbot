@@ -1,4 +1,5 @@
 const APS_ = [
+  { ns: 'alumim', name: 'Alumim, Tel Aviv, 🇮🇱' },
   { ns: 'bmc', name: 'BMC, Mumbai, 🇮🇳' },
   { ns: 'chandan', name: 'Chandan Society, Mumbai, 🇮🇳' },
   { ns: 'ironbank', name: 'Iron Bank, Auckland, 🇳🇿' },
@@ -13,7 +14,7 @@ export const aps_ = aps => APS_.find(a => aps === a.ns)
 
 /**
  * Old
- */
+ 
 const APS = [
   'bmc',
   'chandan',
@@ -32,3 +33,5 @@ export const apsPaths = async (locales, args) => {
     locales.map(locale => ({ params: { aps, ...args }, locale }))
   )
 }
+
+*/
