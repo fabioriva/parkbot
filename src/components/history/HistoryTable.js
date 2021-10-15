@@ -42,7 +42,7 @@ function color (op) {
 function Row ({ row }) {
   const { t } = useTranslation('history')
   // const [open, setOpen] = React.useState(false)
-  console.log(row)
+  // console.log(row)
 
   return (
     <React.Fragment>

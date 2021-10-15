@@ -8,8 +8,10 @@ import Button from '@mui/material/Button'
 import SearchIcon from '@mui/icons-material/Search'
 import Layout from 'src/components/Layout'
 import HistoryList from 'src/components/history/HistoryListVirtualized'
+import HistoryListNew from 'src/components/lab/HistoryList'
 import HistoryQueryDialog from 'src/components/history/HistoryQueryDialog'
 import HistoryTable from 'src/components/history/HistoryTable'
+import HistoryTableNew from 'src/components/lab/HistoryTable'
 import fetch from 'src/lib/fetch'
 import useTranslation from 'next-translate/useTranslation'
 
@@ -40,6 +42,8 @@ export default function History (props) {
     // setOpen(false)
   }
 
+  const isNew = props.aps === 'alumim'
+
   return (
     <Layout {...props} pageTitle={t('header-title')}>
       <HistoryQueryDialog
@@ -50,9 +54,13 @@ export default function History (props) {
       />
 
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-        {history.count > 0 ? (
+        {!isNew && history.count > 0 && (
           <HistoryList count={history.count} query={history.query} />
-        ) : (
+        )}
+        {isNew && history.count > 0 && (
+          <HistoryListNew count={history.count} query={history.query} />
+        )}
+        {history.count === 0 && (
           <Alert severity='info'>{t('history-no-found')}</Alert>
         )}
         <Fab
@@ -101,8 +109,11 @@ export default function History (props) {
           .&nbsp;{t('history-count', { count: history.count })}.{/* </Box> */}
         </Alert>
         {/* </Paper> */}
-        {history.count > 0 && (
+        {!isNew && history.count > 0 && (
           <HistoryTable count={history.count} query={history.query} />
+        )}
+        {isNew && history.count > 0 && (
+          <HistoryTableNew count={history.count} query={history.query} />
         )}
       </Box>
     </Layout>

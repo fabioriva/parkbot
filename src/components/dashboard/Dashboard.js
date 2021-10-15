@@ -52,7 +52,7 @@ export default function Dashboard (props) {
         </Grid>
         <Grid item xs={12} lg>
           <Widget href={`/${props.aps}/history`} title={t('activity-title')}>
-            <Activity activity={activity} />
+            <Activity aps={props.aps} activity={activity} />
           </Widget>
         </Grid>
         <Grid item xs={12} lg>

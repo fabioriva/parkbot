@@ -35,7 +35,9 @@ function Row ({ row }) {
         </TableCell>
         <TableCell align='left'>{row.device.key}</TableCell>
         <TableCell align='left'>
-          {row.mode.id}: {t(row.mode.key)}
+          {row.mode.id}
+          {' — '}
+          {t(row.mode.key)}
         </TableCell>
         <TableCell align='left' sx={{ color: color(row.operation.id) }}>
           {row.alarm !== undefined && (

@@ -9,8 +9,7 @@ import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 
 export default function HistoryListAvatar ({ item }) {
-  const { id } = item.operation
-  switch (id) {
+  switch (item.operation.id) {
     case 1:
       return (
         <Avatar sx={{ background: '#f2dede', color: '#a94442' }}>
