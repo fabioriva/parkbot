@@ -1,6 +1,6 @@
 import React from 'react'
 // import Link from 'next/link'
-import { format, parseISO } from 'date-fns'
+// import { format, parseISO } from 'date-fns'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -48,8 +48,8 @@ function Row ({ row }) {
     <React.Fragment>
       <TableRow sx={{ '&:hover': { cursor: 'pointer' } }} hover>
         <TableCell component='th' scope='row'>
-          {/* {row.logged} */}
-          {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')}
+          {row.logged}
+          {/* {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')} */}
           {/* {row.logged} | {row.date} */}
           {/* {format(row.date, 'yyyy-MM-dd HH:mm:ss')} */}
           {/* {row.dateStr} | {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')} */}
