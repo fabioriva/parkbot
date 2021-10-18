@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TablePagination from '@mui/material/TablePagination'
 import useTranslation from 'next-translate/useTranslation'
-import { format, parseISO } from 'date-fns'
+// import { format, parseISO } from 'date-fns'
 
 function color (op) {
   switch (op) {
@@ -25,13 +25,16 @@ function color (op) {
 
 function Row ({ row }) {
   const { t } = useTranslation('history')
-  console.log(row)
+  // console.log(row)
+  console.log(typeof row.date, row.date) // string
   return (
     <React.Fragment>
       <TableRow sx={{ '&:hover': { cursor: 'pointer' } }} hover>
         <TableCell component='th' scope='row'>
+          {row.date.slice(0, 10)} {row.date.slice(11, 19)}
           {/* {row.dateStr} */}
-          {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')}
+          {/* {format(parseISO(row.date), 'yyyy-MM-dd HH:mm:ss')} */}
+          {/* {format(row.date, 'yyyy-MM-dd"T"HH:mm:ss.SSS"Z"')} */}
         </TableCell>
         <TableCell align='left'>{row.device.key}</TableCell>
         <TableCell align='left'>
