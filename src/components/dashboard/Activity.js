@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography'
 import Avatar from 'src/components/history/HistoryListAvatar'
 import LogMessage from 'src/components/history/LogMessage'
 import HistoryLogMessage from 'src/components/lab/HistoryLogMessage'
-// import { format, parseISO } from 'date-fns'
+import { formatISODate } from 'src/lib/date'
 
 export default function Activity ({ aps, activity }) {
   const isNew = aps === 'alumim'
@@ -30,7 +30,7 @@ export default function Activity ({ aps, activity }) {
                 >
                   {!isNew && item.logged}
                   {/* {isNew && format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')} */}
-                  {isNew && item.date.slice(0, 10)} {item.date.slice(11, 19)}
+                  {isNew && formatISODate(item.date)}
                 </Typography>
               }
               secondary={

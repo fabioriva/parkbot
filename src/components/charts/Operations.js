@@ -1,7 +1,7 @@
 import { Bar } from 'react-chartjs-2'
 import Box from '@mui/material/Box'
 
-export default function Occupancy ({
+export default function Operations ({
   animation = false,
   axis = 'x',
   data,
@@ -72,7 +72,7 @@ export default function Occupancy ({
             title: {
               display: true,
               text: title,
-              color: 'blue',
+              // color: 'blue',
               font: {
                 size: 16,
                 weight: 'bold'
@@ -81,19 +81,22 @@ export default function Occupancy ({
             }
           },
           scales: {
-            yAxes: [
-              {
-                stacked: true,
-                ticks: {
-                  beginAtZero: true
-                }
+            y: {
+              // stacked: true,
+              ticks: {
+                beginAtZero: true,
+                stepSize: 1
+              },
+              gridLines: {
+                display: false
               }
-            ],
-            xAxes: [
-              {
-                stacked: true
+            },
+            x: {
+              // stacked: true,
+              gridLines: {
+                display: true
               }
-            ]
+            }
           }
         }}
       />

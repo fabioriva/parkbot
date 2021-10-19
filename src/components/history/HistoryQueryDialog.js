@@ -10,6 +10,10 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import useTranslation from 'next-translate/useTranslation'
 import DateTimePicker from 'src/components/pickers/DateTimePicker'
 
+function isValidDate (d) {
+  return d instanceof Date && !isNaN(d)
+}
+
 export default function HistoryQueryDialog ({
   locale,
   onCancel,
@@ -24,17 +28,25 @@ export default function HistoryQueryDialog ({
   const [error, setError] = React.useState(false)
 
   React.useEffect(() => {
-    console.log('compareDesc', compareDesc(from, to), from, to)
-    compareDesc(from, to) === -1 ? setError(true) : setError(false)
+    // console.log('compareDesc', compareDesc(from, to), from, to)
+    // console.log(isValidDate(from))
+    // console.log(isValidDate(to))
+    if (isValidDate(from) && isValidDate(to)) {
+      compareDesc(from, to) === -1 ? setError(true) : setError(false)
+    } else {
+      setError(true)
+    }
   }, [from, to])
 
   const handleConfirm = (from, to) => {
-    console.log(typeof from, from)
-    console.log(typeof to, to)
-    onConfirm(
-      format(from, "yyyy-MM-dd'T'HH:mm"),
-      format(to, "yyyy-MM-dd'T'HH:mm")
-    )
+    // console.log(typeof from, from)
+    // console.log(typeof to, to)
+    if (isValidDate(from) && isValidDate(to)) {
+      onConfirm(
+        format(from, "yyyy-MM-dd'T'HH:mm'Z'"),
+        format(to, "yyyy-MM-dd'T'HH:mm'Z'")
+      )
+    }
   }
 
   return (
