@@ -125,7 +125,7 @@ export default function Device (props) {
       <Grid item xs={6}>
         <Item
           title={t('device-mode')}
-          value={mode.label ? t(`common:${mode.label}`) : '---'}
+          value={mode.key ? t(`common:${mode.key}`) : '---'}
           loading={props.loading}
         />
       </Grid>

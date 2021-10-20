@@ -6,13 +6,11 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import Typography from '@mui/material/Typography'
 import Avatar from 'src/components/history/HistoryListAvatar'
-import LogMessage from 'src/components/history/LogMessage'
+// import LogMessage from 'src/components/history/LogMessage'
 import HistoryLogMessage from 'src/components/lab/HistoryLogMessage'
 import { formatISODate } from 'src/lib/date'
 
 export default function Activity ({ aps, activity }) {
-  const isNew = aps === 'alumim'
-
   return (
     <List dense>
       {activity.documents.map((item, key) => (
@@ -28,9 +26,7 @@ export default function Activity ({ aps, activity }) {
                   component='div'
                   color='text.secondary'
                 >
-                  {!isNew && item.logged}
-                  {/* {isNew && format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')} */}
-                  {isNew && formatISODate(item.date)}
+                  {formatISODate(item.date)}
                 </Typography>
               }
               secondary={
@@ -41,13 +37,11 @@ export default function Activity ({ aps, activity }) {
                     variant='body2'
                     color='text.primary'
                   >
-                    {!isNew && item.device.name}
-                    {isNew && item.device.key}
+                    {item.device.key}
                   </Typography>
                   {' — '}
                   {/* <LogMessage item={item} /> */}
-                  {!isNew && <LogMessage item={item} />}
-                  {isNew && <HistoryLogMessage item={item} />}
+                  <HistoryLogMessage item={item} />
                 </React.Fragment>
               }
             />

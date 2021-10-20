@@ -7,11 +7,11 @@ import Button from '@mui/material/Button'
 // import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
 import Layout from 'src/components/Layout'
-import HistoryList from 'src/components/history/HistoryListVirtualized'
-import HistoryListNew from 'src/components/lab/HistoryList'
+// import HistoryList from 'src/components/history/HistoryListVirtualized'
+import HistoryList from 'src/components/lab/HistoryList'
 import HistoryQueryDialog from 'src/components/history/HistoryQueryDialog'
-import HistoryTable from 'src/components/history/HistoryTable'
-import HistoryTableNew from 'src/components/lab/HistoryTable'
+// import HistoryTable from 'src/components/history/HistoryTable'
+import HistoryTable from 'src/components/lab/HistoryTable'
 import fetch from 'src/lib/fetch'
 import useTranslation from 'next-translate/useTranslation'
 
@@ -42,8 +42,6 @@ export default function History (props) {
     // setOpen(false)
   }
 
-  const isNew = props.aps === 'alumim'
-
   return (
     <Layout {...props} pageTitle={t('header-title')}>
       <HistoryQueryDialog
@@ -54,11 +52,8 @@ export default function History (props) {
       />
 
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-        {!isNew && history.count > 0 && (
+        {history.count > 0 && (
           <HistoryList count={history.count} query={history.query} />
-        )}
-        {isNew && history.count > 0 && (
-          <HistoryListNew count={history.count} query={history.query} />
         )}
         {history.count === 0 && (
           <Alert severity='info'>{t('history-no-found')}</Alert>
@@ -109,11 +104,8 @@ export default function History (props) {
           .&nbsp;{t('history-count', { count: history.count })}.{/* </Box> */}
         </Alert>
         {/* </Paper> */}
-        {!isNew && history.count > 0 && (
+        {history.count > 0 && (
           <HistoryTable count={history.count} query={history.query} />
-        )}
-        {isNew && history.count > 0 && (
-          <HistoryTableNew count={history.count} query={history.query} />
         )}
       </Box>
     </Layout>
