@@ -2,7 +2,7 @@ import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Grid from '@mui/material/Grid'
 import Layout from 'src/components/Layout'
-import Activity from 'src/components/dashboard/Activity'
+// import Activity from 'src/components/dashboard/Activity'
 import Devices from 'src/components/dashboard/Devices'
 import Widget from 'src/components/dashboard/Widget'
 import Occupancy from 'src/components/charts/Occupancy'
@@ -35,7 +35,7 @@ export default function Dashboard (props) {
     if (data) setDashboard(data)
   }, [data])
 
-  const { activity, cards, occupancy, operations, system } = dashboard
+  const { activity, occupancy, operations, system } = dashboard
 
   return (
     <Layout {...props} pageTitle={t('header-title')}>
@@ -52,7 +52,7 @@ export default function Dashboard (props) {
         </Grid>
         <Grid item xs={12} lg>
           <Widget href={`/${props.aps}/history`} title={t('activity-title')}>
-            <Activity aps={props.aps} activity={activity} />
+            {/* <Activity aps={props.aps} activity={activity} /> */}
           </Widget>
         </Grid>
         <Grid item xs={12} lg>
@@ -78,7 +78,7 @@ export default function Dashboard (props) {
             />
           </Widget>
         </Grid> */}
-        {/* {operations[2].data.length > 0 && (
+        {operations[1].data.length > 0 && (
           <Grid item xs={12} sx={{ display: { xs: 'none', md: 'block' } }}>
             <Widget
               href={`/${props.aps}/statistics`}
@@ -86,16 +86,16 @@ export default function Dashboard (props) {
             >
               <Operations
                 // animation
-                data={operations[2].data}
+                data={operations[1].data}
                 labels={[t('entries'), t('exits'), t('total')]}
-                title={`${operations[2].title}: ${operations[2].label}`}
+                title={`${operations[1].title}: ${operations[1].label}`}
                 // title={`${t(dailyOperations.i18n)}: ${dailyOperations.label}`}
                 height={'40%'}
                 width={'100%'}
               />
             </Widget>
           </Grid>
-        )} */}
+        )}
       </Grid>
     </Layout>
   )
