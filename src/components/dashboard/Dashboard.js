@@ -78,7 +78,7 @@ export default function Dashboard (props) {
             />
           </Widget>
         </Grid> */}
-        {operations[2].data.length > 0 && (
+        {/* {operations[2].data.length > 0 && (
           <Grid item xs={12} sx={{ display: { xs: 'none', md: 'block' } }}>
             <Widget
               href={`/${props.aps}/statistics`}
@@ -95,7 +95,7 @@ export default function Dashboard (props) {
               />
             </Widget>
           </Grid>
-        )}
+        )} */}
       </Grid>
     </Layout>
   )
