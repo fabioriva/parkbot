@@ -2,7 +2,7 @@ import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Grid from '@mui/material/Grid'
 import Layout from 'src/components/Layout'
-// import Activity from 'src/components/dashboard/Activity'
+import Activity from 'src/components/dashboard/Activity'
 import Devices from 'src/components/dashboard/Devices'
 import Widget from 'src/components/dashboard/Widget'
 import Occupancy from 'src/components/charts/Occupancy'
@@ -52,7 +52,7 @@ export default function Dashboard (props) {
         </Grid>
         <Grid item xs={12} lg>
           <Widget href={`/${props.aps}/history`} title={t('activity-title')}>
-            {/* <Activity aps={props.aps} activity={activity} /> */}
+            <Activity aps={props.aps} activity={activity} />
           </Widget>
         </Grid>
         <Grid item xs={12} lg>
