@@ -88,8 +88,11 @@ export default function Dashboard (props) {
                 // animation
                 data={operations[1].data}
                 labels={[t('entries'), t('exits'), t('total')]}
-                title={`${operations[1].title}: ${operations[1].label}`}
-                // title={`${t(dailyOperations.i18n)}: ${dailyOperations.label}`}
+                title={t(
+                  'statistics:' + operations[1].key,
+                  operations[1].query
+                )}
+                // title={`${operations[1].title}: ${operations[1].label}`}
                 height={'40%'}
                 width={'100%'}
               />

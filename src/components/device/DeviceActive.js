@@ -46,7 +46,7 @@ export default function DeviceActive ({ alarms }) {
                   <IconButton
                     edge='end'
                     aria-label='info'
-                    href={`/${aps}/docs/${item.i18n.key}?key=${item.i18n.query.thermic}`}
+                    href={`/${aps}/docs/${item.key}?key=${item.query.thermic}`}
                     disabled
                   >
                     <HelpOutlineOutlinedIcon />
