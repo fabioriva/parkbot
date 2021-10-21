@@ -1,11 +1,11 @@
 import React from 'react'
 // import Link from 'next/link'
-// import { formatDistanceToNow } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import randomColor from 'randomcolor'
 import { FixedSizeList as List } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
 // import Avatar from 'src/components/history/HistoryListAvatar'
-import LogMessage from 'src/components/history/LogMessage'
+import HistoryLogMessage from 'src/components/history/HistoryLogMessage'
 // material-ui
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
@@ -44,14 +44,14 @@ function renderRow ({ data, index, style }) {
                 item.device !== 0 &&
                 randomColor({
                   luminosity: 'light',
-                  seed: item.device.name
+                  seed: item.device.key
                 }),
               color: 'text.primary',
               fontSize: '0.90rem',
               fontWeight: 'bolder'
             }}
           >
-            {item.device.id === 0 ? <PersonIcon /> : item.device.name}
+            {item.device.id === 0 ? <PersonIcon /> : item.device.key}
           </Avatar>
         </ListItemAvatar>
         <ListItemText
@@ -61,12 +61,12 @@ function renderRow ({ data, index, style }) {
               component='div'
               color='text.secondary'
             >
-              {item.logged}
+              {format(parseISO(item.date), 'yyyy-MM-dd HH:mm:ss')}
             </Typography>
           }
           secondary={
             <Typography variant='body2' color='text.primary'>
-              <LogMessage item={item} />
+              <HistoryLogMessage item={item} />
             </Typography>
           }
         />

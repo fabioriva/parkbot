@@ -2,7 +2,7 @@ import * as React from 'react'
 import Snackbar from '@mui/material/Snackbar'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
-import Message from 'src/components/history/LogMessage'
+import Message from 'src/components/history/HistoryLogMessage'
 
 export default function ConsecutiveSnackbars ({ message }) {
   const [snackPack, setSnackPack] = React.useState([])

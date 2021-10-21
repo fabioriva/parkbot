@@ -6,11 +6,10 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import Typography from '@mui/material/Typography'
 import Avatar from 'src/components/history/HistoryListAvatar'
-// import LogMessage from 'src/components/history/LogMessage'
-import HistoryLogMessage from 'src/components/lab/HistoryLogMessage'
+import HistoryLogMessage from 'src/components/history/HistoryLogMessage'
 import { formatISODate } from 'src/lib/date'
 
-export default function Activity ({ aps, activity }) {
+export default function Activity ({ activity }) {
   return (
     <List dense>
       {activity.documents.map((item, key) => (
@@ -40,7 +39,6 @@ export default function Activity ({ aps, activity }) {
                     {item.device.key}
                   </Typography>
                   {' — '}
-                  {/* <LogMessage item={item} /> */}
                   <HistoryLogMessage item={item} />
                 </React.Fragment>
               }
