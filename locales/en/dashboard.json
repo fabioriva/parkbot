@@ -3,7 +3,7 @@
 
   "devices-title": "Devices",
   "queue-title": "Exit Queue",
-  "occupancy-title": "System Occupancy",
+  "occupancy-title": "Parking spaces {{count}}",
   "cards-title": "Cards",
   "activity-title": "Recent Activity",
   "operations-title": "Operations",

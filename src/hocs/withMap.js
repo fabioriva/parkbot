@@ -30,7 +30,6 @@ const withMap = WrappedComponent => {
     React.useEffect(() => setMap(data), [data])
 
     const { cards, stalls, stallStatus } = map.definitions
-    console.log(stallStatus)
     // Dialog
     const DIALOG_INIT_VALUES = { card: 0, stall: 0, minCard: 1, maxCard: cards }
     const [open, setOpen] = React.useState(false)

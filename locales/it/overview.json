@@ -30,6 +30,7 @@
   "mot-disabled": "Disabilitato",
 
   "motor": "Motore",
+  "motor-nr": "Motore {{nr}}",
   "motor-silomat": "Silomat",
   "mot-centering": "Centratura {{id}}",
   "mot-hoisting": "Sollevamento",

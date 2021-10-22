@@ -42,42 +42,55 @@ const Item = ({ loading, title, value }) => (
   </>
 )
 
-export default function Motor (props) {
+export default function Motor ({
+  // id,
+  name,
+  motion,
+  position,
+  inputs,
+  outputs,
+  ready,
+  speed,
+  enable,
+  error,
+  loading,
+  subheader
+}) {
   const { t } = useTranslation('overview')
 
   const EN = (
     <Lamp
       key={0}
-      color={props.enable ? green[500] : green[100]}
-      title={props.enable ? t('mot-enabled') : t('mot-disabled')}
+      color={enable ? green[500] : green[100]}
+      title={enable ? t('mot-enabled') : t('mot-disabled')}
     />
   )
 
   const LA = (
     <Lamp
       key={1}
-      color={props.error ? red[500] : red[100]}
-      title={props.error ? t('device-alarm-on') : t('device-alarm-off')}
+      color={error ? red[500] : red[100]}
+      title={error ? t('device-alarm-on') : t('device-alarm-off')}
     />
   )
 
-  const LC = props.ready !== undefined && (
+  const LC = ready !== undefined && (
     <Lamp
       key={2}
-      color={props.ready.every(e => e.status) ? orange[500] : orange[100]}
+      color={ready.every(e => e.status) ? orange[500] : orange[100]}
       // title={LCStatus ? t('device-ready-on') : t('device-ready-off')}
       title={
         <List
           subheader={
             <Typography variant='subtitle1' gutterBottom component='div'>
-              {props.ready.every(e => e.status)
+              {ready.every(e => e.status)
                 ? t('device-ready-on')
                 : t('device-ready-off')}
             </Typography>
           }
           dense
         >
-          {props.ready.map((item, key) => (
+          {ready.map((item, key) => (
             <ListItem
               disableGutters
               key={key}
@@ -125,6 +138,8 @@ export default function Motor (props) {
     />
   )
 
+  const isDriveControlled = speed !== undefined
+
   return (
     <Card>
       <CardHeader
@@ -137,53 +152,60 @@ export default function Motor (props) {
         }}
         action={[LC, LA, EN]}
         avatar={
-          <Avatar sx={{ bgcolor: props.motion.id !== 0 && 'warning.main' }}>
+          <Avatar sx={{ bgcolor: motion.id !== 0 && 'warning.main' }}>
             <BoltIcon />
           </Avatar>
         }
-        title={t(props.name.key, props.name.query)}
-        subheader={props.subheader}
+        title={t(name.key, name.query)}
+        subheader={subheader}
       />
-      <CardContent sx={{ py: 0.5 }}>
+      <CardContent>
         <Grid container spacing={1}>
-          <Grid item xs={6}>
+          <Grid item xs={isDriveControlled ? 3 : 6}>
             <Item
               title={t('mot-motion')}
-              value={t(props.motion.i18n)}
-              loading={props.loading}
+              value={t(motion.i18n)}
+              loading={loading}
             />
           </Grid>
-          <Grid item xs={6}>
-            {Array.isArray(props.position) ? (
+          {isDriveControlled ? (
+            <>
+              <Grid item xs={3}>
+                <Item
+                  title={t('vfd-speed')}
+                  value={speed + ' Hz'}
+                  loading={loading}
+                />
+              </Grid>
               <Grid item xs={6}>
                 <Item
                   title={t('mot-position')}
                   value={
                     <span>
-                      {props.position[0].position}&nbsp;&rarr;&nbsp;
-                      {props.position[0].destination}
+                      {position[0].position}&nbsp;&rarr;&nbsp;
+                      {position[0].destination}
                     </span>
                   }
-                  loading={props.loading}
+                  loading={loading}
                 />
               </Grid>
-            ) : (
-              <Grid item xs={6}>
-                <Item
-                  title={t('mot-position')}
-                  value={t(props.position.i18n)}
-                  loading={props.loading}
-                />
-              </Grid>
-            )}
-          </Grid>
+            </>
+          ) : (
+            <Grid item xs={6}>
+              <Item
+                title={t('mot-position')}
+                value={t(position.i18n)}
+                loading={loading}
+              />
+            </Grid>
+          )}
           <Grid item xs={12}>
             <Typography variant='body2' color='textSecondary' gutterBottom>
               Inputs
             </Typography>
             <Stack direction='row' spacing={0.5}>
-              {props.inputs &&
-                props.inputs.map((item, key) => (
+              {inputs &&
+                inputs.map((item, key) => (
                   <Tooltip
                     key={key}
                     title={<Bit {...item} />}
@@ -204,8 +226,8 @@ export default function Motor (props) {
               Outputs
             </Typography>
             <Stack direction='row' spacing={0.5}>
-              {props.outputs &&
-                props.outputs.map((item, key) => (
+              {outputs &&
+                outputs.map((item, key) => (
                   <Tooltip
                     key={key}
                     title={<Bit {...item} />}

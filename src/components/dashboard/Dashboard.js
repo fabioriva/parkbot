@@ -47,7 +47,11 @@ export default function Dashboard (props) {
       >
         <Grid item xs={12} lg>
           <Widget href={`/${props.aps}/overview`} title={t('devices-title')}>
-            <Devices aps={props.aps} devices={system.devices} />
+            <Devices
+              aps={props.aps}
+              devices={system.devices}
+              user={props.user}
+            />
           </Widget>
         </Grid>
         <Grid item xs={12} lg>
@@ -56,7 +60,10 @@ export default function Dashboard (props) {
           </Widget>
         </Grid>
         <Grid item xs={12} lg>
-          <Widget href={`/${props.aps}/map`} title={t('occupancy-title')}>
+          <Widget
+            href={`/${props.aps}/map`}
+            title={t('occupancy-title', { count: system.definitions.stalls })}
+          >
             <Occupancy
               // animation
               data={[

@@ -14,6 +14,7 @@ import CheckIcon from '@mui/icons-material/Check'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 import SettingsIcon from '@mui/icons-material/Settings'
 import useTranslation from 'next-translate/useTranslation'
+import { DIAGNOSTIC, isAllowed } from '/src/constants/auth'
 
 const itemData = ({ card, mode, operation, stall }) => {
   const { t } = useTranslation('dashboard')
@@ -68,7 +69,7 @@ const itemData = ({ card, mode, operation, stall }) => {
   }
 }
 
-export default function Devices ({ aps, devices }) {
+export default function Devices ({ aps, devices, user }) {
   return (
     <List dense>
       {devices.map((item, key) => (
@@ -80,7 +81,7 @@ export default function Devices ({ aps, devices }) {
                 edge='end'
                 aria-label='delete'
                 href={`/${aps}/device/${item.a.id - 1}`}
-                disabled
+                disabled={!isAllowed(user, [DIAGNOSTIC])}
               >
                 <SettingsIcon />
               </IconButton>

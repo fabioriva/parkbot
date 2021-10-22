@@ -3,7 +3,7 @@
 
   "devices-title": "Dispositivi",
   "queue-title": "Exit Queue",
-  "occupancy-title": "Posti auto",
+  "occupancy-title": "Posti auto {{count}}",
   "cards-title": "Tessere",
   "activity-title": "Attività recente",
   "operations-title": "Operazioni",

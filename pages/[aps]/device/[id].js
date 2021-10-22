@@ -3,7 +3,8 @@ import fetch, { profile } from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
 import { DEVICE, hasRole } from '/src/constants/auth'
-import DeviceView from 'src/components/device/DeviceView'
+// import DeviceView from 'src/components/device/DeviceView'
+import DeviceView from 'src/components/lab/device/DeviceView'
 import withAuthSync from 'src/hocs/withAuthSync'
 
 const Page = props => <DeviceView {...props} />
