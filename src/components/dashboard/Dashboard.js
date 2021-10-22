@@ -37,6 +37,8 @@ export default function Dashboard (props) {
 
   const { activity, occupancy, operations, system } = dashboard
 
+  const locale = props.user.locale !== undefined ? props.user.locale : 'en'
+
   return (
     <Layout {...props} pageTitle={t('header-title')}>
       <Grid
@@ -46,7 +48,10 @@ export default function Dashboard (props) {
         spacing={2}
       >
         <Grid item xs={12} lg>
-          <Widget href={`/${props.aps}/overview`} title={t('devices-title')}>
+          <Widget
+            href={`/${locale}/${props.aps}/overview`}
+            title={t('devices-title')}
+          >
             <Devices
               aps={props.aps}
               devices={system.devices}
@@ -55,13 +60,16 @@ export default function Dashboard (props) {
           </Widget>
         </Grid>
         <Grid item xs={12} lg>
-          <Widget href={`/${props.aps}/history`} title={t('activity-title')}>
+          <Widget
+            href={`/${locale}/${props.aps}/history`}
+            title={t('activity-title')}
+          >
             <Activity activity={activity} />
           </Widget>
         </Grid>
         <Grid item xs={12} lg>
           <Widget
-            href={`/${props.aps}/map`}
+            href={`/${locale}/${props.aps}/map`}
             title={t('occupancy-title', { count: system.definitions.stalls })}
           >
             <Occupancy
@@ -78,7 +86,7 @@ export default function Dashboard (props) {
           </Widget>
         </Grid>
         {/* <Grid item sx={{ display: 'flex' }} xs={12} lg>
-          <Widget href={`/${props.aps}/map`} title={t('occupancy-title')}>
+          <Widget href={`/${locale}/${props.aps}/overview`} title={t('occupancy-title')}>
             <QueueList
               queue={system.exitQueue.queueList}
               onDelete={props.onDelete}
@@ -88,7 +96,7 @@ export default function Dashboard (props) {
         {operations[1].data.length > 0 && (
           <Grid item xs={12} sx={{ display: { xs: 'none', md: 'block' } }}>
             <Widget
-              href={`/${props.aps}/statistics`}
+              href={`/${locale}/${props.aps}/statistics`}
               title={t('operations-title')}
             >
               <Operations

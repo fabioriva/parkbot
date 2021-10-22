@@ -170,7 +170,7 @@ export default function Device (props) {
       />
       <CardActionArea
         disabled={!isAllowed(props.user, [DIAGNOSTIC])}
-        href={`/${props.aps}/device/${id - 1}`}
+        href={`/${props.user.locale}/${props.aps}/device/${id - 1}`}
       >
         <CardContent sx={{ bgcolor: theme => bg(operation, theme), py: 1 }}>
           {/* {motor === 0 ? (
@@ -199,13 +199,13 @@ export default function Device (props) {
       </CardActionArea>
       <CardActions disableSpacing>
         {/* <Link
-          href={`/${props.aps}/device/${id - 1}`}
+          href={`/${props.user.locale}/${props.aps}/device/${id - 1}`}
           locale={props.user.locale}
         >
         <Button
           color='primary'
           disabled={!isAllowed(props.user, [DIAGNOSTIC])}
-          href={`/${props.aps}/device/${id - 1}`}
+          href={`/${props.user.locale}/${props.aps}/device/${id - 1}`}
         >
           More
         </Button>
@@ -213,7 +213,7 @@ export default function Device (props) {
         {/* <IconButton
           aria-label='device view'
           disabled={!isAllowed(props.user, [DIAGNOSTIC])}
-          href={`/${props.aps}/device/${id - 1}`}
+          href={`/${props.user.locale}/${props.aps}/device/${id - 1}`}
         >
           <OpenInNewOutlinedIcon />
         </IconButton> */}
@@ -222,7 +222,7 @@ export default function Device (props) {
           <Active
             active={props.item.alarms.length}
             disabled={!hasRole(props.user, [ALARMS])}
-            href={`/${props.aps}/active/${id - 1}`}
+            href={`/${props.user.locale}/${props.aps}/active/${id - 1}`}
           />
           // </Box>
         )}
