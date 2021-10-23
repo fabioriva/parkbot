@@ -161,35 +161,32 @@ export default function Motor ({
       />
       <CardContent>
         <Grid container spacing={1}>
-          <Grid item xs={isDriveControlled ? 3 : 6}>
+          <Grid item xs={6}>
             <Item
               title={t('mot-motion')}
-              value={t(motion.i18n)}
+              value={
+                !isDriveControlled
+                  ? t(motion.i18n)
+                  : speed === 0
+                  ? t(motion.i18n)
+                  : t(motion.i18n) + ' ' + speed + ' Hz'
+              }
               loading={loading}
             />
           </Grid>
           {isDriveControlled ? (
-            <>
-              <Grid item xs={3}>
-                <Item
-                  title={t('vfd-speed')}
-                  value={speed + ' Hz'}
-                  loading={loading}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <Item
-                  title={t('mot-position')}
-                  value={
-                    <span>
-                      {position[0].position}&nbsp;&rarr;&nbsp;
-                      {position[0].destination}
-                    </span>
-                  }
-                  loading={loading}
-                />
-              </Grid>
-            </>
+            <Grid item xs={6}>
+              <Item
+                title={t('mot-position')}
+                value={
+                  <span>
+                    {position[0].position}&nbsp;&rarr;&nbsp;
+                    {position[0].destination}
+                  </span>
+                }
+                loading={loading}
+              />
+            </Grid>
           ) : (
             <Grid item xs={6}>
               <Item

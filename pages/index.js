@@ -16,17 +16,18 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Footer from 'src/components/Footer'
 
 const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  paddingLeft: theme.spacing(1.5),
-  paddingRight: theme.spacing(1.5),
-  fontFamily: '"IBM Plex Sans", sans-serif',
-  textAlign: 'left',
+  ...theme.typography.body1,
+  padding: theme.spacing(3),
+  // paddingLeft: theme.spacing(1.5),
+  // paddingRight: theme.spacing(1.5),
+  // fontFamily: '"IBM Plex Sans", sans-serif',
+  // textAlign: 'left',
   // backgroundColor: '#F3F6F9',
-  color: theme.palette.text.secondary,
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  minHeight: 100
+  color: theme.palette.text.secondary
+  // display: 'flex',
+  // justifyContent: 'center',
+  // flexDirection: 'column',
+  // minHeight: 100
 }))
 
 export default function Home () {
@@ -107,19 +108,19 @@ export default function Home () {
                 // display={{ xs: 'none', md: 'block' }}
                 sx={{
                   mb: { xs: 3, md: 4 },
-                  // color: '#2F3A45',
-                  color: '#0A1929',
-                  fontFamily: '"IBM Plex Sans", sans-serif'
+                  color: '#000'
+                  // color: '#0A1929',
+                  // fontFamily: '"IBM Plex Sans", sans-serif',
                   // typography: 'body1'
                 }}
               >
                 Web based access to Parkbot in the cloud allows customers to use
                 the application from any location. All you need is an internet
-                access, up-to-date browser, and PC or smartphone.{' '}
+                access, up-to-date browser, PC or smartphone.{' '}
                 <Box display={{ xs: 'none', md: 'inline' }}>
                   Users simply sign in to immediately access the latest version
                   of Parkbot from anywhere, with no time or effort spent on
-                  installation, enabling them to remotely control and monitor
+                  installation, enabling users to remotely control and monitor
                   the automatic parking systems faster.
                 </Box>
               </Box>
@@ -129,7 +130,7 @@ export default function Home () {
                 mb: { xs: 3, md: 4 },
                 borderRadius: 2,
                 boxShadow: 'none',
-                fontSize: 16,
+                fontSize: 17,
                 textTransform: 'none',
                 height: 56,
                 width: { xs: '100%', sm: 200 },
@@ -153,14 +154,24 @@ export default function Home () {
           <Grid container sx={{ mb: { xs: 3, md: 4 } }} spacing={3}>
             <Grid item xs={12} sm={6}>
               <Item>
-                <Typography sx={{ fontWeight: 'bold' }}>Analytics</Typography>
+                <Typography
+                  variant='h6'
+                  sx={{ fontWeight: 'bold' }}
+                  gutterBottom
+                >
+                  Analytics
+                </Typography>
                 Push data to clients that gets represented as real-time
                 messages, charts or logs.
               </Item>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Item>
-                <Typography sx={{ fontWeight: 'bold' }}>
+                <Typography
+                  variant='h6'
+                  sx={{ fontWeight: 'bold' }}
+                  gutterBottom
+                >
                   Mobile first
                 </Typography>
                 It works on every platform, modern browser or device, focusing
@@ -169,7 +180,11 @@ export default function Home () {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Item>
-                <Typography sx={{ fontWeight: 'bold' }}>
+                <Typography
+                  variant='h6'
+                  sx={{ fontWeight: 'bold' }}
+                  gutterBottom
+                >
                   Real-time communication
                 </Typography>
                 Enables real-time bidirectional event-based communication
@@ -178,7 +193,13 @@ export default function Home () {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Item>
-                <Typography sx={{ fontWeight: 'bold' }}>Web based</Typography>
+                <Typography
+                  variant='h6'
+                  sx={{ fontWeight: 'bold' }}
+                  gutterBottom
+                >
+                  Web based
+                </Typography>
                 Web applications are popular due to the ubiquity of web
                 browsers, and the convenience of using a web browser as a
                 client.
@@ -207,7 +228,7 @@ export default function Home () {
             background-repeat: no-repeat;
             background-position: center;
             opacity: 0.6; */
-            opacity: 0.4;
+            opacity: 0.3;
             position: absolute;
             left: 0;
             top: 0;

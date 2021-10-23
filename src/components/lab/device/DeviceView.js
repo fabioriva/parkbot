@@ -91,7 +91,7 @@ export default function DeviceView (props) {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <Grid container spacing={1}>
+          <Grid container spacing={1.5}>
             {inverters.map((item, key) => (
               <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
                 <Inverter {...item} loading={loading} />
@@ -101,7 +101,7 @@ export default function DeviceView (props) {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-          <Grid container spacing={1}>
+          <Grid container spacing={1.5}>
             {motors.map((item, key) => (
               <Grid item key={key} xs={12} md={6} lg={4} xl={3}>
                 <Motor
@@ -116,7 +116,7 @@ export default function DeviceView (props) {
         </TabPanel>
 
         <TabPanel value={value} index={2}>
-          <Grid container spacing={1}>
+          <Grid container spacing={1.5}>
             <React.Fragment>
               <Grid item xs={12} md={6} lg={4} xl={3}>
                 <Motor
