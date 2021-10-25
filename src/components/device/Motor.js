@@ -50,7 +50,7 @@ export default function Motor ({
   inputs,
   outputs,
   ready,
-  speed,
+  inverter,
   enable,
   error,
   loading,
@@ -138,7 +138,7 @@ export default function Motor ({
     />
   )
 
-  const isDriveControlled = speed !== undefined
+  const isDriveControlled = inverter !== undefined
 
   return (
     <Card>
@@ -167,9 +167,9 @@ export default function Motor ({
               value={
                 !isDriveControlled
                   ? t(motion.i18n)
-                  : speed === 0
+                  : inverter.speed === 0
                   ? t(motion.i18n)
-                  : t(motion.i18n) + ' ' + speed + ' Hz'
+                  : t(motion.i18n) + ' (' + inverter.speed + ')'
               }
               loading={loading}
             />
