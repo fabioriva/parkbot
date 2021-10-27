@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useTheme } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
 import Avatar from '@mui/material/Avatar'
+import Badge from '@mui/material/Badge'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
@@ -17,6 +18,8 @@ import { orange } from '@mui/material/colors'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import Logout from '@mui/icons-material/Logout'
 import MenuIcon from '@mui/icons-material/Menu'
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
+import SettingsIcon from '@mui/icons-material/Settings'
 import useTranslation from 'next-translate/useTranslation'
 
 const drawerWidth = 240
@@ -78,7 +81,9 @@ export default function NavBar (props) {
               onClick={handleMenu}
               color='inherit'
             >
-              <AccountCircle />
+              <Badge badgeContent={1} color='error'>
+                <AccountCircle />
+              </Badge>
             </IconButton>
             <Menu
               id='menu-appbar'
@@ -127,6 +132,18 @@ export default function NavBar (props) {
                 <Avatar /> {props.user.username}
               </MenuItem>
               <Divider />
+              <MenuItem disabled>
+                <ListItemIcon>
+                  <NotificationsActiveIcon fontSize='small' />
+                </ListItemIcon>
+                {t('navbar-notifications')}
+              </MenuItem>
+              <MenuItem disabled>
+                <ListItemIcon>
+                  <SettingsIcon fontSize='small' />
+                </ListItemIcon>
+                {t('navbar-settings')}
+              </MenuItem>
               <MenuItem onClick={handleLogout}>
                 <ListItemIcon>
                   <Logout fontSize='small' />

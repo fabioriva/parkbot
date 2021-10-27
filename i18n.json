@@ -14,6 +14,7 @@
     "/[aps]/racks": ["racks"],
     "/[aps]/rack/[id]": ["racks", "io"],
     "/[aps]/statistics": ["statistics"],
-    "/[aps]/docs/[slug]": ["io"]
+    "/[aps]/docs/[slug]": ["io"],
+    "/muse/overview": ["overview", "io"]
   }
 }

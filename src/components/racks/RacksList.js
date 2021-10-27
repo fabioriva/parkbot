@@ -46,7 +46,7 @@ export default function RacksList ({ aps, locale, racks }) {
             <ListItemButton
               onClick={() =>
                 router.push(`/${aps}/rack/${key}`, `/${aps}/rack/${key}`, {
-                  locale: 'en'
+                  locale
                 })
               }
             >

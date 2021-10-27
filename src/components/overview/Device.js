@@ -154,10 +154,13 @@ export default function Device (props) {
     </Grid>
   )
   return (
-    <Card>
+    <Card
+      sx={{
+        maxWidth: 420
+      }}
+    >
       <CardHeader
         sx={{
-          // maxWidth: 345,
           py: 1,
           '& .MuiCardHeader-title': {
             fontSize: 16

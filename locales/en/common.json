@@ -19,6 +19,8 @@
   "header-cars": "Total cars {{count}}",
   "header-alarms": "Active alarms {{count}}",
 
+  "navbar-notifications": "Notifications",
+  "navbar-settings": "Settings",
   "navbar-logout": "Logout",
 
   "mode-data-edit": "Data edit",
