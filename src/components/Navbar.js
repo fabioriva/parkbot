@@ -9,6 +9,7 @@ import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Toolbar from '@mui/material/Toolbar'
@@ -45,7 +46,7 @@ export default function NavBar (props) {
     window.localStorage.setItem('logout', Date.now())
     router.push('/')
   }
-
+  console.log(props.user)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -132,23 +133,26 @@ export default function NavBar (props) {
                 <Avatar /> {props.user.username}
               </MenuItem>
               <Divider />
-              <MenuItem disabled>
+              <MenuItem
+		disabled
+                onClick={() => router.push(`/${props.user.aps}/mailingList`)}
+              >
                 <ListItemIcon>
                   <NotificationsActiveIcon fontSize='small' />
                 </ListItemIcon>
-                {t('navbar-notifications')}
+                <ListItemText>{t('navbar-notifications')}</ListItemText>
               </MenuItem>
               <MenuItem disabled>
                 <ListItemIcon>
                   <SettingsIcon fontSize='small' />
                 </ListItemIcon>
-                {t('navbar-settings')}
+                <ListItemText>{t('navbar-settings')}</ListItemText>
               </MenuItem>
               <MenuItem onClick={handleLogout}>
                 <ListItemIcon>
                   <Logout fontSize='small' />
                 </ListItemIcon>
-                {t('navbar-logout')}
+                <ListItemText>{t('navbar-logout')}</ListItemText>
               </MenuItem>
             </Menu>
           </Toolbar>

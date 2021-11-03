@@ -61,7 +61,7 @@ export function useData (url, options) {
 
   useEffect(() => {
     ws.current = new window.WebSocket(url)
-    // ws.current.onopen = () => console.log('ws opened')
+    // ws.current.onopen = () => ws.current.send('Hi')
     // ws.current.onclose = () => console.log('ws closed')
     return () => ws.current.close()
   }, [])
