@@ -46,7 +46,7 @@ export default function NavBar (props) {
     window.localStorage.setItem('logout', Date.now())
     router.push('/')
   }
-  console.log(props.user)
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -134,7 +134,7 @@ export default function NavBar (props) {
               </MenuItem>
               <Divider />
               <MenuItem
-		disabled
+                disabled
                 onClick={() => router.push(`/${props.user.aps}/mailingList`)}
               >
                 <ListItemIcon>

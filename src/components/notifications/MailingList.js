@@ -1,21 +1,19 @@
 import * as React from 'react'
-import Checkbox from '@mui/material/Checkbox'
-import Divider from '@mui/material/Divider'
-import Paper from '@mui/material/Paper'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Typography from '@mui/material/Typography'
+// import Divider from '@mui/material/Divider'
+import Fab from '@mui/material/Fab'
+// import Typography from '@mui/material/Typography'
+import AddIcon from '@mui/icons-material/Add'
+
 import Layout from 'src/components/Layout'
-import AddListItem from 'src/components/notifications/AddListItem'
+import AddItemDialog from 'src/components/notifications/AddItemDialog'
+// import AddListItem from 'src/components/notifications/AddListItem'
+import RecipientListView from 'src/components/notifications/RecipientListView'
+// import RecipientTableView from 'src/components/notifications/recipientTableView'
 import fetch from 'src/lib/fetch'
 // import { useData } from 'src/lib/useWebSocket'
 // import { EDIT_CARD, isAllowed } from '/src/constants/auth'
 import useSWR from 'swr'
-import useTranslation from 'next-translate/useTranslation'
+// import useTranslation from 'next-translate/useTranslation'
 
 const fetcher = url => global.fetch(url).then(r => r.json())
 
@@ -30,6 +28,8 @@ export default function MailingList (props) {
     )
 
   const [mailingList, setMailingList] = React.useState(props.json.mailingList)
+
+  const [open, setOpen] = React.useState(false)
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/mailingList`
   const { data, error } = useSWR(url, fetcher, {
@@ -62,68 +62,45 @@ export default function MailingList (props) {
       body: JSON.stringify(data)
     })
     console.log(json)
-    // const snack = message(json)
-    // props.enqueueSnackbar(snack.message, snack.options)
+    setOpen(false)
   }
 
-  const handleSelectClick = event => {
-    if (event.target.checked) {
-      console.log('selected', event.target.checked)
-      return
-    }
-    console.log('!!!!')
+  const handleDeleteItem = async data => {
+    console.log(data)
   }
 
   return (
-    <Layout {...props} pageTitle={'Notifications Mailing List'}>
-      <Typography variant='subtitle1' gutterBottom>
+    <Layout {...props} pageTitle={'Notifications'}>
+      {mailingList.count > 0 && (
+        <RecipientListView
+          mailingList={mailingList.mailingList}
+          onDelete={handleDeleteItem}
+        />
+      )}
+      <AddItemDialog
+        open={open}
+        onCancel={() => setOpen(false)}
+        onConfirm={handleAddItem}
+      />
+      <Fab
+        color='primary'
+        aria-label='add'
+        onClick={() => setOpen(true)}
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+      >
+        <AddIcon />
+      </Fab>
+      {/* <Typography variant='subtitle1' gutterBottom>
         Recipient List
       </Typography>
       {mailingList.count > 0 && (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label='mailing list'>
-            <TableHead>
-              <TableRow>
-                <TableCell>Full Name</TableCell>
-                <TableCell>E-mail address</TableCell>
-                <TableCell>Phone Number</TableCell>
-                <TableCell>Enabled</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {mailingList.mailingList.map(row => (
-                <TableRow
-                  key={row._id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component='th' scope='row'>
-                    {row.name}
-                  </TableCell>
-                  <TableCell align='left'>{row.email}</TableCell>
-                  <TableCell align='left'>{row.phone}</TableCell>
-                  <TableCell padding='checkbox'>
-                    <Checkbox
-                      disabled
-                      color='primary'
-                      // indeterminate={numSelected > 0 && numSelected < rowCount}
-                      checked={row.status}
-                      onChange={handleSelectClick}
-                      inputProps={{
-                        'aria-label': 'select all desserts'
-                      }}
-                    />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <RecipientTableView mailingList={mailingList.mailingList} />
       )}
       <Divider sx={{ my: 3 }} />
       <Typography variant='subtitle1' gutterBottom>
         Add Item
       </Typography>
-      <AddListItem onConfirm={handleAddItem} />
+      <AddListItem onConfirm={handleAddItem} /> */}
     </Layout>
   )
 }
