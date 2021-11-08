@@ -6,6 +6,7 @@ import Fab from '@mui/material/Fab'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import Operations from 'src/components/charts/Operations'
 // import OperationsMobileView from 'src/components/statistics/OperationsMobileView'
@@ -16,15 +17,11 @@ import useTranslation from 'next-translate/useTranslation'
 
 export default function Statistics (props) {
   const { t } = useTranslation('statistics')
-
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
-  if (props.json.err)
-    return (
-      <Layout {...props} pageTitle={t('header-title')}>
-        <div>Fetch Error</div>
-      </Layout>
-    )
+  const pageTitle = t('header-title')
+
+  if (props.json.err) return <Error {...props} pageTitle={pageTitle} />
 
   const [operations, setOperations] = React.useState(props.json)
   const [open, setOpen] = React.useState(false)
@@ -41,7 +38,7 @@ export default function Statistics (props) {
   }
 
   return (
-    <Layout {...props} pageTitle={t('header-title')}>
+    <Layout {...props} pageTitle={pageTitle}>
       <OperationsQueryDialog
         locale={props.__lang}
         open={open}

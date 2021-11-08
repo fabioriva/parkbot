@@ -1,8 +1,4 @@
 {
-  "home-title": "La soluzione full stack per i sistemi di parcheggio robotici.",
-  "home-text": "Ciao, sono il tuo assistente robotico!",
-  "home-button": "Inizia",
-
   "drawer-alarms": "Allarmi",
   "drawer-dashboard": "Dashboard",
   "drawer-overview": "Overview",
@@ -14,6 +10,7 @@
   "drawer-motion": "Motion",
 
   "error-code": "Errore {{code}}",
+  "error-fetch": "Fetch error - risorsa non disponibile.",
   "error-title": "Errore",
 
   "header-cars": "Totale vetture {{count}}",

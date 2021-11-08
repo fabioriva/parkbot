@@ -2,12 +2,13 @@
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
-import ListItemIcon from '@mui/material/ListItemIcon'
+// import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
 import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
+import useTranslation from 'next-translate/useTranslation'
 
 function stringToColor (string) {
   let hash = 0
@@ -39,12 +40,14 @@ function stringAvatar (name) {
 }
 
 export default function RecipientListView ({ mailingList, onDelete }) {
+  const { t } = useTranslation('notifications')
+
   return (
     <List
       dense
       subheader={
         <ListSubheader component='div' id='list-subheader'>
-          {'Recipient List'}
+          {t('total-count', { count: mailingList.length })}
         </ListSubheader>
       }
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}

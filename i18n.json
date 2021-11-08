@@ -9,6 +9,7 @@
     "/[aps]/dashboard": ["alarms", "dashboard", "overview", "statistics"],
     "/[aps]/device/[id]": ["alarms", "io", "overview"],
     "/[aps]/history": ["history", "alarms"],
+    "/[aps]/mailingList": ["notifications"],
     "/[aps]/map": ["map"],
     "/[aps]/overview": ["overview", "io"],
     "/[aps]/racks": ["racks"],

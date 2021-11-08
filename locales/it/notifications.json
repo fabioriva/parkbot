@@ -1,0 +1,14 @@
+{
+  "page-title": "Notifiche",
+  "total-count": "Utenti attivi {{count}}",
+  "dialog-cancel": "Annulla",
+  "dialog-confirm": "Conferma",
+  "dialog-add": "Aggiungi utente",
+  "dialog-remove-content": "Rimuovi utente dalla lista?",
+  "dialog-remove-title": "Rimuovi utente",
+  "helper-email": "Indirizzo e-mail",
+  "helper-name": "Nome utente",
+  "helper-phone": "Telefono",
+  "list-add": "Aggiungi utenti alla lista!",
+  "list-empty": "La lista dei destinatari é vuota."
+}

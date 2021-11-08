@@ -12,7 +12,7 @@ import { useForm, Controller } from 'react-hook-form'
 
 export default function AddItemDialog ({ onCancel, onConfirm, open }) {
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
-  const { t } = useTranslation('history')
+  const { t } = useTranslation('notifications')
 
   const {
     // register,
@@ -45,10 +45,10 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
     <Dialog
       open={open}
       onClose={onCancel}
-      aria-labelledby='history-query'
+      aria-labelledby='add-item'
       fullScreen={isMobile}
     >
-      <DialogTitle id='dialog-title'>{t('dialog-title')}</DialogTitle>
+      <DialogTitle id='dialog-add'>{t('dialog-add')}</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <Stack direction={isMobile ? 'column' : 'row'} spacing={3} mt={1}>
@@ -72,7 +72,7 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
                   value={value}
                   onChange={onChange}
                   error={!!error}
-                  helperText='E-mail address'
+                  helperText={t('helper-email')}
                 />
               )}
             />
@@ -80,7 +80,8 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
               name='name'
               control={control}
               rules={{
-                required: 'Name is required'
+                required: 'Name is required',
+                patter: /^[a-z ,.'-]+$/
               }}
               render={({
                 field: { onChange, value },
@@ -95,7 +96,7 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
                   value={value}
                   onChange={onChange}
                   error={!!error}
-                  helperText='Full name'
+                  helperText={t('helper-name')}
                 />
               )}
             />
@@ -118,7 +119,7 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
                   value={value}
                   onChange={onChange}
                   error={!!error}
-                  helperText='Phone number'
+                  helperText={t('helper-phone')}
                 />
               )}
             />
@@ -141,7 +142,7 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
             disabled={!formState.isValid}
             type='submit'
           >
-            Add Item
+            {t('dialog-confirm')}
           </Button>
         </DialogActions>
       </form>

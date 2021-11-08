@@ -7,21 +7,19 @@ import DialogTitle from '@mui/material/DialogTitle'
 import useTranslation from 'next-translate/useTranslation'
 
 export default function AlertDialog ({ onCancel, onConfirm, open, value }) {
-  const { t } = useTranslation('overview')
+  const { t } = useTranslation('notifications')
 
   return (
     <Dialog
       open={open}
       onClose={onCancel}
-      aria-labelledby='alert-dialog-title'
-      aria-describedby='alert-dialog-description'
+      aria-labelledby='dialog-title'
+      aria-describedby='dialog-description'
     >
-      <DialogTitle id='alert-dialog-title'>
-        {t('queue-dialog-title', { number: value.card })}
-      </DialogTitle>
+      <DialogTitle id='dialog-title'>{t('dialog-remove-title')}</DialogTitle>
       <DialogContent>
-        <DialogContentText id='alert-dialog-description'>
-          {t('queue-dialog-content')}
+        <DialogContentText id='dialog-description'>
+          {t('dialog-remove-content')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

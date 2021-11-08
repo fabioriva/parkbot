@@ -1,8 +1,4 @@
 {
-  "home-title": "The full stack solution for robotic parking systems.",
-  "home-text": "Hello, I am your robotic parking assistant!",
-  "home-button": "Get Started",
-
   "drawer-alarms": "Alarms",
   "drawer-dashboard": "Dashboard",
   "drawer-overview": "Overview",
@@ -14,6 +10,7 @@
   "drawer-motion": "Motion",
 
   "error-code": "Error {{code}}",
+  "error-fetch": "Fetch error - resource not available.",
   "error-title": "Error",
 
   "header-cars": "Total cars {{count}}",
