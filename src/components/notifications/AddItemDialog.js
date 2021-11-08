@@ -25,15 +25,16 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
     mode: 'onChange'
   })
 
-  // const handleConfirm = (email, name, phone) => {
-  //   console.log(email, name, phone)
-  //   // onConfirm(data)
-  // }
   React.useEffect(() => {
     setValue('email', '')
     setValue('name', '')
     setValue('phone', '')
   }, [])
+
+  const handleCancel = () => {
+    reset()
+    onCancel()
+  }
 
   const onSubmit = async data => {
     console.log(data)
@@ -80,8 +81,8 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
               name='name'
               control={control}
               rules={{
-                required: 'Name is required',
-                patter: /^[a-z ,.'-]+$/
+                required: 'Name is required'
+                // pattern: /^[a-z ,.'-]+$/i
               }}
               render={({
                 field: { onChange, value },
@@ -103,9 +104,6 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
             <Controller
               name='phone'
               control={control}
-              // rules={{
-              //   required: 'Name is required'
-              // }}
               render={({
                 field: { onChange, value },
                 fieldState: { error }
@@ -126,7 +124,7 @@ export default function AddItemDialog ({ onCancel, onConfirm, open }) {
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={onCancel}>
+          <Button autoFocus onClick={handleCancel}>
             {t('dialog-cancel')}
           </Button>
           {/* <Button
