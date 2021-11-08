@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
 import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
 import Error from 'src/components/Error'

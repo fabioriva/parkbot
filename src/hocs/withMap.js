@@ -1,5 +1,5 @@
 import React from 'react'
-import useTranslation from 'next-translate/useTranslation'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import MapEdit from 'src/components/map/MapEditForm'
 import MapLevel from 'src/components/map/MapLevel'
@@ -8,17 +8,13 @@ import Occupancy from 'src/components/charts/Occupancy'
 import fetch from 'src/lib/fetch'
 import { useData } from 'src/lib/useWebSocket'
 import { EDIT_STALL, isAllowed } from 'src/constants/auth'
+import useTranslation from 'next-translate/useTranslation'
 
 const withMap = WrappedComponent => {
   const Wrapper = props => {
     const { t } = useTranslation('map')
 
-    if (props.json.err)
-      return (
-        <Layout {...props} pageTitle={t('header-title')}>
-          <div>Fetch Error</div>
-        </Layout>
-      )
+    if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
     const [map, setMap] = React.useState(props.json)
 
@@ -70,7 +66,7 @@ const withMap = WrappedComponent => {
     const [filter, setFilter] = React.useState('SHOW_NUMBERS')
 
     return (
-      <Layout {...props} pageTitle={t('header-title')}>
+      <Layout {...props} pageTitle={t('page-title')}>
         <WrappedComponent
           {...props}
           levels={map.levels.map((item, key) => (

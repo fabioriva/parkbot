@@ -1,6 +1,7 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Grid from '@mui/material/Grid'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import Device from 'src/components/overview/Device'
 import OperationDialog from 'src/components/overview/OperationDialog'
@@ -12,12 +13,7 @@ import { ACTIONS, isAllowed } from '/src/constants/auth'
 export default function Overview (props) {
   const { t } = useTranslation('overview')
 
-  if (props.json.err)
-    return (
-      <Layout {...props} pageTitle={t('header-title')}>
-        <div>Fetch Error</div>
-      </Layout>
-    )
+  if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
   // const [auth, setAuth] = React.useState(false)
   // React.useEffect(() => setAuth(isAllowed(props.user, [ACTIONS])), [])
@@ -75,7 +71,7 @@ export default function Overview (props) {
   }
 
   return (
-    <Layout {...props} pageTitle={t('header-title')}>
+    <Layout {...props} pageTitle={t('page-title')}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={8}>
           <Grid container spacing={2}>

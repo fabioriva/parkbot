@@ -2,6 +2,7 @@ import React from 'react'
 // import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
 import { useData } from 'src/lib/useWebSocket'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 // import ListView from 'src/components/racks/RackListView'
 import RackView from 'src/components/racks/RackView'
@@ -12,9 +13,7 @@ export default function Rack (props) {
 
   if (props.json.err)
     return (
-      <Layout {...props} pageTitle={t('header-title')}>
-        <div>Fetch Error</div>
-      </Layout>
+      <Error {...props} pageTitle={t('rack-title', { name: rack.title })} />
     )
 
   const router = useRouter()

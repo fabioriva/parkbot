@@ -4,6 +4,7 @@ import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
 import Button from '@mui/material/Button'
 import SearchIcon from '@mui/icons-material/Search'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import HistoryList from 'src/components/history/HistoryListVirtualized'
 import HistoryQueryDialog from 'src/components/history/HistoryQueryDialog'
@@ -14,12 +15,7 @@ import useTranslation from 'next-translate/useTranslation'
 export default function History (props) {
   const { t } = useTranslation('history')
 
-  if (props.json.err)
-    return (
-      <Layout {...props} pageTitle={t('header-title')}>
-        <div>Fetch Error</div>
-      </Layout>
-    )
+  if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
   const [history, setHistory] = React.useState(props.json)
 
@@ -39,7 +35,7 @@ export default function History (props) {
   }
 
   return (
-    <Layout {...props} pageTitle={t('header-title')}>
+    <Layout {...props} pageTitle={t('page-title')}>
       <HistoryQueryDialog
         locale={props.__lang}
         open={open}

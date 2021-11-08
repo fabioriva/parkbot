@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import Grid from '@mui/material/Grid'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import DeviceInfo from 'src/components/device/DeviceInfo'
 import Inverter from 'src/components/device/Inverter'
@@ -11,12 +12,7 @@ export default function DeviceView (props) {
   const router = useRouter()
   const { id } = router.query
 
-  if (props.json.err)
-    return (
-      <Layout {...props} pageTitle={'device.a.name'}>
-        <div>Fetch Error</div>
-      </Layout>
-    )
+  if (props.json.err) return <Error {...props} pageTitle={device.a.name} />
 
   const [deviceView, setDeviceView] = React.useState(props.json)
 

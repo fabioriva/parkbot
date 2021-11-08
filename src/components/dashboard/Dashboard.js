@@ -1,6 +1,7 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Grid from '@mui/material/Grid'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import Activity from 'src/components/dashboard/Activity'
 import Devices from 'src/components/dashboard/Devices'
@@ -16,12 +17,7 @@ const fetcher = url => global.fetch(url).then(r => r.json())
 export default function Dashboard (props) {
   const { t } = useTranslation('dashboard')
 
-  if (props.json.err)
-    return (
-      <Layout {...props} pageTitle={t('header-title')}>
-        <div>Fetch Error</div>
-      </Layout>
-    )
+  if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
   const [dashboard, setDashboard] = React.useState(props.json)
 
@@ -40,7 +36,7 @@ export default function Dashboard (props) {
   const locale = props.user.locale !== undefined ? props.user.locale : 'en'
 
   return (
-    <Layout {...props} pageTitle={t('header-title')}>
+    <Layout {...props} pageTitle={t('page-title')}>
       <Grid
         container
         alignItems='center'

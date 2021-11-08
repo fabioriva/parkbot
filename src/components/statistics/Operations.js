@@ -19,9 +19,7 @@ export default function Statistics (props) {
   const { t } = useTranslation('statistics')
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
-  const pageTitle = t('header-title')
-
-  if (props.json.err) return <Error {...props} pageTitle={pageTitle} />
+  if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
   const [operations, setOperations] = React.useState(props.json)
   const [open, setOpen] = React.useState(false)
@@ -38,7 +36,7 @@ export default function Statistics (props) {
   }
 
   return (
-    <Layout {...props} pageTitle={pageTitle}>
+    <Layout {...props} pageTitle={t('page-title')}>
       <OperationsQueryDialog
         locale={props.__lang}
         open={open}

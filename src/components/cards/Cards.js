@@ -1,6 +1,7 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Paper from '@mui/material/Paper'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import CardsList from 'src/components/cards/CardsList'
 import fetch from 'src/lib/fetch'
@@ -10,12 +11,7 @@ import { EDIT_CARD, isAllowed } from '/src/constants/auth'
 export default function Cards (props) {
   const { t } = useTranslation('cards')
 
-  if (props.json.err)
-    return (
-      <Layout {...props} pageTitle={t('header-title')}>
-        <div>Fetch Error</div>
-      </Layout>
-    )
+  if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
   const [cards, setCards] = React.useState(props.json)
 
@@ -44,7 +40,7 @@ export default function Cards (props) {
   }
 
   return (
-    <Layout {...props} pageTitle={t('header-title')}>
+    <Layout {...props} pageTitle={t('page-title')}>
       <Paper sx={{ maxWidth: { md: '25%', xs: '100%' } }}>
         <CardsList
           cards={cards}

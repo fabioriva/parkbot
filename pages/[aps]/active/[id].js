@@ -1,10 +1,12 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { useData } from 'src/lib/useWebSocket'
+import useTranslation from 'next-translate/useTranslation'
 import fetch, { profile } from 'src/lib/fetch'
 import { getCookies } from 'src/lib/authCookies'
 import { aps_ } from 'src/constants/aps'
 import { ALARMS, hasRole } from 'src/constants/auth'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import DeviceInfo from 'src/components/device/DeviceInfo'
 import withAuthSync from 'src/hocs/withAuthSync'
@@ -12,13 +14,9 @@ import withAuthSync from 'src/hocs/withAuthSync'
 const Page = props => {
   const router = useRouter()
   const { id } = router.query
+  const { t } = useTranslation('alarms')
 
-  if (props.json.err)
-    return (
-      <Layout {...props} pageTitle={'device.a.name'}>
-        <div>Fetch Error</div>
-      </Layout>
-    )
+  if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
   const [overview, setOverview] = React.useState(props.json)
 
@@ -32,16 +30,8 @@ const Page = props => {
   // const device = props.json.devices[id]
   const device = overview.devices[id]
 
-  // return props.json.err ? (
-  //   <Error {...props} error='Error 500' />
-  // ) : (
-  //   <Layout {...props} pageTitle={device.a.name}>
-  //     <DeviceInfo alarms={device.alarms} />
-  //   </Layout>
-  // )
-
   return (
-    <Layout {...props} pageTitle={device.a.name}>
+    <Layout {...props} pageTitle={t('al-title', { device: device.a.name })}>
       <DeviceInfo alarms={device.alarms} />
     </Layout>
   )

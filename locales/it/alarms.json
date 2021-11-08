@@ -1,4 +1,6 @@
 {
+  "page-title": "Allarmi",
+  "al-title": "Allarmi {{device}}",
   "al-active": "Allarmi attivi",
   "al-ready": "Nessun allarme attivo",
   "al-count": "Totale allarmi attivi {{count}}",
