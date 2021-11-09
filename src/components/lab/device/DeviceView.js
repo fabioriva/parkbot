@@ -7,8 +7,9 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
-import DeviceInfo from 'src/components/device/DeviceInfo'
+import AlarmsInfo from 'src/components/device/AlarmsInfo'
 import Inverter from 'src/components/device/Inverter'
 import Motor from 'src/components/device/Motor'
 import { useData } from 'src/lib/useWebSocket'
@@ -60,11 +61,7 @@ export default function DeviceView (props) {
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
   if (props.json.err)
-    return (
-      <Layout {...props} pageTitle={'device.a.name'}>
-        <div>Fetch Error</div>
-      </Layout>
-    )
+    return <Error {...props} pageTitle={t('device-view-title')} />
 
   const [deviceView, setDeviceView] = React.useState(props.json)
 
@@ -89,7 +86,10 @@ export default function DeviceView (props) {
       pageTitle={t('device-view-title', { name: device.a.name })}
     >
       {/* <Box sx={{ width: '100%' }}> */}
-      {/* <DeviceInfo alarms={device.alarms} /> */}
+      <AlarmsInfo
+        alarms={device.alarms}
+        href={`/${props.user.locale}/${props.aps}/active/${id}`}
+      />
       {/* <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}> */}
       {!isMobile && (
         <Tabs

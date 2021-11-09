@@ -8,7 +8,8 @@ import { aps_ } from 'src/constants/aps'
 import { ALARMS, hasRole } from 'src/constants/auth'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
-import DeviceInfo from 'src/components/device/DeviceInfo'
+import AlarmsActive from 'src/components/device/AlarmsActive'
+// import DeviceInfo from 'src/components/device/DeviceInfo'
 import withAuthSync from 'src/hocs/withAuthSync'
 
 const Page = props => {
@@ -32,7 +33,8 @@ const Page = props => {
 
   return (
     <Layout {...props} pageTitle={t('al-title', { device: device.a.name })}>
-      <DeviceInfo alarms={device.alarms} />
+      {/* <DeviceInfo alarms={device.alarms} /> */}
+      {device.alarms.length > 0 && <AlarmsActive alarms={device.alarms} />}
     </Layout>
   )
 }

@@ -105,6 +105,8 @@ export default function NavBar (props) {
               PaperProps={{
                 elevation: 0,
                 sx: {
+                  width: 300,
+                  maxWidth: '100%',
                   overflow: 'visible',
                   filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                   mt: 1.5,
