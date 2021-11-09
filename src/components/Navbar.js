@@ -5,6 +5,7 @@ import AppBar from '@mui/material/AppBar'
 import Avatar from '@mui/material/Avatar'
 import Badge from '@mui/material/Badge'
 import Box from '@mui/material/Box'
+import Chip from '@mui/material/Chip'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
@@ -141,6 +142,7 @@ export default function NavBar (props) {
                   <NotificationsActiveIcon fontSize='small' />
                 </ListItemIcon>
                 <ListItemText>{t('navbar-notifications')}</ListItemText>
+                <Chip label='Beta' color='error' size='small' />
               </MenuItem>
               <MenuItem disabled>
                 <ListItemIcon>

@@ -14,12 +14,17 @@ import Lamp from 'src/components/overview/Lamp'
 
 const Item = ({ loading, title, value }) => (
   <>
-    <Typography variant='body2' color='textSecondary' component='h1'>
+    <Typography
+      variant='body2'
+      color='textSecondary'
+      // component='h1'
+      // gutterBottom
+    >
       {title}
     </Typography>
     <Typography
       variant='subtitle2'
-      component='h2'
+      // component='h2'
       // gutterBottom
       sx={{ color: 'info.dark', fontSize: 18, fontWeight: 'bold' }}
     >

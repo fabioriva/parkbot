@@ -17,5 +17,6 @@
     "/[aps]/statistics": ["statistics"],
     "/[aps]/docs/[slug]": ["io"],
     "/muse/overview": ["overview", "io"]
-  }
+  },
+  "logBuild": false
 }

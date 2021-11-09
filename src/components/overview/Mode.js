@@ -7,7 +7,7 @@ export default function Mode ({ mode = 0, step = 0 }) {
   const { t } = useTranslation('common')
 
   return (
-    <Tooltip title={t(mode.label)}>
+    <Tooltip title={t(mode.key)}>
       <Badge badgeContent={step} color='primary'>
         <Avatar
           sx={{
