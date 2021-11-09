@@ -1,7 +1,7 @@
 import React from 'react'
 import fetch from 'src/lib/fetch'
 import authSSR from 'src/lib/authSSR'
-import { CARDS } from '/src/constants/auth' // !!!add role for notifications mailing list
+import { NOTIFICATIONS } from '/src/constants/auth'
 import MailingList from 'src/components/notifications/MailingList'
 import withAuthSync from 'src/hocs/withAuthSync'
 
@@ -10,7 +10,7 @@ const Page = props => <MailingList {...props} />
 export async function getServerSideProps (ctx) {
   const hrstart = process.hrtime()
 
-  const props = await authSSR(ctx, CARDS)
+  const props = await authSSR(ctx, NOTIFICATIONS)
   if (props.notFound || props.redirect) return props
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/mailingList`

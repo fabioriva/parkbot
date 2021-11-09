@@ -23,6 +23,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
 import SettingsIcon from '@mui/icons-material/Settings'
 import useTranslation from 'next-translate/useTranslation'
+import { NOTIFICATIONS, hasRole } from 'src/constants/auth'
 
 const drawerWidth = 240
 
@@ -135,7 +136,7 @@ export default function NavBar (props) {
               </MenuItem>
               <Divider />
               <MenuItem
-                disabled
+                disabled={!hasRole(props.user, [NOTIFICATIONS])}
                 onClick={() => router.push(`/${props.user.aps}/mailingList`)}
               >
                 <ListItemIcon>

@@ -12,6 +12,7 @@ export const CARDS = 'cards'
 export const HISTORY = 'history'
 export const STATISTICS = 'statistics'
 export const ALARMS = 'alarms'
+export const NOTIFICATIONS = 'notifications'
 // App
 export const DASHBOARD = 'dashboard'
 export const DEVICE = 'device'
