@@ -1,6 +1,6 @@
 {
   "page-title": "Notifiche",
-  "total-count": "Utenti attivi {{count}}",
+  "total-count": "Destinatari attivi {{count}}. (Max 3)",
   "dialog-cancel": "Annulla",
   "dialog-confirm": "Conferma",
   "dialog-add": "Aggiungi utente",

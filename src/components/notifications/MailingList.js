@@ -106,6 +106,7 @@ export default function MailingList (props) {
         onConfirm={handleRemoveItem}
       />
       <Fab
+        disabled={mailingList.count >= 3}
         color='primary'
         aria-label='add'
         onClick={() => setOpen(true)}
