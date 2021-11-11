@@ -31,15 +31,13 @@ function stringToColor (string) {
 }
 
 function stringAvatar (name) {
+  const chr = name.split(' ')
+  const initials = chr.length >= 2 ? chr[0][0] + chr[1][0] : chr.slice(0, 2)
   return {
     sx: {
       bgcolor: stringToColor(name)
     },
-    children:
-      name.split(' ').length > 1
-        ? `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
-        : `${name.split(' ')[0][0]}`
-    // children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
+    children: initials
   }
 }
 

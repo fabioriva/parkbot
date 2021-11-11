@@ -1,61 +1,85 @@
 import Avatar from '@mui/material/Avatar'
 // material-ui icons
+import AlarmOnIcon from '@mui/icons-material/AlarmOn'
+import AlarmOffIcon from '@mui/icons-material/AlarmOff'
 import BuildIcon from '@mui/icons-material/Build'
-import CheckIcon from '@mui/icons-material/Check'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 import LockIcon from '@mui/icons-material/Lock'
 import FiberPinOutlinedIcon from '@mui/icons-material/FiberPinOutlined'
-import PriorityHighRoundedIcon from '@mui/icons-material/PriorityHighRounded'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 
-export default function HistoryListAvatar ({ item }) {
+function iconAvatar (item) {
   switch (item.operation.id) {
     case 1:
-      return (
-        <Avatar sx={{ background: '#f2dede', color: '#a94442' }}>
-          <PriorityHighRoundedIcon />
-        </Avatar>
-      )
-    case 2:
-      return (
-        <Avatar sx={{ background: '#dff0d8', color: '#3c763d' }}>
-          <CheckIcon />
-        </Avatar>
-      )
-    case 3:
-      return (
-        <Avatar sx={{ background: '#fcf8e3', color: '#8a6d3b' }}>
-          <BuildIcon />
-        </Avatar>
-      )
-    case 4:
-      return (
-        <Avatar sx={{ background: '#d9edf7', color: '#31708f' }}>
-          <FiberPinOutlinedIcon />
-        </Avatar>
-      )
-    case 5:
-    case 6:
-      if (item.card === 999) {
-        return (
-          <Avatar sx={{ background: '#fcf8e3', color: '#8a6d3b' }}>
-            <LockIcon />
-          </Avatar>
-        )
+      return {
+        sx: {
+          bgcolor: '#f2dede',
+          color: '#a94442'
+        },
+        children: <AlarmOnIcon />
       }
-      return (
-        <Avatar sx={{ background: '#d9edf7', color: '#31708f' }}>
-          <DirectionsCarIcon />
-        </Avatar>
-      )
+    case 2:
+      return {
+        sx: {
+          bgcolor: '#dff0d8',
+          color: '#3c763d'
+        },
+        children: <AlarmOffIcon />
+      }
+    case 3:
+      return {
+        sx: {
+          bgcolor: '#fcf8e3',
+          color: '#8a6d3b'
+        },
+        children: <BuildIcon />
+      }
+    case 4:
+      return {
+        sx: {
+          bgcolor: '#d9edf7',
+          color: '#31708f'
+        },
+        children: <FiberPinOutlinedIcon />
+      }
+    case 5:
+      return item.card === 999
+        ? {
+            sx: {
+              bgcolor: '#fcf8e3',
+              color: '#8a6d3b'
+            },
+            children: <LockIcon />
+          }
+        : {
+            sx: {
+              bgcolor: '#d9edf7',
+              color: '#31708f'
+            },
+            children: <DirectionsCarIcon />
+          }
+    case 6:
+      return {
+        sx: {
+          bgcolor: '#d9edf7',
+          color: '#31708f'
+        },
+        children: <DirectionsCarIcon />
+      }
     case 7:
     case 8:
-      return (
-        <Avatar sx={{ background: '#d9edf7', color: '#31708f' }}>
-          <SwapHorizIcon />
-        </Avatar>
-      )
+      return {
+        sx: {
+          bgcolor: '#d9edf7',
+          color: '#31708f'
+        },
+        children: <SwapHorizIcon />
+      }
     default:
-      return <Avatar>{item.operation.id}</Avatar>
+      return {}
   }
+}
+
+export default function HistoryListAvatar ({ item }) {
+  return <Avatar {...iconAvatar(item)} />
 }

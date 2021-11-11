@@ -2,7 +2,7 @@ import useTranslation from 'next-translate/useTranslation'
 
 export default function HistoryListText ({ item }) {
   const { t } = useTranslation('history')
-  console.log(item)
+  // console.log(item)
   const { alarm, card, operation, mode, stall } = item
 
   switch (operation.id) {

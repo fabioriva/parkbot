@@ -1,9 +1,11 @@
 import React from 'react'
-import useTranslation from 'next-translate/useTranslation'
+import Divider from '@mui/material//Divider'
 import Grid from '@mui/material/Grid'
+import List from '@mui/material/List'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
-import Activity from 'src/components/dashboard/Activity'
+// import Activity from 'src/components/dashboard/Activity'
+import HistoryListItem from 'src/components/history/HistoryListItem'
 import Devices from 'src/components/dashboard/Devices'
 import Widget from 'src/components/dashboard/Widget'
 import Occupancy from 'src/components/charts/Occupancy'
@@ -11,6 +13,7 @@ import Operations from 'src/components/charts/Operations'
 // import QueueList from 'src/components/overview/QueueList'
 // import { useData } from 'src/lib/useWebSocket'
 import useSWR from 'swr'
+import useTranslation from 'next-translate/useTranslation'
 
 const fetcher = url => global.fetch(url).then(r => r.json())
 
@@ -60,7 +63,15 @@ export default function Dashboard (props) {
             href={`/${locale}/${props.aps}/history`}
             title={t('activity-title')}
           >
-            <Activity activity={activity} />
+            <List dense>
+              {activity.documents.map((item, key) => (
+                <React.Fragment key={key}>
+                  <HistoryListItem item={item} />
+                  <Divider variant='inset' component='li' />
+                </React.Fragment>
+              ))}
+            </List>
+            {/* <Activity activity={activity} /> */}
           </Widget>
         </Grid>
         <Grid item xs={12} lg>
@@ -76,8 +87,8 @@ export default function Dashboard (props) {
                 occupancy[2].value
               ]}
               labels={[t('busy'), t('free'), t('lock')]}
-              height={320}
-              width={320}
+              height={315}
+              width={315}
             />
           </Widget>
         </Grid>
