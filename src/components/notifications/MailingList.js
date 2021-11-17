@@ -2,10 +2,11 @@ import * as React from 'react'
 import Alert from '@mui/material/Alert'
 import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
+import ConfirmDialog from 'src/components/ConfirmDialog'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import AddItemDialog from 'src/components/notifications/AddItemDialog'
-import RemoveItemDialog from 'src/components/notifications/RemoveItemDialog'
+// import RemoveItemDialog from 'src/components/notifications/RemoveItemDialog'
 import RecipientListView from 'src/components/notifications/RecipientListView'
 import fetch from 'src/lib/fetch'
 // import { useData } from 'src/lib/useWebSocket'
@@ -99,7 +100,9 @@ export default function MailingList (props) {
         onCancel={() => setOpen(false)}
         onConfirm={handleAddItem}
       />
-      <RemoveItemDialog
+      <ConfirmDialog
+        dialogContent={t('dialog-remove-content')}
+        dialogTitle={t('dialog-remove-title')}
         open={remove}
         value={removeId}
         onCancel={() => setRemove(false)}

@@ -13,6 +13,9 @@
   "error-fetch": "Fetch error - resource not available.",
   "error-title": "Error",
 
+  "dialog-cancel": "Cancel",
+  "dialog-confirm": "Confirm",
+
   "header-cars": "Total cars {{count}}",
   "header-alarms": "Active alarms {{count}}",
 

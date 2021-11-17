@@ -6,8 +6,15 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import useTranslation from 'next-translate/useTranslation'
 
-export default function AlertDialog ({ onCancel, onConfirm, open, value }) {
-  const { t } = useTranslation('notifications')
+export default function ConfirmDialog ({
+  onCancel,
+  onConfirm,
+  dialogContent,
+  dialogTitle,
+  open,
+  value
+}) {
+  const { t } = useTranslation('common')
 
   return (
     <Dialog
@@ -16,10 +23,10 @@ export default function AlertDialog ({ onCancel, onConfirm, open, value }) {
       aria-labelledby='dialog-title'
       aria-describedby='dialog-description'
     >
-      <DialogTitle id='dialog-title'>{t('dialog-remove-title')}</DialogTitle>
+      <DialogTitle id='dialog-title'>{dialogTitle}</DialogTitle>
       <DialogContent>
         <DialogContentText id='dialog-description'>
-          {t('dialog-remove-content')}
+          {dialogContent}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

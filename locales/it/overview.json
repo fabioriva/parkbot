@@ -1,6 +1,10 @@
 {
   "page-title": "Panoramica",
 
+  "action-entry": "Entrata",
+  "action-exit": "Uscita",
+  "action-rollback": "Rollback",
+
   "device-card": "Tessera",
   "device-dest": "Destinazione",
   "device-mode": "Funzione",

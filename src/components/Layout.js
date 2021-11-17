@@ -81,10 +81,9 @@ export default function AppLayout (props) {
             }}
           >
             {props.children}
-            <Snackbar message={message} />
           </Container>
         )}
-
+        <Snackbar message={message} />
         <Box sx={{ mb: 3 }} />
         <Footer />
       </Box>

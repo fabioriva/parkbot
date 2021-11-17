@@ -10,11 +10,11 @@ export default function DeviceInfo ({ alarms, href }) {
 
   return (
     <React.Fragment>
-      {alarms.length === 0 && open && (
+      {/* {alarms.length === 0 && open && (
         <Alert severity='success' onClose={() => setOpen(false)}>
           {t('al-ready')}
         </Alert>
-      )}
+      )} */}
       {alarms.length > 0 && (
         <Alert
           severity='error'

@@ -1,18 +1,18 @@
 import * as React from 'react'
 // import Link from 'next/link'
 import { styled } from '@mui/material/styles'
-// import Box from '@mui/material/Box'
-// import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
-// import Collapse from '@mui/material/Collapse'
+import Collapse from '@mui/material/Collapse'
 import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import Skeleton from '@mui/material/Skeleton'
-// import Stack from '@mui/material/Stack'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { green, orange, red } from '@mui/material/colors'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -43,7 +43,7 @@ const ExpandMore = styled(props => {
   return <IconButton {...other} />
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
+  // marginLeft: 'auto',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest
   })
@@ -120,6 +120,20 @@ export default function Device (props) {
       }
     />
   )
+  const actions = props.item.d.map((element, index) => {
+    const { conn, enable, key } = element
+    return (
+      <Button
+        disabled={!enable.status}
+        // icon={icon !== undefined && icon}
+        key={index}
+        // onClick={() => props.actions[key] !== undefined && props.actions[key](id, write)}
+        onClick={() => props.action(conn)}
+      >
+        {t(element.key)}
+      </Button>
+    )
+  })
   const mainView = (
     <Grid container>
       <Grid item xs={6}>
@@ -143,9 +157,9 @@ export default function Device (props) {
           <Item
             title={item.name}
             value={
-              <span>
+              <>
                 {item.position}&nbsp;&rarr;&nbsp;{item.destination}
-              </span>
+              </>
             }
             loading={props.loading}
           />
@@ -220,16 +234,19 @@ export default function Device (props) {
         >
           <OpenInNewOutlinedIcon />
         </IconButton> */}
+        {actions}
         {props.item.alarms && (
-          // <Box sx={{ marginLeft: 'auto' }}>
-          <Active
-            active={props.item.alarms.length}
-            disabled={!hasRole(props.user, [ALARMS])}
-            href={`/${props.user.locale}/${props.aps}/active/${id - 1}`}
-          />
-          // </Box>
+          <Box sx={{ marginLeft: 'auto' }}>
+            <Active
+              active={props.item.alarms.length}
+              disabled={!hasRole(props.user, [ALARMS])}
+              href={`/${props.user.locale}/${props.aps}/active/${id - 1}`}
+            />
+          </Box>
         )}
-        <ExpandMore
+        {/* <Box sx={{ marginLeft: 'auto' }}>{actions}</Box> */}
+
+        {/* <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
@@ -237,9 +254,9 @@ export default function Device (props) {
           disabled
         >
           <ExpandMoreIcon />
-        </ExpandMore>
+        </ExpandMore> */}
       </CardActions>
-      {/* <Collapse in={expanded} timeout='auto' unmountOnExit>
+      <Collapse in={expanded} timeout='auto' unmountOnExit>
         <CardContent>
           <Typography paragraph>Commands:</Typography>
           <Stack spacing={1}>
@@ -255,7 +272,7 @@ export default function Device (props) {
             <Button variant='outlined'>Exit position</Button>
           </Stack>
         </CardContent>
-      </Collapse> */}
+      </Collapse>
     </Card>
   )
 }

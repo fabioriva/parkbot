@@ -1,6 +1,10 @@
 {
   "page-title": "Overview",
 
+  "action-entry": "Entry",
+  "action-exit": "Exit",
+  "action-rollback": "Rollback",
+
   "device-card": "Card",
   "device-dest": "Destination",
   "device-mode": "Mode",

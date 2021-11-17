@@ -13,6 +13,9 @@
   "error-fetch": "Fetch error - risorsa non disponibile.",
   "error-title": "Errore",
 
+  "dialog-cancel": "Annulla",
+  "dialog-confirm": "Conferma",
+
   "header-cars": "Totale vetture {{count}}",
   "header-alarms": "Allarmi attivi {{count}}",
 

@@ -105,7 +105,7 @@ export default function NavBar (props) {
               PaperProps={{
                 elevation: 0,
                 sx: {
-                  width: 300,
+                  // width: 300,
                   maxWidth: '100%',
                   overflow: 'visible',
                   filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
@@ -145,7 +145,7 @@ export default function NavBar (props) {
                   <NotificationsActiveIcon fontSize='small' />
                 </ListItemIcon>
                 <ListItemText>{t('navbar-notifications')}</ListItemText>
-                <Chip label='Beta' color='error' size='small' />
+                <Chip label='Beta' color='error' size='small' sx={{ ml: 1 }} />
               </MenuItem>
               <MenuItem disabled>
                 <ListItemIcon>
