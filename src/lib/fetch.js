@@ -21,19 +21,19 @@ export default async function fetcher (...args) {
   }
 }
 
-export async function profile (token) {
-  const response = await global.fetch(`${process.env.AUTH_PROVIDER}/profile`, {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      // 'Content-Type': 'application/json',
-      Authorization: JSON.stringify({ token })
-    }
-  })
-  const user = await response.json()
-  // console.log('User profile:', user)
-  return user
-}
+// export async function profile (token) {
+//   const response = await global.fetch(`${process.env.AUTH_PROVIDER}/profile`, {
+//     method: 'POST',
+//     credentials: 'include',
+//     headers: {
+//       // 'Content-Type': 'application/json',
+//       Authorization: JSON.stringify({ token })
+//     }
+//   })
+//   const user = await response.json()
+//   // console.log('User profile:', user)
+//   return user
+// }
 
 // export async function fetchOperations (
 //   backendUrl,

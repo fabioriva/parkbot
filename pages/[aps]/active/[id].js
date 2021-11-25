@@ -2,10 +2,9 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { useData } from 'src/lib/useWebSocket'
 import useTranslation from 'next-translate/useTranslation'
-import fetch, { profile } from 'src/lib/fetch'
-import { getCookies } from 'src/lib/authCookies'
-import { aps_ } from 'src/constants/aps'
-import { ALARMS, hasRole } from 'src/constants/auth'
+import fetch from 'src/lib/fetch'
+import authSSR from 'src/lib/authSSR'
+import { ALARMS } from 'src/constants/auth'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import AlarmsActive from 'src/components/device/AlarmsActive'
@@ -40,57 +39,19 @@ const Page = props => {
 }
 
 export async function getServerSideProps (ctx) {
-  const APS = aps_(ctx.params.aps)
+  const hrstart = process.hrtime()
 
-  if (APS === undefined) {
-    return {
-      notFound: true
-    }
-  }
+  const props = await authSSR(ctx, ctx.params.aps, ALARMS)
+  if (props.notFound || props.redirect) return props
 
-  const { aps, i18n, token } = await getCookies(ctx.req)
-
-  if (ctx.params.aps !== aps || !token) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
-      }
-    }
-  }
-
-  const user = await profile(token)
-
-  if (!hasRole(user, [ALARMS])) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
-      }
-    }
-  }
-
-  var hrstart = process.hrtime()
-
-  // const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/device/${ctx.params.id}`
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/overview`
   const json = await fetch(url, {
-    headers: { Authorization: 'Bearer ' + token }
+    headers: { Authorization: 'Bearer ' + props.token }
   })
 
-  var hrend = process.hrtime(hrstart)
+  const hrend = process.hrtime(hrstart)
 
-  return {
-    props: {
-      aps: APS.ns,
-      apsName: APS.name,
-      locale: i18n,
-      json,
-      user,
-      token,
-      executionTime: hrend
-    }
-  }
+  return { props: { ...props, json, executionTime: hrend } }
 }
 
 export default withAuthSync(Page)

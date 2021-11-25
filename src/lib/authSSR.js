@@ -2,8 +2,8 @@ import { aps_ } from 'src/constants/aps'
 import { hasRole } from '/src/constants/auth'
 import { getCookies } from 'src/lib/authCookies'
 
-export default async function authSSR (ctx, role) {
-  const APS = aps_(ctx.params.aps)
+export default async function authSSR (ctx, ns, role) {
+  const APS = aps_(ns)
 
   if (APS === undefined) {
     return {
@@ -13,7 +13,7 @@ export default async function authSSR (ctx, role) {
 
   const { aps, i18n, token } = await getCookies(ctx.req)
 
-  if (ctx.params.aps !== aps || !token) {
+  if (aps !== APS.ns || !token) {
     return {
       redirect: {
         destination: '/',
@@ -43,15 +43,32 @@ export default async function authSSR (ctx, role) {
 }
 
 async function profile (token) {
-  const response = await global.fetch(`${process.env.AUTH_PROVIDER}/profile`, {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      // 'Content-Type': 'application/json',
-      Authorization: JSON.stringify({ token })
+  try {
+    const response = await global.fetch(
+      `${process.env.AUTH_PROVIDER}/profile`,
+      {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          // 'Content-Type': 'application/json',
+          Authorization: JSON.stringify({ token })
+        }
+      }
+    )
+    const user = await response.json()
+    if (response.ok) {
+      return user
     }
-  })
-  const user = await response.json()
-  // console.log('User profile:', user)
-  return user
+
+    const error = new Error(response.statusText)
+    error.response = response
+    error.data = data
+    throw error
+  } catch (error) {
+    if (!error.data) {
+      error.data = { message: error.message }
+    }
+    // throw error
+    return { err: true }
+  }
 }

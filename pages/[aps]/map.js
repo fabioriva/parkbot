@@ -1,9 +1,8 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import fetch, { profile } from 'src/lib/fetch'
-import { getCookies } from 'src/lib/authCookies'
-import { aps_ } from 'src/constants/aps'
-import { MAP, hasRole } from '/src/constants/auth'
+import fetch from 'src/lib/fetch'
+import authSSR from 'src/lib/authSSR'
+import { MAP } from '/src/constants/auth'
 import withMap from 'src/hocs/withMap'
 import withAuthSync from 'src/hocs/withAuthSync'
 
@@ -26,56 +25,19 @@ const Page = props => {
 }
 
 export async function getServerSideProps (ctx) {
-  const APS = aps_(ctx.params.aps)
+  const hrstart = process.hrtime()
 
-  if (APS === undefined) {
-    return {
-      notFound: true
-    }
-  }
-
-  const { aps, i18n, token } = await getCookies(ctx.req)
-
-  if (ctx.params.aps !== aps || !token) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
-      }
-    }
-  }
-
-  const user = await profile(token)
-
-  if (!hasRole(user, [MAP])) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
-      }
-    }
-  }
-
-  var hrstart = process.hrtime()
+  const props = await authSSR(ctx, ctx.params.aps, MAP)
+  if (props.notFound || props.redirect) return props
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${ctx.params.aps}/map`
   const json = await fetch(url, {
-    headers: { Authorization: 'Bearer ' + token }
+    headers: { Authorization: 'Bearer ' + props.token }
   })
 
-  var hrend = process.hrtime(hrstart)
+  const hrend = process.hrtime(hrstart)
 
-  return {
-    props: {
-      aps: APS.ns,
-      apsName: APS.name,
-      locale: i18n,
-      json,
-      user,
-      token,
-      executionTime: hrend
-    }
-  }
+  return { props: { ...props, json, executionTime: hrend } }
 }
 
 export default withAuthSync(withMap(Page))
