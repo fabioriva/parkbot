@@ -1,6 +1,6 @@
 import {
   getTokenCookie,
-  removeTokenCookie,
+  // removeTokenCookie,
   removeCookies
 } from 'src/lib/authCookies'
 

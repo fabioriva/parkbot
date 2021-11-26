@@ -1,5 +1,6 @@
 // import { encryptSession } from 'src/lib/iron'
-import { setCookies, setTokenCookie } from 'src/lib/authCookies'
+// import { setCookies, setTokenCookie } from 'src/lib/authCookies'
+import { setCookies } from 'src/lib/authCookies'
 
 export default async function login (req, res) {
   try {
