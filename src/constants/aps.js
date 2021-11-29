@@ -5,6 +5,7 @@ const APS_ = [
   { ns: 'ironbank', name: 'Iron Bank, Auckland, 🇳🇿' },
   { ns: 'muse', name: 'The Muse, Miami, 🇺🇸' },
   { ns: 'nhidcl', name: 'NHIDCL, New Delhi, 🇮🇳' },
+  { ns: 'nyu', name: 'Langone Medical Center, NY, 🇺🇸' },
   { ns: 'trumpeldor', name: 'Trumpeldor, Tel Aviv, 🇮🇱' },
   { ns: 'vl', name: 'Vaibhab Lakshmi, Mumbai, 🇮🇳' },
   { ns: 'wallstreet', name: 'Spire, Seattle, 🇺🇸' },

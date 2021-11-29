@@ -13,6 +13,7 @@ const componentList = {
   ironbank: dynamic(() => import('src/components/map/ironbank')),
   muse: dynamic(() => import('src/components/map/muse')),
   nhidcl: dynamic(() => import('src/components/map/nhidcl')),
+  nyu: dynamic(() => import('src/components/map/nyu')),
   trumpeldor: dynamic(() => import('src/components/map/trumpeldor')),
   vl: dynamic(() => import('src/components/map/vl')),
   wallstreet: dynamic(() => import('src/components/map/wallstreet')),
