@@ -123,7 +123,6 @@ export default function AppHeader ({
           <Box sx={{ '& button': { m: 0 } }}>
             {!comm && (
               <Chip
-                sx={{ fontWeight: 'bold' }}
                 label='OFFLINE'
                 color='error'
                 size='small'
