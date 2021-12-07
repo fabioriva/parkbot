@@ -52,5 +52,7 @@
   "op-stall-out": "Stallo liberato",
   "op-shuffle-in": "Scambio in",
   "op-shuffle-out": "Scambio out",
-  "op-stall-rsv": "Stallo prenotato"
+  "op-stall-rsv": "Stallo prenotato",
+  "op-req-entry": "Richiesta di entrata",
+  "op-req-exit": "Richiesta di uscita"
 }

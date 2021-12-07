@@ -53,5 +53,7 @@
   "op-stall-out": "Stall cleared",
   "op-shuffle-in": "Shuffle in",
   "op-shuffle-out": "Shuffle out",
-  "op-stall-rsv": "Stall reserved"
+  "op-stall-rsv": "Stall reserved",
+  "op-req-entry": "Entry request",
+  "op-req-exit": "Exit request"
 }

@@ -6,7 +6,7 @@ import useTranslation from 'next-translate/useTranslation'
 
 export default function ErrorPage (props) {
   const { t } = useTranslation('common')
-  // console.log(props)
+
   return (
     <Layout {...props} pageTitle={props.pageTitle}>
       <Box
