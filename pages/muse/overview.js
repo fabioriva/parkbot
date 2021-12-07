@@ -15,7 +15,7 @@ export async function getServerSideProps (ctx) {
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/muse/overview`
   const json = await fetch(url, {
-    headers: { Authorization: 'Bearer ' + token }
+    headers: { Authorization: 'Bearer ' + props.token }
   })
 
   const hrend = process.hrtime(hrstart)
