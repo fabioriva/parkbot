@@ -33,12 +33,11 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Home () {
   const router = useRouter()
-
+  // redirect to https://sotefinservice.com
   if (
     global.window !== undefined &&
     global.window.location.hostname === 'parkbot.vercel.app'
   ) {
-    console.log(global.window?.location.hostname)
     router.push('https://sotefinservice.com')
   }
 

@@ -26,6 +26,13 @@ const START_PAGE = 'dashboard'
 export default function Signin () {
   const { t } = useTranslation('signin')
   const router = useRouter()
+  // redirect to https://sotefinservice.com
+  if (
+    global.window !== undefined &&
+    global.window.location.hostname === 'parkbot.vercel.app'
+  ) {
+    router.push('https://sotefinservice.com')
+  }
 
   const {
     register,
