@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useRouter } from 'next/router'
 // import Image from 'next/image'
 import { styled } from '@mui/material/styles'
 // import Avatar from '@mui/material/Avatar'
@@ -31,6 +32,16 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 export default function Home () {
+  const router = useRouter()
+
+  if (
+    global.window !== undefined &&
+    global.window.location.hostname === 'parkbot.vercel.app'
+  ) {
+    console.log(global.window?.location.hostname)
+    router.push('https://sotefinservice.com')
+  }
+
   return (
     <Box
       sx={{
