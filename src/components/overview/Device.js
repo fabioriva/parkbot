@@ -91,9 +91,9 @@ export default function Device (props) {
 
   const [expanded, setExpanded] = React.useState(false)
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded)
+  // }
 
   const LS = (
     <Lamp
@@ -121,14 +121,13 @@ export default function Device (props) {
     />
   )
   const actions = props.item.d.map((element, index) => {
-    const { conn, enable, key } = element
     return (
       <Button
-        disabled={!enable.status}
+        disabled={!element.enable.status}
         // icon={icon !== undefined && icon}
         key={index}
         // onClick={() => props.actions[key] !== undefined && props.actions[key](id, write)}
-        onClick={() => props.action(conn)}
+        onClick={() => props.action(element.conn)}
       >
         {t(element.key)}
       </Button>

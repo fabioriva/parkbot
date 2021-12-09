@@ -1,7 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Grid from '@mui/material/Grid'
-import ConfirmDialog from 'src/components/ConfirmDialog'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import Device from 'src/components/overview/Device'
@@ -26,36 +25,6 @@ export default function Overview (props) {
     page: 'overview'
   })
   React.useEffect(() => setOverview(data), [data])
-
-  const [confirmOpen, setConfirmOpen] = React.useState(false)
-  const [confirmValue, setConfirmValue] = React.useState({})
-
-  const handleActionConfirm = async conn => {
-    setConfirmOpen(true)
-    setConfirmValue(conn)
-  }
-
-  const handleAction = async conn => {
-    console.log('handleAction', conn)
-    // const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/readArea`
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/writeArea`
-
-    const buffer = Buffer.alloc(1, conn.buffer, 'hex')
-    // const buffer = Buffer.allocUnsafe(2)
-    // buffer.writeUInt16BE(123, 0)
-    buffer.toJSON()
-
-    const json = await fetch(url, {
-      method: 'POST',
-      headers: {
-        // Authorization: 'Bearer ' + props.token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ conn, buffer })
-    })
-    console.log(json)
-    setConfirmOpen(false)
-  }
 
   // Dialog
   const DIALOG_INIT_VALUES = {
@@ -112,7 +81,6 @@ export default function Overview (props) {
                 <Device
                   item={element}
                   aps={props.aps}
-                  action={handleActionConfirm}
                   // actions={[handleOpen]} //, handleRollback]}
                   user={props.user}
                   // authorization={isAllowed(user, [userRole])
@@ -132,14 +100,6 @@ export default function Overview (props) {
           />
         </Grid>
       </Grid>
-      <ConfirmDialog
-        dialogContent='Content'
-        dialogTitle='Title'
-        open={confirmOpen}
-        value={confirmValue}
-        onCancel={() => setConfirmOpen(false)}
-        onConfirm={handleAction}
-      />
       <OperationDialog
         open={open}
         onCancel={handleCancel}

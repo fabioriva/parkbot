@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={1}>
-      <Grid item xs={12} xl={10}>
+      <Grid item xs={12} xl={8}>
         <Box sx={{ mb: 1, mx: { xs: 1, md: 0 }, overflow: 'scroll' }}>
           {levels[3]}
           {levels[2]}
@@ -13,7 +13,7 @@ const Map = ({ levels, occupancy, view }) => {
         </Box>
         <Box sx={{ mx: { xs: 1, md: 0 } }}>{view}</Box>
       </Grid>
-      <Grid item xs={12} xl={2}>
+      <Grid item xs={12} xl={4}>
         <Box sx={{ display: { xs: 'none', xl: 'block' } }}>{occupancy}</Box>
       </Grid>
       <style jsx global>

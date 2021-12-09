@@ -5,6 +5,7 @@ import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
 import Device from 'src/components/overview/Device'
 import OperationDialog from 'src/components/overview/OperationDialog'
+import RollbackDialog from 'src/components/ConfirmDialog'
 import Queue from 'src/components/overview/Queue'
 import fetch from 'src/lib/fetch'
 import { useData } from 'src/lib/useWebSocket'
@@ -70,6 +71,37 @@ export default function Overview (props) {
     // props.enqueueSnackbar(snack.message, snack.options)
   }
 
+  // Rollback
+  const [confirmOpen, setConfirmOpen] = React.useState(false)
+  const [confirmValue, setConfirmValue] = React.useState({})
+
+  const handleActionConfirm = async conn => {
+    setConfirmOpen(true)
+    setConfirmValue(conn)
+  }
+
+  const handleAction = async conn => {
+    console.log('handleAction', conn)
+    // const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/readArea`
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/writeArea`
+
+    const buffer = Buffer.alloc(1, conn.buffer, 'hex')
+    // const buffer = Buffer.allocUnsafe(2)
+    // buffer.writeUInt16BE(123, 0)
+    buffer.toJSON()
+
+    const json = await fetch(url, {
+      method: 'POST',
+      headers: {
+        // Authorization: 'Bearer ' + props.token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ conn, buffer })
+    })
+    console.log(json)
+    setConfirmOpen(false)
+  }
+
   return (
     <Layout {...props} pageTitle={t('page-title')}>
       <Grid container spacing={2}>
@@ -79,6 +111,7 @@ export default function Overview (props) {
               <Device
                 item={overview.devices[0]}
                 aps={props.aps}
+                action={handleActionConfirm}
                 // actions={[handleOpen]} //, handleRollback]}
                 user={props.user}
                 // authorization={isAllowed(user, [userRole])
@@ -132,6 +165,14 @@ export default function Overview (props) {
         onCancel={handleCancel}
         onConfirm={handleConfirm}
         value={operation}
+      />
+      <RollbackDialog
+        dialogContent='Content'
+        dialogTitle='Title'
+        open={confirmOpen}
+        value={confirmValue}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={handleAction}
       />
     </Layout>
   )
