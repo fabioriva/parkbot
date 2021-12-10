@@ -1,6 +1,4 @@
 import * as React from 'react'
-// import Link from 'next/link'
-import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
@@ -8,15 +6,10 @@ import CardActionArea from '@mui/material/CardActionArea'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
-import Collapse from '@mui/material/Collapse'
 import Grid from '@mui/material/Grid'
-import IconButton from '@mui/material/IconButton'
 import Skeleton from '@mui/material/Skeleton'
-import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { green, orange, red } from '@mui/material/colors'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-// import OpenInNewOutlinedIcon from '@mui/icons-material/OpenInNewOutlined'
 import Active from 'src/components/Active'
 import Lamp from 'src/components/overview/Lamp'
 import Mode from 'src/components/overview/Mode'
@@ -37,17 +30,6 @@ const bg = (op, theme) => {
     //   return '#fff'
   }
 }
-
-const ExpandMore = styled(props => {
-  const { expand, ...other } = props
-  return <IconButton {...other} />
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  // marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest
-  })
-}))
 
 const Item = ({ loading, title, value }) => (
   <React.Fragment>
@@ -89,12 +71,6 @@ export default function Device (props) {
     step
   } = props.item.a
 
-  const [expanded, setExpanded] = React.useState(false)
-
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded)
-  // }
-
   const LS = (
     <Lamp
       key={0}
@@ -120,52 +96,7 @@ export default function Device (props) {
       }
     />
   )
-  const actions = props.item.d.map((element, index) => {
-    return (
-      <Button
-        disabled={!element.enable.status}
-        // icon={icon !== undefined && icon}
-        key={index}
-        // onClick={() => props.actions[key] !== undefined && props.actions[key](id, write)}
-        onClick={() => props.action(element.conn)}
-      >
-        {t(element.key)}
-      </Button>
-    )
-  })
-  const mainView = (
-    <Grid container>
-      <Grid item xs={6}>
-        <Item
-          title={t('device-mode')}
-          value={mode.key ? t(`common:${mode.key}`) : '---'}
-          loading={props.loading}
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <Item title={t('device-card')} value={card} loading={props.loading} />
-      </Grid>
-      <Grid item xs={6}>
-        <Item title={t('device-size')} value={size} loading={props.loading} />
-      </Grid>
-      <Grid item xs={6}>
-        <Item title={t('device-dest')} value={stall} loading={props.loading} />
-      </Grid>
-      {props.item.b.map((item, key) => (
-        <Grid item key={key} xs={6}>
-          <Item
-            title={item.name}
-            value={
-              <>
-                {item.position}&nbsp;&rarr;&nbsp;{item.destination}
-              </>
-            }
-            loading={props.loading}
-          />
-        </Grid>
-      ))}
-    </Grid>
-  )
+
   return (
     <Card
       sx={{
@@ -189,15 +120,57 @@ export default function Device (props) {
         href={`/${props.user.locale}/${props.aps}/device/${id - 1}`}
       >
         <CardContent sx={{ bgcolor: theme => bg(operation, theme), py: 1 }}>
-          {/* {motor === 0 ? (
-          mainView
-        ) : (
-          <Silomat data={props.item.e} loading={props.loading} />
-        )} */}
-          {motor === 0 && mainView}
+          {/* View 1 */}
+          {motor === 0 && (
+            <Grid container>
+              <Grid item xs={6}>
+                <Item
+                  title={t('device-mode')}
+                  value={mode.key ? t(`common:${mode.key}`) : '---'}
+                  loading={props.loading}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Item
+                  title={t('device-card')}
+                  value={card}
+                  loading={props.loading}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Item
+                  title={t('device-size')}
+                  value={size}
+                  loading={props.loading}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Item
+                  title={t('device-dest')}
+                  value={stall}
+                  loading={props.loading}
+                />
+              </Grid>
+              {props.item.b.map((item, key) => (
+                <Grid item key={key} xs={6}>
+                  <Item
+                    title={item.name}
+                    value={
+                      <>
+                        {item.position}&nbsp;&rarr;&nbsp;{item.destination}
+                      </>
+                    }
+                    loading={props.loading}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          )}
+          {/* View 2 */}
           {motor === 1 && (
             <Silomat data={props.item.e} loading={props.loading} />
           )}
+          {/* View 3 */}
           {motor === 2 && props.item.vg !== undefined && (
             <VirtualGarage
               loading={props.loading}
@@ -214,26 +187,19 @@ export default function Device (props) {
         </CardContent>
       </CardActionArea>
       <CardActions disableSpacing>
-        {/* <Link
-          href={`/${props.user.locale}/${props.aps}/device/${id - 1}`}
-          locale={props.user.locale}
-        >
-        <Button
-          color='primary'
-          disabled={!isAllowed(props.user, [DIAGNOSTIC])}
-          href={`/${props.user.locale}/${props.aps}/device/${id - 1}`}
-        >
-          More
-        </Button>
-        </Link> */}
-        {/* <IconButton
-          aria-label='device view'
-          disabled={!isAllowed(props.user, [DIAGNOSTIC])}
-          href={`/${props.user.locale}/${props.aps}/device/${id - 1}`}
-        >
-          <OpenInNewOutlinedIcon />
-        </IconButton> */}
-        {actions}
+        {props.item.d.map((element, index) => {
+          return (
+            <Button
+              disabled={!element.enable.status}
+              key={index}
+              // onClick={() => props.actions[key] !== undefined && props.actions[key](id, write)}
+              onClick={() => props.action(element.conn)}
+            >
+              {t(element.key)}
+            </Button>
+          )
+        })}
+
         {props.item.alarms && (
           <Box sx={{ marginLeft: 'auto' }}>
             <Active
@@ -243,35 +209,7 @@ export default function Device (props) {
             />
           </Box>
         )}
-        {/* <Box sx={{ marginLeft: 'auto' }}>{actions}</Box> */}
-
-        {/* <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label='show more'
-          disabled
-        >
-          <ExpandMoreIcon />
-        </ExpandMore> */}
       </CardActions>
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Commands:</Typography>
-          <Stack spacing={1}>
-            <Button variant='outlined'>Open entry door</Button>
-            <Button variant='outlined'>Close entry door</Button>
-            <Button variant='outlined' disabled>
-              Open exit door
-            </Button>
-            <Button variant='outlined'>Close exit door</Button>
-            <Button variant='outlined'>Transfer 1</Button>
-            <Button variant='outlined'>Transfer 2</Button>
-            <Button variant='outlined'>Entry position</Button>
-            <Button variant='outlined'>Exit position</Button>
-          </Stack>
-        </CardContent>
-      </Collapse>
     </Card>
   )
 }

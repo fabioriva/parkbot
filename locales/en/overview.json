@@ -4,6 +4,7 @@
   "action-entry": "Entry",
   "action-exit": "Exit",
   "action-rollback": "Rollback",
+  "action-rollback-confirm": "Confirm to return the car.",
 
   "device-card": "Card",
   "device-dest": "Destination",

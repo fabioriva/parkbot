@@ -107,7 +107,12 @@ export default function Overview (props) {
     <Layout {...props} pageTitle={t('page-title')}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={8}>
-          <Grid container spacing={2}>
+          <Grid
+            container
+            alignItems='center'
+            justifyContent={'center'}
+            spacing={2}
+          >
             <Grid item xs={12} md={6}>
               <Device
                 item={overview.devices[0]}
@@ -128,7 +133,7 @@ export default function Overview (props) {
                 loading={loading}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
               <Device
                 item={overview.devices[2]}
                 aps={props.aps}
@@ -139,9 +144,20 @@ export default function Overview (props) {
                 loading={loading}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
               <Device
                 item={overview.devices[3]}
+                aps={props.aps}
+                action={handleActionConfirm}
+                // actions={[handleOpen]} //, handleRollback]}
+                user={props.user}
+                // authorization={isAllowed(user, [userRole])
+                loading={loading}
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Device
+                item={overview.devices[4]}
                 aps={props.aps}
                 action={handleActionConfirm}
                 // actions={[handleOpen]} //, handleRollback]}

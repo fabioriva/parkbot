@@ -16,6 +16,7 @@
     "/[aps]/rack/[id]": ["racks", "io"],
     "/[aps]/statistics": ["statistics"],
     "/[aps]/docs/[slug]": ["io"],
+    "/ironbank/overview": ["overview", "io"],
     "/muse/overview": ["overview", "io"]
   },
   "logBuild": false
