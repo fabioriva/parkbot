@@ -107,7 +107,7 @@ export default function Overview (props) {
                 item={overview.devices[3]}
                 aps={props.aps}
                 auth={isAllowed(props.user, [ACTIONS])}
-                action={() => handleOperationId(1)}
+                action={() => handleOperationId(2)}
                 user={props.user}
                 loading={loading}
               />
@@ -117,7 +117,7 @@ export default function Overview (props) {
                 item={overview.devices[4]}
                 aps={props.aps}
                 auth={isAllowed(props.user, [ACTIONS])}
-                action={() => handleOperationId(1)}
+                action={() => handleOperationId(3)}
                 user={props.user}
                 loading={loading}
               />
