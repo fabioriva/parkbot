@@ -18,5 +18,6 @@ yarn-error.log*
 /.next
 # service-worker
 /public/sw.js
+/public/workbox-*.js
 
 /src/components/tmp
