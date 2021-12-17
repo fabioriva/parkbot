@@ -190,7 +190,7 @@ export default function Device (props) {
         {props.item.d.map((element, index) => {
           return (
             <Button
-              disabled={!element.enable.status}
+              disabled={!props.auth || !element.enable.status}
               key={index}
               // onClick={() => props.actions[key] !== undefined && props.actions[key](id, write)}
               onClick={() => props.action(element.conn)}

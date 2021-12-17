@@ -15,9 +15,6 @@ export default function Overview (props) {
 
   if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
-  // const [auth, setAuth] = React.useState(false)
-  // React.useEffect(() => setAuth(isAllowed(props.user, [ACTIONS])), [])
-
   const [overview, setOverview] = React.useState(props.json)
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/overview`
   const { data, loading } = useData(url, {
@@ -27,23 +24,20 @@ export default function Overview (props) {
   React.useEffect(() => setOverview(data), [data])
 
   // Dialog
-  const DIALOG_INIT_VALUES = {
-    id: 0,
-    card: 1,
-    minCard: 1,
-    maxCard: overview.definitions.cards
-  }
+  const [id, setId] = React.useState(0)
   const [open, setOpen] = React.useState(false)
-  const [operation, setOperation] = React.useState(DIALOG_INIT_VALUES)
+
+  const handleOperationId = id => {
+    setId(id)
+    setOpen(true)
+  }
 
   const handleCancel = () => {
     setOpen(false)
-    setOperation(DIALOG_INIT_VALUES)
   }
 
-  const handleConfirm = async ({ card, id }) => {
+  const handleConfirm = async card => {
     setOpen(false)
-    setOperation(DIALOG_INIT_VALUES)
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/system/operation`
     const json = await fetch(url, {
       method: 'POST',
@@ -53,9 +47,7 @@ export default function Overview (props) {
       },
       body: JSON.stringify({ card, id })
     })
-    console.log(card, id, json)
-    // const snack = message(json)
-    // props.enqueueSnackbar(snack.message, snack.options)
+    console.log('Confirm for id: ', id, 'card: ', card, url, json)
   }
 
   const handleDelete = async ({ card, index }) => {
@@ -82,6 +74,7 @@ export default function Overview (props) {
                   item={element}
                   aps={props.aps}
                   // actions={[handleOpen]} //, handleRollback]}
+                  auth={isAllowed(props.user, [ACTIONS])}
                   user={props.user}
                   // authorization={isAllowed(user, [userRole])
                   loading={loading}
@@ -95,7 +88,8 @@ export default function Overview (props) {
             auth={isAllowed(props.user, [ACTIONS])}
             data={overview.exitQueue}
             onDelete={handleDelete}
-            onExit={() => setOpen(true)}
+            // onExit={() => setOpen(true)}
+            onExit={() => handleOperationId(0)}
             loading={loading}
           />
         </Grid>
@@ -104,7 +98,10 @@ export default function Overview (props) {
         open={open}
         onCancel={handleCancel}
         onConfirm={handleConfirm}
-        value={operation}
+        // value={operation}
+        id={id}
+        minCard={1}
+        maxCard={overview.definitions.cards}
       />
     </Layout>
   )

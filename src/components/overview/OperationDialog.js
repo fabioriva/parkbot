@@ -2,7 +2,7 @@ import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 // material-ui
 import Button from '@mui/material/Button'
-import Input from '@mui/material/Input'
+// import Input from '@mui/material/Input'
 import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -10,28 +10,38 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-export default function OperationDialog ({ onCancel, onConfirm, open, value }) {
+export default function OperationDialog ({
+  onCancel,
+  onConfirm,
+  open,
+  // card,
+  id,
+  minCard,
+  maxCard
+}) {
   const fullScreen = useMediaQuery(theme => theme.breakpoints.down('sm'))
   const { t } = useTranslation('overview')
 
-  const { card, id, minCard, maxCard } = value
+  // const { card, id, minCard, maxCard } = value
 
-  const [data, setData] = React.useState({ id, card })
+  // const [data, setData] = React.useState({ id, card })
+  const [card, setCard] = React.useState(1)
   const [error, setError] = React.useState(false)
 
-  React.useEffect(() => setData({ id, card }), [])
+  // React.useEffect(() => setData({ id, card }), [])
 
   const handleChange = e => {
     // console.log(e.target.name, e.target.value)
-    const val = e.target.value
-    val < minCard || val > maxCard ? setError(true) : setError(false)
-    setData({ ...data, card: val })
+    const value = e.target.value
+    value < minCard || value > maxCard ? setError(true) : setError(false)
+    // setData({ ...data, card: val })
+    setCard(value)
   }
 
   const handleConfirm = e => {
-    // console.log(data)
+    console.log('card: ', card, 'id: ', id)
     e.preventDefault()
-    onConfirm(data)
+    onConfirm(card)
   }
 
   return (
@@ -45,9 +55,9 @@ export default function OperationDialog ({ onCancel, onConfirm, open, value }) {
         {t(id === 0 ? 'dialog-exit' : 'dialog-entry')}
       </DialogTitle>
       <DialogContent>
-        <Input name='id' type='hidden' defaultValue={id} />
+        {/* <Input name='id' type='hidden' defaultValue={id} /> */}
         <TextField
-          sx={{ mt: 1 }}
+          sx={{ minWidth: 240, mt: 1 }}
           autoFocus
           fullWidth
           variant='filled'
@@ -55,7 +65,10 @@ export default function OperationDialog ({ onCancel, onConfirm, open, value }) {
           type='number'
           name='card'
           defaultValue={card}
-          // inputProps={{ style: { textTransform: 'capitalize' } }}
+          inputProps={{
+            min: minCard,
+            max: maxCard
+          }}
           error={!!error}
           helperText={`Min ${minCard} - Max ${maxCard}`}
           onChange={handleChange}

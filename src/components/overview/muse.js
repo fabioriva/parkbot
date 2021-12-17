@@ -16,9 +16,6 @@ export default function Overview (props) {
 
   if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
-  // const [auth, setAuth] = React.useState(false)
-  // React.useEffect(() => setAuth(isAllowed(props.user, [ACTIONS])), [])
-
   const [overview, setOverview] = React.useState(props.json)
   const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/overview`
   const { data, loading } = useData(url, {
@@ -27,36 +24,21 @@ export default function Overview (props) {
   })
   React.useEffect(() => setOverview(data), [data])
 
-  const handleDelete = async ({ card, index }) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/system/queue/delete`
-    const json = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ card, index })
-    })
-    console.log('delete queue:', card, index, json)
-    // const snack = message(json)
-    // props.enqueueSnackbar(snack.message, snack.options)
-  }
-
   // Dialog
-  const DIALOG_INIT_VALUES = {
-    id: 0,
-    card: 1,
-    minCard: 1,
-    maxCard: overview.definitions.cards
-  }
+  const [id, setId] = React.useState(0)
   const [open, setOpen] = React.useState(false)
-  const [operation, setOperation] = React.useState(DIALOG_INIT_VALUES)
+
+  const handleOperationId = id => {
+    setId(id)
+    setOpen(true)
+  }
 
   const handleCancel = () => {
     setOpen(false)
-    setOperation(DIALOG_INIT_VALUES)
   }
 
-  const handleConfirm = async ({ card, id }) => {
+  const handleConfirm = async card => {
     setOpen(false)
-    setOperation(DIALOG_INIT_VALUES)
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/system/operation`
     const json = await fetch(url, {
       method: 'POST',
@@ -66,9 +48,17 @@ export default function Overview (props) {
       },
       body: JSON.stringify({ card, id })
     })
-    console.log(card, id, json)
-    // const snack = message(json)
-    // props.enqueueSnackbar(snack.message, snack.options)
+    console.log('Confirm for id: ', id, 'card: ', card, url, json)
+  }
+
+  const handleDelete = async ({ card, index }) => {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/system/queue/delete`
+    const json = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ card, index })
+    })
+    console.log('delete queue:', card, index, json)
   }
 
   // Rollback
@@ -90,16 +80,15 @@ export default function Overview (props) {
     // buffer.writeUInt16BE(123, 0)
     // buffer.toJSON()
     console.log(buffer)
-
-    const json = await fetch(url, {
-      method: 'POST',
-      headers: {
-        // Authorization: 'Bearer ' + props.token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ conn, buffer })
-    })
-    console.log(json)
+    // const json = await fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     // Authorization: 'Bearer ' + props.token,
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({ conn, buffer })
+    // })
+    // console.log(json)
     setConfirmOpen(false)
   }
 
@@ -112,9 +101,8 @@ export default function Overview (props) {
               <Device
                 item={overview.devices[0]}
                 aps={props.aps}
-                // actions={[handleOpen]} //, handleRollback]}
+                auth={isAllowed(props.user, [ACTIONS])}
                 user={props.user}
-                // authorization={isAllowed(user, [userRole])
                 loading={loading}
               />
             </Grid>
@@ -122,9 +110,8 @@ export default function Overview (props) {
               <Device
                 item={overview.devices[1]}
                 aps={props.aps}
-                // actions={[handleOpen]} //, handleRollback]}
+                auth={isAllowed(props.user, [ACTIONS])}
                 user={props.user}
-                // authorization={isAllowed(user, [userRole])
                 loading={loading}
               />
             </Grid>
@@ -132,10 +119,9 @@ export default function Overview (props) {
               <Device
                 item={overview.devices[2]}
                 aps={props.aps}
+                auth={isAllowed(props.user, [ACTIONS])}
                 action={handleActionConfirm}
-                // actions={[handleOpen]} //, handleRollback]}
                 user={props.user}
-                // authorization={isAllowed(user, [userRole])
                 loading={loading}
               />
             </Grid>
@@ -143,10 +129,9 @@ export default function Overview (props) {
               <Device
                 item={overview.devices[3]}
                 aps={props.aps}
+                auth={isAllowed(props.user, [ACTIONS])}
                 action={handleActionConfirm}
-                // actions={[handleOpen]} //, handleRollback]}
                 user={props.user}
-                // authorization={isAllowed(user, [userRole])
                 loading={loading}
               />
             </Grid>
@@ -157,7 +142,7 @@ export default function Overview (props) {
             auth={isAllowed(props.user, [ACTIONS])}
             data={overview.exitQueue}
             onDelete={handleDelete}
-            onExit={() => setOpen(true)}
+            onExit={() => handleOperationId(0)}
             loading={loading}
           />
         </Grid>
@@ -166,7 +151,9 @@ export default function Overview (props) {
         open={open}
         onCancel={handleCancel}
         onConfirm={handleConfirm}
-        value={operation}
+        id={id}
+        minCard={1}
+        maxCard={overview.definitions.cards}
       />
       <RollbackDialog
         dialogContent={t('action-rollback-confirm')}
