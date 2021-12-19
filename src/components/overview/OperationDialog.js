@@ -39,7 +39,7 @@ export default function OperationDialog ({
   }
 
   const handleConfirm = e => {
-    console.log('card: ', card, 'id: ', id)
+    // console.log('card: ', card, 'id: ', id)
     e.preventDefault()
     onConfirm(card)
   }

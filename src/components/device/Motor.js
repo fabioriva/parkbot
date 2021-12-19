@@ -149,22 +149,28 @@ export default function Motor ({
     <Card>
       <CardHeader
         sx={{
-          py: 0.5,
+          py: 1,
           '& .MuiCardHeader-title': {
-            fontSize: 22,
+            fontSize: 16,
             fontWeight: 'bold'
           }
         }}
         action={[LC, LA, EN]}
         avatar={
-          <Avatar sx={{ bgcolor: motion.id !== 0 && 'warning.main' }}>
+          <Avatar
+            sx={{
+              width: 24,
+              height: 24,
+              bgcolor: motion.id !== 0 && 'warning.main'
+            }}
+          >
             <BoltIcon />
           </Avatar>
         }
         title={t(name.key, name.query)}
-        subheader={subheader}
+        // subheader={subheader}
       />
-      <CardContent>
+      <CardContent sx={{ py: 1 }}>
         <Grid container spacing={1}>
           <Grid item xs={6}>
             <Item
