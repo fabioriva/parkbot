@@ -6,7 +6,7 @@ const Map = ({ levels, occupancy, view }) => {
     <Grid container spacing={10}>
       <Grid item xs={12} md={8}>
         <Box sx={{ mb: 1, mx: { xs: 1, md: 0 }, overflow: 'scroll' }}>
-          {levels.reverse()}
+          {[...levels].reverse()}
         </Box>
         <Box sx={{ mx: { xs: 1, md: 0 } }}>{view}</Box>
       </Grid>
