@@ -32,7 +32,9 @@
   "list-op-id-6": "Uscita {{card}}, stallo {{stall}}",
   "list-op-id-7": "Trasferimento vettura {{card}} in stallo {{stall}}",
   "list-op-id-8": "Trasferimento vettura {{card}} da stallo {{stall}}",
-  "list-op-id-9": "op id 9",
+  "list-op-id-9": "Prenotato stallo {{stall}}",
+  "list-op-id-10": "Richiesta di uscita per tessera {{card}}",
+  "list-op-id-11": "Richiesta di entrata per tessera {{card}}",
 
   "mode-data-edit": "Salva dati",
   "mode-data-read": "Lettura dati",

@@ -28,6 +28,12 @@ export default function HistoryListText ({ item }) {
       return <>{t('list-op-id-7', { card, stall })}</>
     case 8:
       return <>{t('list-op-id-8', { card, stall })}</>
+    case 9:
+      return <>{t('list-op-id-9', { stall })}</>
+    case 10:
+      return <>{t('list-op-id-10', { card })}</>
+    case 11:
+      return <>{t('list-op-id-11', { card })}</>
     default:
       return <>Operation {operation.id}</>
   }

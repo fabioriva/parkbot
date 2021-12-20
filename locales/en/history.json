@@ -33,7 +33,9 @@
   "list-op-id-6": "Unparked car {{card}}, stall {{stall}}",
   "list-op-id-7": "Moved car {{card}} in stall {{stall}}",
   "list-op-id-8": "Moved car {{card}} from stall {{stall}}",
-  "list-op-id-9": "op id 9",
+  "list-op-id-9": "Reserved stall {{stall}}",
+  "list-op-id-10": "Exit request for card {{card}}",
+  "list-op-id-11": "Entry request for card {{card}}",
 
   "mode-data-edit": "Data edit",
   "mode-data-read": "Data read",
