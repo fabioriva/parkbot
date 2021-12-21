@@ -84,7 +84,7 @@ export default function NavBar (props) {
               onClick={handleMenu}
               color='inherit'
             >
-              <Badge badgeContent={1} color='error'>
+              <Badge badgeContent={2} color='error'>
                 <AccountCircle />
               </Badge>
             </IconButton>
@@ -145,13 +145,27 @@ export default function NavBar (props) {
                   <NotificationsActiveIcon fontSize='small' />
                 </ListItemIcon>
                 <ListItemText>{t('navbar-notifications')}</ListItemText>
-                <Chip label='Beta' color='error' size='small' sx={{ ml: 1 }} />
+                <Chip
+                  label='Beta'
+                  color='secondary'
+                  size='small'
+                  sx={{ ml: 1 }}
+                />
               </MenuItem>
-              <MenuItem disabled>
+              <MenuItem
+                // disabled
+                onClick={() => router.push(`/${props.user.aps}/settings`)}
+              >
                 <ListItemIcon>
                   <SettingsIcon fontSize='small' />
                 </ListItemIcon>
                 <ListItemText>{t('navbar-settings')}</ListItemText>
+                <Chip
+                  label='Beta'
+                  color='secondary'
+                  size='small'
+                  sx={{ ml: 1 }}
+                />
               </MenuItem>
               <MenuItem onClick={handleLogout}>
                 <ListItemIcon>
