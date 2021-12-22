@@ -1,4 +1,4 @@
-# [ParkBot website](https://www.sotefinservice.com/)
+# [Parkbot website](https://www.sotefinservice.com/)
 
 The official ParkBot website.
 
