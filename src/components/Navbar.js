@@ -74,7 +74,7 @@ export default function NavBar (props) {
               <MenuIcon />
             </IconButton>
             <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-              <span style={{ color: orange[500] }}>ParkBot</span>{' '}
+              <span style={{ color: orange[500] }}>Parkbot</span>{' '}
               <span>App</span>
             </Typography>
             <IconButton
