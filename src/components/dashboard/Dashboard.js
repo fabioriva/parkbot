@@ -26,7 +26,7 @@ export default function Dashboard (props) {
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dashboard`
   const { data, error } = useSWR(url, fetcher, {
-    initialData: dashboard,
+    fallbackData: dashboard,
     refreshInterval: 1000
   })
 

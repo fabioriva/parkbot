@@ -28,7 +28,7 @@ export default function MailingList (props) {
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/mailingList`
   const { data, error } = useSWR(url, fetcher, {
-    initialData: mailingList,
+    fallbackData: mailingList,
     refreshInterval: 1000
   })
 

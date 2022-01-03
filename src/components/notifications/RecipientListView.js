@@ -52,7 +52,7 @@ export default function RecipientListView ({ mailingList, onDelete }) {
           {t('total-count', { count: mailingList.length })}
         </ListSubheader>
       }
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      sx={{ width: '100%', maxWidth: 480, bgcolor: 'background.paper' }}
     >
       {mailingList.map(row => (
         <ListItem
