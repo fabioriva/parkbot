@@ -13,9 +13,9 @@
     "@emotion/react": "^11.7.1",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
-    "@mui/icons-material": "^5.2.4",
-    "@mui/lab": "^5.0.0-alpha.60",
-    "@mui/material": "^5.2.4",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/lab": "^5.0.0-alpha.63",
+    "@mui/material": "^5.2.7",
     "chart.js": "^3.6.2",
     "clsx": "^1.1.1",
     "cookie": "^0.4.1",
@@ -32,7 +32,7 @@
     "react-window": "^1.8.6",
     "remark": "13.0.0",
     "remark-html": "^13.0.2",
-    "swr": "^1.1.0"
+    "swr": "^1.1.2"
   },
   "devDependencies": {
     "rimraf": "^3.0.2"
