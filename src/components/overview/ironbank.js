@@ -3,6 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Grid from '@mui/material/Grid'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
+import Message from 'src/components/Message'
 import Device from 'src/components/overview/Device'
 import OperationDialog from 'src/components/overview/OperationDialog'
 import Queue from 'src/components/overview/Queue'
@@ -47,17 +48,32 @@ export default function Overview (props) {
       },
       body: JSON.stringify({ card, id })
     })
-    console.log('Confirm for id: ', id, 'card: ', card, url, json)
+    setOpenMessage(true)
+    setResponse(json)
   }
 
   const handleDelete = async ({ card, index }) => {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/system/queue/delete`
     const json = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        Authorization: 'Bearer ' + props.token,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ card, index })
     })
-    console.log('delete queue:', card, index, json)
+    setOpenMessage(true)
+    setResponse(json)
+  }
+
+  // Message
+  const [openMessage, setOpenMessage] = React.useState(false)
+  const [response, setResponse] = React.useState(null)
+  const handleCloseMessage = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setOpenMessage(false)
   }
 
   return (
@@ -141,6 +157,11 @@ export default function Overview (props) {
         id={id}
         minCard={1}
         maxCard={overview.definitions.cards}
+      />
+      <Message
+        open={openMessage}
+        response={response}
+        handleClose={handleCloseMessage}
       />
     </Layout>
   )

@@ -3,6 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Paper from '@mui/material/Paper'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
+import Message from 'src/components/Message'
 import CardsList from 'src/components/cards/CardsList'
 import fetch from 'src/lib/fetch'
 import { useData } from 'src/lib/useWebSocket'
@@ -34,9 +35,21 @@ export default function Cards (props) {
       },
       body: JSON.stringify({ card, code })
     })
-    console.log(card, code, json)
+    // console.log(card, code, json)
     // const snack = message(json)
     // props.enqueueSnackbar(snack.message, snack.options)
+    setOpenMessage(true)
+    setResponse(json)
+  }
+
+  // Message
+  const [openMessage, setOpenMessage] = React.useState(false)
+  const [response, setResponse] = React.useState(null)
+  const handleCloseMessage = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setOpenMessage(false)
   }
 
   return (
@@ -49,6 +62,11 @@ export default function Cards (props) {
           // loading={loading}
         />
       </Paper>
+      <Message
+        open={openMessage}
+        response={response}
+        handleClose={handleCloseMessage}
+      />
     </Layout>
   )
 }

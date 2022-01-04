@@ -1,6 +1,7 @@
 import React from 'react'
 import Error from 'src/components/Error'
 import Layout from 'src/components/Layout'
+import Message from 'src/components/Message'
 import MapEdit from 'src/components/map/MapEditForm'
 import MapLevel from 'src/components/map/MapLevel'
 import MapViewFilter from 'src/components/map/MapViewFilter'
@@ -50,9 +51,8 @@ const withMap = WrappedComponent => {
         },
         body: JSON.stringify({ card, stall })
       })
-      console.log(json)
-      // const snack = message(json)
-      // props.enqueueSnackbar(snack.message, snack.options)
+      setOpenMessage(true)
+      setResponse(json)
     }
 
     const handleOpen = (stall, value) => {
@@ -60,6 +60,16 @@ const withMap = WrappedComponent => {
         setOpen(true)
         setDialog({ ...dialog, card: value, stall: stall })
       }
+    }
+
+    // Message
+    const [openMessage, setOpenMessage] = React.useState(false)
+    const [response, setResponse] = React.useState(null)
+    const handleCloseMessage = (event, reason) => {
+      if (reason === 'clickaway') {
+        return
+      }
+      setOpenMessage(false)
     }
 
     // Radio
@@ -106,6 +116,11 @@ const withMap = WrappedComponent => {
           onConfirm={handleConfirm}
           stallStatus={stallStatus}
           value={dialog}
+        />
+        <Message
+          open={openMessage}
+          response={response}
+          handleClose={handleCloseMessage}
         />
       </Layout>
     )
