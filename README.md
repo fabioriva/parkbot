@@ -1,6 +1,6 @@
 # [Parkbot website](https://www.sotefinservice.com/)
 
-The official ParkBot website.
+The official Parkbot website.
 
 ## Contribution
 
@@ -14,7 +14,7 @@ We really appreciate any contribution.
 
 ## Related Repositories
 
-- [ParkBot GitHub repository](https://github.com/fabioriva/parkbot)
+- [Parkbot GitHub repository](https://github.com/fabioriva/parkbot)
 
 ## License
 

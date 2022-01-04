@@ -21,7 +21,7 @@ export default function ErrorPage (props) {
         <Alert sx={{ my: 3 }} severity='error'>
           {t('error-fetch')}
         </Alert>
-        <Image src='/bot.svg' alt='ParkBot' width={100} height={100} />
+        <Image src='/bot.svg' alt='Parkbot' width={100} height={100} />
       </Box>
     </Layout>
   )

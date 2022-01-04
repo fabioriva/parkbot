@@ -102,7 +102,7 @@ export default function AppDrawer (props) {
         >
           <Box sx={{ flexGrow: 1, px: 1 }}>
             <Avatar
-              alt='ParkBot'
+              alt='Parkbot'
               src='/bot.svg'
               // src='https://avatars.dicebear.com/api/bottts/bottts.svg'
             />

@@ -74,7 +74,7 @@ export default function Home (props) {
             m: 3
           }}
         >
-          <Image src='/bot.svg' alt='ParkBot' width={100} height={100} />
+          <Image src='/bot.svg' alt='Parkbot' width={100} height={100} />
           <Typography
             // sx={{ display: { xs: 'none', md: 'block' } }}
             sx={{ fontSize: { xs: 10, md: 14 } }}

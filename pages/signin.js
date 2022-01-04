@@ -103,7 +103,7 @@ export default function Signin () {
       >
         <Avatar
           sx={{ mb: 1, height: 56, width: 56 }}
-          alt='ParkBot'
+          alt='Parkbot'
           src='/bot.svg'
         />
         <Typography component='h1' variant='h5'>
