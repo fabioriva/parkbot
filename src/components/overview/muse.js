@@ -80,22 +80,25 @@ export default function Overview (props) {
     console.log('handleAction', conn)
     // const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/readArea`
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/writeArea`
-
-    const buffer = Buffer.alloc(1, conn.buffer, 'hex').toJSON()
+    const FALSE = Buffer.alloc(1, 0, 'hex')
+    const TRUE = Buffer.alloc(1, 1, 'hex')
+    const buffer = Buffer.alloc(1, TRUE, 'hex').toJSON()
     // const buffer = Buffer.allocUnsafe(2)
     // buffer.writeUInt16BE(123, 0)
     // buffer.toJSON()
     console.log(buffer)
-    // const json = await fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     // Authorization: 'Bearer ' + props.token,
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ conn, buffer })
-    // })
-    // console.log(json)
+    const json = await fetch(url, {
+      method: 'POST',
+      headers: {
+        // Authorization: 'Bearer ' + props.token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ conn, buffer })
+    })
+    console.log(json)
     setConfirmOpen(false)
+    setOpenMessage(true)
+    setResponse(json)
   }
 
   // Message
