@@ -21,7 +21,7 @@ export default function HistoryList ({ count, query }) {
               width={width}
               itemCount={count}
               itemData={{ query }}
-              itemSize={64}
+              itemSize={56}
             >
               {renderRow}
             </List>
