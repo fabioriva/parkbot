@@ -11,7 +11,7 @@ import RecipientListView from 'src/components/notifications/RecipientListView'
 import fetch from 'src/lib/fetch'
 // import { useData } from 'src/lib/useWebSocket'
 // import { EDIT_CARD, isAllowed } from '/src/constants/auth'
-import useSWR from 'swr'
+import useSWR, { useSWRConfig } from 'swr'
 import useTranslation from 'next-translate/useTranslation'
 
 const fetcher = url => global.fetch(url).then(r => r.json())
@@ -21,31 +21,32 @@ export default function MailingList (props) {
 
   if (props.json.err) return <Error {...props} pageTitle={t('page-title')} />
 
-  const [mailingList, setMailingList] = React.useState(props.json.mailingList)
+  // const [mailingList, setMailingList] = React.useState(props.json.mailingList)
+  const [mailingList, setMailingList] = React.useState([])
   const [open, setOpen] = React.useState(false)
   const [remove, setRemove] = React.useState(false)
   const [removeId, setRemoveId] = React.useState(null)
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/mailingList`
-  const { data, error } = useSWR(url, fetcher, {
-    fallbackData: mailingList,
-    refreshInterval: 1000
+  const { mutate } = useSWRConfig()
+  const { data } = useSWR(url, fetcher, {
+    // fallbackData: mailingList
+    // refreshInterval: 1000
   })
 
   React.useEffect(() => {
-    if (data) setMailingList(data)
+    if (data) setMailingList(data.mailingList)
   }, [data])
 
-  // const url = `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/mailingList`
-  // const { data, loading } = useData(url, {
-  //   initialData: mailingList,
-  //   page: 'mailingList'
-  // })
-  // React.useEffect(() => setMailingList(data), [data])
-
-  const handleAddItem = async data => {
-    console.log('handleAddItem', data)
+  const handleAddItem = async item => {
+    // console.log('handleAddItem', item)
+    // console.log('(B)', mailingList, Array.isArray(mailingList))
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/mailingList/add`
+    mutate(
+      url,
+      setMailingList(mailingList => [...mailingList, item]),
+      false
+    )
     const json = await fetch(url, {
       method: 'POST',
       // withCredentials: true,
@@ -54,15 +55,23 @@ export default function MailingList (props) {
         Authorization: 'Bearer ' + props.token,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(item)
     })
     console.log(json)
+    mutate(url)
     setOpen(false)
   }
 
   const handleRemoveItem = async data => {
-    console.log('handleRemoveItem', data)
+    // console.log('handleRemoveItem', data)
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/mailingList/remove`
+    mutate(
+      url,
+      setMailingList(mailingList =>
+        mailingList.filter(item => item._id != data._id)
+      ),
+      false
+    )
     const json = await fetch(url, {
       method: 'POST',
       // withCredentials: true,
@@ -78,16 +87,17 @@ export default function MailingList (props) {
   }
 
   const handleRemoveDialog = data => {
-    console.log(data)
     setRemove(true)
     setRemoveId(data)
   }
 
   return (
     <Layout {...props} pageTitle={t('page-title')}>
-      {mailingList.count > 0 ? (
+      {/* {mailingList.count > 0 ? ( */}
+      {mailingList.length > 0 ? (
         <RecipientListView
-          mailingList={mailingList.mailingList}
+          // mailingList={mailingList.mailingList}
+          mailingList={mailingList}
           onDelete={handleRemoveDialog}
         />
       ) : (
@@ -109,7 +119,8 @@ export default function MailingList (props) {
         onConfirm={handleRemoveItem}
       />
       <Fab
-        disabled={mailingList.count >= 3}
+        // disabled={mailingList.count >= 3}
+        disabled={mailingList.length >= 3}
         color='primary'
         aria-label='add'
         onClick={() => setOpen(true)}
