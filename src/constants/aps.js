@@ -6,6 +6,7 @@ const APS_ = [
   { ns: 'muse', name: 'The Muse, Miami, 🇺🇸' },
   { ns: 'nhidcl', name: 'NHIDCL, New Delhi, 🇮🇳' },
   { ns: 'nyu', name: 'Langone Medical Center, NY, 🇺🇸' },
+  { ns: 'qihe', name: 'Qihe School, 🇨🇳' },
   { ns: 'trumpeldor', name: 'Trumpeldor, Tel Aviv, 🇮🇱' },
   { ns: 'vl', name: 'Vaibhab Lakshmi, Mumbai, 🇮🇳' },
   { ns: 'wallstreet', name: 'Spire, Seattle, 🇺🇸' },
