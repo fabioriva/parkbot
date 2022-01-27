@@ -9,6 +9,7 @@ export function useComm (url) {
   const [map, setMap] = useState({})
   const [message, setMessage] = useState({})
   const [loading, setLoading] = useState(true)
+  const [expired, setExpired] = useState(false)
 
   useEffect(() => {
     const ws = new global.WebSocket(url)
@@ -21,6 +22,9 @@ export function useComm (url) {
     ws.onmessage = e => {
       const data = JSON.parse(e.data)
       Object.keys(data).forEach(key => {
+        if (key === 'expired') {
+          setExpired(data[key])
+        }
         if (key === 'comm') {
           setComm(data[key])
         }
@@ -46,7 +50,8 @@ export function useComm (url) {
     diag,
     map,
     message,
-    loading
+    loading,
+    expired
   }
 }
 
