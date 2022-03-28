@@ -9,6 +9,7 @@
   "device-card": "Card",
   "device-dest": "Destination",
   "device-mode": "Mode",
+  "device-position": "Position",
   "device-size": "Size",
 
   "device-on": "System On",

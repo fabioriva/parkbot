@@ -17,6 +17,11 @@
     "/[aps]/statistics": ["statistics"],
     "/[aps]/docs/[slug]": ["io"],
     "/ironbank/overview": ["overview", "io"],
+    "/kn/dashboard": ["alarms", "dashboard", "overview", "statistics"],
+    "/kn/overview": ["overview", "io"],
+    "/kn/racks": ["racks"],
+    "/kn/left/rack/[id]": ["racks", "io"],
+    "/kn/right/rack/[id]": ["racks", "io"],
     "/muse/overview": ["overview", "io"],
     "/qihe/overview": ["overview", "io"]
   },
