@@ -8,6 +8,7 @@ const APS_ = [
   { ns: 'nhidcl', name: 'NHIDCL, New Delhi, 🇮🇳' },
   { ns: 'nyu', name: 'Langone Medical Center, NY, 🇺🇸' },
   { ns: 'qihe', name: 'Qihe School, 🇨🇳' },
+  { ns: 'teenmurty', name: 'Teen Murty, Mumbai, 🇮🇳' },
   { ns: 'trumpeldor', name: 'Trumpeldor, Tel Aviv, 🇮🇱' },
   { ns: 'vl', name: 'Vaibhab Lakshmi, Mumbai, 🇮🇳' },
   { ns: 'wallstreet', name: 'Spire, Seattle, 🇺🇸' },
