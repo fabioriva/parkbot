@@ -52,6 +52,7 @@
   "op-change-pin": "PIN changed",
   "op-no": "---",
   "op-stall-in": "Stall occupied",
+  "op-stall-lck": "Stall locked",
   "op-stall-out": "Stall cleared",
   "op-shuffle-in": "Shuffle in",
   "op-shuffle-out": "Shuffle out",

@@ -51,6 +51,7 @@
   "op-change-pin": "PIN modificato",
   "op-no": "---",
   "op-stall-in": "Stallo occupato",
+  "op-stall-lck": "Stallo bloccato",
   "op-stall-out": "Stallo liberato",
   "op-shuffle-in": "Scambio in",
   "op-shuffle-out": "Scambio out",
