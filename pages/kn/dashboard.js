@@ -52,7 +52,7 @@ function Dashboard(props) {
         <Grid item xs={12} lg>
           <Widget
             href={`/${locale}/${props.aps}/overview`}
-            title={t("devices-title")}
+            title={'Elevators'}
           >
             <Devices
               aps={props.aps}
@@ -67,7 +67,7 @@ function Dashboard(props) {
         <Grid item xs={12} lg>
           <Widget
             href={`/${locale}/${props.aps}/overview`}
-            title={t("devices-title")}
+            title={'Shuttles (Left)'}
           >
             <Devices
               aps={props.aps}
@@ -95,7 +95,7 @@ function Dashboard(props) {
         <Grid item xs={12} lg>
           <Widget
             href={`/${locale}/${props.aps}/overview`}
-            title={t("devices-title")}
+            title={'Shuttles (Right)'}
           >
             <Devices
               aps={props.aps}
@@ -104,7 +104,7 @@ function Dashboard(props) {
             />
           </Widget>
         </Grid>
-        <Grid item xs={12} lg>
+        {/* <Grid item xs={12} lg>
           <Widget
             href={`/${locale}/${props.aps}/map`}
             title={t("occupancy-title", { count: left.definitions.stalls })}
@@ -121,7 +121,7 @@ function Dashboard(props) {
               width={315}
             />
           </Widget>
-        </Grid>
+        </Grid> */}
         {/* <Grid item sx={{ display: 'flex' }} xs={12} lg>
           <Widget href={`/${locale}/${props.aps}/overview`} title={t('occupancy-title')}>
             <QueueList

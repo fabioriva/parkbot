@@ -18,6 +18,16 @@ import { DIAGNOSTIC, isAllowed } from '/src/constants/auth'
 
 const itemData = ({ card, mode, operation, stall }) => {
   const { t } = useTranslation('dashboard')
+  if (mode === undefined) {
+    return {
+      avatar: (
+        <Avatar sx={{ background: '#fcf8e3', color: '#8a6d3b' }}>
+          <BuildIcon />
+        </Avatar>
+      ),
+      text: t('device-man')
+    }
+  }
   let avatar
   if (mode.id === 8) {
     switch (operation) {
@@ -70,6 +80,7 @@ const itemData = ({ card, mode, operation, stall }) => {
 }
 
 export default function Devices ({ aps, devices, user }) {
+  devices.forEach((item, key) => console.log(key, item))
   return (
     <List dense>
       {devices.map((item, key) => (
