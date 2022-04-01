@@ -10,10 +10,10 @@ const Page = props => <Overview {...props} />
 export async function getServerSideProps (ctx) {
   const hrstart = process.hrtime()
 
-  const props = await authSSR(ctx, 'qihe', OVERVIEW)
+  const props = await authSSR(ctx, 'qihe2', OVERVIEW)
   if (props.notFound || props.redirect) return props
 
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/qihe/overview`
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/qihe2/overview`
   const json = await fetch(url, {
     headers: { Authorization: 'Bearer ' + props.token }
   })
