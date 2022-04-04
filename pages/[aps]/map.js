@@ -11,7 +11,6 @@ const componentList = {
   bmc: dynamic(() => import('src/components/map/bmc')),
   chandan: dynamic(() => import('src/components/map/chandan')),
   ironbank: dynamic(() => import('src/components/map/ironbank')),
-  // kn: dynamic(() => import('src/components/map/kn')),
   knl: dynamic(() => import('src/components/map/kn')),
   knr: dynamic(() => import('src/components/map/kn')),
   muse: dynamic(() => import('src/components/map/muse')),

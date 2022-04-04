@@ -42,7 +42,7 @@ export default function Dashboard (props) {
     <Layout {...props} pageTitle={t('page-title')}>
       <Grid
         container
-        alignItems='center'
+        alignItems='flex-start'
         justifyContent='space-around'
         spacing={2}
       >

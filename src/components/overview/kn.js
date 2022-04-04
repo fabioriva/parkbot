@@ -114,8 +114,8 @@ export default function Overview (props) {
                 loading={loading}
               />
             </Grid>
-            {overview.devices.slice(3).map((element, index) => (
-              <Grid item key={index} xs={12} md={6}>
+            {/* {overview.devices.slice(3).map((element, index) => (
+              <Grid item key={index} xs={12} md={4}>
                 <Device
                   item={element}
                   aps={props.aps}
@@ -126,7 +126,7 @@ export default function Overview (props) {
                   loading={loading}
                 />
               </Grid>
-            ))}
+            ))} */}
           </Grid>
         </Grid>
         <Grid item xs={12} sm={6} md={4} xl={3}>
@@ -139,6 +139,22 @@ export default function Overview (props) {
             loading={loading}
           />
         </Grid>
+        {overview.devices.slice(3).map((element, index) => (
+              <Grid item key={index} xs={12} md={3}>
+                <Device
+                  item={element}
+                  aps={props.aps}
+                  // actions={[handleOpen]} //, handleRollback]}
+                  auth={isAllowed(props.user, [ACTIONS])}
+                  user={props.user}
+                  // authorization={isAllowed(user, [userRole])
+                  loading={loading}
+                />
+              </Grid>
+            ))}
+      </Grid>
+      <Grid container spacing={1}>
+
       </Grid>
       <OperationDialog
         open={open}
