@@ -19,7 +19,7 @@ export default function AppLayout (props) {
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
   const { comm, diag, map, message, loading, expired } = useComm(
-    `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/left/info`
+    `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/info`
   )
 
   const [mobileOpen, setMobileOpen] = React.useState(false)
