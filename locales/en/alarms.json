@@ -36,6 +36,7 @@
   "al-h-to": "Traveling time out",
   "al-lh": "Laser H out of range",
   "al-lh-diff": "Lasers H diversity check",
+  "al-oversize": "Vehicle oversize detection",
   "al-r-to": "Rotation time out",
   "al-enr": "Encoder R out of range",
   "al-v-lck-to": "Locking V time out",

@@ -5,7 +5,7 @@
   "al-ready": "Nessun allarme attivo",
   "al-count": "Totale allarmi attivi {{count}}",
 
-  "al-fc": "Finecoesa {{fc1}} {{fc2}}",
+  "al-fc": "Finecorsa {{fc1}} {{fc2}}",
   "al-fs": "Safety {{name}}",
   "al-id": "Allarme AL{{id}}",
   "al-iv": "Inverter {{nr}}",
@@ -36,6 +36,7 @@
   "al-h-to": "Time out traslazione",
   "al-lh": "Laser H fuori campo",
   "al-lh-diff": "Controllo differenza laser H",
+  "al-oversize": "Vettura fuori misura",
   "al-r-to": "Time out rotazione",
   "al-enr": "Encoder R fuori campo",
   "al-v-lck-to": "Time out martinetto V",
