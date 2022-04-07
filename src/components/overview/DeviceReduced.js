@@ -85,6 +85,9 @@ export default function Device(props) {
       title={
         props.item.c[2].status ? t("device-alarm-on") : t("device-alarm-off")
       }
+      active={props.item.alarms.length}
+      disabled={!hasRole(props.user, [ALARMS])}
+      href={`/${props.user.locale}/${props.aps}/active/${id - 1}`}
     />
   );
 

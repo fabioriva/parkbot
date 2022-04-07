@@ -80,7 +80,6 @@ const itemData = ({ card, mode, operation, stall }) => {
 }
 
 export default function Devices ({ aps, devices, user }) {
-  devices.forEach((item, key) => console.log(key, item))
   return (
     <List dense>
       {devices.map((item, key) => (
