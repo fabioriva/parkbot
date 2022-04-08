@@ -147,6 +147,8 @@
   "RBU": "24VDC lettore RFId",
   "RCH": "Silomat centratore chiuso (H)",
   "RCV": "Silomat centratore chiuso (V)",
+  "RCVH": "Silomat centratore chiuso",
+  "REP": "Silomat centratore pronto",
   "REAH": "Silomat arrivo centratura (H)",
   "REAV": "Silomat arrivo centratura (V)",
   "REH": "Silomat alto",

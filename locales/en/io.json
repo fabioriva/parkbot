@@ -147,6 +147,8 @@
   "RBU": "24VDC RFId reader",
   "RCH": "Silomat centering closed (H)",
   "RCV": "Silomat centering closed (V)",
+  "RCVH": "Silomat centering closed",
+  "REP": "Silomat centering device ready",
   "REAH": "Silomat centering (H)",
   "REAV": "Silomat centering (V)",
   "REH": "Silomat high position",
