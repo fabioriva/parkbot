@@ -10,6 +10,7 @@ const componentList = {
   alumim: dynamic(() => import('src/components/map/alumim')),
   bmc: dynamic(() => import('src/components/map/bmc')),
   chandan: dynamic(() => import('src/components/map/chandan')),
+  chiattone: dynamic(() => import('src/components/map/chiattone')),
   ironbank: dynamic(() => import('src/components/map/ironbank')),
   knl: dynamic(() => import('src/components/map/kn')),
   knr: dynamic(() => import('src/components/map/kn')),

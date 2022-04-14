@@ -2,6 +2,7 @@ const APS_ = [
   { ns: 'alumim', name: 'Alumim, Tel Aviv, 🇮🇱' },
   { ns: 'bmc', name: 'BMC, Mumbai, 🇮🇳' },
   { ns: 'chandan', name: 'Chandan Society, Mumbai, 🇮🇳' },
+  { ns: 'chiattone', name: 'P.zzo Chiattone, Lugano, 🇨🇭' },
   { ns: 'ironbank', name: 'Iron Bank, Auckland, 🇳🇿' },
   { ns: 'knl', name: 'Kamla Nagar (Left), New Delhi, 🇮🇳' },
   { ns: 'knr', name: 'Kamla Nagar (Right), New Delhi, 🇮🇳' },
