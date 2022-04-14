@@ -62,7 +62,7 @@ export default function NavBar (props) {
         position='fixed'
         open={true}
       >
-        <Container maxWidth='xl'>
+        <Container maxWidth='false'>
           <Toolbar disableGutters>
             <IconButton
               color='inherit'

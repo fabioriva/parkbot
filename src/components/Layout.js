@@ -78,7 +78,7 @@ export default function AppLayout (props) {
         }}
         // maxWidth='xl' // drawer responsive
       >
-        <Container maxWidth='xl'>
+        <Container maxWidth='false'>
           <Toolbar />
           <Header
             aps={props.aps}
@@ -99,7 +99,7 @@ export default function AppLayout (props) {
         {isMobile && props.children}
         {!isMobile && (
           <Container
-            maxWidth='xl'
+            maxWidth='false'
             sx={{
               mb: 3
               // display: { xs: isMobile ? 'none' : 'block', md: 'block' }
