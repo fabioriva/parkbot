@@ -17,8 +17,9 @@
     "/[aps]/statistics": ["statistics"],
     "/[aps]/docs/[slug]": ["io"],
     "/ironbank/overview": ["overview", "io"],
-
+    "/knl/dashboard": ["alarms", "dashboard", "overview", "statistics"],
     "/knl/overview": ["overview", "io"],
+    "/knr/dashboard": ["alarms", "dashboard", "overview", "statistics"],
     "/knr/overview": ["overview", "io"],
     "/muse/overview": ["overview", "io"],
     "/qihe1/overview": ["overview", "io"],

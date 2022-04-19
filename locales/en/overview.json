@@ -1,40 +1,32 @@
 {
   "page-title": "Overview",
-
   "action-entry": "Entry",
   "action-exit": "Exit",
   "action-rollback": "Rollback",
   "action-rollback-confirm": "Confirm to return the car.",
-
   "device-card": "Card",
   "device-dest": "Destination",
   "device-mode": "Mode",
   "device-position": "Position",
   "device-size": "Size",
-
   "device-on": "System On",
   "device-off": "System Off",
   "device-ready-on": "Ready",
   "device-ready-off": "Not ready",
-  "device-alarm-on": "Alarm",
-  "device-alarm-off": "Ready",
-
+  "device-alarm-on": "Alert Active",
+  "device-alarm-off": "No alarms",
   "device-view-title": "Info {{name}}",
-
   "dialog-cancel": "Cancel",
   "dialog-confirm": "Confirm",
-
   "dialog-card": "Card",
   "dialog-content": "Insert a valid card number and confirm.",
   "dialog-entry": "Entry request",
   "dialog-exit": "Exit request",
   "dialog-title": "Operation request",
-
   "mot-motion": "Motion",
   "mot-position": "Position",
   "mot-enabled": "Enabled",
   "mot-disabled": "Disabled",
-
   "motor": "Motor",
   "motor-nr": "Motor {{nr}}",
   "motor-silomat": "Silomat",
@@ -49,7 +41,6 @@
   "mot-lock": "Lock {{nr}}",
   "motor-lock-v": "Locking (V)",
   "motor-lock-r": "Locking (R)",
-
   "motion-err": "error",
   "motion-no": "stop",
   "motion-bwd": "backward",
@@ -66,7 +57,6 @@
   "motion-clockwise": "clockwise",
   "motion-left": "going left",
   "motion-right": "going right",
-
   "position-err": "error",
   "position-no": "---",
   "position-high": "high",
@@ -77,13 +67,11 @@
   "position-unlocked": "unlocked",
   "position-centered": "centered",
   "position-uncentered": "closed",
-
   "queue-title": "Exit queue",
   "queue-item-primary": "Card {{number}}",
   "queue-item-secondary": "{{number}}° call",
   "queue-dialog-title": "Delete card {{number}}",
   "queue-dialog-content": "Remove this card from the exit queue?",
-
   "vfd-title": "Inverter {{id}}",
   "vfd-status": "Status word",
   "vfd-speed": "Speed",

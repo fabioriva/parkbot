@@ -1,40 +1,32 @@
 {
   "page-title": "Panoramica",
-
   "action-entry": "Entrata",
   "action-exit": "Uscita",
   "action-rollback": "Rollback",
   "action-rollback-confirm": "Conferma per riportare la vettura.",
-
   "device-card": "Tessera",
   "device-dest": "Destinazione",
   "device-mode": "Funzione",
   "device-position": "Posizione",
   "device-size": "Dimensione",
-
   "device-on": "Sistema On",
   "device-off": "Sistema Off",
   "device-ready-on": "Pronto",
   "device-ready-off": "Non pronto",
-  "device-alarm-on": "Allarme",
-  "device-alarm-off": "Pronto",
-
+  "device-alarm-on": "Allarme attivo",
+  "device-alarm-off": "Nessun allarme",
   "device-view-title": "Info {{name}}",
-
   "dialog-cancel": "Annulla",
   "dialog-confirm": "Conferma",
-
   "dialog-card": "Tessera",
   "dialog-content": "Inserisci un numero di tessera valido e conferma.",
   "dialog-entry": "Entrata",
   "dialog-exit": "Uscita",
   "dialog-title": "Richiesta operazione",
-
   "mot-motion": "Movimento",
   "mot-position": "Posizione",
   "mot-enabled": "Abilitato",
   "mot-disabled": "Disabilitato",
-
   "motor": "Motore",
   "motor-nr": "Motore {{nr}}",
   "motor-silomat": "Silomat",
@@ -49,7 +41,6 @@
   "mot-lock": "Martinetto {{nr}}",
   "motor-lock-v": "Martinetto (V)",
   "motor-lock-r": "Martinetto (R)",
-
   "motion-err": "error",
   "motion-no": "stop",
   "motion-bwd": "indietro",
@@ -66,7 +57,6 @@
   "motion-clockwise": "oraria",
   "motion-left": "sinistra",
   "motion-right": "destra",
-
   "position-err": "error",
   "position-no": "---",
   "position-high": "alto",
@@ -77,13 +67,11 @@
   "position-unlocked": "sbloccato",
   "position-centered": "centrato",
   "position-uncentered": "chiuso",
-
   "queue-title": "Exit queue",
   "queue-item-primary": "Tessera {{number}}",
   "queue-item-secondary": "{{number}}° chiamata",
   "queue-dialog-title": "Cancella tessera {{number}}",
   "queue-dialog-content": "Cancellare la tessera dalla coda di uscita?",
-
   "vfd-title": "Inverter {{id}}",
   "vfd-status": "Status Word",
   "vfd-speed": "Velocità",
