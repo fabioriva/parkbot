@@ -5,6 +5,7 @@
   "drawer-cards": "Tessere",
   "drawer-map": "Mappa",
   "drawer-history": "Storico",
+  "drawer-notifications": "Notifiche",
   "drawer-racks": "PLC I/O",
   "drawer-statistics": "Statistiche",
   "drawer-motion": "Motion",
@@ -19,7 +20,6 @@
   "header-cars": "Totale vetture {{count}}",
   "header-alarms": "Allarmi attivi {{count}}",
 
-  "navbar-notifications": "Notifiche",
   "navbar-settings": "Impostazioni",
   "navbar-logout": "Esci",
 

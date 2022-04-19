@@ -4,6 +4,7 @@
   "drawer-overview": "Overview",
   "drawer-cards": "Cards",
   "drawer-map": "Map",
+  "drawer-notifications": "Notifications",
   "drawer-history": "History",
   "drawer-racks": "PLC I/O",
   "drawer-statistics": "Statistics",
@@ -19,7 +20,6 @@
   "header-cars": "Total cars {{count}}",
   "header-alarms": "Active alarms {{count}}",
 
-  "navbar-notifications": "Notifications",
   "navbar-settings": "Settings",
   "navbar-logout": "Logout",
 

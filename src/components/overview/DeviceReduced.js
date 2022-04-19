@@ -1,6 +1,6 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+// import Box from "@mui/material/Box";
+// import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
@@ -10,7 +10,7 @@ import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { green, orange, red } from "@mui/material/colors";
-import Active from "src/components/Active";
+// import Active from "src/components/Active";
 import Lamp from "src/components/overview/Lamp";
 import Mode from "src/components/overview/Mode";
 import Silomat from "src/components/overview/Silomat";
@@ -181,30 +181,6 @@ export default function Device(props) {
           )}
         </CardContent>
       </CardActionArea>
-      {/* <CardActions disableSpacing>
-        {props.item.d.map((element, index) => {
-          return (
-            <Button
-              disabled={!props.auth || !element.enable.status}
-              key={index}
-              // onClick={() => props.actions[key] !== undefined && props.actions[key](id, write)}
-              onClick={() => props.action(element.conn)}
-            >
-              {t(element.key)}
-            </Button>
-          );
-        })}
-
-        {props.item.alarms && (
-          <Box sx={{ marginLeft: "auto" }}>
-            <Active
-              active={props.item.alarms.length}
-              disabled={!hasRole(props.user, [ALARMS])}
-              href={`/${props.user.locale}/${props.aps}/active/${id - 1}`}
-            />
-          </Box>
-        )}
-      </CardActions> */}
     </Card>
   );
 }

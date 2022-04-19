@@ -14,7 +14,7 @@ const isMatch = (p1, p2) => {
   return p1 === p2
 }
 
-export default function Password (props) {
+export default function Password(props) {
   const { t } = useTranslation('settings')
 
   const {
@@ -61,7 +61,8 @@ export default function Password (props) {
       <Box
         component='div'
         sx={{
-          '& > :not(style)': { m: 0, width: '25ch' }
+          '& > :not(style)': { m: 0, width: '25ch' },
+          marginLeft: { xs: 2, md: 0 }
         }}
       >
         <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete='off'>

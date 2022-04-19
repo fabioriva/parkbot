@@ -56,7 +56,7 @@ const Item = ({ loading, title, value }) => (
   </React.Fragment>
 )
 
-export default function Device (props) {
+export default function Device(props) {
   const { t } = useTranslation('overview')
 
   const {
@@ -113,7 +113,7 @@ export default function Device (props) {
         action={[LA, LC, LS]}
         avatar={<Mode mode={mode} step={step} />}
         title={name}
-        // subheader={`Device ${id}`}
+      // subheader={`Device ${id}`}
       />
       <CardActionArea
         disabled={!isAllowed(props.user, [DIAGNOSTIC])}
@@ -199,16 +199,15 @@ export default function Device (props) {
             </Button>
           )
         })}
-
-        {props.item.alarms && (
-          <Box sx={{ marginLeft: 'auto' }}>
+        <Box sx={{ marginLeft: 'auto' }}>
+          {props.item.alarms && (
             <Active
               active={props.item.alarms.length}
               disabled={!hasRole(props.user, [ALARMS])}
               href={`/${props.user.locale}/${props.aps}/active/${id - 1}`}
             />
-          </Box>
-        )}
+          )}
+        </Box>
       </CardActions>
     </Card>
   )

@@ -5,7 +5,7 @@ import AppBar from '@mui/material/AppBar'
 import Avatar from '@mui/material/Avatar'
 import Badge from '@mui/material/Badge'
 import Box from '@mui/material/Box'
-import Chip from '@mui/material/Chip'
+// import Chip from '@mui/material/Chip'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
@@ -20,10 +20,10 @@ import { orange } from '@mui/material/colors'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import Logout from '@mui/icons-material/Logout'
 import MenuIcon from '@mui/icons-material/Menu'
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
+// import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
 import SettingsIcon from '@mui/icons-material/Settings'
 import useTranslation from 'next-translate/useTranslation'
-import { NOTIFICATIONS, hasRole } from 'src/constants/auth'
+// import { NOTIFICATIONS, hasRole } from 'src/constants/auth'
 
 const drawerWidth = 240
 
@@ -84,9 +84,9 @@ export default function NavBar (props) {
               onClick={handleMenu}
               color='inherit'
             >
-              <Badge badgeContent={2} color='error'>
+              
                 <AccountCircle />
-              </Badge>
+
             </IconButton>
             <Menu
               id='menu-appbar'
@@ -137,7 +137,7 @@ export default function NavBar (props) {
                 <Avatar /> {props.user.username}
               </MenuItem>
               <Divider />
-              <MenuItem
+              {/* <MenuItem
                 disabled={!hasRole(props.user, [NOTIFICATIONS])}
                 onClick={() => router.push(`/${props.user.aps}/mailingList`)}
               >
@@ -151,7 +151,7 @@ export default function NavBar (props) {
                   size='small'
                   sx={{ ml: 1 }}
                 />
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem
                 // disabled
                 onClick={() => router.push(`/${props.user.aps}/settings`)}
@@ -160,12 +160,12 @@ export default function NavBar (props) {
                   <SettingsIcon fontSize='small' />
                 </ListItemIcon>
                 <ListItemText>{t('navbar-settings')}</ListItemText>
-                <Chip
+                {/* <Chip
                   label='Beta'
                   color='secondary'
                   size='small'
                   sx={{ ml: 1 }}
-                />
+                /> */}
               </MenuItem>
               <MenuItem onClick={handleLogout}>
                 <ListItemIcon>

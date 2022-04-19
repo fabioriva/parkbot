@@ -16,6 +16,7 @@ import BarChartIcon from '@mui/icons-material/BarChart'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
+import EditNotificationsIcon from '@mui/icons-material/EditNotifications'
 import HistoryIcon from '@mui/icons-material/History'
 import ViewComfyIcon from '@mui/icons-material/ViewComfy'
 import VisibilityIcon from '@mui/icons-material/Visibility'
@@ -84,6 +85,14 @@ export default function AppDrawer (props) {
             <BarChartIcon />
           </ListItemIcon>
           <ListItemText primary={t('drawer-statistics')} />
+        </ListItem>
+      </Link>
+      <Link href={`/${aps}/mailingList`} locale={locale}>
+        <ListItem button disabled={!roles.hasRole(user, [roles.NOTIFICATIONS])}>
+          <ListItemIcon>
+            <EditNotificationsIcon />
+          </ListItemIcon>
+          <ListItemText primary={t('drawer-notifications')} />
         </ListItem>
       </Link>
     </List>
