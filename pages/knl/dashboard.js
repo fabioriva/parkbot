@@ -142,10 +142,10 @@ const Page = props => <Dashboard {...props} />
 export async function getServerSideProps(ctx) {
   const hrstart = process.hrtime()
 
-  const props = await authSSR(ctx, 'knr', DASHBOARD)
+  const props = await authSSR(ctx, 'knl', DASHBOARD)
   if (props.notFound || props.redirect) return props
 
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/knr/dashboard`
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/knl/dashboard`
   const json = await fetch(url, {
     headers: { Authorization: 'Bearer ' + props.token }
   })
