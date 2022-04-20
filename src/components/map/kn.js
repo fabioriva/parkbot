@@ -12,8 +12,8 @@ function TabPanel(props) {
     <div
       role='tabpanel'
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`tabpanel-${index}`}
+      aria-labelledby={`tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -27,8 +27,8 @@ function TabPanel(props) {
 
 function a11yProps(index) {
   return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    id: `tab-${index}`,
+    'aria-controls': `tabpanel-${index}`,
   }
 }
 
@@ -41,17 +41,27 @@ const Map = ({ levels, occupancy, view }) => {
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} md={8}>
-        <Box sx={{ width: '100%' }}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
-              <Tab label='B1' {...a11yProps(0)} />
-              <Tab label='B2' {...a11yProps(1)} />
-              <Tab label='B3' {...a11yProps(2)} />
-              <Tab label='B4' {...a11yProps(3)} />
-              <Tab label='B5' {...a11yProps(4)} />
-              <Tab label='B6' {...a11yProps(5)} />
-            </Tabs>
-          </Box>
+        <Grid
+          container
+          spacing={1}
+          sx={{ mb: 1, mx: { xs: 1, md: 0 }, overflow: 'scroll' }}
+        >
+          {/* <Box sx={{ width: '100%' }}> */}
+          {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}> */}
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label='tabs'
+          // orientation='vertical'
+          >
+            <Tab label='B1' {...a11yProps(0)} />
+            <Tab label='B2' {...a11yProps(1)} />
+            <Tab label='B3' {...a11yProps(2)} />
+            <Tab label='B4' {...a11yProps(3)} />
+            <Tab label='B5' {...a11yProps(4)} />
+            <Tab label='B6' {...a11yProps(5)} />
+          </Tabs>
+          {/* </Box> */}
           <TabPanel value={value} index={0}>
             {levels[0]}
           </TabPanel>
@@ -70,11 +80,14 @@ const Map = ({ levels, occupancy, view }) => {
           <TabPanel value={value} index={5}>
             {levels[5]}
           </TabPanel>
-        </Box>
+          {/* </Box> */}
+        </Grid>
       </Grid>
       <Grid item xs={12} md={4}>
         {occupancy}
-        <Box sx={{ mx: { xs: 2, md: 0 } }}>{view}</Box>
+        <Box sx={{ mx: 2, my: 2 }}>
+          {view}
+        </Box>
       </Grid>
       <style jsx global>
         {`
