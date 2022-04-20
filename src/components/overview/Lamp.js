@@ -15,8 +15,7 @@ import Tooltip from 'src/components/Tooltip'
 //   )
 // }
 
-export default function Lamp(props) {
-  const { color, title, active = 0, disabled, href } = props
+export default function Lamp({ color, title, active = 0, disabled, href }) {
   return (
     <Tooltip title={title}>
       <span>

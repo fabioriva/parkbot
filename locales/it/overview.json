@@ -4,6 +4,7 @@
   "action-exit": "Uscita",
   "action-rollback": "Rollback",
   "action-rollback-confirm": "Conferma per riportare la vettura.",
+  "device-car-on-board": "Vettura a bordo",
   "device-card": "Tessera",
   "device-dest": "Destinazione",
   "device-mode": "Funzione",

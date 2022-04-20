@@ -14,9 +14,13 @@ import Active from 'src/components/Active'
 import Lamp from 'src/components/overview/Lamp'
 import Mode from 'src/components/overview/Mode'
 import Silomat from 'src/components/overview/Silomat'
+import Tooltip from 'src/components/Tooltip'
 import VirtualGarage from 'src/components/overview/VirtualGarage'
 import useTranslation from 'next-translate/useTranslation'
 import { ALARMS, DIAGNOSTIC, hasRole, isAllowed } from 'src/constants/auth'
+
+import IconButton from '@mui/material/IconButton'
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 
 const bg = (op, theme) => {
   switch (op) {
@@ -97,6 +101,20 @@ export default function Device(props) {
     />
   )
 
+  const CAR = props.item.c[3] !== undefined && props.item.c[3].status && (
+    <Tooltip title={t('device-car-on-board')}>
+      <span>
+        <IconButton
+          aria-label='car on board'
+          size='small'
+          disabled
+        >
+          <DirectionsCarIcon color='action' />
+        </IconButton>
+      </span>
+    </Tooltip>
+  )
+
   return (
     <Card
       sx={{
@@ -110,7 +128,7 @@ export default function Device(props) {
             fontSize: 16
           }
         }}
-        action={[LA, LC, LS]}
+        action={[CAR, LA, LC, LS]}
         avatar={<Mode mode={mode} step={step} />}
         title={name}
       // subheader={`Device ${id}`}
