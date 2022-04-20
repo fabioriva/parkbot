@@ -54,12 +54,12 @@ const Map = ({ levels, occupancy, view }) => {
             aria-label='tabs'
           // orientation='vertical'
           >
-            <Tab label='B1' {...a11yProps(0)} />
-            <Tab label='B2' {...a11yProps(1)} />
-            <Tab label='B3' {...a11yProps(2)} />
-            <Tab label='B4' {...a11yProps(3)} />
-            <Tab label='B5' {...a11yProps(4)} />
-            <Tab label='B6' {...a11yProps(5)} />
+            <Tab label='B2' {...a11yProps(0)} />
+            <Tab label='B3' {...a11yProps(1)} />
+            <Tab label='B4' {...a11yProps(2)} />
+            <Tab label='B5' {...a11yProps(3)} />
+            <Tab label='B6' {...a11yProps(4)} />
+            <Tab label='B7' {...a11yProps(5)} />
           </Tabs>
           {/* </Box> */}
           <TabPanel value={value} index={0}>
@@ -103,6 +103,7 @@ const Map = ({ levels, occupancy, view }) => {
             position: absolute;
             background-color: #C0C0C0;
             border: 1px solid #000;
+            font-size: 12px;
             font-weight: bold;
             height: 50px;
             width: 35px;
@@ -110,17 +111,17 @@ const Map = ({ levels, occupancy, view }) => {
             vertical-align: middle;
             line-height: 50px;
           }
-          .sh{
-            position: absolute;
-            background-color: #C0C0C0;
-            border: 1px solid #000;
-            font-weight: bold;
-            height: 50px;
-            width: 35px;
-            text-align: center;
-            vertical-align: middle;
-            line-height: 50px;
-          }     
+          // .sh{
+          //   position: absolute;
+          //   background-color: #C0C0C0;
+          //   border: 1px solid #000;
+          //   font-weight: bold;
+          //   height: 50px;
+          //   width: 35px;
+          //   text-align: center;
+          //   vertical-align: middle;
+          //   line-height: 50px;
+          // }     
           
           .s {
             position: absolute;
@@ -131,6 +132,11 @@ const Map = ({ levels, occupancy, view }) => {
             vertical-align: middle;
             line-height: 50px!important; /*overrides width in MapStall.js */
           }
+
+          #sh-1L	{ top: 367px; left: 90px; }
+          #sh-2L	{ top: 163px; left: 270px; }
+          #sh-1R	{ top: 367px; left: 600px; }
+          #sh-2R	{ top: 163px; left: 480px; }
           
           /*
           /*	Basement B2 */
