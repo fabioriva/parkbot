@@ -11,6 +11,7 @@ import { green, orange, red } from "@mui/material/colors";
 import Lamp from "src/components/overview/Lamp";
 import Mode from "src/components/overview/Mode";
 import Silomat from "src/components/overview/Silomat";
+import Tooltip from 'src/components/Tooltip'
 import VirtualGarage from "src/components/overview/VirtualGarage";
 import useTranslation from "next-translate/useTranslation";
 import { ALARMS, DIAGNOSTIC, hasRole, isAllowed } from "src/constants/auth";
@@ -91,7 +92,7 @@ export default function Device(props) {
     />
   );
 
-  const CAR = props.item.c[3] !== undefined && props.item.c[3].status && (
+  const CAR = props.item.c[3] !== undefined && props.item.c[3].status === 1 && (
     <Tooltip title={t('device-car-on-board')}>
       <span>
         <IconButton

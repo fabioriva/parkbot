@@ -101,7 +101,7 @@ export default function Device(props) {
     />
   )
 
-  const CAR = props.item.c[3] !== undefined && props.item.c[3].status && (
+  const CAR = props.item.c[3] !== undefined && props.item.c[3].status === 1 && (
     <Tooltip title={t('device-car-on-board')}>
       <span>
         <IconButton
