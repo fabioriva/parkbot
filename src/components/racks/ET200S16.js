@@ -371,6 +371,10 @@ export default function Module ({ module }) {
             left: 713px;
             top: 1px;
           }
+          #card-10 {
+            left: 802px;
+            top: 1px;
+          }
         `}
       </style>
     </div>
