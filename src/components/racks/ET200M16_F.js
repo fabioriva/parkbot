@@ -25,35 +25,45 @@ function Bit ({ item, nr }) {
       >
         {bit}
       </div>
+      {/* Dummy */}
+      <div className='id' id={'id-'.concat(nr + 2, bit)} />
+      <div className='nr' id={'nr-'.concat(nr + 2, bit)} />
+      <div
+        className={clsx('st', {
+          'st-0': !status,
+          'st-1': status
+        })}
+        id={'st-'.concat(nr + 2, bit)}
+      />
       <style jsx>
         {`
           .id {
             position: absolute;
-            height: 35px;
-            line-height: 35px;
+            height: 18px;
+            line-height: 18px;
             background: #fff000;
             border: 1px solid #000000;
-            font-size: 0.88em;
+            font-size: 0.78em;
             width: 45px;
           }
           .nr {
             position: absolute;
-            height: 35px;
+            height: 18px;
             width: 12px;
-            line-height: 35px;
+            line-height: 18px;
             background-color: #e0e0e0;
             border: 1px solid #000000;
-            font-size: 0.88em;
+
             width: 12px;
           }
           .st {
             position: absolute;
-            height: 35px;
+            height: 18px;
             width: 12px;
-            line-height: 35px;
+            line-height: 18px;
             border-top: 1px solid #000000;
             border-bottom: 1px solid #000000;
-            font-size: 0.88em;
+
             width: 12px;
           }
           .st-0 {
@@ -269,6 +279,200 @@ function Bit ({ item, nr }) {
           #st-17 {
             left: 123px;
             top: 295px;
+          }
+
+          #id-20 {
+            left: 34px;
+            top: 40px;
+          }
+          #nr-20 {
+            left: 10px;
+            top: 40px;
+          }
+          #st-20 {
+            left: 22px;
+            top: 40px;
+          }
+          #id-21 {
+            left: 34px;
+            top: 74px;
+          }
+          #nr-21 {
+            left: 10px;
+            top: 74px;
+          }
+          #st-21 {
+            left: 22px;
+            top: 74px;
+          }
+          #id-22 {
+            left: 34px;
+            top: 108px;
+          }
+          #nr-22 {
+            left: 10px;
+            top: 108px;
+          }
+          #st-22 {
+            left: 22px;
+            top: 108px;
+          }
+          #id-23 {
+            left: 34px;
+            top: 142px;
+          }
+          #nr-23 {
+            left: 10px;
+            top: 142px;
+          }
+          #st-23 {
+            left: 22px;
+            top: 142px;
+          }
+          #id-24 {
+            left: 34px;
+            top: 210px;
+          }
+          #nr-24 {
+            left: 10px;
+            top: 210px;
+          }
+          #st-24 {
+            left: 22px;
+            top: 210px;
+          }
+          #id-25 {
+            left: 34px;
+            top: 244px;
+          }
+          #nr-25 {
+            left: 10px;
+            top: 244px;
+          }
+          #st-25 {
+            left: 22px;
+            top: 244px;
+          }
+          #id-26 {
+            left: 34px;
+            top: 278px;
+          }
+          #nr-26 {
+            left: 10px;
+            top: 278px;
+          }
+          #st-26 {
+            left: 22px;
+            top: 278px;
+          }
+          #id-27 {
+            left: 34px;
+            top: 312px;
+          }
+          #nr-27 {
+            left: 10px;
+            top: 312px;
+          }
+          #st-27 {
+            left: 22px;
+            top: 312px;
+          }
+
+          #id-30 {
+            left: 78px;
+            top: 40px;
+          }
+          #nr-30 {
+            left: 135px;
+            top: 40px;
+          }
+          #st-30 {
+            left: 123px;
+            top: 40px;
+          }
+          #id-31 {
+            left: 78px;
+            top: 74px;
+          }
+          #nr-31 {
+            left: 135px;
+            top: 74px;
+          }
+          #st-31 {
+            left: 123px;
+            top: 74px;
+          }
+          #id-32 {
+            left: 78px;
+            top: 108px;
+          }
+          #nr-32 {
+            left: 135px;
+            top: 108px;
+          }
+          #st-32 {
+            left: 123px;
+            top: 108px;
+          }
+          #id-33 {
+            left: 78px;
+            top: 142px;
+          }
+          #nr-33 {
+            left: 135px;
+            top: 142px;
+          }
+          #st-33 {
+            left: 123px;
+            top: 142px;
+          }
+          #id-34 {
+            left: 78px;
+            top: 210px;
+          }
+          #nr-34 {
+            left: 135px;
+            top: 210px;
+          }
+          #st-34 {
+            left: 123px;
+            top: 210px;
+          }
+          #id-35 {
+            left: 78px;
+            top: 244px;
+          }
+          #nr-35 {
+            left: 135px;
+            top: 244px;
+          }
+          #st-35 {
+            left: 123px;
+            top: 244px;
+          }
+          #id-36 {
+            left: 78px;
+            top: 278px;
+          }
+          #nr-36 {
+            left: 135px;
+            top: 278px;
+          }
+          #st-36 {
+            left: 123px;
+            top: 278px;
+          }
+          #id-37 {
+            left: 78px;
+            top: 312px;
+          }
+          #nr-37 {
+            left: 135px;
+            top: 312px;
+          }
+          #st-37 {
+            left: 123px;
+            top: 312px;
           }
         `}
       </style>
