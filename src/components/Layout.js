@@ -114,9 +114,9 @@ export default function AppLayout (props) {
       </Box>
       <Modal
         open={expired}
-        onClose={() => console.log('close')}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
+        // onClose={() => console.log('close')}
+        // aria-labelledby='modal-title'
+        // aria-describedby='modal-description'
       >
         <Box
           // component='form'
@@ -133,10 +133,10 @@ export default function AppLayout (props) {
             textAlign: 'center'
           }}
         >
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            License has expired.
+          <Typography id='modal-title' variant='h6' component='h2'>
+            LICENSE HAS EXPIRED
           </Typography>
-          <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+          <Typography id='modal-description' sx={{ mt: 2 }}>
             Enter license key to unlock the service.
           </Typography>
           <TextField
