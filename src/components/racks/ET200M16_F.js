@@ -28,13 +28,7 @@ function Bit ({ item, nr }) {
       {/* Dummy */}
       <div className='id' id={'id-'.concat(nr + 2, bit)} />
       <div className='nr' id={'nr-'.concat(nr + 2, bit)} />
-      <div
-        className={clsx('st', {
-          'st-0': !status,
-          'st-1': status
-        })}
-        id={'st-'.concat(nr + 2, bit)}
-      />
+      <div className='st st-0' id={'st-'.concat(nr + 2, bit)}/>
       <style jsx>
         {`
           .id {
