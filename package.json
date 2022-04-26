@@ -7,7 +7,7 @@
     "build:clean": "rimraf .next && npm run build",
     "dev": "next dev",
     "start": "next start",
-    "pm2": "NODE_ENV=production pm2 start npm --name parkbot-app --start"
+    "pm2": "NODE_ENV=production pm2 start npm --name parkbot-app -- start"
   },
   "dependencies": {
     "@emotion/cache": "^11.7.1",
