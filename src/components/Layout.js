@@ -137,7 +137,7 @@ export default function AppLayout (props) {
             LICENSE HAS EXPIRED
           </Typography>
           <Typography id='modal-description' sx={{ mt: 2 }}>
-            Enter license key to unlock the service.
+            Enter license key to unlock the service
           </Typography>
           <TextField
             id='standard-basic'

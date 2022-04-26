@@ -12,7 +12,7 @@
   "al-pn": "Profinet nodo {{name}}",
   "al-th": "Scatto termico {{name}}",
   "al-tl": "Contattore {{name}}",
-
+  "al-fal": "Allarme antincendio",
   "al-sil-01": "Time out traslazione Silomat",
   "al-sil-02": "Time out sollevamento Silomat",
   "al-sil-03": "Time out centratore anteriore",
