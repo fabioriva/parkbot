@@ -68,7 +68,7 @@
   "position-unlocked": "sbloccato",
   "position-centered": "centrato",
   "position-uncentered": "chiuso",
-  "queue-title": "Exit queue",
+  "queue-title": "Coda uscita",
   "queue-item-primary": "Tessera {{number}}",
   "queue-item-secondary": "{{number}}° chiamata",
   "queue-dialog-title": "Cancella tessera {{number}}",
