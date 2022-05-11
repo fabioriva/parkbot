@@ -5,6 +5,8 @@ const APS_ = [
   { ns: 'chiattone', name: 'P.zzo Chiattone, Lugano, 🇨🇭' },
   { ns: 'donini', name: 'P.zzo Donini, Lugano, 🇨🇭' },
   { ns: 'ironbank', name: 'Iron Bank, Auckland, 🇳🇿' },
+  { ns: 'jhn', name: 'Jameson House (North), Vancouver, 🇨🇦' },
+  { ns: 'jhs', name: 'Jameson House (South), Vancouver, 🇨🇦' },
   { ns: 'knl', name: 'Kamla Nagar (Left), New Delhi, 🇮🇳' },
   { ns: 'knr', name: 'Kamla Nagar (Right), New Delhi, 🇮🇳' },
   { ns: 'muse', name: 'The Muse, Miami, 🇺🇸' },
