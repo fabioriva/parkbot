@@ -6,8 +6,8 @@ const Map = ({ levels, occupancy, view }) => {
     <Grid container spacing={1}>
       <Grid item xs={12} xl={7}>
         <Box sx={{ mb: 1, mx: { xs: 2, md: 0 }, overflow: 'scroll' }}>
-        {levels[4]}
-        {levels[3]}
+          {levels[4]}
+          {levels[3]}
           {levels[2]}
           {levels[1]}
           {levels[0]}
