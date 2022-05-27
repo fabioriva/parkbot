@@ -1,5 +1,6 @@
 const APS_ = [
   { ns: 'alumim', name: 'Alumim, Tel Aviv, 🇮🇱' },
+  { ns: '18017K', name: '18017K, Bangkok, 🇹🇭' },
   { ns: 'bmc', name: 'BMC, Mumbai, 🇮🇳' },
   { ns: 'chandan', name: 'Chandan Society, Mumbai, 🇮🇳' },
   { ns: 'chiattone', name: 'P.zzo Chiattone, Lugano, 🇨🇭' },

@@ -8,6 +8,7 @@ import withAuthSync from 'src/hocs/withAuthSync'
 
 const componentList = {
   alumim: dynamic(() => import('src/components/map/alumim')),
+  '18017K': dynamic(() => import('src/components/map/18017K')),
   bmc: dynamic(() => import('src/components/map/bmc')),
   chandan: dynamic(() => import('src/components/map/chandan')),
   chiattone: dynamic(() => import('src/components/map/chiattone')),
