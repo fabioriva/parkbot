@@ -13,6 +13,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 // icons
 import BarChartIcon from '@mui/icons-material/BarChart'
+import ConnectedTvIcon from '@mui/icons-material/ConnectedTv'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
@@ -93,6 +94,14 @@ export default function AppDrawer (props) {
             <EditNotificationsIcon />
           </ListItemIcon>
           <ListItemText primary={t('drawer-notifications')} />
+        </ListItem>
+      </Link>
+      <Link href={`/${aps}/dss`} locale={locale}>
+        <ListItem button disabled={!roles.hasRole(user, [roles.DSS])}>
+          <ListItemIcon>
+            <ConnectedTvIcon />
+          </ListItemIcon>
+          <ListItemText primary={'DSS'} />
         </ListItem>
       </Link>
     </List>

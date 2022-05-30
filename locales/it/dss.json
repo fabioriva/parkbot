@@ -1,0 +1,13 @@
+{
+    "dss": "Digital Signage System",
+    "drive-back": "INDIETRO",
+    "drive-back-mesg-1": "ALTEZZA ECCEDENTE",
+    "drive-back-mesg-2": "FUORI MISURA",
+    "drive-back-mesg-3": "VEICOLO FUORI MISURA",
+    "drive-in": "AVANTI",
+    "drive-in-mesg-1": "AVANZARE LENTAMENTE",
+    "stop": "STOP",
+    "stop-mesg-1": "SPEGNERE MOTORE",
+    "stop-mesg-2": "MESSAGGIO 2",
+    "stop-mesg-3": "MESSAGGIO 3"
+}
