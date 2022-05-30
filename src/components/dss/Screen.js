@@ -4,8 +4,9 @@ import { useRouter } from 'next/router'
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Primary from "./Primary"
-import Secondary from "./Secondary"
+import Error from 'src/components/Error'
+import Primary from "src/components/dss/Primary"
+import Secondary from "src/components/dss/Secondary"
 import { useComm } from 'src/lib/useWebSocket'
 import useSWR from 'swr'
 
@@ -97,7 +98,7 @@ export default function Screen(props) {
             height: 60vh;
             line-height: 60vh;
             vertical-align: middle;
-            font-size: 12vw;
+            font-size: 14vw;
             font-weight: bold;
             letter-spacing: 1px;
           }
