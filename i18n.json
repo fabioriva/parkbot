@@ -9,6 +9,7 @@
     "/[aps]/dashboard": ["alarms", "dashboard", "overview", "statistics"],
     "/[aps]/device/[id]": ["alarms", "io", "overview"],
     "/[aps]/dss": ["dss"],
+    "/[aps]/exitScreen": ["dss"],
     "/[aps]/history": ["history", "alarms"],
     "/[aps]/mailingList": ["notifications"],
     "/[aps]/map": ["map"],
