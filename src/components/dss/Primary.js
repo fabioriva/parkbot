@@ -1,6 +1,6 @@
-import React from 'react'
-import Carousel from 'react-material-ui-carousel'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from "react";
+import Carousel from "react-material-ui-carousel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faArrowRight,
@@ -8,16 +8,16 @@ import {
   faCircleArrowUp,
   faCircleArrowDown,
   // faExclamation,
-  faSquareParking
-} from '@fortawesome/free-solid-svg-icons'
-import useTranslation from 'next-translate/useTranslation'
+  faSquareParking,
+} from "@fortawesome/free-solid-svg-icons";
+import useTranslation from "next-translate/useTranslation";
 
-export default function Primary ({ data }) {
-  const { t } = useTranslation('dss')
+export default function Primary({ data }) {
+  const { t } = useTranslation("dss");
   return (
     <>
       {data.L3 === 0 && (
-        <FontAwesomeIcon icon={faSquareParking} color='#0d6efd' size='2xl' />
+        <FontAwesomeIcon icon={faSquareParking} color="#0d6efd" size="2xl" />
       )}
       {data.L3 === 1 && (
         <Carousel
@@ -26,8 +26,8 @@ export default function Primary ({ data }) {
           stopAutoPlayOnHover={false}
           swipe={false}
         >
-          <div>{t('drive-in')}</div>
-          <FontAwesomeIcon icon={faCircleArrowUp} size='2xl' color='#198754' />
+          <div>{t("drive-in")}</div>
+          <FontAwesomeIcon icon={faCircleArrowUp} size="2xl" color="#198754" />
         </Carousel>
       )}
       {data.L3 === 2 && (
@@ -37,11 +37,11 @@ export default function Primary ({ data }) {
           stopAutoPlayOnHover={false}
           swipe={false}
         >
-          <div>{t('drive-back')}</div>
+          <div>{t("drive-back")}</div>
           <FontAwesomeIcon
             icon={faCircleArrowDown}
-            size='2xl'
-            color='#ffc107'
+            size="2xl"
+            color="#ffc107"
           />
         </Carousel>
       )}
@@ -52,18 +52,18 @@ export default function Primary ({ data }) {
           stopAutoPlayOnHover={false}
           swipe={false}
         >
-          <div>{t('stop')}</div>
-          <FontAwesomeIcon icon={faCircle} size='2xl' color='#dc3545' />
+          <div>{t("stop")}</div>
+          <FontAwesomeIcon icon={faCircle} size="2xl" color="#dc3545" />
         </Carousel>
       )}
       {data.L4 && (
-        <div className='maxLeft blink'>
-          <FontAwesomeIcon icon={faArrowRight} size='1xl' />
+        <div className="maxLeft blink">
+          <FontAwesomeIcon icon={faArrowRight} size="1xl" />
         </div>
       )}
       {data.L5 && (
-        <div className='maxRight blink'>
-          <FontAwesomeIcon icon={faArrowLeft} size='1xl' />
+        <div className="maxRight blink">
+          <FontAwesomeIcon icon={faArrowLeft} size="1xl" />
         </div>
       )}
       <style jsx global>
@@ -97,5 +97,5 @@ export default function Primary ({ data }) {
         `}
       </style>
     </>
-  )
+  );
 }

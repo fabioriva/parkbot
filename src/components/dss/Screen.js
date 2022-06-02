@@ -1,57 +1,57 @@
-import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Error from 'src/components/Error';
-import Primary from 'src/components/dss/Primary';
-import Secondary from 'src/components/dss/Secondary';
-import { useComm } from 'src/lib/useWebSocket';
-import useSWR from 'swr';
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Error from "src/components/Error";
+import Primary from "src/components/dss/Primary";
+import Secondary from "src/components/dss/Secondary";
+import { useComm } from "src/lib/useWebSocket";
+import useSWR from "swr";
 
-const fetcher = (url) => global.fetch(url).then((r) => r.json())
+const fetcher = (url) => global.fetch(url).then((r) => r.json());
 
 function Item(props) {
-  const { sx, ...other } = props
+  const { sx, ...other } = props;
   return (
     <Box
       my={3}
       mx={3}
       sx={{
         borderRadius: 2,
-        fontSize: '3vw',
-        fontWeight: '700',
-        height: '4vw',
-        lineHeight: '4vw',
-        verticalAlign: 'middle',
-        ...sx
+        fontSize: "3vw",
+        fontWeight: "700",
+        height: "4vw",
+        lineHeight: "4vw",
+        verticalAlign: "middle",
+        ...sx,
       }}
       {...other}
     />
-  )
+  );
 }
 
 export default function Screen(props) {
-  if (props.json.err) return <Error {...props} pageTitle='DSS' />
+  if (props.json.err) return <Error {...props} pageTitle="DSS" />;
 
-  const router = useRouter()
-  const { id } = router.query
+  const router = useRouter();
+  const { id } = router.query;
 
   const { comm } = useComm(
     `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/info`
-  )
+  );
 
-  const [screen, setScreen] = React.useState(props.json)
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dss/garage/${id}`
+  const [screen, setScreen] = React.useState(props.json);
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dss/garage/${id}`;
   const { data, error } = useSWR(url, fetcher, {
     fallbackData: screen,
-    refreshInterval: 1000
-  })
+    refreshInterval: 1000,
+  });
 
   React.useEffect(() => {
-    if (data) setScreen(data)
-  }, [data])
+    if (data) setScreen(data);
+  }, [data]);
 
   return (
     <>
@@ -119,5 +119,5 @@ export default function Screen(props) {
         `}
       </style>
     </>
-  )
+  );
 }
