@@ -16,8 +16,6 @@ export default function Racks(props) {
 
   if (props.json.err) return <Error {...props} pageTitle={t("dss")} />;
 
-  // const [screens] = React.useState(props.json.screens);
-  console.log(props.json);
   const { screens, exitScreen } = props.json;
   return (
     <Layout {...props} pageTitle={t("dss")}>
