@@ -27,7 +27,11 @@ export default function Primary({ data }) {
           swipe={false}
         >
           <div>{t("drive-in")}</div>
-          <FontAwesomeIcon icon={faCircleArrowUp} size="2xl" color="#198754" />
+          <FontAwesomeIcon
+            className="traffic-light-green"
+            icon={faCircleArrowUp}
+            size="2xl"
+          />
         </Carousel>
       )}
       {data.L3 === 2 && (
@@ -39,9 +43,9 @@ export default function Primary({ data }) {
         >
           <div>{t("drive-back")}</div>
           <FontAwesomeIcon
+            className="traffic-light-yellow"
             icon={faCircleArrowDown}
             size="2xl"
-            color="#ffc107"
           />
         </Carousel>
       )}
@@ -53,33 +57,37 @@ export default function Primary({ data }) {
           swipe={false}
         >
           <div>{t("stop")}</div>
-          <FontAwesomeIcon icon={faCircle} size="2xl" color="#dc3545" />
+          <FontAwesomeIcon
+            className="traffic-light-red"
+            icon={faCircle}
+            size="2xl"
+          />
         </Carousel>
       )}
       {data.L4 && (
         <div className="maxLeft blink">
-          <FontAwesomeIcon icon={faArrowRight} size="1xl" />
+          <FontAwesomeIcon icon={faArrowRight} />
         </div>
       )}
       {data.L5 && (
         <div className="maxRight blink">
-          <FontAwesomeIcon icon={faArrowLeft} size="1xl" />
+          <FontAwesomeIcon icon={faArrowLeft} />
         </div>
       )}
       <style jsx global>
         {`
           .maxLeft {
             position: absolute;
-            background-color: #ffc107;
-            top: 20vh;
+            background-color: #efb700;
+            top: 0px;
             left: 0px;
-            height: 60vh;
+            height: 100vh;
             width: 15vw;
-            line-height: 60vh;
+            line-height: 100vh;
           }
           .maxRight {
             position: absolute;
-            background-color: #ffc107;
+            background-color: #efb700;
             top: 0px;
             right: 0px;
             height: 100vh;
@@ -87,7 +95,7 @@ export default function Primary({ data }) {
             line-height: 100vh;
           }
           .blink {
-            animation: blinker 1.5s linear infinite;
+            animation: blinker 2s linear infinite;
           }
           @keyframes blinker {
             50% {

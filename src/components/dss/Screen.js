@@ -1,46 +1,21 @@
 import React from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import Error from "src/components/Error";
+import Header from "src/components/dss/ScreenHeader";
+import Occupancy from "src/components/dss/Occupancy";
 import Primary from "src/components/dss/Primary";
 import Secondary from "src/components/dss/Secondary";
-import { useComm } from "src/lib/useWebSocket";
 import useSWR from "swr";
 
 const fetcher = (url) => global.fetch(url).then((r) => r.json());
-
-function Item(props) {
-  const { sx, ...other } = props;
-  return (
-    <Box
-      my={3}
-      mx={3}
-      sx={{
-        borderRadius: 2,
-        fontSize: "3vw",
-        fontWeight: "700",
-        height: "4vw",
-        lineHeight: "4vw",
-        verticalAlign: "middle",
-        ...sx,
-      }}
-      {...other}
-    />
-  );
-}
 
 export default function Screen(props) {
   if (props.json.err) return <Error {...props} pageTitle="DSS" />;
 
   const router = useRouter();
   const { id } = router.query;
-
-  const { comm } = useComm(
-    `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${props.aps}/info`
-  );
 
   const [screen, setScreen] = React.useState(props.json);
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/${props.aps}/dss/garage/${id}`;
@@ -57,27 +32,8 @@ export default function Screen(props) {
     <>
       <Container maxWidth={false} className="screen">
         <Box className="screen-header">
-          <Grid container>
-            <Grid item xs={4}>
-              <Item sx={{ backgroundColor: "#adb5bd", color: "#000" }}>
-                SOTEFIN SA
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Link href={`/${props.aps}/dss`}>
-                <a style={{ textDecoration: "none", color: "white" }}>
-                  <Item sx={{ backgroundColor: "#0d6efd" }}>{screen.name}</Item>
-                </a>
-              </Link>
-            </Grid>
-            <Grid item xs={4}>
-              {comm ? (
-                <Item sx={{ backgroundColor: "#198754" }}>ONLINE</Item>
-              ) : (
-                <Item sx={{ backgroundColor: "#dc3545" }}>OFFLINE</Item>
-              )}
-            </Grid>
-          </Grid>
+          {/* <Header aps={props.aps} name={screen.name} /> */}
+          <Occupancy aps={props.aps} data={screen} />
         </Box>
         <Box className="screen-main">
           <Primary data={data} />
@@ -97,7 +53,7 @@ export default function Screen(props) {
             height: 20vh;
             line-height: 20vh;
             vertical-align: middle;
-            font-size: 3vw;
+            font-size: 4vw;
             font-weight: bold;
           }
           .screen-main {
@@ -115,6 +71,15 @@ export default function Screen(props) {
             font-size: 6vw;
             font-weight: bold;
             letter-spacing: 2px;
+          }
+          .traffic-light-red {
+            color: #b81d13;
+          }
+          .traffic-light-yellow {
+            color: #efb700;
+          }
+          .traffic-light-green {
+            color: #008450;
           }
         `}
       </style>

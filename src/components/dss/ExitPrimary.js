@@ -8,19 +8,21 @@ export default function Primary({ data }) {
   const { t } = useTranslation("dss");
 
   const items = [];
-  data.running.forEach((device, key) => {
-    items.push(<div key={key}>{device.garage}</div>);
+  data.running.forEach((item, key) => {
     items.push(
       <div key={key}>
-        <FontAwesomeIcon icon={faCar} /> {device.card}
+        <FontAwesomeIcon icon={faCar} />
+        &nbsp;&#35;&nbsp;{item.card}
       </div>
     );
-    items.push(<div key={key}>{t(device.op)}</div>);
+    items.push(<div key={key}>{t(item.mesg)}</div>);
+    // items.push(<div key={key}>{item.name}</div>);
+    items.push(<div key={key}>{t("exit-name", { id: key + 1 })}</div>);
   });
 
   return (
     <Carousel
-      animation="slide"
+      animation="fade"
       duration={3000}
       // interval={5000}
       indicators={false}

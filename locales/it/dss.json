@@ -7,12 +7,13 @@
   "drive-in": "AVANTI",
   "drive-in-mesg-1": "AVANZARE LENTAMENTE",
   "stop": "STOP",
-  "stop-mesg-1": "SPEGNERE MOTORE",
-  "stop-mesg-2": "MESSAGGIO 2",
-  "stop-mesg-3": "MESSAGGIO 3",
-  "exit": "USCITA",
+  "stop-mesg-1": "VETTURA IN POSIZIONE",
+  "stop-mesg-2": "SPEGNERE MOTORE",
+  "stop-mesg-3": "MESSAGGIO 2",
+  "stop-mesg-4": "MESSAGGIO 3",
+  "exit-name": "USCITA {{id}}",
   "exit-mesg-1": "IN ARRIVO",
-  "exit-mesg-2": "PRONTA",
+  "exit-mesg-2": "CONSEGNATA IN",
   "exit-next": "PROSSIMA",
   "exit-wait": "IN ATTESA"
 }
