@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Error from "src/components/Error";
-import Header from "src/components/dss/ScreenHeader";
+import Header from "src/components/dss/Navbar";
 import Primary from "src/components/dss/ExitPrimary";
 import Secondary from "src/components/dss/ExitSecondary";
 import useSWR from "swr";

@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Error from "src/components/Error";
-import Header from "src/components/dss/ScreenHeader";
-import Occupancy from "src/components/dss/Occupancy";
+// import Header from "src/components/dss/ScreenHeader";
+import Navbar from "src/components/dss/Navbar";
+// import Occupancy from "src/components/dss/Occupancy";
 import Primary from "src/components/dss/Primary";
 import Secondary from "src/components/dss/Secondary";
 import useSWR from "swr";
@@ -32,8 +33,8 @@ export default function Screen(props) {
     <>
       <Container maxWidth={false} className="screen">
         <Box className="screen-header">
-          {/* <Header aps={props.aps} name={screen.name} /> */}
-          <Occupancy aps={props.aps} data={screen} />
+          <Navbar aps={props.aps} name={screen.name} />
+          {/* <Occupancy aps={props.aps} data={screen} /> */}
         </Box>
         <Box className="screen-main">
           <Primary data={data} />

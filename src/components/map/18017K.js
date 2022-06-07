@@ -26,7 +26,7 @@ const Map = ({ levels, occupancy, view }) => {
             border: 1px solid rgba(0, 0, 0, 0.26);
             margin-bottom: 16px;
             height: 168px;
-            width: 374px;
+            width: 251px;
           }
           .el {
             position: absolute;

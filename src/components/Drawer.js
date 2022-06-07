@@ -146,7 +146,7 @@ export default function AppDrawer(props) {
   return (
     <Box
       component="nav"
-      sx={{ width: { lg: drawerWidth }, flexShrink: { sm: 0 } }} // drawer responsive
+      sx={{ width: { xl: drawerWidth }, flexShrink: { sm: 0 } }} // drawer responsive
       aria-label="folders"
     >
       {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -159,7 +159,7 @@ export default function AppDrawer(props) {
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: "block", lg: "none" }, // drawer responsive
+          display: { xs: "block", xl: "none" }, // drawer responsive
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
       >
@@ -168,7 +168,7 @@ export default function AppDrawer(props) {
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: "none", lg: "block" }, // drawer responsive
+          display: { xs: "none", xl: "block" }, // drawer responsive
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
         open
