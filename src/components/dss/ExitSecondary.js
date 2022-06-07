@@ -20,7 +20,7 @@ export default function Primary({ data }) {
       {data.waiting.map(
         (item, key) =>
           item.card !== 0 && (
-            <div style={{ color: "#adb5bd" }} key={key}>
+            <div key={key}>
               <span>{t("exit-next")}</span>&nbsp;
               <FontAwesomeIcon icon={faCar} />
               &nbsp;&#35;&nbsp;{item.card}

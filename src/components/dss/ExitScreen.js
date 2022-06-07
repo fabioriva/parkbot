@@ -27,7 +27,7 @@ export default function Screen(props) {
     <>
       <Container maxWidth={false} className="screen">
         <Box className="screen-header">
-          <Header aps={props.aps} name={screen.name} />
+          <Header aps={props.aps} name={screen.name} title="ARRIVALS BOARD" />
         </Box>
         <Box className="screen-main">
           <Primary data={data} />

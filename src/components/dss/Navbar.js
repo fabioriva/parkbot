@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTv } from "@fortawesome/free-solid-svg-icons";
 import { useComm } from "src/lib/useWebSocket";
 
-export default function Navbar({ aps, name }) {
+export default function Navbar({ aps, name, title }) {
   const { comm } = useComm(
     `${process.env.NEXT_PUBLIC_WEBSOCK_URL}/${aps}/info`
   );
@@ -57,23 +57,16 @@ export default function Navbar({ aps, name }) {
         </Grid>
       </Grid>
       <Grid item xs={12} sx={{ height: "14vh", lineHeight: "14vh" }}>
-        <Grid
-          container
-          sx={{
-            backgroundColor: "#282c34",
-            color: "#198754",
-            fontSize: "16px",
-          }}
-        >
-          <Grid item xs={4}>
+        <Grid container>
+          {/* <Grid item xs={4}>
             1
+          </Grid> */}
+          <Grid item xs={12}>
+            {title}
           </Grid>
-          <Grid item xs={4}>
-            2
-          </Grid>
-          <Grid item xs={4}>
+          {/* <Grid item xs={4}>
             3
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
     </Grid>

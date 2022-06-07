@@ -33,8 +33,8 @@ export default function Screen(props) {
     <>
       <Container maxWidth={false} className="screen">
         <Box className="screen-header">
-          <Navbar aps={props.aps} name={screen.name} />
           {/* <Occupancy aps={props.aps} data={screen} /> */}
+          <Navbar aps={props.aps} name={screen.name} title="ENTRY OPERATION" />
         </Box>
         <Box className="screen-main">
           <Primary data={data} />
@@ -54,7 +54,7 @@ export default function Screen(props) {
             height: 20vh;
             line-height: 20vh;
             vertical-align: middle;
-            font-size: 4vw;
+            font-size: 3vw;
             font-weight: bold;
           }
           .screen-main {
