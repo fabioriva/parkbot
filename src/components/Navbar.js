@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
-import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 // import Chip from '@mui/material/Chip'
 import Container from "@mui/material/Container";
@@ -53,7 +52,7 @@ export default function NavBar(props) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         sx={{
-          backgroundColor: "#121212",
+          backgroundColor: "#282c34",
           width: "100%",
           [theme.breakpoints.up("xl")]: {
             width: `calc(100% - ${drawerWidth}px)`,

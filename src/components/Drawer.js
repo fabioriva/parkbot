@@ -5,7 +5,6 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -160,7 +159,11 @@ export default function AppDrawer(props) {
         }}
         sx={{
           display: { xs: "block", xl: "none" }, // drawer responsive
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+          "& .MuiDrawer-paper": {
+            border: 0,
+            boxSizing: "border-box",
+            width: drawerWidth,
+          },
         }}
       >
         {drawer}
@@ -169,7 +172,11 @@ export default function AppDrawer(props) {
         variant="permanent"
         sx={{
           display: { xs: "none", xl: "block" }, // drawer responsive
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+          "& .MuiDrawer-paper": {
+            border: 0,
+            boxSizing: "border-box",
+            width: drawerWidth,
+          },
         }}
         open
       >

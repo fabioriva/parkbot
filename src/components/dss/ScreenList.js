@@ -19,7 +19,12 @@ export default function Racks(props) {
   const { screens, exitScreen } = props.json;
   return (
     <Layout {...props} pageTitle={t("dss")}>
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <List
+        sx={{
+          maxWidth: { md: "25%", xs: "100%" },
+          bgcolor: "background.paper",
+        }}
+      >
         {screens.map((screen, key) => (
           <ListItemButton
             key={key}
@@ -42,7 +47,6 @@ export default function Racks(props) {
           </ListItemButton>
         ))}
         <ListItemButton
-          // key={key}
           onClick={() =>
             router.push(`/${props.aps}/exitScreen`, `/${props.aps}/exitScreen`)
           }
