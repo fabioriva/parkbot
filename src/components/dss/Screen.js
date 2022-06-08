@@ -54,7 +54,7 @@ export default function Screen(props) {
             height: 20vh;
             line-height: 20vh;
             vertical-align: middle;
-            font-size: 3vw;
+            font-size: 4vw;
             font-weight: bold;
           }
           .screen-main {

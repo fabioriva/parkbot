@@ -1,5 +1,5 @@
 import Link from "next/link";
-// import Box from "@mui/material/Box";
+import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
@@ -15,19 +15,8 @@ export default function Navbar({ aps, name, title }) {
   return (
     <Grid container>
       <Grid item xs={12} sx={{ height: "6vh", lineHeight: "6vh" }}>
-        <Grid
-          container
-          px={6}
-          sx={{
-            // backgroundColor: "gray", // "#282c34",
-            color: "#fff",
-            fontSize: "16px",
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        >
-          <Grid item xs={4} sx={{ textAlign: "left" }}>
+        <Box className="row">
+          <Box className="column left">
             <Link href={`/${aps}/dss`}>
               <a
                 style={{
@@ -40,12 +29,9 @@ export default function Navbar({ aps, name, title }) {
                 &nbsp;&nbsp;&nbsp;&nbsp;DSS
               </a>
             </Link>
-            SOTEFIN SA
-          </Grid>
-          <Grid item xs={4}>
-            {name}
-          </Grid>
-          <Grid item xs={4} sx={{ textAlign: "right" }}>
+          </Box>
+          <Box className="column middle">{name}</Box>
+          <Box className="column right">
             <Tooltip title={`PLC IS ${comm ? "ONLINE" : "OFFLINE"}`}>
               {comm ? (
                 <Chip label="ONLINE" color="success" />
@@ -53,8 +39,30 @@ export default function Navbar({ aps, name, title }) {
                 <Chip label="OFFLINE" color="error" />
               )}
             </Tooltip>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
+        <style jsx global>
+          {`
+            .column {
+              float: left;
+              width: 33.33%;
+              font-size: 16px;
+            }
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+            .left,
+            .right {
+              width: 25%;
+            }
+            .middle {
+              width: 50%;
+            }
+          `}
+        </style>
       </Grid>
       <Grid item xs={12} sx={{ height: "14vh", lineHeight: "14vh" }}>
         <Grid container>
