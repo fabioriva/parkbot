@@ -14,9 +14,11 @@
   "stop-mesg-5": "AVVICINARSI AL LETTORE",
   "exit-name": "USCITA {{id}}",
   "exit-mesg-1": "IN ARRIVO",
-  "exit-mesg-2": "PRONTA IN",
+  "exit-mesg-2": "CONSEGNATA",
   "exit-next": "PROSSIMA",
   "exit-wait": "IN ATTESA",
   "exit-wait-call-1": "IN ATTESA",
-  "exit-wait-call-2": "DI CHIAMATA"
+  "exit-wait-call-2": "DI CHIAMATA",
+  "screen-entry": "ENTRATA IN CORSO",
+  "screen-exit": "VETTURE IN ARRIVO"
 }

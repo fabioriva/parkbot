@@ -9,10 +9,13 @@ import Navbar from "src/components/dss/Navbar";
 import Primary from "src/components/dss/Primary";
 import Secondary from "src/components/dss/Secondary";
 import useSWR from "swr";
+import useTranslation from "next-translate/useTranslation";
 
 const fetcher = (url) => global.fetch(url).then((r) => r.json());
 
 export default function Screen(props) {
+  const { t } = useTranslation("dss");
+
   if (props.json.err) return <Error {...props} pageTitle="DSS" />;
 
   const router = useRouter();
@@ -34,7 +37,11 @@ export default function Screen(props) {
       <Container maxWidth={false} className="screen">
         <Box className="screen-header">
           {/* <Occupancy aps={props.aps} data={screen} /> */}
-          <Navbar aps={props.aps} name={screen.name} title="ENTRY OPERATION" />
+          <Navbar
+            aps={props.aps}
+            name={screen.name}
+            title={t("screen-entry")}
+          />
         </Box>
         <Box className="screen-main">
           <Primary data={data} />

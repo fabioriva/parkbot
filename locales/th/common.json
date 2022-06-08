@@ -1,0 +1,34 @@
+{
+  "drawer-alarms": "Alarms",
+  "drawer-dashboard": "Dashboard",
+  "drawer-overview": "Overview",
+  "drawer-cards": "Cards",
+  "drawer-map": "Map",
+  "drawer-history": "History",
+  "drawer-notifications": "Notifications",
+  "drawer-racks": "PLC I/O",
+  "drawer-statistics": "Statistics",
+  "drawer-motion": "Motion",
+
+  "error-code": "Error {{code}}",
+  "error-fetch": "Fetch error - resource not available.",
+  "error-title": "Error",
+
+  "dialog-cancel": "Cancel",
+  "dialog-confirm": "Confirm",
+
+  "header-cars": "Total cars {{count}}",
+  "header-alarms": "Active alarms {{count}}",
+
+  "navbar-settings": "Settings",
+  "navbar-logout": "Logout",
+
+  "mode-data-edit": "Data edit",
+  "mode-data-read": "Data read",
+  "mode-eme-1": "Emergency 1",
+  "mode-eme-2": "Emergency 2",
+  "mode-no": "---",
+  "mode-step": "Step by Step",
+  "mode-preset": "Preset",
+  "mode-auto": "Automatic"
+}

@@ -1,0 +1,62 @@
+{
+  "page-title": "History",
+
+  "history": "History",
+
+  "history-count": "Logs count {{count}}",
+  "history-query": "Logs from {{from}} to {{to}}",
+  "history-summary": "Query summary",
+  "history-no-found": "No records found!",
+
+  "alarm": "Alarm Id",
+  "date": "Date",
+  "device": "Device",
+  "mode": "Mode",
+  "operation": "Operation",
+  "card": "Card",
+  "stall": "Destination",
+  "size": "Size",
+
+  "dev-operator": "User",
+
+  "dialog-cancel": "Cancel",
+  "dialog-confirm": "Confirm",
+  "dialog-date-from": "From",
+  "dialog-date-to": "To",
+  "dialog-title": "Search",
+
+  "list-op-id-1": "Alarm {{id}} active",
+  "list-op-id-2": "Alarm {{id}} cleared",
+  "list-op-id-3": "Switch to mode {{id}} - {{label}}",
+  "list-op-id-4": "PIN changed for card {{card}}",
+  "list-op-id-5": "Parked car {{card}}, stall {{stall}}",
+  "list-op-id-6": "Unparked car {{card}}, stall {{stall}}",
+  "list-op-id-7": "Moved car {{card}} in stall {{stall}}",
+  "list-op-id-8": "Moved car {{card}} from stall {{stall}}",
+  "list-op-id-9": "Reserved stall {{stall}}",
+  "list-op-id-10": "Exit request for card {{card}}",
+  "list-op-id-11": "Entry request for card {{card}}",
+
+  "mode-data-edit": "Data edit",
+  "mode-data-read": "Data read",
+  "mode-eme-1": "Emergency 1",
+  "mode-eme-2": "Emergency 2",
+  "mode-no": "No function",
+  "mode-step": "Step by Step",
+  "mode-preset": "Preset",
+  "mode-auto": "Automatic",
+
+  "op-alarm-on": "Alarm on",
+  "op-alarm-off": "Alarm off",
+  "op-switch-mode": "Switch mode",
+  "op-change-pin": "PIN changed",
+  "op-no": "---",
+  "op-stall-in": "Stall occupied",
+  "op-stall-lck": "Stall locked",
+  "op-stall-out": "Stall cleared",
+  "op-shuffle-in": "Shuffle in",
+  "op-shuffle-out": "Shuffle out",
+  "op-stall-rsv": "Stall reserved",
+  "op-req-entry": "Entry request",
+  "op-req-exit": "Exit request"
+}

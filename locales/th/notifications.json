@@ -1,0 +1,14 @@
+{
+  "page-title": "Notifications",
+  "total-count": "Total recipients {{count}}. (Max 3)",
+  "dialog-cancel": "Cancel",
+  "dialog-confirm": "Confirm",
+  "dialog-add": "Add item",
+  "dialog-remove-content": "Remove this item from the list?",
+  "dialog-remove-title": "Delete item",
+  "helper-email": "E-mail address",
+  "helper-name": "Full name",
+  "helper-phone": "Phone number",
+  "list-add": "Add users to the list!",
+  "list-empty": "The recipient list is empty."
+}

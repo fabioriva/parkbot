@@ -45,6 +45,8 @@ export default function Secondary({ data }) {
           <div>{t("stop-mesg-1")}</div>
           <div>{t("stop-mesg-2")}</div>
           <div>{t("stop-mesg-3")}</div>
+          <div>{t("stop-mesg-4")}</div>
+          <div>{t("stop-mesg-5")}</div>
         </Carousel>
       );
     default:

@@ -1,0 +1,27 @@
+{
+  "page-title": "Dashboard",
+
+  "devices-title": "Devices",
+  "queue-title": "Exit Queue",
+  "occupancy-title": "Parking spaces {{count}}",
+  "cards-title": "Cards",
+  "activity-title": "Recent Activity",
+  "operations-title": "Operations",
+
+  "busy": "Busy",
+  "free": "Free",
+  "lock": "Locked",
+
+  "entries": "Entries",
+  "exits": "Exits",
+  "total": "Total",
+
+  "device-aut": "Automatic mode",
+  "device-man": "Manual mode",
+  "device-ce-0": "Entry in progress",
+  "device-ce-1": "Entering card {{card}}",
+  "device-ce-2": "Entering card {{card}}, stall {{stall}}",
+  "device-cu-0": "Exit in progress",
+  "device-cu-1": "Exiting card {{card}}",
+  "device-cu-2": "Exiting card {{card}}, stall {{stall}}"
+}

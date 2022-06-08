@@ -6,10 +6,13 @@ import Header from "src/components/dss/Navbar";
 import Primary from "src/components/dss/ExitPrimary";
 import Secondary from "src/components/dss/ExitSecondary";
 import useSWR from "swr";
+import useTranslation from "next-translate/useTranslation";
 
 const fetcher = (url) => global.fetch(url).then((r) => r.json());
 
 export default function Screen(props) {
+  const { t } = useTranslation("dss");
+
   if (props.json.err) return <Error {...props} pageTitle="DSS" />;
 
   const [screen, setScreen] = React.useState(props.json);
@@ -27,7 +30,7 @@ export default function Screen(props) {
     <>
       <Container maxWidth={false} className="screen">
         <Box className="screen-header">
-          <Header aps={props.aps} name={screen.name} title="ARRIVALS BOARD" />
+          <Header aps={props.aps} name={screen.name} title={t("screen-exit")} />
         </Box>
         <Box className="screen-main">
           <Primary data={data} />
