@@ -29,13 +29,18 @@ export default function Primary({ data }) {
         {t(item.mesg)}
       </div>
     );
-    // items.push(<div key={key}>{item.name}</div>);
+    // items.push(<div style={{ color: PastelsColorPalette[key] }} key={key}>{item.name}</div>);
     items.push(
       <div style={{ color: PastelsColorPalette[key] }} key={key}>
         {t("exit-name", { id: key + 1 })}
       </div>
     );
   });
+
+  const idle = [
+    <div>{t("exit-wait-call-1")}</div>,
+    <div>{t("exit-wait-call-2")}</div>,
+  ];
 
   return (
     <Carousel
@@ -46,7 +51,7 @@ export default function Primary({ data }) {
       stopAutoPlayOnHover={false}
       swipe={false}
     >
-      {items}
+      {items.length > 0 ? items : idle}
     </Carousel>
   );
 }

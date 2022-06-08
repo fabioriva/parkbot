@@ -9,11 +9,14 @@
   "stop": "STOP",
   "stop-mesg-1": "VETTURA IN POSIZIONE",
   "stop-mesg-2": "SPEGNERE MOTORE",
-  "stop-mesg-3": "MESSAGGIO 2",
-  "stop-mesg-4": "MESSAGGIO 3",
+  "stop-mesg-3": "INSERIRE FRENO A MANO",
+  "stop-mesg-4": "RIPIEGARE SPECCHIETTI RETROVISORI",
+  "stop-mesg-5": "AVVICINARSI AL LETTORE",
   "exit-name": "USCITA {{id}}",
   "exit-mesg-1": "IN ARRIVO",
-  "exit-mesg-2": "CONSEGNATA IN",
+  "exit-mesg-2": "PRONTA IN",
   "exit-next": "PROSSIMA",
-  "exit-wait": "IN ATTESA"
+  "exit-wait": "IN ATTESA",
+  "exit-wait-call-1": "IN ATTESA",
+  "exit-wait-call-2": "DI CHIAMATA"
 }

@@ -79,7 +79,8 @@ function Position({ loading, title, position, destination }) {
                 sx={{
                   color: "text.secondary",
                   display: "inline",
-                  fontSize: 12,
+                  fontSize: 14,
+                  fontWeight: "bold",
                 }}
               >
                 {destination}

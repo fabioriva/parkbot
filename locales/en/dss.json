@@ -9,11 +9,14 @@
   "stop": "STOP",
   "stop-mesg-1": "CAR IN POSITION",
   "stop-mesg-2": "TURN OFF ENGINE",
-  "stop-mesg-3": "MESSAGE 2",
-  "stop-mesg-4": "MESSAGE 3",
+  "stop-mesg-3": "ENGAGE HANDBRAKE",
+  "stop-mesg-4": "FOLD WING MIRRORS",
+  "stop-mesg-5": "APRROACH CARD READER",
   "exit-name": "EXIT {{id}}",
   "exit-mesg-1": "ARRIVING IN",
   "exit-mesg-2": "DELIVERED IN",
   "exit-next": "NEXT",
-  "exit-wait": "WAITING"
+  "exit-wait": "WAITING",
+  "exit-wait-call-1": "WAITING FOR CALL",
+  "exit-wait-call-2": "WAITING FOR CALL"
 }
