@@ -29,10 +29,9 @@ export default function Primary({ data }) {
         {t(item.mesg)}
       </div>
     );
-    // items.push(<div style={{ color: PastelsColorPalette[key] }} key={key}>{item.name}</div>);
     items.push(
       <div style={{ color: PastelsColorPalette[key] }} key={key}>
-        {t("exit-name", { id: key + 1 })}
+        {item.name}
       </div>
     );
   });
