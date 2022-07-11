@@ -127,7 +127,8 @@ export default function AppHeader({
               color="textSecondary"
               sx={{
                 [theme.breakpoints.down("sm")]: {
-                  fontSize: 12,
+                  // fontSize: 12,
+                  display: "none",
                 },
               }}
             >
@@ -185,7 +186,6 @@ export default function AppHeader({
         )}
       </Box>
       <Divider sx={{ mb: 2 }} />
-      <style jsx>{``}</style>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles'
+import { createTheme } from "@mui/material/styles";
 // import { red } from '@mui/material/colors'
 
 const theme = createTheme({
@@ -7,18 +7,28 @@ const theme = createTheme({
     MuiCard: {
       defaultProps: {
         // The props to change the default for.
-        variant: 'outlined' // No more ripple!
-      }
+        variant: "outlined", // No more ripple!
+      },
     },
     MuiPaper: {
       defaultProps: {
         // The props to change the default for.
-        variant: 'outlined' // No more ripple!
-      }
-    }
+        variant: "outlined", // No more ripple!
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: "black",
+          color: "white",
+          // border: "1px solid #dadde9",
+          fontSize: 14,
+        },
+      },
+    },
   },
   palette: {
-    mode: 'light',
+    mode: "light",
     // primary: {
     //   main: '#556cd6'
     // },
@@ -28,11 +38,11 @@ const theme = createTheme({
     // error: {
     //   main: red.A400
     // },
-    ce: '#d4edda',
-    cu: '#f8d7da',
-    pp: '#d1ecf1',
-    op: '#fff3cd'
-  }
-})
+    ce: "#d4edda",
+    cu: "#f8d7da",
+    pp: "#d1ecf1",
+    op: "#fff3cd",
+  },
+});
 
-export default theme
+export default theme;
