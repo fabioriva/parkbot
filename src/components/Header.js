@@ -1,11 +1,12 @@
+import Link from "next/link";
 import { useTheme } from "@mui/material";
 // import { withStyles } from '@mui/styles'
 // import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Badge from "@mui/material/Badge";
+// import Badge from "@mui/material/Badge";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
+// import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 // icons
 // import RouterIcon from "@mui/icons-material/Router";
@@ -146,7 +147,7 @@ export default function AppHeader({
               />
             )} */}
             {diag > 0 && <Active active={diag} href={`/${aps}/overview`} />}
-            <Tooltip
+            {/* <Tooltip
               title={t("header-cars", { count: map[0]?.value || 0 })}
               aria-label="occupancy"
             >
@@ -165,7 +166,20 @@ export default function AppHeader({
                   <DirectionsCarIcon />
                 </Badge>
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
+            <Link href={`/${aps}/map`}>
+              <Tooltip
+                title={t("header-cars", { count: map[0]?.value || 0 })}
+                aria-label="occupancy"
+              >
+                <Chip
+                  icon={<DirectionsCarIcon />}
+                  label={map[0]?.value}
+                  size="small"
+                  // variant="outlined"
+                />
+              </Tooltip>
+            </Link>
             {comm ? online : offline}
           </Box>
         )}
