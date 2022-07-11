@@ -1,20 +1,20 @@
-const withPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
-const nextTranslate = require('next-translate')
+const withPWA = require("next-pwa");
+const runtimeCaching = require("next-pwa/cache");
+const nextTranslate = require("next-translate");
 
 module.exports = nextTranslate(
   withPWA({
     // basePath: '/parkbot',
-    pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-    swcMinify: true,
+    pageExtensions: ["js", "jsx", "md", "mdx"],
+    swcMinify: false,
     webpack5: true,
     pwa: {
-      dest: 'public',
+      dest: "public",
       runtimeCaching,
-      disable: process.env.NODE_ENV !== 'production'
-    }
+      disable: process.env.NODE_ENV !== "production",
+    },
   })
-)
+);
 
 // const withMDX = require('@next/mdx')({
 //   extension: /\.mdx?$/
