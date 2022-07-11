@@ -94,7 +94,6 @@ export default function AppLayout(props) {
             map={map}
             loading={loading}
           />
-          {/* {!comm && <Alert severity='error'>APS is offline.</Alert>} */}
           {/* <Alert severity='info'>
             Execution time (SSR): {props.executionTime[0]}
             {'s '}
@@ -117,12 +116,7 @@ export default function AppLayout(props) {
         <Box sx={{ mb: 3 }} />
         <Footer />
       </Box>
-      <Modal
-        open={expired}
-        // onClose={() => console.log('close')}
-        // aria-labelledby='modal-title'
-        // aria-describedby='modal-description'
-      >
+      <Modal open={expired}>
         <Box
           // component='form'
           sx={{

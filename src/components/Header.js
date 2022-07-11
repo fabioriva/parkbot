@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useTheme } from "@mui/material";
+// import { useTheme } from "@mui/material";
 // import { withStyles } from '@mui/styles'
 // import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -81,7 +81,7 @@ export default function AppHeader({
   map,
   loading,
 }) {
-  const theme = useTheme();
+  // const theme = useTheme();
   const { t } = useTranslation("common");
 
   // const online = (
@@ -100,15 +100,47 @@ export default function AppHeader({
   //   </Badge>
   // );
 
+  // const cars = (
+  //   <Tooltip
+  //     title={t("header-cars", { count: map[0]?.value || 0 })}
+  //     aria-label="occupancy"
+  //   >
+  //     <IconButton
+  //       aria-label="occupancy"
+  //       size="small"
+  //       href={`/${aps}/map`}
+  //       sx={{ color: "black" }}
+  //     >
+  //       <Badge badgeContent={map[0]?.value} color="primary" max={999} showZero>
+  //         <DirectionsCarIcon />
+  //       </Badge>
+  //     </IconButton>
+  //   </Tooltip>
+  // );
+
   const online = (
     <Tooltip title="ONLINE" aria-label="online">
-      <Chip label="PLC" color="success" size="small" sx={{ marginLeft: 1 }} />
+      <Chip label="PLC" color="success" size="small" sx={{ marginLeft: 0.5 }} />
     </Tooltip>
   );
 
   const offline = (
     <Tooltip title="OFFLINE" aria-label="offline">
-      <Chip label="PLC" color="error" size="small" sx={{ marginLeft: 1 }} />
+      <Chip label="PLC" color="error" size="small" sx={{ marginLeft: 0.5 }} />
+    </Tooltip>
+  );
+
+  const cars = (
+    <Tooltip
+      title={t("header-cars", { count: map[0]?.value || 0 })}
+      aria-label="occupancy"
+    >
+      <Chip
+        icon={<DirectionsCarIcon />}
+        label={map[0]?.value}
+        size="small"
+        sx={{ marginLeft: 0.5 }}
+      />
     </Tooltip>
   );
 
@@ -121,16 +153,17 @@ export default function AppHeader({
               {pageTitle}
             </Typography>
             <Typography
-              display="inline"
+              // display="inline"
               marginLeft={1}
               variant="subtitle1"
               color="textSecondary"
-              sx={{
-                [theme.breakpoints.down("sm")]: {
-                  // fontSize: 12,
-                  display: "none",
-                },
-              }}
+              sx={{ display: { xs: "none", md: "inline" } }}
+              // sx={{
+              //   [theme.breakpoints.down("sm")]: {
+              //     // fontSize: 12,
+              //     display: "none",
+              //   },
+              // }}
             >
               {apsName}
             </Typography>
@@ -139,48 +172,8 @@ export default function AppHeader({
 
         {!loading && (
           <Box sx={{ "& button": { m: 0 } }}>
-            {/* {!comm && (
-              <Chip
-                label="OFFLINE"
-                color="error"
-                size="small"
-                // variant='outlined'
-              />
-            )} */}
             {diag > 0 && <Active active={diag} href={`/${aps}/overview`} />}
-            {/* <Tooltip
-              title={t("header-cars", { count: map[0]?.value || 0 })}
-              aria-label="occupancy"
-            >
-              <IconButton
-                aria-label="occupancy"
-                size="small"
-                href={`/${aps}/map`}
-                sx={{ color: "black" }}
-              >
-                <Badge
-                  badgeContent={map[0]?.value}
-                  color="primary"
-                  max={999}
-                  showZero
-                >
-                  <DirectionsCarIcon />
-                </Badge>
-              </IconButton>
-            </Tooltip> */}
-            <Link href={`/${aps}/map`}>
-              <Tooltip
-                title={t("header-cars", { count: map[0]?.value || 0 })}
-                aria-label="occupancy"
-              >
-                <Chip
-                  icon={<DirectionsCarIcon />}
-                  label={map[0]?.value}
-                  size="small"
-                  // variant="outlined"
-                />
-              </Tooltip>
-            </Link>
+            <Link href={`/${aps}/map`}>{cars}</Link>
             {comm ? online : offline}
           </Box>
         )}
