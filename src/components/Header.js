@@ -101,13 +101,13 @@ export default function AppHeader({
 
   const online = (
     <Tooltip title="ONLINE" aria-label="online">
-      <Chip label="PLC" color="success" size="small" sx={{ marginLeft: 0.5 }} />
+      <Chip label="PLC" color="success" size="small" sx={{ marginLeft: 1 }} />
     </Tooltip>
   );
 
   const offline = (
     <Tooltip title="OFFLINE" aria-label="offline">
-      <Chip label="PLC" color="error" size="small" sx={{ marginLeft: 0.5 }} />
+      <Chip label="PLC" color="error" size="small" sx={{ marginLeft: 1 }} />
     </Tooltip>
   );
 
