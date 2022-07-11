@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 export function useComm(url) {
-  const ws = useRef(null);
+  // const ws = useRef(null);
 
   // const [error, setError] = useState('')
   const [comm, setComm] = useState(false);
