@@ -153,7 +153,7 @@ export default function AppHeader({
       <Chip
         color="error"
         icon={<NotificationsActiveIcon />}
-        label={123}
+        label={diag}
         size="small"
       />
     </Tooltip>
