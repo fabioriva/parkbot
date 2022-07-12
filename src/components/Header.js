@@ -11,7 +11,8 @@ import Typography from "@mui/material/Typography";
 // icons
 // import RouterIcon from "@mui/icons-material/Router";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import Active from "src/components/Active";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+// import Active from "src/components/Active";
 import Tooltip from "src/components/Tooltip";
 import useTranslation from "next-translate/useTranslation";
 
@@ -144,6 +145,20 @@ export default function AppHeader({
     </Tooltip>
   );
 
+  const notifications = (
+    <Tooltip
+      title={t("header-alarms", { count: diag })}
+      aria-label="notification active"
+    >
+      <Chip
+        color="error"
+        icon={<NotificationsActiveIcon />}
+        label={123}
+        size="small"
+      />
+    </Tooltip>
+  );
+
   return (
     <>
       <Box display="flex" flexDirection="row" alignItems="center" p={0} mt={2}>
@@ -157,7 +172,7 @@ export default function AppHeader({
               marginLeft={1}
               variant="subtitle1"
               color="textSecondary"
-              sx={{ display: { xs: "none", md: "inline" } }}
+              sx={{ display: { xs: "none", sm: "inline" } }}
               // sx={{
               //   [theme.breakpoints.down("sm")]: {
               //     // fontSize: 12,
@@ -172,7 +187,8 @@ export default function AppHeader({
 
         {!loading && (
           <Box sx={{ "& button": { m: 0 } }}>
-            {diag > 0 && <Active active={diag} href={`/${aps}/overview`} />}
+            {/* {diag > 0 && <Active active={diag} href={`/${aps}/overview`} />} */}
+            {diag > 0 && notifications}
             <Link href={`/${aps}/map`}>{cars}</Link>
             {comm ? online : offline}
           </Box>
