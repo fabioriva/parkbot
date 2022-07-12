@@ -5,7 +5,7 @@ export function useComm(url) {
 
   // const [error, setError] = useState('')
   const [comm, setComm] = useState(false);
-  const [diag, setDiag] = useState({});
+  const [diag, setDiag] = useState(0);
   const [map, setMap] = useState({});
   const [message, setMessage] = useState({});
   const [loading, setLoading] = useState(true);

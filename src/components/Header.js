@@ -148,13 +148,13 @@ export default function AppHeader({
   const notifications = (
     <Tooltip
       title={t("header-alarms", { count: diag })}
-      aria-label="notification active"
+      aria-label="notifications active"
     >
       <Chip
-        color="error"
         icon={<NotificationsActiveIcon />}
         label={diag}
         size="small"
+        color="error"
       />
     </Tooltip>
   );
@@ -168,11 +168,9 @@ export default function AppHeader({
               {pageTitle}
             </Typography>
             <Typography
-              // display="inline"
-              marginLeft={1}
               variant="subtitle1"
               color="textSecondary"
-              sx={{ display: { xs: "none", sm: "inline" } }}
+              sx={{ display: { xs: "none", sm: "inline" }, marginLeft: 1 }}
               // sx={{
               //   [theme.breakpoints.down("sm")]: {
               //     // fontSize: 12,
@@ -188,7 +186,7 @@ export default function AppHeader({
         {!loading && (
           <Box sx={{ "& button": { m: 0 } }}>
             {/* {diag > 0 && <Active active={diag} href={`/${aps}/overview`} />} */}
-            {diag > 0 && notifications}
+            {diag > 0 && <Link href={`/${aps}/overview`}>{notifications}</Link>}
             <Link href={`/${aps}/map`}>{cars}</Link>
             {comm ? online : offline}
           </Box>
