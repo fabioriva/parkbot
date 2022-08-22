@@ -7,7 +7,7 @@ module.exports = nextTranslate(
     // basePath: '/parkbot',
     pageExtensions: ["js", "jsx", "md", "mdx"],
     swcMinify: false,
-    webpack5: true,
+    // webpack5: true,
     pwa: {
       dest: "public",
       runtimeCaching,
