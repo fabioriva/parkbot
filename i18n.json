@@ -27,5 +27,6 @@
     "/muse/overview": ["overview", "io"],
     "/qihe1/overview": ["overview", "io"],
     "/qihe2/overview": ["overview", "io"]
-  }
+  },
+  "logBuild": false
 }
