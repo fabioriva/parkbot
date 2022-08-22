@@ -89,6 +89,7 @@ export default function Overview(props) {
                   aps={props.aps}
                   // actions={[handleOpen]} //, handleRollback]}
                   auth={isAllowed(props.user, [ACTIONS || ENTRY])}
+                  action={() => handleOperationId(element.a.id)}
                   user={props.user}
                   // authorization={isAllowed(user, [userRole])
                   loading={loading}
