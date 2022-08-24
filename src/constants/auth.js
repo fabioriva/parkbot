@@ -26,12 +26,21 @@ export const ENTRY = "entry";
 export const EXIT = "exit";
 export const ROLLBACK = "rollback";
 
+// export const hasRole = (user, roles) =>
+//   roles.some((role) =>
+//     user.roles !== undefined ? user.roles.includes(role) : false
+//   );
+
 export const hasRole = (user, roles) =>
-  roles.some((role) =>
-    user.roles !== undefined ? user.roles.includes(role) : false
-  );
+  roles.some((role) => user.roles.includes(role));
+
+// export const isAllowed = (user, rights) =>
+//   rights.some((right) => {
+//     {
+//       console.log(right, user.rights.includes(right));
+//       user.rights !== undefined ? user.rights.includes(right) : false;
+//     }
+//   });
 
 export const isAllowed = (user, rights) =>
-  rights.some((right) =>
-    user.rights !== undefined ? user.rights.includes(right) : false
-  );
+  rights.some((right) => user.rights.includes(right));

@@ -88,7 +88,7 @@ export default function Overview(props) {
                   item={element}
                   aps={props.aps}
                   // actions={[handleOpen]} //, handleRollback]}
-                  auth={isAllowed(props.user, [ACTIONS || ENTRY])}
+                  auth={isAllowed(props.user, [ACTIONS, ENTRY])}
                   action={() => handleOperationId(element.a.id)}
                   user={props.user}
                   // authorization={isAllowed(user, [userRole])
@@ -100,7 +100,7 @@ export default function Overview(props) {
         </Grid>
         <Grid item xs={12} sm={6} md={4} xl={3}>
           <Queue
-            auth={isAllowed(props.user, [ACTIONS || EXIT])}
+            auth={isAllowed(props.user, [ACTIONS, EXIT])}
             data={overview.exitQueue}
             onDelete={handleDelete}
             // onExit={() => setOpen(true)}
