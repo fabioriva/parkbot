@@ -1,26 +1,30 @@
-import React from 'react'
-import enLocale from 'date-fns/locale/en-US'
-import itLocale from 'date-fns/locale/it'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import LocalizationProvider from '@mui/lab/LocalizationProvider'
-import DesktopDateTimePicker from '@mui/lab/DesktopDateTimePicker'
-import MobileDateTimePicker from '@mui/lab/MobileDateTimePicker'
-import TextField from '@mui/material/TextField'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import React from "react";
+import enLocale from "date-fns/locale/en-US";
+import itLocale from "date-fns/locale/it";
+// import AdapterDateFns from '@mui/lab/AdapterDateFns'
+// import LocalizationProvider from '@mui/lab/LocalizationProvider'
+// import DesktopDateTimePicker from '@mui/lab/DesktopDateTimePicker'
+// import MobileDateTimePicker from '@mui/lab/MobileDateTimePicker'
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DesktopDateTimePicker } from "@mui/x-date-pickers/DesktopDateTimePicker";
+import { MobileDateTimePicker } from "@mui/x-date-pickers/MobileDateTimePicker";
+import TextField from "@mui/material/TextField";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const localeMap = {
   en: enLocale,
-  it: itLocale
-}
+  it: itLocale,
+};
 
-export default function DateTimePicker ({
+export default function DateTimePicker({
   label,
   locale,
   value,
   error,
-  onChange
+  onChange,
 }) {
-  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   const mobilePicker = (
     <MobileDateTimePicker
@@ -28,9 +32,9 @@ export default function DateTimePicker ({
       label={label}
       value={value}
       onChange={onChange}
-      renderInput={params => <TextField {...params} error={!!error} />}
+      renderInput={(params) => <TextField {...params} error={!!error} />}
     />
-  )
+  );
 
   const desktopPicker = (
     <DesktopDateTimePicker
@@ -38,9 +42,9 @@ export default function DateTimePicker ({
       label={label}
       value={value}
       onChange={onChange}
-      renderInput={params => <TextField {...params} error={!!error} />}
+      renderInput={(params) => <TextField {...params} error={!!error} />}
     />
-  )
+  );
 
   return (
     <LocalizationProvider
@@ -49,5 +53,5 @@ export default function DateTimePicker ({
     >
       {isMobile ? mobilePicker : desktopPicker}
     </LocalizationProvider>
-  )
+  );
 }
