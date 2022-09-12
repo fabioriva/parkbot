@@ -6,8 +6,8 @@ module.exports = nextTranslate(
   withPWA({
     // basePath: '/parkbot',
     pageExtensions: ["js", "jsx", "md", "mdx"],
-    swcMinify: false,
-    // webpack5: true,
+    // swcMinify: false,
+    // webpack5: false,
     pwa: {
       dest: "public",
       runtimeCaching,
