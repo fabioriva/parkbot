@@ -31,8 +31,10 @@ const bg = (op, theme) => {
       return theme.palette.cu;
     case 3:
       return theme.palette.pp;
-    // default:
-    //   return '#fff'
+    case 4:
+      return theme.palette.op; // swap
+    default:
+      return "#fff";
   }
 };
 
