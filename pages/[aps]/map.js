@@ -13,6 +13,7 @@ const componentList = {
   chandan: dynamic(() => import('src/components/map/chandan')),
   chiattone: dynamic(() => import('src/components/map/chiattone')),
   donini: dynamic(() => import('src/components/map/donini')),
+  hdante: dynamic(() => import('src/components/map/hdante')),
   ironbank: dynamic(() => import('src/components/map/ironbank')),
   jhn: dynamic(() => import('src/components/map/jhn')),
   jhs: dynamic(() => import('src/components/map/jhs')),
