@@ -120,19 +120,25 @@ export default function AppLayout(props) {
         <Box
           // component='form'
           sx={{
+            // height: "60vh",
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 400,
+            width: isMobile ? "95%" : "80%",
             bgcolor: "background.paper",
-            border: "2px solid #ff0000",
+            border: "12px solid #ffff00",
             boxShadow: 24,
-            p: 4,
+            py: isMobile ? 6 : 12,
             textAlign: "center",
           }}
         >
-          <Typography id="modal-title" variant="h6" component="h2">
+          <Typography
+            id="modal-title"
+            variant="h5"
+            component="h2"
+            sx={{ fontWeight: "bold" }}
+          >
             LICENSE HAS EXPIRED
           </Typography>
           <Typography id="modal-description" sx={{ mt: 2 }}>
