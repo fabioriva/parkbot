@@ -17,6 +17,7 @@ const componentList = {
   ironbank: dynamic(() => import("src/components/map/ironbank")),
   jhn: dynamic(() => import("src/components/map/jhn")),
   jhs: dynamic(() => import("src/components/map/jhs")),
+  kg: dynamic(() => import("src/components/map/kg")),
   knl: dynamic(() => import("src/components/map/kn")),
   knr: dynamic(() => import("src/components/map/kn")),
   muse: dynamic(() => import("src/components/map/muse")),

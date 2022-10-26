@@ -9,6 +9,7 @@ const APS_ = [
   { ns: "ironbank", name: "Iron Bank, Auckland, 🇳🇿" },
   { ns: "jhn", name: "Jameson House (North), Vancouver, 🇨🇦" },
   { ns: "jhs", name: "Jameson House (South), Vancouver, 🇨🇦" },
+  { ns: "kg", name: "Kaveri Gold, Mumbai, 🇮🇳" },
   { ns: "knl", name: "Kamla Nagar (Left), New Delhi, 🇮🇳" },
   { ns: "knr", name: "Kamla Nagar (Right), New Delhi, 🇮🇳" },
   { ns: "muse", name: "The Muse, Miami, 🇺🇸" },
