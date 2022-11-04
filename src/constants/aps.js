@@ -23,6 +23,7 @@ const APS_ = [
   { ns: "vl", name: "Vaibhab Lakshmi, Mumbai, 🇮🇳" },
   { ns: "wallstreet", name: "Spire, Seattle, 🇺🇸" },
   { ns: "washingtonblvd", name: "Washington Blvd 8888, LA, 🇺🇸" },
+  { ns: "xian", name: "Xian, 🇨🇳" },
 ];
 
 export const aps_ = (aps) => APS_.find((a) => aps === a.ns);

@@ -31,6 +31,7 @@ const componentList = {
   vl: dynamic(() => import("src/components/map/vl")),
   wallstreet: dynamic(() => import("src/components/map/wallstreet")),
   washingtonblvd: dynamic(() => import("src/components/map/washingtonblvd")),
+  xian: dynamic(() => import("src/components/map/xian")),
 };
 
 const Page = (props) => {
