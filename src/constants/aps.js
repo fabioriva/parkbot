@@ -18,6 +18,7 @@ const APS_ = [
   { ns: "parshvnath", name: "Parshvnath, New Delhi, 🇮🇳" },
   { ns: "qihe1", name: "Qihe School (Block 1), 🇨🇳" },
   { ns: "qihe2", name: "Qihe School (Block 2), 🇨🇳" },
+  { ns: "smoritz", name: "Chiesa Carmen, Saint Moritz, 🇨🇭" },
   { ns: "teenmurty", name: "Teen Murty, Mumbai, 🇮🇳" },
   { ns: "trumpeldor", name: "Trumpeldor, Tel Aviv, 🇮🇱" },
   { ns: "vl", name: "Vaibhab Lakshmi, Mumbai, 🇮🇳" },

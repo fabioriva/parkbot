@@ -26,6 +26,7 @@ const componentList = {
   parshvnath: dynamic(() => import("src/components/map/parshvnath")),
   qihe1: dynamic(() => import("src/components/map/qihe")),
   qihe2: dynamic(() => import("src/components/map/qihe")),
+  smoritz: dynamic(() => import("src/components/map/smoritz")),
   teenmurty: dynamic(() => import("src/components/map/teenmurty")),
   trumpeldor: dynamic(() => import("src/components/map/trumpeldor")),
   vl: dynamic(() => import("src/components/map/vl")),
