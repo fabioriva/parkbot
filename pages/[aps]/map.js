@@ -20,6 +20,7 @@ const componentList = {
   kg: dynamic(() => import("src/components/map/kg")),
   knl: dynamic(() => import("src/components/map/kn")),
   knr: dynamic(() => import("src/components/map/kn")),
+  mesacon: dynamic(() => import("src/components/map/mesacon")),
   muse: dynamic(() => import("src/components/map/muse")),
   nhidcl: dynamic(() => import("src/components/map/nhidcl")),
   nyu: dynamic(() => import("src/components/map/nyu")),
