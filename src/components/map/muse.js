@@ -55,11 +55,11 @@ const Map = ({ levels, occupancy, view }) => {
             vertical-align: middle;
             line-height: 30px;
           }
-          #el-1 {
+          #el-3 {
             top: 33px;
             left: 2px;
           }
-          #el-2 {
+          #el-4 {
             top: 33px;
             left: 125px;
           }
