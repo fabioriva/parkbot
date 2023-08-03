@@ -6,7 +6,7 @@
     "build": "next build",
     "build:clean": "rimraf .next && npm run build",
     "dev": "next dev",
-    "start": "next start",
+    "start": "next start -p 3001",
     "pm2": "NODE_ENV=production pm2 start npm --name parkbot-app -- start"
   },
   "dependencies": {
